@@ -24,6 +24,12 @@ msgstr "Responsable de Área"
 #. module: contact_directory
 #: model_terms:ir.ui.view,arch_db:contact_directory.inherit_hr_employee_public_view_form
 #: model_terms:ir.ui.view,arch_db:contact_directory.inherit_view_employee_form
+msgid "Email of Work"
+msgstr "Correo de Trabajo"
+
+#. module: contact_directory
+#: model_terms:ir.ui.view,arch_db:contact_directory.inherit_hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:contact_directory.inherit_view_employee_form
 msgid "Supervisor"
 msgstr "Supervisor"
 

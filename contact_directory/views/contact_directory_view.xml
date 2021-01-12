@@ -8,18 +8,25 @@
       <field name="model">hr.employee</field>
       <field name="inherit_id" ref="hr.view_employee_form" />
       <field name="arch" type="xml">
+
+        <field name="mobile_phone" position="attributes">
+          <attribute name="widget"></attribute>
+        </field>
+
         <field name="work_phone" position="attributes">
-          <!--<attribute name="string">Extención Telefónica</attribute>-->
           <attribute name="string">Telephone Extension</attribute>
+          <attribute name="widget"></attribute>
+        </field>
+
+        <field name="work_email" position="attributes">
+          <attribute name="string">Email of Work</attribute>
         </field>
 
         <field name="parent_id" position="attributes">
-          <!--<attribute name="string">Responsable de Área</attribute>-->
           <attribute name="string">Area Manager</attribute>
         </field>
 
         <field name="coach_id" position="attributes">
-          <!--<attribute name="string">Supervisor</attribute>-->
           <attribute name="string">Supervisor</attribute>
         </field>
       </field>
@@ -32,19 +39,34 @@
       <field name="model">hr.employee.public</field>
       <field name="inherit_id" ref="hr.hr_employee_public_view_form" />
       <field name="arch" type="xml">
+
+        <field name="mobile_phone" position="attributes">
+          <attribute name="widget"></attribute>
+        </field>
+
         <field name="work_phone" position="attributes">
-          <!--<attribute name="string">Extención Telefónica</attribute>-->
           <attribute name="string">Telephone Extension</attribute>
+          <attribute name="widget"></attribute>
+        </field>
+
+        <field name="work_email" position="attributes">
+          <attribute name="string">Email of Work</attribute>
+        </field>
+
+        <field name="department_id" position="attributes">
+          <attribute name="widget">selection</attribute>
         </field>
 
         <field name="parent_id" position="attributes">
-          <!--<attribute name="string">Responsable de Área</attribute>-->
           <attribute name="string">Area Manager</attribute>
         </field>
 
         <field name="coach_id" position="attributes">
-          <!--<attribute name="string">Supervisor</attribute>-->
           <attribute name="string">Supervisor</attribute>
+        </field>
+
+        <field name="address_id" position="attributes">
+          <attribute name="widget">selection</attribute>
         </field>
       </field>
     </record>
@@ -52,25 +74,21 @@
     <!--Se Cambia el menu Padre de Empleados a Contactos-->
     <record model="ir.ui.menu" id="hr.menu_hr_root">
       <field name="name">Contactos</field>
-      <!--<field name="name">Contacts</field>-->
     </record>
 
     <!--Se Cambia el SubMenu Directorio de Empleados a Directorio de Contactos-->
     <record model="ir.ui.menu" id="hr.menu_hr_employee">
       <field name="name">Directorio de Contactos</field>
-      <!--<field name="name">Contact Directory</field>-->
     </record>
 
     <!--Inherit Actio Employee Public-->
     <record model="ir.actions.act_window" id="hr.hr_employee_public_action">
       <field name="name">Contactos</field>
-      <!--<field name="name">Contacts</field>-->
     </record>
 
     <!--Inherit Actio Employee Public-->
     <record model="ir.actions.act_window" id="hr.open_view_employee_list_my">
       <field name="name">Contactos</field>
-      <!--<field name="name">Contacts</field>-->
     </record>
 
 
