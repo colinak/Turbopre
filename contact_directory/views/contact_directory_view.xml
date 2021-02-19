@@ -100,21 +100,29 @@
       <field name="sequence">0</field>
     </record>
 
+    <record model="ir.ui.menu" id="hr.menu_hr_employee_payroll">
+      <field name="name">Contacts</field>
+    </record>
+
+    <record model="ir.ui.menu" id="hr.menu_hr_employee_user">
+      <field name="name">Contacts</field>
+    </record>
+
     <!--Se Cambia el SubMenu Directorio de Empleados a Directorio de Contactos-->
     <record model="ir.ui.menu" id="hr.menu_hr_employee">
-      <field name="name">Directorio de Contactos</field>
-      <!--<field name="secuence">1</field>-->
+      <field name="name">Contacts Directory</field>
+      <field name="sequence">1</field>
     </record>
 
     <!--Inherit Action Employee Public-->
     <record model="ir.actions.act_window" id="hr.hr_employee_public_action">
-      <field name="name">Contactos</field>
+      <field name="name">Contacts Directory</field>
       <!--<field name="secuence">1</field>-->
     </record>
 
     <!--Inherit Actio Employee Public-->
     <record model="ir.actions.act_window" id="hr.open_view_employee_list_my">
-      <field name="name">Contactos</field>
+      <field name="name">Contacts</field>
     </record>
 
     <record id="inherit_res_users_view_form_profile" model="ir.ui.view">
