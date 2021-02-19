@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0-20201002\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-11 12:43+0000\n"
-"PO-Revision-Date: 2021-01-11 12:43+0000\n"
+"POT-Creation-Date: 2021-02-18 16:38+0000\n"
+"PO-Revision-Date: 2021-02-18 16:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -31,11 +31,18 @@ msgstr "Correo de Trabajo"
 #: model_terms:ir.ui.view,arch_db:contact_directory.inherit_hr_employee_public_view_form
 #: model_terms:ir.ui.view,arch_db:contact_directory.inherit_view_employee_form
 msgid "Supervisor"
-msgstr "Supervisor"
+msgstr ""
 
 #. module: contact_directory
 #: model_terms:ir.ui.view,arch_db:contact_directory.inherit_hr_employee_public_view_form
+#: model_terms:ir.ui.view,arch_db:contact_directory.inherit_hr_employee_public_view_tree
+#: model_terms:ir.ui.view,arch_db:contact_directory.inherit_res_users_view_form_profile
 #: model_terms:ir.ui.view,arch_db:contact_directory.inherit_view_employee_form
+#: model_terms:ir.ui.view,arch_db:contact_directory.inherit_view_employee_tree
 msgid "Telephone Extension"
 msgstr "Extención Telefónica"
 
+#. module: hr
+#: model:ir.ui.menu,name:hr.menu_hr_root
+msgid "Contacts"
+msgstr "Contactos"

@@ -32,6 +32,17 @@
       </field>
     </record>
 
+    <record id="inherit_view_employee_tree" model="ir.ui.view">
+      <field name="name">inherit.hr.employee.tree</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_tree" />
+      <field name="arch" type="xml">
+        <field name="work_phone" position="attributes">
+          <attribute name="string">Telephone Extension</attribute>
+        </field>
+      </field>
+    </record>
+
 
     <!--Inherit View form Employee Public-->
     <record id="inherit_hr_employee_public_view_form" model="ir.ui.view">
@@ -71,19 +82,34 @@
       </field>
     </record>
 
+
+    <record id="inherit_hr_employee_public_view_tree" model="ir.ui.view">
+      <field name="name">inherit.hr.employee.public.form</field>
+      <field name="model">hr.employee.public</field>
+      <field name="inherit_id" ref="hr.hr_employee_public_view_tree" />
+      <field name="arch" type="xml">
+        <field name="work_phone" position="attributes">
+          <attribute name="string">Telephone Extension</attribute>
+        </field>
+      </field>
+    </record>
+
     <!--Se Cambia el menu Padre de Empleados a Contactos-->
     <record model="ir.ui.menu" id="hr.menu_hr_root">
-      <field name="name">Contactos</field>
+      <field name="name">Contacts</field>
+      <field name="sequence">0</field>
     </record>
 
     <!--Se Cambia el SubMenu Directorio de Empleados a Directorio de Contactos-->
     <record model="ir.ui.menu" id="hr.menu_hr_employee">
       <field name="name">Directorio de Contactos</field>
+      <!--<field name="secuence">1</field>-->
     </record>
 
-    <!--Inherit Actio Employee Public-->
+    <!--Inherit Action Employee Public-->
     <record model="ir.actions.act_window" id="hr.hr_employee_public_action">
       <field name="name">Contactos</field>
+      <!--<field name="secuence">1</field>-->
     </record>
 
     <!--Inherit Actio Employee Public-->
@@ -91,6 +117,17 @@
       <field name="name">Contactos</field>
     </record>
 
+    <record id="inherit_res_users_view_form_profile" model="ir.ui.view">
+      <field name="name">inherith.res.users.preferences.form.inherit</field>
+      <field name="model">res.users</field>
+      <field name="inherit_id" ref="hr.res_users_view_form_profile" />
+      <field name="arch" type="xml">
+        <field name="work_phone" position="attributes">
+          <attribute name="string">Telephone Extension</attribute>
+          <attribute name="widget"></attribute>
+        </field>
+      </field>
+    </record>
 
   </data>
 </odoo>
