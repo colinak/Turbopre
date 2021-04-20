@@ -120,7 +120,7 @@
       <!--<field name="secuence">1</field>-->
     </record>
 
-    <!--Inherit Actio Employee Public-->
+    <!--Inherit Action Employee Public-->
     <record model="ir.actions.act_window" id="hr.open_view_employee_list_my">
       <field name="name">Contacts</field>
     </record>

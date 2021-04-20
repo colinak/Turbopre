@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <template id="inherit_internal_layout" inherit_id="web.internal_layout">
+      <xpath expr="//div[@class='row']" position="replace">
+        <div class="row" style="margin-top: 15px;">
+          <center>
+            <table width="95%" 
+              style="border: 1px solid #000; align: center; font-family: Arial,sans-serif,Helvetica,Monaco,Georgia,Futura,Verdana;">
+              <thead>
+                <tr>
+                  <th scope="col" style="border: 1px solid #000; height: 10%; width: 35%; padding: 7px;">
+                    <div name="logo_company" align="center">
+                      <img t-attf-src="data:image/*;base64,{{company.logo}}"
+                        style="padding-top: 2px; height: auto; width: 250px; align: center;" />
+                    </div>
+                  </th>
+                  <th scope="col" style="text-aling: center; border: 1px solid #000; height: 10%; width: 65%; padding-top: 7px;">
+                    <center><strong>ENTREGA DE EQUIPOS</strong></center>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td scope="row" style="text-aling: center; boder: 1px solid #000; height: 10%; width: 35%; font-size: 80%; padding: 5px;">
+                    <center><span>MANUAL ADMINISTRATIVO DE LOS SISTEMAS DE GESTIÓN</span></center>
+                  </td>
+                  <td width="70%" style="border: 1px solid #000; height: 10%; width: 65%; padding-top: 5px;">
+                    <div class="offset-3 text-right">
+                      <ul class="list-inline">
+                          <li class="list-inline-item">PÁG <span class="page"/></li>
+                          <li class="list-inline-item">DE</li>
+                          <li class="list-inline-item"><span class="topage"/></li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </center>
+        </div>
+      </xpath>
+    </template>
+
+  </data>
+</odoo>
+
