@@ -1,6 +1,279 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <data>
-  
+
+    <template id="report_equipment_assignment_doc">
+      <t t-call="tbps_header_footer_layout.inherit_internal_layout">
+        <t t-set="o" t-value="o.with_context(lang=lang)" />
+        <div class="page" style="font-family: Arial,sans-serif,Helvetica,Monaco,Georgia,Futura,Verdana;">
+          <div class="col-5" id="date" style="margin-top: 25px; font-size: 90%;">
+            <strong>Fecha de Entrega: </strong>
+            <strong t-field="o.assign_date"/>
+          </div>
+          <div class="col-12">
+            <table width="100%" style="border: 1px solid #000;">
+              <thead style="font-size: 80%;">
+                <tr>
+                  <th colspan="2" style="border: 1px solid #000; text-align: center;">
+                    <t t-if="o.type_assignment == 'inital'">
+                      <t t-set="initial" t-value="X" />
+                    </t>
+                    <strong>Asignación Inicial [<span t-esc="initial" />]</strong>
+                  </th>
+                  <th colspan="2" style="border: 1px solid #000; text-align: center;">
+                    <t t-if="o.type_assignment == 'replace'">
+                      <t t-set="replace" t-value="X" />
+                    </t>
+                    <strong>Reemplazo o Actualización [<span t-esc="replace" />]</strong>
+                  </th>
+                  <th colspan="2" style="border: 1px solid #000; text-align: center;">
+                    <t t-if="o.type_assignment == 'culminaction'">
+                      <t t-set="culminaction" t-value="X" />
+                    </t>
+                    <strong>Termino de Relación Laboral [<span t-esc="culminaction" />]</strong>
+                  </th>
+                </tr>
+                <tr>
+                  <th colspan="6" style="border: 1px solid #000; text-align: center;">
+                    <strong>Datos del Empleado</strong>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="font-size: 80%;">
+                  <th colspan="2" style="border: 1px solid #000;">
+                    <span style="margin-left: 5px;">Nombre y Apellido: </span>
+                  </th>
+                  <td colspan="4" style="border: 1px solid #000;">
+                    <span style="margin-left: 5px;" t-field="o.employee_id.name"/>
+                  </td>
+                </tr>
+                <tr style="font-size: 80%;">
+                  <th colspan="2" style="border: 1px solid #000;">
+                    <span style="margin-left: 5px;">Cargo: </span>
+                  </th>
+                  <td colspan="4" style="border: 1px solid #000;">
+                    <span style="margin-left: 5px;" t-field="o.employee_id.job_id.name"/>
+                  </td>
+                </tr>
+                <tr style="font-size: 80%;">
+                  <th colspan="2" style="border: 1px solid #000;">
+                    <span style="margin-left: 5px;">Localidad / Oficina: </span>
+                  </th>
+                  <td colspan="4" style="border: 1px solid #000;">
+                    <span style="margin-left: 5px;" t-field="o.location"/>
+                  </td>
+                </tr>
+                <tr style="text-align: center; font-size: 80%;">
+                  <th colspan="6" style="border: 1px solid #000;">
+                    <strong>Datos del Equipo</strong>
+                  </th>
+                </tr>
+                <tr style="text-align: center; font-size: 80%;" >
+                  <th colspan="1" style="border: 1px solid #000;">
+                    <strong>Item</strong>
+                  </th>
+                  <th colspan="1" style="border: 1px solid #000;">
+                    <strong>Categoría</strong>
+                  </th>
+                  <th colspan="2" style="border: 1px solid #000;">
+                    <strong>Descripción</strong>
+                  </th>
+                  <th colspan="1" style="border: 1px solid #000;">
+                    <strong>Modelo</strong>
+                  </th>
+                  <th colspan="1" style="border: 1px solid #000;">
+                    <strong>N° de Serie</strong>
+                  </th>
+                </tr>
+                <tr style="text-align: left; font-size: 80%;" >
+                  <td colspan="1" style="border: 1px solid #000;">
+                    <!--<span style="margin-left: 5px;" t-field="o.category_id.name"/>-->
+                  </td>
+                  <td colspan="1" style="border: 1px solid #000;">
+                    <span style="margin-left: 5px;" t-field="o.category_id.name"/>
+                  </td>
+                  <td colspan="2" style="border: 1px solid #000;">
+                    <span style="margin-left: 5px;" t-field="o.name"/>
+                  </td>
+                  <td colspan="1" style="border: 1px solid #000;">
+                    <span style="margin-left: 5px;" t-field="o.model"/>
+                  </td>
+                  <td colspan="1" style="border: 1px solid #000;">
+                    <span style="margin-left: 5px;" t-field="o.serial_no"/>
+                  </td>
+                </tr>
+                <tr style="text-align: center; font-size: 80%;" >
+                  <th colspan="6" style="border: 1px solid #000;">
+                    <strong>Observaciones</strong>
+                  </th>
+                </tr>
+                <tr style="text-align: left; font-size: 80%;" >
+                  <t t-if="o.note">
+                    <td colspan="6" style="border: 1px solid #000;">
+                      <span style="margin-left: 5px;" t-field="o.note"/>
+                    </td>
+                  </t>
+                  <t t-else="not o.note">
+                    <td colspan="6" style="border: 1px solid #000;">
+                      <span> </span>
+                    </td>
+                  </t>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr style="text-align: center; font-size: 85%;">
+                  <th colspan="6" style="border: 1px solid #000;">
+                    <strong>CONDICIONES DE USO</strong>
+                  </th>
+                </tr>
+                <tr style="text-align: left; font-size: 70%;">
+                  <td colspan="6" style="border: 1px solid #000;">
+                    <ul style="margin-top: 10px;">
+                      <li>
+                        <span>
+                          El equipo entregado es propiedad de la empresa TURBOPRE SERVICES C.A., y se asigna al Usuario para que 
+                          pueda cumplir con sus tareas asignadas, por lo que se prohíbe el uso del mismo para otros fines.
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          Es responsabilidad del Usuario el buen uso del equipo asignado.
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          Está prohibido extraer el equipo asignado del lugar de trabajo, sin previa autorización de su Supervisor.
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          En el caso de computadoras, está completamente prohibido la instalación de cualquier software adicional 
+                          a los autorizados. Cualquier excepción debe de ser consultada antes con la Coordinación de IT.
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          En el caso de equipos conectados a la red de la empresa, el Usuario debe concientizar en el uso de la 
+                          misma y evitar el acceso a páginas de descarga de contenido ajeno a la empresa, tales como música, 
+                          vídeos, juegos, contenido pornográfico, entre otros.
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          La Coordinación de IT se reserva el derecho de revisar el contenido y programas instalados en computadoras 
+                          sin previa autorización del Usuario.
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          El Usuario tiene la responsabilidad de reportar cualquier falla o funcionamiento incorrecto del equipo 
+                          a la Coordinación de IT, por lo que está prohibido tomar acción en la reparación o configuración, 
+                          ni extraer el mismo fuera del lugar de trabajo.
+                        </span>
+                      </li>
+                      <li>
+                        <span>
+                          Si la relación de trabajo se da por terminada, el Empleado deberá entregar el equipo asignado incluyendo sus accesorios.
+                        </span>
+                      </li>
+                    </ul>
+                    <br/>
+                    <br/>
+                    <div style="text-align: center;">
+                      <span>____________________________________________________</span>
+                      <br/>
+                      <span>Aceptación de las Condiciones de Uso</span>
+                    </div>
+                    <br/>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+
+          <div class="row" style="font-size: 80%; margin-top: 30px;">
+            <div class="col-3">
+            </div>
+            <div class="col-3">
+              <br/>
+              <div style="text-align: right;">
+                <strong>Nombre y Apellido: </strong>
+              </div>
+              <br/>
+              <br/>
+              <div style="text-align: right;">
+                <br/>
+                <strong>Cargo: </strong>
+              </div>
+              <!--<br/>-->
+              <!--<br/>-->
+              <!--<strong>: </strong>-->
+            </div>
+            <div class="col-3">
+              <div style="text-align: center;">
+                <span t-field="o.employee_id.name"/>
+                <br/>
+                <span>___________________________</span>
+              </div>
+              <br/>
+              <br/>
+              <div style="text-align: center;">
+                <span t-field="o.employee_id.job_id.name"/>
+                <br/>
+                <span>___________________________</span>
+              </div>
+              <br/>
+              <br/>
+              <div style="text-align: center;">
+                <span>___________________________</span>
+                <br/>
+                <span>Recibido por:</span>
+              </div>
+            </div>
+            <div class="col-3">
+              <div style="text-align: center;">
+                <span t-field="o.employee_id.name"/><br/>
+                <span>___________________________</span>
+              </div>
+              <br/>
+              <br/>
+              <div style="text-align: center;">
+                <span t-field="o.employee_id.job_id.name"/><br/>
+                <span>___________________________</span>
+              </div>
+              <br/>
+              <br/>
+              <div style="text-align: center;">
+                <span>___________________________</span>
+                <span>Entregado por:</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </t>
+    </template>
+
+    <template id="equipment_assignment_report">
+      <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+          <t t-set="lang" t-value="o.partner_id.lang"/>
+          <t t-call="tbps_maintenance.report_equipment_assignment_doc" t-lang="lang"/>
+        </t>
+      </t>
+    </template>
+
+    <report 
+      id="action_report_equipment_assignment"
+      model="maintenance.equipment"
+      string="Asignación de Equipos"
+      name="tbps_maintenance.equipment_assignment_report"
+      file="tbps_maintenance.equipment_assignment_report"
+      report_type="qweb-pdf"
+      print_report_name="'Asignación de Equipos - %s' % (object.name).replace('/','-')"
+    />
+      <!--report_type="qweb-pdf"-->
+
   </data>
 </odoo>

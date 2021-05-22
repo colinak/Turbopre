@@ -13,10 +13,14 @@
     'depends': [
         'base',
         'maintenance',
-        'hr'
+        'hr',
+        'hr_maintenance'
     ],
     'data': [
+        'security/ir.model.access.csv',
+        'report/equipment_assignment_report.xml',
         'views/maintenance_equipment_category_view.xml',
+        'views/maintenance_manufacturers_view.xml',
         'views/maintenance_equipment_view.xml',
     ],
     'demo': [],

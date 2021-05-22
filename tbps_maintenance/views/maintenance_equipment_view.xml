@@ -8,8 +8,38 @@
       <field name="model">maintenance.equipment</field>
       <field name="inherit_id" ref="maintenance.hr_equipment_view_form"/>
       <field name="arch" type="xml">
+        <xpath expr="//sheet[1]" position="before">
+          <header>
+            <field name="state" widget="statusbar" statusbar_visible="available,assigned,discarded"/>
+          </header>
+        </xpath>
+        <field name="maintenance_team_id" position="before">
+          <field name="type_assignment" placeholder="Seleccione" 
+            attrs="{'invisible': [('equipment_assign_to', '=', 'without_using')]}"  
+          />
+        </field>
         <field name="technician_user_id" position="replace">
           <field name="depto_responsible_id" />
+        </field>
+        <field name="partner_ref" position="replace">
+          <field name="brand_id" />
+        </field>
+        <field name="assign_date" position="attributes">
+          <attribute name="attrs">{'invisible': [('equipment_assign_to', '=', 'without_using')]}</attribute>
+        </field>
+        <field name="scrap_date" position="attributes">
+          <attribute name="attrs">
+            {
+              'invisible': 
+              [ 
+                ('equipment_assign_to', '!=', 'without_using'),
+                ('state', '!=', 'discarded')
+              ]
+            }
+          </attribute>
+        </field>
+        <field name="location" position="attributes">
+          <attribute name="attrs">{'invisible': [('equipment_assign_to', '=', 'without_using')]}</attribute>
         </field>
       </field>
     </record>
@@ -22,6 +52,45 @@
       <field name="arch" type="xml">
         <field name="technician_user_id" position="replace">
           <field name="depto_responsible_id" />
+        </field>
+      </field>
+    </record>
+
+    <!--herencia de vista tree de equipos-->
+    <record id="inherit_maintenance_equipment_view_form_inherit_hr" model="ir.ui.view">
+      <field name="name">inheirt.maintenance.equipment.view.form.inherit.hr</field>
+      <field name="model">maintenance.equipment</field>
+      <field name="inherit_id" ref="hr_maintenance.maintenance_equipment_view_form_inherit_hr"/>
+      <field name="arch" type="xml">
+        <field name="employee_id" position="replace">
+          <field name="employee_id" string="Employee" 
+            attrs="{
+            'invisible': 
+              ['|', 
+                ('equipment_assign_to', '!=', 'employee'), 
+                ('equipment_assign_to', '=', False)
+              ],
+            'required':
+              [('equipment_assign_to', '=', 'employee')]
+            }"
+          />
+        </field>
+        <field name="department_id" position="replace">
+          <field name="department_id" string="Department" 
+            attrs="{
+            'invisible': 
+              ['|', 
+                ('equipment_assign_to', '!=', 'department'), 
+                ('equipment_assign_to', '=', False)
+              ],
+            'required':
+              [('equipment_assign_to', '=', 'department')]
+            }"
+          />
+        </field>
+        <field name="department_id" position="after">
+          <field name="other" 
+            attrs="{'invisible': [('equipment_assign_to', '!=', 'other')], 'required': [('equipment_assign_to', '=', 'other')]}"/>
         </field>
       </field>
     </record>

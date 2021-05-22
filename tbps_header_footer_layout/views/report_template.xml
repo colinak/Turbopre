@@ -9,25 +9,25 @@
             <table width="95%" 
               style="border: 1px solid #000; align: center; font-family: Arial,sans-serif,Helvetica,Monaco,Georgia,Futura,Verdana;">
               <thead>
-                <tr>
-                  <th scope="col" style="border: 1px solid #000; height: 10%; width: 35%; padding: 7px;">
+                <tr style="height: 20%;">
+                  <th scope="col" style="border: 1px solid #000; width: 35%; padding: 7px;">
                     <div name="logo_company" align="center">
                       <img t-attf-src="data:image/*;base64,{{company.logo}}"
                         style="padding-top: 2px; height: auto; width: 250px; align: center;" />
                     </div>
                   </th>
-                  <th scope="col" style="text-aling: center; border: 1px solid #000; height: 10%; width: 65%; padding-top: 7px;">
+                  <th scope="col" style="text-aling: center; border: 1px solid #000; width: 65%; padding-top: 7px;">
                     <center><strong>ENTREGA DE EQUIPOS</strong></center>
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td scope="row" style="text-aling: center; boder: 1px solid #000; height: 10%; width: 35%; font-size: 80%; padding: 5px;">
+                <tr style="height: 20%;">
+                  <td scope="row" style="text-aling: center; boder: 1px solid #000; width: 35%; font-size: 80%; padding: 5px;">
                     <center><span>MANUAL ADMINISTRATIVO DE LOS SISTEMAS DE GESTIÓN</span></center>
                   </td>
-                  <td width="70%" style="border: 1px solid #000; height: 10%; width: 65%; padding-top: 5px;">
-                    <div class="offset-3 text-right">
+                  <td width="70%" style="border: 1px solid #000; width: 65%; padding-top: 5px;">
+                    <div class="offset-3 text-right" style="margin-right: 10px;">
                       <ul class="list-inline">
                           <li class="list-inline-item">PÁG <span class="page"/></li>
                           <li class="list-inline-item">DE</li>
@@ -39,6 +39,30 @@
               </tbody>
             </table>
           </center>
+        </div>
+      </xpath>
+
+      <xpath expr="//div[@class='article']" position="after">
+        <div t-attf-class="footer">
+          <br/>
+          <br/>
+          <div class="row" style="font-size: 80%;">
+            <div class="col-4 text-left">
+              <div>
+                  <span>CÓD.: FO-MAN-173</span>
+              </div>
+            </div>
+            <div class="col-4 text-center">
+              <div>
+                  <span>REV.: 2</span>
+              </div>
+            </div>
+            <div class="col-4 text-right">
+              <div>
+                  <span>FECHA DE ELABORACIÓN: 30-04-2021</span>
+              </div>
+            </div>
+          </div>
         </div>
       </xpath>
     </template>
