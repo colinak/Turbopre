@@ -8,8 +8,10 @@
       <field name="inherit_id" ref="hr_maintenance.maintenance_equipment_view_kanban_inherit_hr" />
       <field name="arch" type="xml">
         <div t-if="!record.employee_id.raw_value" position="replace">
-          <div t-if="record.equipment_assign_to == 'unassigned'">Unassigned</div>
-          <!--<div t-if="!record.employee_id.value">Unassigned</div>-->
+          <field name="equipment_assign_to" attrs="{'invisible': [('equipment_assign_to', '!=', 'unassigned')]}" />
+          <div t-if="record.other != False">
+            <field name="other" />
+          </div>
         </div>
       </field>
     </record>
