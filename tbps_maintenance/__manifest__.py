@@ -19,6 +19,7 @@
     'data': [
         'security/ir.model.access.csv',
         'report/equipment_assignment_report.xml',
+        'wizards/replace_equipment_wizard.xml',
         'views/maintenance_equipment_category_view.xml',
         'views/maintenance_manufacturers_view.xml',
         'views/maintenance_equipment_view.xml',

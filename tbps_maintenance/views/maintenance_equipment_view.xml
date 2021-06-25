@@ -2,6 +2,18 @@
 <odoo>
   <data>
 
+    <record id="inherit_hr_equipment_view_kanban" model="ir.ui.view">
+      <field name="name">inherit.maintenance.equipment.kanban</field>
+      <field name="model">maintenance.equipment</field>
+      <field name="inherit_id" ref="hr_maintenance.maintenance_equipment_view_kanban_inherit_hr" />
+      <field name="arch" type="xml">
+        <div t-if="!record.employee_id.raw_value" position="replace">
+          <div t-if="record.equipment_assign_to == 'unassigned'">Unassigned</div>
+          <!--<div t-if="!record.employee_id.value">Unassigned</div>-->
+        </div>
+      </field>
+    </record>
+
     <!--herencia de vista formulario de equipos-->
     <record id="inherit_hr_equipment_view_form" model="ir.ui.view">
       <field name="name">inherit.equipment.form</field>
@@ -10,12 +22,23 @@
       <field name="arch" type="xml">
         <xpath expr="//sheet[1]" position="before">
           <header>
-            <field name="state" widget="statusbar" statusbar_visible="available,assigned,discarded"/>
+            <button string="Replace Equipment" name="%(tbps_maintenance.action_replace_equipment)d"
+              type="action" class="oe_highlight" attrs="{'invisible': [('stage', '!=', 'assigned')]}" />
+            <button string="Discarded Equipment" class="oe_highlight" attrs="{'invisible': [('stage', '=', 'discarded')]}" />
+            <button string="Refurbish Equipment"  class="oe_highlight" attrs="{'invisible': [('stage', '!=', 'discarded')]}" />
+            <field name="stage" widget="statusbar" statusbar_visible="available,assigned,discarded"/>
           </header>
         </xpath>
+        <field name="category_id" position="attributes">
+          <attribute name="required">1</attribute>
+        </field>
+        <field name="maintenance_team_id" position="attributes">
+          <attribute name="required">1</attribute>
+        </field>
         <field name="maintenance_team_id" position="before">
           <field name="type_assignment" placeholder="Seleccione" 
-            attrs="{'invisible': [('equipment_assign_to', '=', 'without_using')]}"  
+            readonly="1"
+            attrs="{'invisible': [('equipment_assign_to', '=', 'unassigned')]}"  
           />
         </field>
         <field name="technician_user_id" position="replace">
@@ -25,22 +48,28 @@
           <field name="brand_id" />
         </field>
         <field name="assign_date" position="attributes">
-          <attribute name="attrs">{'invisible': [('equipment_assign_to', '=', 'without_using')]}</attribute>
+          <attribute name="attrs">{
+              'invisible': [('equipment_assign_to', '=', 'unassigned')],
+              'required': True
+            }
+          </attribute>
         </field>
         <field name="scrap_date" position="attributes">
           <attribute name="attrs">
             {
-              'invisible': 
-              [ 
-                ('equipment_assign_to', '!=', 'without_using'),
-                ('state', '!=', 'discarded')
-              ]
+              'invisible': [('stage', '!=', 'discarded')]
             }
           </attribute>
         </field>
         <field name="location" position="attributes">
-          <attribute name="attrs">{'invisible': [('equipment_assign_to', '=', 'without_using')]}</attribute>
+          <attribute name="attrs">{'invisible': [('equipment_assign_to', '=', 'unassigned')]}</attribute>
         </field>
+        <!--<field name="model" position="attributes">-->
+          <!--<attribute name="required">1</attribute>-->
+        <!--</field>-->
+        <!--<field name="serial_no" position="attributes">-->
+          <!--<attribute name="required">1</attribute>-->
+        <!--</field>-->
       </field>
     </record>
 

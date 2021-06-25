@@ -15,22 +15,22 @@
               <thead style="font-size: 80%;">
                 <tr>
                   <th colspan="2" style="border: 1px solid #000; text-align: center;">
-                    <t t-if="o.type_assignment == 'inital'">
-                      <t t-set="initial" t-value="X" />
-                    </t>
-                    <strong>Asignación Inicial [<span t-esc="initial" />]</strong>
+                    <strong>Asignación Inicial 
+                      <span t-if="o.type_assignment == 'initial'">[X]</span>
+                      <span t-else="">[]</span>
+                    </strong>
                   </th>
                   <th colspan="2" style="border: 1px solid #000; text-align: center;">
-                    <t t-if="o.type_assignment == 'replace'">
-                      <t t-set="replace" t-value="X" />
-                    </t>
-                    <strong>Reemplazo o Actualización [<span t-esc="replace" />]</strong>
+                    <strong>Reemplazo o Actualización
+                      <span t-if="o.type_assignment == 'replacement'">[X]</span>
+                      <span t-else="">[]</span>
+                    </strong>
                   </th>
                   <th colspan="2" style="border: 1px solid #000; text-align: center;">
-                    <t t-if="o.type_assignment == 'culminaction'">
-                      <t t-set="culminaction" t-value="X" />
-                    </t>
-                    <strong>Termino de Relación Laboral [<span t-esc="culminaction" />]</strong>
+                    <strong>Termino de Relación Laboral
+                      <span t-if="o.type_assignment == 'culminaction'">[X]</span>
+                      <span t-else="">[]</span>
+                    </strong>
                   </th>
                 </tr>
                 <tr>
@@ -70,14 +70,14 @@
                   </th>
                 </tr>
                 <tr style="text-align: center; font-size: 80%;" >
-                  <th colspan="1" style="border: 1px solid #000;">
-                    <strong>Item</strong>
+                  <th colspan="2" style="border: 1px solid #000;">
+                    <strong>Descripción</strong>
                   </th>
                   <th colspan="1" style="border: 1px solid #000;">
                     <strong>Categoría</strong>
                   </th>
-                  <th colspan="2" style="border: 1px solid #000;">
-                    <strong>Descripción</strong>
+                  <th colspan="1" style="border: 1px solid #000;">
+                    <strong>Marca</strong>
                   </th>
                   <th colspan="1" style="border: 1px solid #000;">
                     <strong>Modelo</strong>
@@ -85,22 +85,28 @@
                   <th colspan="1" style="border: 1px solid #000;">
                     <strong>N° de Serie</strong>
                   </th>
+                  <!--<th colspan="1" style="border: 1px solid #000;">-->
+                    <!--<strong>N° de Serie</strong>-->
+                  <!--</th>-->
                 </tr>
                 <tr style="text-align: left; font-size: 80%;" >
-                  <td colspan="1" style="border: 1px solid #000;">
-                    <!--<span style="margin-left: 5px;" t-field="o.category_id.name"/>-->
-                  </td>
-                  <td colspan="1" style="border: 1px solid #000;">
-                    <span style="margin-left: 5px;" t-field="o.category_id.name"/>
-                  </td>
                   <td colspan="2" style="border: 1px solid #000;">
                     <span style="margin-left: 5px;" t-field="o.name"/>
                   </td>
                   <td colspan="1" style="border: 1px solid #000;">
-                    <span style="margin-left: 5px;" t-field="o.model"/>
+                    <span style="margin-left: 5px;" t-field="o.category_id.name"/>
                   </td>
                   <td colspan="1" style="border: 1px solid #000;">
-                    <span style="margin-left: 5px;" t-field="o.serial_no"/>
+                    <span t-if="o.brand_id" style="margin-left: 5px;" t-field="o.brand_id.name"/>
+                    <span t-if="o.brand_id.name == False" style="margin-left: 5px;">N/A</span>
+                  </td>
+                  <td colspan="1" style="border: 1px solid #000;">
+                    <span t-if="o.model" style="margin-left: 5px;" t-field="o.model"/>
+                    <span t-if="o.model == False" style="margin-left: 5px;">N/A</span>
+                  </td>
+                  <td colspan="1" style="border: 1px solid #000;">
+                    <span t-if="o.serial_no" style="margin-left: 5px;" t-field="o.serial_no"/>
+                    <span t-if="o.serial_no == False" style="margin-left: 5px;">N/A</span>
                   </td>
                 </tr>
                 <tr style="text-align: center; font-size: 80%;" >
@@ -114,9 +120,9 @@
                       <span style="margin-left: 5px;" t-field="o.note"/>
                     </td>
                   </t>
-                  <t t-else="not o.note">
+                  <t t-else="">
                     <td colspan="6" style="border: 1px solid #000;">
-                      <span> </span>
+                      <span style="margin-left: 5px;">N/A</span>
                     </td>
                   </t>
                 </tr>
@@ -207,21 +213,21 @@
                 <br/>
                 <strong>Cargo: </strong>
               </div>
-              <!--<br/>-->
-              <!--<br/>-->
-              <!--<strong>: </strong>-->
+              <br/>
+              <br/>
+              <div style="text-align: right;">
+                <strong>Recibe y Entrega: </strong>
+              </div>
             </div>
             <div class="col-3">
               <div style="text-align: center;">
-                <span t-field="o.employee_id.name"/>
-                <br/>
+                <span t-field="o.employee_id.name" style="padding-top10: 10px;"/>
                 <span>___________________________</span>
               </div>
               <br/>
               <br/>
               <div style="text-align: center;">
-                <span t-field="o.employee_id.job_id.name"/>
-                <br/>
+                <span t-field="o.employee_id.job_id.name" style="padding-top10: 10px;"/>
                 <span>___________________________</span>
               </div>
               <br/>
@@ -234,13 +240,13 @@
             </div>
             <div class="col-3">
               <div style="text-align: center;">
-                <span t-field="o.employee_id.name"/><br/>
+                <span t-field="o.default_current_user_id().name" style="padding-top10: 10px;"/><br/>
                 <span>___________________________</span>
               </div>
               <br/>
               <br/>
               <div style="text-align: center;">
-                <span t-field="o.employee_id.job_id.name"/><br/>
+                <span t-field="o.default_current_user_id().job_id.name" style="padding-top10: 10px;"/><br/>
                 <span>___________________________</span>
               </div>
               <br/>
@@ -273,6 +279,7 @@
       report_type="qweb-pdf"
       print_report_name="'Asignación de Equipos - %s' % (object.name).replace('/','-')"
     />
+      <!--sttrs="{'invisble': [('object.equipment_assign_to', '=', 'without_using')]}"-->
       <!--report_type="qweb-pdf"-->
 
   </data>
