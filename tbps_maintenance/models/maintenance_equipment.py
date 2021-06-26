@@ -38,7 +38,7 @@ class MaintenanceEquipment(models.Model):
         [
             ('available', 'Available'),
             ('assigned', 'Assigned'),
-            ('discarded', 'Discarded'),
+            ('discarded', 'Out of service'),
         ],
         string="Stage",
         default="available",
