@@ -100,39 +100,48 @@ class MaintenanceEquipment(models.Model):
     def create(self, vals):
         _logger.info(">>>>>>>>>>>>>>CREATE<<<<<<<<<<<<<<")
         res = super(MaintenanceEquipment, self).create(vals)
-        _logger.info("Res: " + str(res))
-        _logger.info("Vals: " + str(vals))
         if res.equipment_assign_to == 'unassigned':
             res.stage = 'available'
         elif res.equipment_assign_to != 'unassigned':
             res.stage = 'assigned'
-            res.type_assignment = 'initial'
-        _logger.info("Res: " + str(res))
+            # res.type_assignment = 'initial'
         return res
 
 
 
-    # def write(self, vals):
-        # _logger.info(">>>>>>>>>>>>>>WRITE<<<<<<<<<<<<<<")
-        # if (vals.get('equipment_assign_to') == 'employee' or 
-                # vals.get('equipment_assign_to') == 'department' or 
-                # vals.get('equipment_assign_to') == 'other'):
-            # _logger.info(">>>>>>>>>>>>>>IF<<<<<<<<<<<<<<")
-            # _logger.info("Vals: " + str(vals))
-            # vals['stage'] = 'assigned'
-            # vals['type_assignment'] = 'initial'
-        # else:
-            # _logger.info(">>>>>>>>>>>>>>ELIF<<<<<<<<<<<<<<")
-            # _logger.info("Vals: " + str(vals))
-            # vals['stage'] = 'available'
-            # vals['type_assignment'] = ''
-        # # else:
-            # # _logger.info(">>>>>>>>>>>>>>ELSE<<<<<<<<<<<<<<")
-            # # _logger.info("Vals: " + str(vals))
-            # # pass
+    def write(self, vals):
+        _logger.info(">>>>>>>>>>>>>>WRITE<<<<<<<<<<<<<<")
+        if vals.get('equipment_assign_to') == 'unassigned':
+            vals['stage'] = 'available'
+        elif vals.get('equipment_assign_to') != 'unassigned':
+            vals['stage'] = 'assigned'
 
-        # res = super(MaintenanceEquipment, self).write(vals)
+        # _logger.info("Usado por: " + self.equipment_assign_to)
+        # if self.equipment_assign_to != 'unassigned':
+            # equipment_assign_to = self.equipment_assign_to
+            # if vals.get('equipment_assign_to') == 'unassigned':
+                # raise UserError('Este Equipos Esta asignado a un empleado, debe recibir el equipo antes de poder modificarlo.')
+            # elif vals.get('equipment_assign_to') != 'unassigned' and vals.get('equipment_assign_to') != equipment_assign_to:
+                # raise UserError('No Puede Modificar un Equipo de esta Forma debe Remplazar el Equipo desde el boton Remplazar.')
 
-        # return res
+        # elif self.equipment_assign_to == 'unassigned':
+            # equipment_assign = self.equipment_assign_to
+            # if (vals.get('equipment_assign_to') == 'employee' or 
+                    # vals.get('equipment_assign_to') == 'department' or 
+                    # vals.get('equipment_assign_to') == 'other'):
+                # _logger.info(">>>>>>>>>>>>>>IF<<<<<<<<<<<<<<")
+                # _logger.info("Vals: " + str(vals))
+                # vals['stage'] = 'assigned'
+                # if self.type_assignment == False:
+                    # vals['type_assignment'] = 'initial'
+                    # _logger.info("Vals 2: " + str(vals))
+                # elif self.type_assignment == 'initial':
+                    # vals['type_assignment'] = 'replacement'
+
+            # raise UserError('Equipo sin Asignar')
+
+        res = super(MaintenanceEquipment, self).write(vals)
+
+        return res
 
 

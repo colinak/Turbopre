@@ -44,10 +44,12 @@
       <field name="arch" type="xml">
         <xpath expr="//sheet[1]" position="before">
           <header>
-            <button string="Replace Equipment" name="%(tbps_maintenance.action_replace_equipment)d"
-              type="action" class="oe_highlight" attrs="{'invisible': [('stage', '!=', 'assigned')]}" />
-            <button string="Discarded Equipment" class="oe_highlight" attrs="{'invisible': [('stage', '=', 'discarded')]}" />
-            <button string="Refurbish Equipment"  class="oe_highlight" attrs="{'invisible': [('stage', '!=', 'discarded')]}" />
+            <!--<button string="Replace Equipment" name="%(tbps_maintenance.action_replace_equipment)d"-->
+              <!--type="action" class="oe_highlight" attrs="{'invisible': [('stage', '!=', 'assigned')]}" />-->
+            <!--<button string="Discarded Equipment" class="oe_highlight" attrs="{'invisible': [('stage', '=', 'discarded')]}" />-->
+            <!--<button string="Refurbish Equipment" class="oe_highlight" attrs="{'invisible': [('stage', '!=', 'discarded')]}" />-->
+            <!--<button string="Print Replace" attrs="{'invisible': [('type_assignment', '!=', 'replacement')]}" />-->
+            <!--<button string="Receive" class="oe_highlight" attrs="{'invisible': [('stage', '!=', 'assigned')]}" />-->
             <field name="stage" widget="statusbar" statusbar_visible="available,assigned,discarded"/>
           </header>
         </xpath>
@@ -59,9 +61,9 @@
         </field>
         <field name="maintenance_team_id" position="before">
           <field name="type_assignment" placeholder="Seleccione" 
-            readonly="1"
             attrs="{'invisible': [('equipment_assign_to', '=', 'unassigned')]}"  
           />
+            <!--readonly="1"-->
         </field>
         <field name="technician_user_id" position="replace">
           <field name="depto_responsible_id" />
