@@ -25,7 +25,6 @@ class MaintenanceEquipment(models.Model):
     brand_id = fields.Many2one(
         'maintenance.manufacturers',
         string="Make",
-        # required=True,
         help="Make Equipment"
     )
     depto_responsible_id = fields.Many2one(
@@ -42,8 +41,6 @@ class MaintenanceEquipment(models.Model):
         ],
         string="Stage",
         default="available",
-        # compute=_compute_stage,
-        # store=True,
         help="Stage"
     )
     other = fields.Char(
@@ -68,6 +65,18 @@ class MaintenanceEquipment(models.Model):
         ],
         string="Tipo de Asignación",
         help="Denife el tipo se Asignación de Equipos"
+    )
+    type_discard = fields.Selection(
+        [('discard', 'Discard'), ('replacement', 'Replacement')],
+        string="Tipo de Desecho",
+        help="Denife si el equipo sirve para respuesto, o debe ser desechado"
+    )
+    out_of_service = fields.Boolean(
+        string="Out of Service",
+        default=False
+    )
+    image_1920 = fields.Image(
+        string="Image",
     )
 
     @api.depends('equipment_assign_to')
@@ -94,51 +103,63 @@ class MaintenanceEquipment(models.Model):
                 equipment.department_id = False
                 equipment.other = equipment.other
                 equipment.assign_date = fields.Date.context_today(self)
+    
+
+    @api.onchange('equipment_assign_to')
+    def _onchange_equipment_assign_to(self):
+        if self.equipment_assign_to == 'unassigned' and self.stage != 'discarded':
+            self.type_assignment = False
+        elif self.equipment_assign_to != 'unassigned':
+            self.out_of_service = False
+            self.type_discard = False
+
+
+    @api.onchange('out_of_service')
+    def _onchange_out_of_service(self):
+        if self.out_of_service == False:
+            self.type_discard = False
 
 
     @api.model
     def create(self, vals):
-        _logger.info(">>>>>>>>>>>>>>CREATE<<<<<<<<<<<<<<")
         res = super(MaintenanceEquipment, self).create(vals)
-        if res.equipment_assign_to == 'unassigned':
+        if res.equipment_assign_to == 'unassigned' and not res.out_of_service:
             res.stage = 'available'
         elif res.equipment_assign_to != 'unassigned':
             res.stage = 'assigned'
-            # res.type_assignment = 'initial'
+        else: 
+            if res.out_of_service:
+                if res.type_discard == 'discard':
+                    res.location = "Archivo Muerto"
+                res.stage = 'discarded'
+                res.active = False
         return res
 
 
 
     def write(self, vals):
-        _logger.info(">>>>>>>>>>>>>>WRITE<<<<<<<<<<<<<<")
-        if vals.get('equipment_assign_to') == 'unassigned':
-            vals['stage'] = 'available'
-        elif vals.get('equipment_assign_to') != 'unassigned':
-            vals['stage'] = 'assigned'
-
-        # _logger.info("Usado por: " + self.equipment_assign_to)
-        # if self.equipment_assign_to != 'unassigned':
-            # equipment_assign_to = self.equipment_assign_to
-            # if vals.get('equipment_assign_to') == 'unassigned':
-                # raise UserError('Este Equipos Esta asignado a un empleado, debe recibir el equipo antes de poder modificarlo.')
-            # elif vals.get('equipment_assign_to') != 'unassigned' and vals.get('equipment_assign_to') != equipment_assign_to:
-                # raise UserError('No Puede Modificar un Equipo de esta Forma debe Remplazar el Equipo desde el boton Remplazar.')
-
-        # elif self.equipment_assign_to == 'unassigned':
-            # equipment_assign = self.equipment_assign_to
-            # if (vals.get('equipment_assign_to') == 'employee' or 
-                    # vals.get('equipment_assign_to') == 'department' or 
-                    # vals.get('equipment_assign_to') == 'other'):
-                # _logger.info(">>>>>>>>>>>>>>IF<<<<<<<<<<<<<<")
-                # _logger.info("Vals: " + str(vals))
-                # vals['stage'] = 'assigned'
-                # if self.type_assignment == False:
-                    # vals['type_assignment'] = 'initial'
-                    # _logger.info("Vals 2: " + str(vals))
-                # elif self.type_assignment == 'initial':
-                    # vals['type_assignment'] = 'replacement'
-
-            # raise UserError('Equipo sin Asignar')
+        if vals.get('out_of_service'):
+            _logger.info("IF")
+            if vals.get('type_discard') == 'discard':
+                self.location = "Archivo Muerto"
+            self.stage = 'discarded'
+            self.active = False
+        elif vals.get('out_of_service') == False:
+            _logger.info("ELIF")
+            self.active = True
+            self.location = False
+            self.stage = 'available'
+            self.type_discard = False
+        else:
+            if vals.get('equipment_assign_to') == 'unassigned' and not vals.get('out_of_service'):
+                self.stage = 'available'
+                self.location = False
+                self.type_discard = False
+                self.active = True
+            elif (vals.get('equipment_assign_to') == 'employee' or
+                    vals.get('equipment_assign_to') == 'department' or
+                    vals.get('equipment_assign_to') == 'other'):
+                self.stage = 'assigned'
 
         res = super(MaintenanceEquipment, self).write(vals)
 

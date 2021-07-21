@@ -2,7 +2,7 @@
 <odoo>
   <data>
 
-    <template id="report_equipment_assignment_doc">
+    <template id="report_equipment_unassigned_doc">
       <t t-call="tbps_header_footer_layout.inherit_internal_layout">
         <t t-set="o" t-value="o.with_context(lang=lang)" />
         <div class="page" style="font-family: Arial,sans-serif,Helvetica,Monaco,Georgia,Futura,Verdana;">
@@ -221,13 +221,13 @@
             </div>
             <div class="col-3">
               <div style="text-align: center;">
-                <span t-field="o.employee_id.name" style="padding-top10: 10px;"/>
+                <span t-field="o.default_current_user_id().name" style="padding-top10: 10px;"/><br/>
                 <span>___________________________</span>
               </div>
               <br/>
               <br/>
               <div style="text-align: center;">
-                <span t-field="o.employee_id.job_id.name" style="padding-top10: 10px;"/>
+                <span t-field="o.default_current_user_id().job_id.name" style="padding-top10: 10px;"/><br/>
                 <span>___________________________</span>
               </div>
               <br/>
@@ -240,13 +240,13 @@
             </div>
             <div class="col-3">
               <div style="text-align: center;">
-                <span t-field="o.default_current_user_id().name" style="padding-top10: 10px;"/><br/>
+                <span t-field="o.employee_id.name" style="padding-top10: 10px;"/>
                 <span>___________________________</span>
               </div>
               <br/>
               <br/>
               <div style="text-align: center;">
-                <span t-field="o.default_current_user_id().job_id.name" style="padding-top10: 10px;"/><br/>
+                <span t-field="o.employee_id.job_id.name" style="padding-top10: 10px;"/>
                 <span>___________________________</span>
               </div>
               <br/>
@@ -261,24 +261,25 @@
       </t>
     </template>
 
-    <template id="equipment_assignment_report">
+    <template id="equipment_unassigned_report">
       <t t-call="web.html_container">
         <t t-foreach="docs" t-as="o">
           <t t-set="lang" t-value="o.partner_id.lang"/>
-          <t t-call="tbps_maintenance.report_equipment_assignment_doc" t-lang="lang"/>
+          <t t-call="tbps_maintenance.report_equipment_unassigned_doc" t-lang="lang"/>
         </t>
       </t>
     </template>
 
     <report 
-      id="action_report_equipment_assignment"
+      id="action_report_equipment_unassigned"
       model="maintenance.equipment"
-      string="Asignación de Equipos"
-      name="tbps_maintenance.equipment_assignment_report"
-      file="tbps_maintenance.equipment_assignment_report"
+      string="Recepción de Equipos"
+      name="tbps_maintenance.equipment_unassigned_report"
+      file="tbps_maintenance.equipment_unassigned_report"
       report_type="qweb-pdf"
-      print_report_name="'Asignación de Equipos - %s' % (object.name).replace('/','-')"
+      print_report_name="'Recepción de Equipos - %s' % (object.name).replace('/','-')"
     />
 
   </data>
 </odoo>
+

@@ -14,12 +14,14 @@
         'base',
         'maintenance',
         'hr',
-        'hr_maintenance'
+        'hr_maintenance',
+        'tbps_mail_templates',
+        'tbps_header_footer_layout'
     ],
     'data': [
         'security/ir.model.access.csv',
         'report/equipment_assignment_report.xml',
-        'wizards/replace_equipment_wizard.xml',
+        'report/equipment_unassigned_report.xml',
         'views/maintenance_equipment_category_view.xml',
         'views/maintenance_manufacturers_view.xml',
         'views/maintenance_equipment_view.xml',
@@ -31,5 +33,3 @@
     'auto_install': False
 
 }
-
-

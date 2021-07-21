@@ -2,13 +2,38 @@
 <odoo>
   <data>
 
-    <record id="inherit_hr_equipment_view_kanban" model="ir.ui.view">
+
+    <!--<record id="inherit_hr_equipment_view_kanban" model="ir.ui.view">-->
+      <!--<field name="name">maintenance.equipment.kanban.inherit</field>-->
+      <!--<field name="model">maintenance.equipment</field>-->
+      <!--<field name="inherit_id" ref="maintenance.hr_equipment_view_kanban" />-->
+      <!--<field name="arch" type="xml">-->
+        <!--<field name="activity_state" position="before">-->
+          <!--<field name="image_1920" />-->
+        <!--</field>-->
+        <!--<div class="oe_kanban_content" position="before">-->
+          <!--<div class="oe_kanban_global_click">-->
+            <!--<div class="o_kanban_image">-->
+              <!--<field name="image_1920" widget='image' class="o_kanban_image_fill_left" -->
+                <!--options='{"zoom": true, "zoom_delay": 1000, "preview_image": "image_1920", "preventClicks": false}' />-->
+              <!--<field name="image_1920" widget='image' class="oe_kanban_avatar float-rihgt mr-3" -->
+                <!--options='{"zoom": true, "zoom_delay": 1000, "preview_image": "image_1920", "preventClicks": false}' />-->
+              <!--<img t-att-src="kanban_image('maintenance.equipment', 'image_1920')" alt="Image" class="oe_kanban_avatar float-rihgt mr-3" width="64" height="64"/>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</field>-->
+    <!--</record>-->
+
+    <record id="inherit_maintenance_equipment_view_kanban_inherit_hr" model="ir.ui.view">
       <field name="name">inherit.maintenance.equipment.kanban</field>
       <field name="model">maintenance.equipment</field>
       <field name="inherit_id" ref="hr_maintenance.maintenance_equipment_view_kanban_inherit_hr" />
       <field name="arch" type="xml">
         <div t-if="!record.employee_id.raw_value" position="replace">
           <field name="equipment_assign_to" attrs="{'invisible': [('equipment_assign_to', '!=', 'unassigned')]}" />
+          <div t-if="!record.brand_id.raw_value">N/A</div>
+          <div t-if="record.brand_id.value"><field name="brand_id"/></div>
           <div t-if="record.other != False">
             <field name="other" />
           </div>
@@ -21,6 +46,11 @@
       <field name="model">maintenance.equipment</field>
       <field name="inherit_id" ref="maintenance.hr_equipment_view_search" />
       <field name="arch" type="xml">
+        <field name="owner_user_id" position="after">
+          <field string="Make" name="brand_id"/>
+          <field string="Model" name="model"/>
+          <field string="Serial Number" name="serial_no"/>
+        </field>
         <filter name="available" position="replace">
           <filter string="Unassigned" name="available" domain="[('equipment_assign_to', '=', 'unassigned')]"/>
         </filter>
@@ -44,15 +74,15 @@
       <field name="arch" type="xml">
         <xpath expr="//sheet[1]" position="before">
           <header>
-            <!--<button string="Replace Equipment" name="%(tbps_maintenance.action_replace_equipment)d"-->
-              <!--type="action" class="oe_highlight" attrs="{'invisible': [('stage', '!=', 'assigned')]}" />-->
-            <!--<button string="Discarded Equipment" class="oe_highlight" attrs="{'invisible': [('stage', '=', 'discarded')]}" />-->
-            <!--<button string="Refurbish Equipment" class="oe_highlight" attrs="{'invisible': [('stage', '!=', 'discarded')]}" />-->
-            <!--<button string="Print Replace" attrs="{'invisible': [('type_assignment', '!=', 'replacement')]}" />-->
-            <!--<button string="Receive" class="oe_highlight" attrs="{'invisible': [('stage', '!=', 'assigned')]}" />-->
             <field name="stage" widget="statusbar" statusbar_visible="available,assigned,discarded"/>
           </header>
         </xpath>
+        <div class="oe_title" position="before">
+          <field name="image_1920" widget="image" class="oe_avatar" />
+        </div>
+        <field name="name" position="attributes">
+          <attribute name="style">width: 80%;</attribute>
+        </field>
         <field name="category_id" position="attributes">
           <attribute name="required">1</attribute>
         </field>
@@ -60,10 +90,23 @@
           <attribute name="required">1</attribute>
         </field>
         <field name="maintenance_team_id" position="before">
-          <field name="type_assignment" placeholder="Seleccione" 
-            attrs="{'invisible': [('equipment_assign_to', '=', 'unassigned')]}"  
+          <field name="type_assignment" placeholder="Select" 
+            attrs="{
+              'invisible': [('equipment_assign_to', '=', 'unassigned')],
+              'required': [('equipment_assign_to', '!=', 'unassigned')]
+            }"
           />
-            <!--readonly="1"-->
+         <field name="type_discard" placeholder="Select"
+           attrs="{
+            'invisible': [('out_of_service', '=', False)],
+            'required': [('out_of_service', '=', True)]
+           }"  
+          />
+        </field>
+        <field name="location" position="after">
+          <field name="out_of_service" 
+            attrs="{'invisible': [('equipment_assign_to', '!=', 'unassigned')]}"
+          />
         </field>
         <field name="technician_user_id" position="replace">
           <field name="depto_responsible_id" />
@@ -85,8 +128,12 @@
             }
           </attribute>
         </field>
-        <field name="location" position="attributes">
-          <attribute name="attrs">{'invisible': [('equipment_assign_to', '=', 'unassigned')]}</attribute>
+        <field name="note" position="attributes">
+          <attribute name="attrs">
+            {
+              'required': [('out_of_service', '=', True)]
+            }
+          </attribute>
         </field>
       </field>
     </record>
