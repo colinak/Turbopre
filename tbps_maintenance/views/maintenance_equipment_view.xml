@@ -3,27 +3,27 @@
   <data>
 
 
-    <!--<record id="inherit_hr_equipment_view_kanban" model="ir.ui.view">-->
-      <!--<field name="name">maintenance.equipment.kanban.inherit</field>-->
-      <!--<field name="model">maintenance.equipment</field>-->
-      <!--<field name="inherit_id" ref="maintenance.hr_equipment_view_kanban" />-->
-      <!--<field name="arch" type="xml">-->
-        <!--<field name="activity_state" position="before">-->
-          <!--<field name="image_1920" />-->
-        <!--</field>-->
-        <!--<div class="oe_kanban_content" position="before">-->
-          <!--<div class="oe_kanban_global_click">-->
-            <!--<div class="o_kanban_image">-->
-              <!--<field name="image_1920" widget='image' class="o_kanban_image_fill_left" -->
-                <!--options='{"zoom": true, "zoom_delay": 1000, "preview_image": "image_1920", "preventClicks": false}' />-->
+    <record id="inherit_hr_equipment_view_kanban" model="ir.ui.view">
+      <field name="name">maintenance.equipment.kanban.inherit</field>
+      <field name="model">maintenance.equipment</field>
+      <field name="inherit_id" ref="maintenance.hr_equipment_view_kanban" />
+      <field name="arch" type="xml">
+        <field name="activity_state" position="before">
+          <field name="image_1920" />
+        </field>
+        <div class="oe_kanban_content" position="before">
+          <div class="oe_kanban_global_click">
+            <div class="o_kanban_image">
+              <field name="image_1920" widget='image' class="o_kanban_image_fill_left" 
+                options='{"zoom": true, "zoom_delay": 1000, "preview_image": "image_1920", "preventClicks": false}' />
               <!--<field name="image_1920" widget='image' class="oe_kanban_avatar float-rihgt mr-3" -->
                 <!--options='{"zoom": true, "zoom_delay": 1000, "preview_image": "image_1920", "preventClicks": false}' />-->
               <!--<img t-att-src="kanban_image('maintenance.equipment', 'image_1920')" alt="Image" class="oe_kanban_avatar float-rihgt mr-3" width="64" height="64"/>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</field>-->
-    <!--</record>-->
+            </div>
+          </div>
+        </div>
+      </field>
+    </record>
 
     <record id="inherit_maintenance_equipment_view_kanban_inherit_hr" model="ir.ui.view">
       <field name="name">inherit.maintenance.equipment.kanban</field>
@@ -61,6 +61,9 @@
           <attribute name="invisible">1</attribute>
         </filter>
         <filter name="vendor" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </filter>
+        <filter name="owner" position="attributes">
           <attribute name="invisible">1</attribute>
         </filter>
       </field>
