@@ -1,0 +1,641 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tbps_maintenance
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20201002\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-25 18:21+0000\n"
+"PO-Revision-Date: 2021-08-25 18:21+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tbps_maintenance
+#: model:ir.actions.report,print_report_name:tbps_maintenance.action_equipment_assignment_report
+#: model:ir.actions.report,print_report_name:tbps_maintenance.action_report_equipment_assignment
+msgid "'asignación de equipos - %s' % (object.name).replace('/','-')"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.actions.report,print_report_name:tbps_maintenance.action_report_equipment_unassigned
+msgid "'Recepción de Equipos - %s' % (object.name).replace('/','-')"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<br/>\n"
+"                <span>___________________________</span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<br/>\n"
+"                <strong>Cargo: </strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<span style=\"margin-left: 5px;\">Cargo: </span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<span style=\"margin-left: 5px;\">Localidad / Oficina: </span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<span style=\"margin-left: 5px;\">N/A</span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<span style=\"margin-left: 5px;\">Nombre y Apellido: </span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<span>\n"
+"                          El Usuario tiene la responsabilidad de reportar cualquier falla o funcionamiento incorrecto del equipo \n"
+"                          a la Coordinación de IT, por lo que está prohibido tomar acción en la reparación o configuración, \n"
+"                          ni extraer el mismo fuera del lugar de trabajo.\n"
+"                        </span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<span>\n"
+"                          El equipo entregado es propiedad de la empresa TURBOPRE SERVICES C.A., y se asigna al Usuario para que \n"
+"                          pueda cumplir con sus tareas asignadas, por lo que se prohíbe el uso del mismo para otros fines.\n"
+"                        </span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<span>\n"
+"                          En el caso de computadoras, está completamente prohibido la instalación de cualquier software adicional \n"
+"                          a los autorizados. Cualquier excepción debe de ser consultada antes con la Coordinación de IT.\n"
+"                        </span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<span>\n"
+"                          En el caso de equipos conectados a la red de la empresa, el Usuario debe concientizar en el uso de la \n"
+"                          misma y evitar el acceso a páginas de descarga de contenido ajeno a la empresa, tales como música, \n"
+"                          vídeos, juegos, contenido pornográfico, entre otros.\n"
+"                        </span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<span>\n"
+"                          Es responsabilidad del Usuario el buen uso del equipo asignado.\n"
+"                        </span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<span>\n"
+"                          Está prohibido extraer el equipo asignado del lugar de trabajo, sin previa autorización de su Supervisor.\n"
+"                        </span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<span>\n"
+"                          La Coordinación de IT se reserva el derecho de revisar el contenido y programas instalados en computadoras \n"
+"                          sin previa autorización del Usuario.\n"
+"                        </span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<span>\n"
+"                          Si la relación de trabajo se da por terminada, el Empleado deberá entregar el equipo asignado incluyendo sus accesorios.\n"
+"                        </span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<span>___________________________</span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<span>___________________________</span>\n"
+"                <br/>\n"
+"                <span>Recibido por:</span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<span>___________________________</span>\n"
+"                <span>Entregado por:</span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid ""
+"<span>____________________________________________________</span>\n"
+"                      <br/>\n"
+"                      <span>Aceptación de las Condiciones de Uso</span>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>CONDICIONES DE USO</strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>Categoría</strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>Datos del Empleado</strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>Datos del Equipo</strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>Descripción</strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>Fecha de Entrega: </strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>Marca</strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>Modelo</strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>Nombre y Apellido: </strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>N° de Serie</strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>Observaciones</strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "<strong>Recibe y Entrega: </strong>"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+msgid "Asignación"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__type_assignment__initial
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "Asignación Inicial"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.actions.report,name:tbps_maintenance.action_equipment_assignment_report
+#: model:ir.actions.report,name:tbps_maintenance.action_report_equipment_assignment
+#: model:ir.model,name:tbps_maintenance.model_equipment_assignment_report_wizar
+msgid "Asignación de Equipos"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__stage__assigned
+msgid "Assigned"
+msgstr "Asignado"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__date_assign
+msgid "Assigned Date"
+msgstr "Fecha de asignación"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__equipment_assignment_report_wizar__type_report__assignment
+msgid "Assignment"
+msgstr "Asignación"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__stage__available
+msgid "Available"
+msgstr "Disponible"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.equipment_assignment_report_wizard
+msgid "Cancelar"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.actions.act_window,help:tbps_maintenance.action_maintenance_manufacturers
+msgid "Crear Nuevos Fabricantes"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__create_uid
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_manufacturers__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__create_date
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_manufacturers__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,help:tbps_maintenance.field_maintenance_equipment__type_assignment
+msgid "Denife el tipo se Asignación de Equipos"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,help:tbps_maintenance.field_maintenance_equipment__type_discard
+msgid "Denife si el equipo sirve para respuesto, o debe ser desechado"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__department_id
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__equipment_assignment_report_wizar__equipment_assignment_to__department
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__equipment_assign_to__department
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.inherit_maintenance_equipment_view_form_inherit_hr
+msgid "Department"
+msgstr "Departamento"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,help:tbps_maintenance.field_maintenance_equipment__depto_responsible_id
+#: model:ir.model.fields,help:tbps_maintenance.field_maintenance_equipment_category__depto_responsible_id
+msgid "Department Responsible for Equipment"
+msgstr "Departamento Responsable del Equipo"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment__depto_responsible_id
+msgid "Depto Responsible"
+msgstr "Departamento Responsable"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.inherit_hr_equipment_category_view_form
+msgid "Depto Resposable"
+msgstr "Departamento Responsable"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__type_discard__discard
+msgid "Discard"
+msgstr "Desechado"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__display_name
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment__display_name
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment_category__display_name
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_manufacturers__display_name
+msgid "Display Name"
+msgstr "Mostrar nombre"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__employee_id
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__equipment_assignment_report_wizar__equipment_assignment_to__employee
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__equipment_assign_to__employee
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.inherit_maintenance_equipment_view_form_inherit_hr
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: tbps_maintenance
+#: model:ir.model,name:tbps_maintenance.model_maintenance_equipment
+msgid "Equipment"
+msgstr "Equipo"
+
+#. module: tbps_maintenance
+#: model:ir.model,name:tbps_maintenance.model_maintenance_equipment_category
+msgid "Equipment Categories"
+msgstr "Categorías de Equipos"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__equipment_ids
+msgid "Equipments"
+msgstr "Equipos"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__id
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment__id
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment_category__id
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_manufacturers__id
+msgid "ID"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment__image_1920
+msgid "Image"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment__other
+msgid "Indique cual"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar____last_update
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment____last_update
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment_category____last_update
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_manufacturers____last_update
+msgid "Last Modified on"
+msgstr "Modificada por última vez"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__write_uid
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_manufacturers__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__write_date
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_manufacturers__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__location
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_manufacturers__image
+msgid "Logo"
+msgstr "Logo"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment__brand_id
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_manufacturers__name
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.inherit_hr_equipment_view_search
+msgid "Make"
+msgstr "Marca"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,help:tbps_maintenance.field_maintenance_equipment__brand_id
+msgid "Make Equipment"
+msgstr "Marca de Equipos"
+
+#. module: tbps_maintenance
+#: model:ir.actions.act_window,name:tbps_maintenance.action_maintenance_manufacturers
+#: model:ir.model,name:tbps_maintenance.model_maintenance_manufacturers
+#: model:ir.ui.menu,name:tbps_maintenance.manufacturers_menu
+msgid "Manufacturers"
+msgstr "Fabricantes"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.inherit_hr_equipment_view_search
+msgid "Model"
+msgstr "Modelo"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.view_maintenance_manufacturers_form
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.view_maintenance_manufacturers_tree
+msgid "Model Make"
+msgstr "Modelo Marca"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.inherit_maintenance_equipment_view_kanban_inherit_hr
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "N/A"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.equipment_assignment_report_wizard
+msgid "Nombre"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.equipment_assignment_report_wizard
+msgid "Notes"
+msgstr "Notas"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__note
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.equipment_assignment_report_wizard
+msgid "Observations"
+msgstr "Observaciones"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.view_maintenance_manufacturers_kanban
+msgid "Open"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__equipment_assign_to__other
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.inherit_hr_equipment_view_search
+msgid "Other"
+msgstr "Otro"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment__out_of_service
+msgid "Out of Service"
+msgstr "Fuera de Servicio"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__stage__discarded
+msgid "Out of service"
+msgstr "Fuera de Servicio"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.equipment_assignment_report_wizard
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.doc_assignment_equipment_resport
+msgid "Recepción"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.actions.report,name:tbps_maintenance.action_report_equipment_unassigned
+msgid "Recepción de Equipos"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__equipment_assignment_report_wizar__type_report__reception
+msgid "Reception"
+msgstr "Recepción"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "Reemplazo o Actualización"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__type_assignment__replacement
+msgid "Remplazo o Actualización"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__type_discard__replacement
+msgid "Replacement"
+msgstr "Reemplazo"
+
+#. module: tbps_maintenance
+#: model:ir.actions.act_window,name:tbps_maintenance.action_equipment_assignment_report_wizard
+msgid "Report Assignment Equipment"
+msgstr "Reporte Asignación de Equipos"
+
+#. module: tbps_maintenance
+#: model:ir.ui.menu,name:tbps_maintenance.menu_equipment_assignment_report_wizard
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.equipment_assignment_report_wizard
+msgid "Report Equipments"
+msgstr "Reporte de Equipos"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment_category__depto_responsible_id
+msgid "Responsible Department"
+msgstr "Departamento Responsable"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.equipment_assignment_report_wizard
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.inherit_hr_equipment_view_form
+msgid "Select"
+msgstr "Seleccione"
+
+#. module: tbps_maintenance
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.inherit_hr_equipment_view_search
+msgid "Serial Number"
+msgstr "Número de serie"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment__stage
+#: model:ir.model.fields,help:tbps_maintenance.field_maintenance_equipment__stage
+msgid "Stage"
+msgstr "Estado"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__type_assignment__culminaction
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_assignment_doc
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.report_equipment_unassigned_doc
+msgid "Termino de Relación Laboral"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment__type_assignment
+msgid "Tipo de Asignación"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment__type_discard
+msgid "Tipo de Desecho"
+msgstr ""
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__type_report
+msgid "Type Report"
+msgstr "Tipo de Reporte"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields.selection,name:tbps_maintenance.selection__maintenance_equipment__equipment_assign_to__unassigned
+#: model_terms:ir.ui.view,arch_db:tbps_maintenance.inherit_hr_equipment_view_search
+msgid "Unassigned"
+msgstr "Sin Asignar"
+
+#. module: tbps_maintenance
+#: model:ir.model.fields,field_description:tbps_maintenance.field_equipment_assignment_report_wizar__equipment_assignment_to
+#: model:ir.model.fields,field_description:tbps_maintenance.field_maintenance_equipment__equipment_assign_to
+msgid "Used By"
+msgstr "Usado Por"

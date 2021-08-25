@@ -2,3 +2,5 @@ id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 access_maintenance_request_user,acc.maintenance.request.user,maintenance.model_maintenance_request,base.group_user,1,1,1,0
 access_maintenance_manufacturers_system,acc.maintenance.manufacturers.system,tbps_maintenance.model_maintenance_manufacturers,base.group_system,1,1,1,1
 access_maintenance_manufacturers_user,acc.maintenance.manufacturers.user,tbps_maintenance.model_maintenance_manufacturers,base.group_user,1,0,0,0
+access_equipment_assignment_system,acc.equipment.assignment.system,tbps_maintenance.model_equipment_assignment_report_wizar,base.group_system,1,1,1,1
+access_equipment_assignment_manager,acc.equipment.assignment.manager,tbps_maintenance.model_equipment_assignment_report_wizar,maintenance.group_equipment_manager,1,1,1,1

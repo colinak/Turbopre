@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record id="equipment_assignment_report_wizard" model="ir.ui.view">
+      <field name="name">report_assignment_equipment_wizard</field>
+      <field name="model">equipment.assignment.report.wizar</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Repor of Equipments">
+          <group>
+            <field name="name" invisible="1"/>
+            <group>
+              <field name="equipment_assignment_to" placeholder="Select"/>
+            </group>
+            <group>
+              <field name="department_id" placeholder="Select"
+                attrs="{
+                  'invisible': [('equipment_assignment_to', '!=', 'department')],
+                  'required': [('equipment_assignment_to', '=', 'department')]
+                }"
+              />
+              <field name="employee_id" placeholder="Select"
+                attrs="{
+                  'invisible': [('equipment_assignment_to', '!=', 'employee')],
+                  'required': [('equipment_assignment_to', '=', 'employee')]
+                }"
+              />
+            </group>
+          </group>
+          <group col="4">
+            <field name="date_assign" required="True" placeholder="Select"/>
+            <field name="type_report" required="True" placeholder="Select"/>
+            <field name="location" />
+          </group>
+          <group>
+            <field name="equipment_ids" widget="many2many" 
+              domain="[
+                ('employee_id', '=', employee_id),
+                ('department_id', '=', department_id)
+              ]" 
+              >
+              <tree>
+                <field name="name" string="Nombre"/>
+                <field name="category_id"/>
+                <field name="brand_id"/>
+                <field name="model"/>
+                <field name="serial_no"/>
+              </tree>
+            </field>
+            <field name="note" string="Notes" placeholder="Observations"/>
+          </group>
+          <footer>
+            <button name="get_report" string="Print" type="object" class="oe_highlight"/>
+            <!--<button name="%(tbps_maintenance.action_equipment_assignment_report)d" string="Imprimir" type="action" class="oe_highlight"/>-->
+            <button string="Cancelar" special="cancel"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+  
+    <act_window id="action_equipment_assignment_report_wizard"
+      name="Report Assignment Equipment"
+      res_model="equipment.assignment.report.wizar"
+      view_mode="form"
+      target="new"
+    />
+
+    <menuitem name="Report of Equipments"
+      action="action_equipment_assignment_report_wizard"
+      id="menu_equipment_assignment_report_wizard"
+      parent="maintenance.maintenance_reporting"
+      groups="maintenance.group_equipment_manager"
+    />
+
+  </data>
+</odoo>
