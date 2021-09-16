@@ -14,21 +14,15 @@
             <table width="100%" style="border: 1px solid #000;">
               <thead style="font-size: 80%;">
                 <tr>
-                  <th colspan="2" style="border: 1px solid #000; text-align: center;">
-                    <strong>Asignación Inicial 
-                      <span t-if="o.type_assignment == 'initial'">[X]</span>
+                  <th colspan="3" style="border: 1px solid #000; text-align: center;">
+                    <strong>Asignación
+                      <span t-if="o.type_assignment != 'culmination'">[X]</span>
                       <span t-else="">[]</span>
                     </strong>
                   </th>
-                  <th colspan="2" style="border: 1px solid #000; text-align: center;">
-                    <strong>Reemplazo o Actualización
-                      <span t-if="o.type_assignment == 'replacement'">[X]</span>
-                      <span t-else="">[]</span>
-                    </strong>
-                  </th>
-                  <th colspan="2" style="border: 1px solid #000; text-align: center;">
-                    <strong>Termino de Relación Laboral
-                      <span t-if="o.type_assignment == 'culminaction'">[X]</span>
+                  <th colspan="3" style="border: 1px solid #000; text-align: center;">
+                    <strong>Recepción
+                      <span t-if="o.type_assignment == 'culmination'">[X]</span>
                       <span t-else="">[]</span>
                     </strong>
                   </th>
@@ -85,9 +79,6 @@
                   <th colspan="1" style="border: 1px solid #000;">
                     <strong>N° de Serie</strong>
                   </th>
-                  <!--<th colspan="1" style="border: 1px solid #000;">-->
-                    <!--<strong>N° de Serie</strong>-->
-                  <!--</th>-->
                 </tr>
                 <tr style="text-align: left; font-size: 80%;" >
                   <td colspan="2" style="border: 1px solid #000;">

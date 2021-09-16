@@ -26,7 +26,7 @@
         'views/maintenance_equipment_category_view.xml',
         'views/maintenance_manufacturers_view.xml',
         'views/maintenance_equipment_view.xml',
-        'wizard/equipment_assignment_view.xml',
+        'wizards/equipment_assignment_view.xml',
     ],
     'demo': [],
     'qweb': [],

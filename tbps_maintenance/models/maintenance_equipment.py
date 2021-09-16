@@ -61,7 +61,7 @@ class MaintenanceEquipment(models.Model):
         [
             ('initial', 'Asignación Inicial'),
             ('replacement', 'Remplazo o Actualización'),
-            ('culminaction', 'Termino de Relación Laboral')
+            ('culmination', 'Termino de Relación Laboral')
         ],
         string="Tipo de Asignación",
         help="Denife el tipo se Asignación de Equipos"
