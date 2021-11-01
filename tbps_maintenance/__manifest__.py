@@ -20,6 +20,7 @@
     ],
     'data': [
         'security/ir.model.access.csv',
+        'security/maintenance_security.xml',
         'report/equipment_assignment_report.xml',
         'report/equipment_unassigned_report.xml',
         'report/resport_assigment_equipments.xml',

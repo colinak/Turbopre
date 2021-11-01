@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record id="view_quality_equipment_form" model="ir.ui.view">
+      <field name="name">quality_equipment_form</field>
+      <field name="model">quality.equitment</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Quality Equipment">
+          <sheet>
+            <!--<header>-->
+              <!--<field name="stage" widget="statusbar" statusbar_visible="available,assigned,discarded"/>-->
+            <!--</header>-->
+            <div class="oe_title">
+              <field name="image_1920" widget="image" class="oe_avatar" />
+              <label for="name" class="oe_edit_only" />
+              <h1>
+                <field name="name" string="Name" placeholder="Equipment Name" style="width: 75%;"/>
+              </h1>
+            </div>
+            <group>
+              <field name="code" />
+              <field name="serial_no" />
+              <field name="make_id" />
+              <field name="model" />
+              <field name="rango" />
+              <field name="appreciation" />
+              <field name="clasification" />
+              <field name="frequency_cal_ver" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="view_quality_equipment_tree" model="ir.ui.view">
+      <field name="name">quality_equipment_tree</field>
+      <field name="model">quality.equitment</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Quality Equipment">
+          <field name="name" string="Name" />
+          <field name="code" />
+          <field name="serial_no" />
+          <field name="model" />
+          <field name="make_id" />
+          <field name="rango" />
+          <field name="appreciation" />
+          <field name="frequency_cal_ver" />
+          <field name="clasification" />
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="action_quality_equipment" model="ir.actions.act_window">
+      <field name="name">Equipment</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">quality.equitment</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_quality_equipment_tree" />
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Create New Equipment
+        </p>
+      </field>
+    </record>
+  
+    <menuitem 
+      id="menu_quality_equipment_title"
+      name="Equipment"
+      parent="tbps_quality_equipment.menu_quality_equipment_root"
+      action="tbps_quality_equipment.action_quality_equipment"
+      sequence="1"
+      groups="base.group_system"
+    />
+  
+  
+  </data>
+</odoo>

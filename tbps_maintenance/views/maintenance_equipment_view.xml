@@ -78,7 +78,28 @@
       <field name="arch" type="xml">
         <xpath expr="//sheet[1]" position="before">
           <header>
-            <field name="stage" widget="statusbar" statusbar_visible="available,assigned,discarded"/>
+            <button string="Unassigned" name="unassigned" type="object" class="btn-primary" 
+              attrs="{
+              'invisible': [
+                  '|',
+                  ('stage', '=', 'available'), 
+                  ('stage', '=', 'discarded')
+                ]
+              }"
+            />
+            <button string="Reserve" name="reserve" type="object" class="btn-primary" attrs="{'invisible': [('stage', '!=', 'assigned')]}"/>
+            <button string="Set Free" name="set_free" type="object" class="btn-primary" attrs="{'invisible': [('stage', '!=', 'in_custody')]}"/>
+            <button string="Discarded" class="btn-primary" name="discarded" type="object"
+              attrs="{
+                'invisible': [('stage', '!=', 'available')]
+              }"
+            />
+            <button string="Refurbish" class="btn-primary" name="refurbish" type="object"
+              attrs="{
+                'invisible': [('stage', '!=', 'discarded')]
+              }"
+            />
+            <field name="stage" widget="statusbar" statusbar_visible="available,assigned,in_custody,discarded"/>
           </header>
         </xpath>
         <div class="oe_title" position="before">
@@ -86,56 +107,99 @@
         </div>
         <field name="name" position="attributes">
           <attribute name="style">width: 80%;</attribute>
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
         </field>
         <field name="category_id" position="attributes">
           <attribute name="required">1</attribute>
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
+        </field>
+        <field name="equipment_assign_to" position="attributes">
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
         </field>
         <field name="maintenance_team_id" position="attributes">
           <attribute name="required">1</attribute>
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
         </field>
         <field name="maintenance_team_id" position="before">
           <field name="type_assignment" placeholder="Select" 
             attrs="{
               'invisible': [('equipment_assign_to', '=', 'unassigned')],
-              'required': [('equipment_assign_to', '!=', 'unassigned')]
+              'required': [('equipment_assign_to', '!=', 'unassigned')],
+              'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]
             }"
           />
          <field name="type_discard" placeholder="Select"
            attrs="{
             'invisible': [('out_of_service', '=', False)],
-            'required': [('out_of_service', '=', True)]
+            'required': [('out_of_service', '=', True)],
+            'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]
            }"  
           />
         </field>
         <field name="location" position="after">
           <field name="out_of_service" 
-            attrs="{'invisible': [('equipment_assign_to', '!=', 'unassigned')]}"
+            attrs="{
+              'invisible': [('equipment_assign_to', '!=', 'unassigned')],
+              'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]
+            }"
           />
         </field>
         <field name="technician_user_id" position="replace">
-          <field name="depto_responsible_id" />
+          <field name="depto_responsible_id" attrs="{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}" />
+        </field>
+        <field name="location" position="attributes">
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
         </field>
         <field name="partner_ref" position="replace">
-          <field name="brand_id" />
+          <field name="brand_id" attrs="{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}" />
+        </field>
+        <field name="model" position="attributes">
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
+        </field>
+        <field name="serial_no" position="attributes">
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
+        </field>
+        <!--<field name="note" position="attributes">-->
+          <!--<attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>-->
+        <!--</field>-->
+        <field name="partner_id" position="attributes">
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
+        </field>
+        <field name="effective_date" position="attributes">
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
+        </field>
+        <field name="cost" position="attributes">
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
+        </field>
+        <field name="warranty_date" position="attributes">
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
+        </field>
+        <field name="period" position="attributes">
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
+        </field>
+        <field name="maintenance_duration" position="attributes">
+          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
         </field>
         <field name="assign_date" position="attributes">
           <attribute name="attrs">{
               'invisible': [('equipment_assign_to', '=', 'unassigned')],
-              'required': True
+              'required': True,
+              'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]
             }
           </attribute>
         </field>
         <field name="scrap_date" position="attributes">
           <attribute name="attrs">
             {
-              'invisible': [('stage', '!=', 'discarded')]
+              'invisible': [('stage', '!=', 'discarded')],
+              'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]
             }
           </attribute>
         </field>
         <field name="note" position="attributes">
           <attribute name="attrs">
             {
-              'required': [('out_of_service', '=', True)]
+              'required': [('out_of_service', '=', True)],
             }
           </attribute>
         </field>
@@ -168,26 +232,29 @@
         <field name="employee_id" position="replace">
           <field name="employee_id" string="Employee" 
             attrs="{
-            'invisible': 
-              ['|', 
-                ('equipment_assign_to', '!=', 'employee'), 
-                ('equipment_assign_to', '=', False)
-              ],
-            'required':
-              [('equipment_assign_to', '=', 'employee')]
+              'invisible': 
+                ['|', 
+                  ('equipment_assign_to', '!=', 'employee'), 
+                  ('equipment_assign_to', '=', False)
+                ],
+              'required':
+                [('equipment_assign_to', '=', 'employee')],
+              'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]
             }"
           />
         </field>
         <field name="department_id" position="replace">
           <field name="department_id" string="Department" 
             attrs="{
-            'invisible': 
-              ['|', 
-                ('equipment_assign_to', '!=', 'department'), 
-                ('equipment_assign_to', '=', False)
-              ],
-            'required':
-              [('equipment_assign_to', '=', 'department')]
+              'invisible': 
+                ['|', 
+                  ('equipment_assign_to', '!=', 'department'), 
+                  ('equipment_assign_to', '=', False)
+                ],
+              'required':
+                [('equipment_assign_to', '=', 'department')],
+              'readonly':
+                ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]
             }"
           />
         </field>

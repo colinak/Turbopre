@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+  
+    <menuitem 
+      id="menu_quality_equipment_root"
+      name="Quality Equipment"
+      web_icon="tbps_quality_equipment,static/description/icon.png"
+      sequence="150"
+    />
+
+    <menuitem 
+      id="menu_quality_equipment_setting"
+      name="Setting"
+      parent="tbps_quality_equipment.menu_quality_equipment_root"
+      groups="base.group_system"
+      sequence="15"
+    />
+
+  </data>
+</odoo>

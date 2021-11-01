@@ -44,7 +44,7 @@
                 <field name="image" widget="image" class="oe_avatar"/>
                 <label for="name" class="oe_edit_only"/>
                 <h1>
-                  <field name="name"/>
+                  <field name="name" string="Name" style="width: 75%;"/>
                 </h1>
               </div>
             </group>

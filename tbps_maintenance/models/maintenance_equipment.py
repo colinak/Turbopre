@@ -37,6 +37,7 @@ class MaintenanceEquipment(models.Model):
         [
             ('available', 'Available'),
             ('assigned', 'Assigned'),
+            ('in_custody', 'In Custody'),
             ('discarded', 'Out of service'),
         ],
         string="Stage",
@@ -118,6 +119,35 @@ class MaintenanceEquipment(models.Model):
     def _onchange_out_of_service(self):
         if self.out_of_service == False:
             self.type_discard = False
+
+    @api.depends('stage')
+    def discarded(self):
+        pass
+        # if self.stage == 'in_custody':
+            # self.stage = 'assigned'
+
+    @api.depends('stage')
+    def reserve(self):
+        if self.stage == 'assigned':
+            self.stage = 'in_custody'
+
+    @api.depends('stage')
+    def set_free(self):
+        if self.stage == 'in_custody':
+            self.stage = 'assigned'
+
+    @api.depends('stage')
+    def unassigned(self):
+        pass
+        # if self.stage == 'in_custody':
+            # self.stage = 'assigned'
+
+
+    @api.depends('stage')
+    def refurbish(self):
+        pass
+        # if self.stage == 'in_custody':
+            # self.stage = 'assigned'
 
 
     @api.model
