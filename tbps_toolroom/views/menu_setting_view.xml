@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+  
+    <menuitem 
+      id="menu_toolroom_equipment_root"
+      name="Toolroom Equipment"
+      web_icon="tbps_toolroom,static/description/icon.png"
+      sequence="100"
+    />
+
+    <menuitem 
+      id="menu_toolroom_equipment_setting"
+      name="Setting"
+      parent="tbps_toolroom.menu_toolroom_equipment_root"
+      groups="base.group_system"
+      sequence="15"
+    />
+  
+    <!--Units of Measure-->
+    <menuitem 
+      id="menu_uom"
+      name="Units of Measure"
+      parent="tbps_toolroom.menu_toolroom_equipment_setting"
+      action="uom.product_uom_form_action"
+      groups="base.group_system"
+      sequence="15"
+    />
+
+  </data>
+</odoo>
+
