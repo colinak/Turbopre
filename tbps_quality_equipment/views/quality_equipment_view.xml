@@ -2,6 +2,30 @@
 <odoo>
   <data>
 
+    <record id="view_quality_equipment_search" model="ir.ui.view">
+      <field name="name">quality.equipment.search</field>
+      <field name="model">quality.equitment</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Quality Equipment">
+          <field string="Description" name="name"/>
+          <field string="Code" name="code"/>
+          <field string="Serial Number" name="serial_no"/>
+          <field string="Make" name="make_id"/>
+          <field string="Model" name="model"/>
+          <!--<field string="Code" name="code"/>-->
+          <!--<field string="Code" name="code"/>-->
+          <!--<field string="Code" name="code"/>-->
+          <!--<field string="Code" name="code"/>-->
+          <!--<filter string="Category" name="category" domain="[('', '=', k)]" context="{'group_by': 'category_id'}"/>-->
+          <group string="Group By">
+            <filter string="Category" name="category" domain="" context="{'group_by': 'category_id'}"/>
+            <filter string="Make" name="make" domain="" context="{'group_by': 'make_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
     <record id="view_quality_equipment_form" model="ir.ui.view">
       <field name="name">quality.equipment.form</field>
       <field name="model">quality.equitment</field>
