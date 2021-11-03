@@ -19,13 +19,13 @@
         'uom'
     ],
     'data': [
-        "security/tools_manufacturers/ir.model.access.csv", 
-        "security/tools_category/ir.model.access.csv", 
-        "security/tools_equipment/ir.model.access.csv", 
-        "views/menu_setting_view.xml", 
-        "views/toolroom_manufacturers_view.xml", 
-        "views/toolroom_category_view.xml", 
-        "views/toolroom_equipment_view.xml", 
+        "security/tools_manufacturers/ir.model.access.csv",
+        "security/tools_category/ir.model.access.csv",
+        "security/tools_equipment/ir.model.access.csv",
+        "views/menu_setting_view.xml",
+        "views/toolroom_manufacturers_view.xml",
+        "views/toolroom_category_view.xml",
+        "views/toolroom_equipment_view.xml",
     ],
     'demo': [],
     'qweb': [],
@@ -33,4 +33,3 @@
     'application': True,
     'auto_install': False
 }
-
