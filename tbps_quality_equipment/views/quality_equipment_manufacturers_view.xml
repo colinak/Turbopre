@@ -2,6 +2,17 @@
 <odoo>
   <data>
 
+    <record id="view_quality_equitment_manufacturers_search" model="ir.ui.view">
+      <field name="name">quality.equitment.manufacturers.search</field>
+      <field name="model">quality.equitment.manufacturers</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Manufacturers">
+          <field string="Name" name="name"/>
+        </search>
+      </field>
+    </record>
+
     <!--view kanban of Manufacturers-->
     <record id="view_quality_equipment_manufacturers_kanban" model="ir.ui.view">
       <field name="name">quality.equipment.manufacturers.kanban</field>
