@@ -3,6 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from . import quality_equipment_manufacturers
+from . import quality_equipment_clasification
 from . import quality_equipment_category 
+from . import quality_status
 from . import quality_equipment
 

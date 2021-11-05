@@ -19,7 +19,7 @@
           <!--<field string="Code" name="code"/>-->
           <!--<filter string="Category" name="category" domain="[('', '=', k)]" context="{'group_by': 'category_id'}"/>-->
           <group string="Group By">
-            <filter string="Category" name="category" domain="" context="{'group_by': 'category_id'}"/>
+            <filter string="Equipment" name="equipment" domain="" context="{'group_by': 'equipment_id'}"/>
             <filter string="Make" name="make" domain="" context="{'group_by': 'make_id'}"/>
           </group>
         </search>
@@ -38,30 +38,42 @@
             <!--</header>-->
             <div class="oe_title">
               <field name="image_1920" widget="image" class="oe_avatar" />
-              <label for="name" class="oe_edit_only" />
+              <label for="equipment_id" class="oe_edit_only" />
               <h1>
-                <field name="name" string="Name" placeholder="Equipment Name" style="width: 75%;"/>
+                <field name="equipment_id" string="Equipment"
+                  options="{'no_create': True, 'no_create_edit': True}"
+                  placeholder="Select Equipment" style="width: 75%;"
+                />
+                <field name="name" string="Name" invisible="1" />
               </h1>
             </div>
-            <group col="4">
-              <field name="code" />
-              <field name="serial_no" />
-              <field name="make_id" />
-              <field name="model" />
-              <field name="rango" />
-              <field name="appreciation" />
-              <field name="clasification" />
-              <field name="frequency_cal_ver" />
-              <field name="status" />
-              <field name="stage" />
-              <field name="calibration_date" />
-              <field name="expiration_date" />
-              <field name="out_of_service" />
-              <field name="active" />
-              <field name="location" />
-              <field name="shelf_number" />
-              <field name="shelf_position" />
-              <field name="technician_user_id" />
+            <group>
+              <group>
+                <field name="make_id" placeholder="Select" />
+                <field name="model" />
+                <field name="code" />
+                <field name="serial_no" />
+                <field name="technician_user_id" placeholder="Select" />
+                <field name="location" />
+                <field name="shelf_number" />
+                <field name="shelf_position" />
+              </group>
+              <group>
+                <!--<field name="category_id" placeholder="Select" />-->
+                <field name="clasification_id" placeholder="Select" options="{'no_create': True, 'no_create_edit': True}" />
+                <field name="rango" />
+                <field name="appreciation" />
+                <field name="status_id" placeholder="Select" options="{'no_create': True, 'no_create_edit': True}" />
+                <label for="frequency_cal_ver" class="oe_edit_only" />
+                <div class="o_row">
+                  <field name="frequency_cal_ver" />Months
+                </div>
+                <field name="calibration_date" placeholder="Select" />
+                <field name="expiration_date" placeholder="Select" />
+                <field name="out_of_service" />
+                <!--<field name="active" />-->
+              </group>
+              <!--<field name="stage" />-->
             </group>
           </sheet>
         </form>
@@ -75,15 +87,20 @@
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Quality Equipment">
-          <field name="name" string="Name" />
+          <!--<field name="name" string="Name" />-->
           <field name="code" />
           <field name="serial_no" />
-          <field name="model" />
           <field name="make_id" />
+          <field name="model" />
           <field name="rango" />
           <field name="appreciation" />
           <field name="frequency_cal_ver" />
-          <field name="clasification" />
+          <field name="calibration_date" />
+          <field name="expiration_date" />
+          <field name="location" optional="hide"/>
+          <field name="shelf_number" optional="hide"/>
+          <field name="shelf_position" optional="hide"/>
+          <!--<field name="clasification" />-->
         </tree>
       </field>
     </record>

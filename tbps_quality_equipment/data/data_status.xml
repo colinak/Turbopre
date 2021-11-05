@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+
+    <!-- Standard Status for Quality -->
+    <record id="status_01" model="quality.status">
+      <field name="name">Calibrado</field>
+    </record>
+    <record id="status_02" model="quality.status">
+      <field name="name">Dañado</field>
+    </record>
+    <record id="status_03" model="quality.status">
+      <field name="name">Equipo Obsoleto Solo de Uso Referencial</field>
+    </record>
+    <record id="status_04" model="quality.status">
+      <field name="name">Fuera de Calibracion</field>
+    </record>
+    <record id="status_05" model="quality.status">
+      <field name="name">No Requiere Calibracion</field>
+    </record>
+    <record id="status_06" model="quality.status">
+      <field name="name">Observacion</field>
+    </record>
+    <record id="status_07" model="quality.status">
+      <field name="name">Verificado</field>
+    </record>
+    <record id="status_08" model="quality.status">
+      <field name="name">Pronto a Vencer</field>
+    </record>
+
+  </data>
+</odoo>
