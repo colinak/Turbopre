@@ -81,10 +81,15 @@ class QualityEquipment(models.Model):
     )
     active = fields.Boolean(string="Active", default=True)
 
+    _sql_constraints = [
+        ('name_serial_no', 'UNIQUE(serial_no)', 'There is another asset with this serial number!'),
+        ('code_unique', 'UNIQUE(code)', 'There is another asset with this code!')
+    ]
 
-    @api.constrains('make_id', 'category_id')
+
+    @api.constrains('make_id')
     def _check_code_unique(self):
-        if self.make_id and self.category_id:
+        if self.make_id:
             pass
 
 

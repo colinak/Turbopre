@@ -17,6 +17,9 @@
     'depends': ['base'],
     'data': [
         "data/data_status.xml", 
+        "data/quality.equitment.category.csv",
+        "data/quality.equitment.clasification.csv",
+        "data/quality.equitment.manufacturers.csv",
         "security/quality_equipment_manufacturers/ir.model.access.csv", 
         "security/quality_equipment_clasification/ir.model.access.csv", 
         "security/quality_equipment_category/ir.model.access.csv", 

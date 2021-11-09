@@ -87,7 +87,7 @@
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Quality Equipment">
-          <!--<field name="name" string="Name" />-->
+          <field name="equipment_id" string="Equipment" />
           <field name="code" />
           <field name="serial_no" />
           <field name="make_id" />
@@ -95,6 +95,7 @@
           <field name="rango" />
           <field name="appreciation" />
           <field name="frequency_cal_ver" />
+          <field name="status_id" />
           <field name="calibration_date" />
           <field name="expiration_date" />
           <field name="location" optional="hide"/>

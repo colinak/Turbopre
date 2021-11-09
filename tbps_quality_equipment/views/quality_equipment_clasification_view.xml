@@ -13,27 +13,17 @@
       </field>
     </record>
 
-    <!--view kanban of Manufacturers-->
+    <!--view kanban of Clasifications-->
     <record id="view_quality_equitment_clasification_kanban" model="ir.ui.view">
       <field name="name">quality.equitment.clasification.kanban</field>
       <field name="model">quality.equitment.clasification</field>
-      <field name="type">kanban</field>
       <field name="arch" type="xml">
-        <kanban class="o_res_partner_kanban">
-          <field name="id"/>
-          <field name="name"/>
+        <kanban class="o_kanban_mobile">
           <templates>
             <t t-name="kanban-box">
-              <div class="oe_kanban_vignette oe_semantic_html_override">
-                <a type="open" href="#" class="o_kanban_image oe_kanban_action">
-                  <img alt="Open" t-att-src="kanban_image('maintenance.manufacturers', 'image', record.id.raw_value)" class="img-fluid" style="width:100px;"/>
-                </a>
-                <div class="oe_kanban_details">
-                  <h4 class="oe_partner_heading">
-                    <a type="open" class="o_kanban_record_title">
-                      <field name="name"/>
-                    </a>
-                  </h4>
+              <div t-attf-class="oe_kanban_global_click">
+                <div>
+                  <strong><field name="name"/></strong>
                 </div>
               </div>
             </t>
@@ -42,34 +32,12 @@
       </field>
     </record>
 
-    <record id="view_quality_equitment_clasification_form" model="ir.ui.view">
-      <field name="name">quality.equitment.clasification.form</field>
-      <field name="model">quality.equitment.clasification</field>
-      <field name="type">form</field>
-      <field name="arch" type="xml">
-        <form string="Quality Clasification">
-          <sheet>
-            <div class="oe_title">
-              <field name="image" widget="image" class="oe_avatar" />
-              <label for="name" class="oe_edit_only" />
-              <h1>
-                <field name="name" string="Name" placeholder="Clasification Name" style="width: 75%;"/>
-              </h1>
-            </div>
-            <group>
-              <field name="note" />
-            </group>
-          </sheet>
-        </form>
-      </field>
-    </record>
-
     <record id="view_quality_equitment_clasification_tree" model="ir.ui.view">
       <field name="name">quality.equitment.clasification.tree</field>
       <field name="model">quality.equitment.clasification</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <tree string="Quality Clasification">
+        <tree string="Quality Clasification" editable="bottom">
           <field name="name" string="Name" />
         </tree>
       </field>
@@ -80,7 +48,8 @@
       <field name="name">Clasifications</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">quality.equitment.clasification</field>
-      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_mode">tree,kanban,form</field>
+      <field name="search_view_id" ref="quality_status_view_search"/>
       <field name="view_id" ref="view_quality_equitment_clasification_tree" />
       <field name="help" type="html">
         <p class="o_view_nocontent_smiling_face">
