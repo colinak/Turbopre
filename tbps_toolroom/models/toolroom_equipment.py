@@ -33,8 +33,6 @@ class ToolRoomEquipment(models.Model):
     )
     location = fields.Char(string="Location")
     serial_number = fields.Char(string="Serial Number")
-    # status = fields.Selection()
-    # stage = fields.Selection()
     active = fields.Boolean(string="Active", default=True)
     out_of_service = fields.Boolean(string="Out of Service", default=False)
 

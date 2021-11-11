@@ -2,9 +2,9 @@
 <odoo>
   <data>
 
-    <record id="view_quality_equitment_manufacturers_search" model="ir.ui.view">
-      <field name="name">quality.equitment.manufacturers.search</field>
-      <field name="model">quality.equitment.manufacturers</field>
+    <record id="view_quality_equipment_manufacturers_search" model="ir.ui.view">
+      <field name="name">quality.equipment.manufacturers.search</field>
+      <field name="model">quality.equipment.manufacturers</field>
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Manufacturers">
@@ -16,7 +16,7 @@
     <!--view kanban of Manufacturers-->
     <record id="view_quality_equipment_manufacturers_kanban" model="ir.ui.view">
       <field name="name">quality.equipment.manufacturers.kanban</field>
-      <field name="model">quality.equitment.manufacturers</field>
+      <field name="model">quality.equipment.manufacturers</field>
       <field name="type">kanban</field>
       <field name="arch" type="xml">
         <kanban class="o_res_partner_kanban">
@@ -44,7 +44,7 @@
 
     <record id="view_quality_equipment_manufacturers_form" model="ir.ui.view">
       <field name="name">quality_equipment_manufacturers_form</field>
-      <field name="model">quality.equitment.manufacturers</field>
+      <field name="model">quality.equipment.manufacturers</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Quality Equipment Manufacturers">
@@ -66,7 +66,7 @@
 
     <record id="view_quality_equipment_manufacturers_tree" model="ir.ui.view">
       <field name="name">quality_equipment_manufacturers_tree</field>
-      <field name="model">quality.equitment.manufacturers</field>
+      <field name="model">quality.equipment.manufacturers</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Quality Equipment Manufacturers">
@@ -79,7 +79,7 @@
     <record id="action_quality_equipment_manufacturers" model="ir.actions.act_window">
       <field name="name">Manufacturers</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">quality.equitment.manufacturers</field>
+      <field name="res_model">quality.equipment.manufacturers</field>
       <field name="view_mode">kanban,tree,form</field>
       <field name="view_id" ref="view_quality_equipment_manufacturers_tree" />
       <field name="help" type="html">
@@ -88,8 +88,8 @@
         </p>
       </field>
     </record>
-  
-    <menuitem 
+
+    <menuitem
       id="menu_quality_equipment_manufacturers"
       name="Manufacturers"
       parent="tbps_quality_equipment.menu_quality_equipment_setting"
@@ -97,9 +97,7 @@
       sequence="4"
       groups="base.group_system"
     />
-  
-  
+
+
   </data>
 </odoo>
-
-

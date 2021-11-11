@@ -4,7 +4,7 @@
 
     <record id="view_quality_equipment_search" model="ir.ui.view">
       <field name="name">quality.equipment.search</field>
-      <field name="model">quality.equitment</field>
+      <field name="model">quality.equipment</field>
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Quality Equipment">
@@ -13,11 +13,6 @@
           <field string="Serial Number" name="serial_no"/>
           <field string="Make" name="make_id"/>
           <field string="Model" name="model"/>
-          <!--<field string="Code" name="code"/>-->
-          <!--<field string="Code" name="code"/>-->
-          <!--<field string="Code" name="code"/>-->
-          <!--<field string="Code" name="code"/>-->
-          <!--<filter string="Category" name="category" domain="[('', '=', k)]" context="{'group_by': 'category_id'}"/>-->
           <group string="Group By">
             <filter string="Equipment" name="equipment" domain="" context="{'group_by': 'equipment_id'}"/>
             <filter string="Make" name="make" domain="" context="{'group_by': 'make_id'}"/>
@@ -28,14 +23,14 @@
 
     <record id="view_quality_equipment_form" model="ir.ui.view">
       <field name="name">quality.equipment.form</field>
-      <field name="model">quality.equitment</field>
+      <field name="model">quality.equipment</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Quality Equipment">
+          <header>
+            <field name="stage" widget="statusbar" statusbar_visible="available,assigned,loan,in_custody,discarded"/>
+          </header>
           <sheet>
-            <!--<header>-->
-              <!--<field name="stage" widget="statusbar" statusbar_visible="available,assigned,discarded"/>-->
-            <!--</header>-->
             <div class="oe_title">
               <field name="image_1920" widget="image" class="oe_avatar" />
               <label for="equipment_id" class="oe_edit_only" />
@@ -66,15 +61,52 @@
                 <field name="status_id" placeholder="Select" options="{'no_create': True, 'no_create_edit': True}" />
                 <label for="frequency_cal_ver" class="oe_edit_only" />
                 <div class="o_row">
-                  <field name="frequency_cal_ver" />Months
+                  <field name="frequency_cal_ver" 
+                    attrs="{
+                      'invisible': [('status_id', '=', 5)]
+                    }"
+                  />Months
                 </div>
-                <field name="calibration_date" placeholder="Select" />
-                <field name="expiration_date" placeholder="Select" />
+                <field name="calibration_date" placeholder="Select"
+                  attrs="{
+                    'required': [('frequency_cal_ver', '>=', 1)],
+                    'invisible': [('status_id', '=', 5)]
+                  }"
+                />
+                <field name="expiration_date" placeholder="Select"
+                  attrs="{
+                    'required': [('frequency_cal_ver', '>=', 1)],
+                    'readonly': [('status_id', '=', 5)]
+                  }"
+                />
                 <field name="out_of_service" />
                 <!--<field name="active" />-->
               </group>
+              <group colspan="4">
+                <field name="note" string="Observations" />
+              </group>
               <!--<field name="stage" />-->
             </group>
+            <notebook>
+              <page string="Calibration / Verification">
+                <!--<group>-->
+                  <field name="calibration_verification_ids"
+                    widget="section_and_note_one2many"
+                    mode="tree"
+                  >
+                    <tree editable="bottom">
+                      <field name="type_activity" />
+                      <field name="date_execute" />
+                      <field name="date_expiration" />
+                      <field name="final_condition" />
+                      <field name="partner_id" />
+                      <field name="certificate_no" />
+                      <field name="note" />
+                    </tree>
+                  </field>
+                <!--</group>-->
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>
@@ -83,7 +115,7 @@
 
     <record id="view_quality_equipment_tree" model="ir.ui.view">
       <field name="name">quality.equipment.tree</field>
-      <field name="model">quality.equitment</field>
+      <field name="model">quality.equipment</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Quality Equipment">
@@ -101,6 +133,7 @@
           <field name="location" optional="hide"/>
           <field name="shelf_number" optional="hide"/>
           <field name="shelf_position" optional="hide"/>
+          <field name="technician_user_id" optional="hide"/>
           <!--<field name="clasification" />-->
         </tree>
       </field>
@@ -110,7 +143,7 @@
     <record id="action_quality_equipment" model="ir.actions.act_window">
       <field name="name">Equipment</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">quality.equitment</field>
+      <field name="res_model">quality.equipment</field>
       <field name="view_mode">tree,form</field>
       <field name="view_id" ref="view_quality_equipment_tree" />
       <field name="help" type="html">

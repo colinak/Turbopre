@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record id="view_quality_activity_type_search" model="ir.ui.view">
+      <field name="name">quality.activity.type.search</field>
+      <field name="model">quality.activity.type</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Activity Type">
+          <field string="Name" name="name"/>
+        </search>
+      </field>
+    </record>
+
+    <!--view kanban of Manufacturers-->
+    <!--<record id="view_quality_activity_type_kanban" model="ir.ui.view">-->
+      <!--<field name="name">quality.activity.type.kanban</field>-->
+      <!--<field name="model">quality.activity.type</field>-->
+      <!--<field name="type">kanban</field>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<kanban class="o_res_partner_kanban">-->
+          <!--<field name="id"/>-->
+          <!--<field name="name"/>-->
+          <!--<templates>-->
+            <!--<t t-name="kanban-box">-->
+              <!--<div class="oe_kanban_vignette oe_semantic_html_override">-->
+                <!--<a type="open" href="#" class="o_kanban_image oe_kanban_action">-->
+                  <!--<img alt="Open" t-att-src="kanban_image('maintenance.manufacturers', 'image', record.id.raw_value)" class="img-fluid" style="width:100px;"/>-->
+                <!--</a>-->
+                <!--<div class="oe_kanban_details">-->
+                  <!--<h4 class="oe_partner_heading">-->
+                    <!--<a type="open" class="o_kanban_record_title">-->
+                      <!--<field name="name"/>-->
+                    <!--</a>-->
+                  <!--</h4>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</t>-->
+          <!--</templates>-->
+        <!--</kanban>-->
+      <!--</field>-->
+    <!--</record>-->
+
+    <record id="view_quality_activity_type_form" model="ir.ui.view">
+      <field name="name">quality.activity.type.form</field>
+      <field name="model">quality.activity.type</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Quality Activity Type">
+          <sheet>
+            <div class="oe_title">
+              <label for="name" class="oe_edit_only" />
+              <h1>
+                <field name="name" string="Name" placeholder="Name Activity" style="width: 75%;"/>
+              </h1>
+            </div>
+            <group col="4">
+              <field name="type_of_notification" placeholder="Select" />
+              <field name="responsible_id" placeholder="Select" />
+            </group>
+            <group colspan="4">
+              <field name="description" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="view_quality_activity_type_tree" model="ir.ui.view">
+      <field name="name">quality.activity.type.tree</field>
+      <field name="model">quality.activity.type</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Quality Activity Type">
+          <field name="name" string="Name" />
+          <field name="type_of_notification" />
+          <field name="responsible_id" />
+        </tree>
+      </field>
+    </record>
+
+
+    <record id="action_quality_activity_type" model="ir.actions.act_window">
+      <field name="name">Type Activity</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">quality.activity.type</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_quality_activity_type_tree" />
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Create New Type Activity
+        </p>
+      </field>
+    </record>
+  
+    <menuitem 
+      id="menu_quality_type_activity"
+      name="Type Activity"
+      parent="tbps_quality_equipment.menu_quality_equipment_setting"
+      action="tbps_quality_equipment.action_quality_activity_type"
+      sequence="5"
+      groups="base.group_system"
+    />
+  
+  
+  </data>
+</odoo>
+
+
+

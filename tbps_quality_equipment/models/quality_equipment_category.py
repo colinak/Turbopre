@@ -6,7 +6,7 @@ from odoo import models, fields, api, _
 
 
 class QualityEquipmentCategory(models.Model):
-    _name = 'quality.equitment.category'
+    _name = 'quality.equipment.category'
     _description = 'Quiality Equipment Category'
     _order = 'name'
     _rec_name = 'name'
@@ -24,4 +24,3 @@ class QualityEquipmentCategory(models.Model):
         help="Responsible"
     )
     note = fields.Text(string="Notes")
-

@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 
 
 class QualityEquipment(models.Model):
-    _name = 'quality.equitment'
+    _name = 'quality.equipment'
     _description = 'Quiality Equipment'
     _order = 'name'
     _rec_name = 'name'
@@ -21,7 +21,7 @@ class QualityEquipment(models.Model):
         help="Equipment Description"
     )
     equipment_id = fields.Many2one(
-        'quality.equitment.category',
+        'quality.equipment.category',
         string="Equipment",
         required=True,
         help="Category Equipment"
@@ -35,7 +35,7 @@ class QualityEquipment(models.Model):
         string="Image",
     )
     make_id = fields.Many2one(
-        'quality.equitment.manufacturers',
+        'quality.equipment.manufacturers',
         string="Make",
         help="Make for Equipment"
     )
@@ -54,7 +54,7 @@ class QualityEquipment(models.Model):
         help="Calibration or verification frequency"
     )
     clasification_id = fields.Many2one(
-        'quality.equitment.clasification',
+        'quality.equipment.clasification',
         string="Clasification"
     )
     status_id = fields.Many2one(
@@ -63,7 +63,17 @@ class QualityEquipment(models.Model):
         required=True,
         help="Calibration Status"
     )
-    stage = fields.Char(string="Stage")
+    stage = fields.Selection(
+        [
+            ('available', 'Available'),
+            ('assigned', 'Assigned'),
+            ('loan', 'Loan'),
+            ('in_custody', 'In Custody'),
+            ('discarded', 'Out of Service'),
+        ],
+        string="Stage",
+        default='available'
+    )
     calibration_date = fields.Date(string="Calibration Date")
     expiration_date = fields.Date(string="Expiration Date")
     location = fields.Char(string="Location", required=True)
@@ -74,6 +84,16 @@ class QualityEquipment(models.Model):
         string="Responsible",
         required=True
     )
+    assigned_id = fields.Many2one(
+        'assignment.equipment',
+        string="Assigned"
+    )
+    calibration_verification_ids = fields.One2many(
+        'quality.traceability.equipment',
+        'equipment_id',
+        string="Calibrations Verification"
+    )
+    note = fields.Text(string="Notes", help="Observations")
     out_of_service = fields.Boolean(
         string="Ouf of Service",
         # compute='_compute_out_of_service',
@@ -93,16 +113,20 @@ class QualityEquipment(models.Model):
             pass
 
 
+    @api.onchange('status_id')
+    def _onchange_status(self):
+        if self.status_id.name == "No Requiere Calibracion" or self.status_id.id == 5:
+            self.frequency_cal_ver = 0
+            self.calibration_date = ""
+            self.expiration_date = ""
+
 
     @api.onchange('frequency_cal_ver', 'calibration_date')
     def _onchange_expiration_date(self):
-        # if self.frequency_cal_ver != 0 and self.calibration_date:
-        _logger.info("Frecuencia: " + str(self.frequency_cal_ver))
-        if self.frequency_cal_ver != 0 and self.calibration_date:
-            self.expiration_date = fields.Date.context_today(self)
-
-
-
-
-
-
+        if self.frequency_cal_ver < 1:
+            self.calibration_date = ""
+            self.expiration_date = ""
+        else:
+            _logger.info("Frecuencia: " + str(self.frequency_cal_ver))
+            if self.frequency_cal_ver != 0 and self.calibration_date:
+                self.expiration_date = fields.Date.context_today(self)

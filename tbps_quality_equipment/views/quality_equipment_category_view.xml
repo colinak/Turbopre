@@ -2,9 +2,9 @@
 <odoo>
   <data>
 
-    <record id="view_quality_equitment_category_search" model="ir.ui.view">
-      <field name="name">quality.equitment.category.search</field>
-      <field name="model">quality.equitment.category</field>
+    <record id="view_quality_equipment_category_search" model="ir.ui.view">
+      <field name="name">quality.equipment.category.search</field>
+      <field name="model">quality.equipment.category</field>
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Quality Category">
@@ -15,7 +15,7 @@
 
     <record id="view_quality_equipment_category_form" model="ir.ui.view">
       <field name="name">quality.equipment.category.form</field>
-      <field name="model">quality.equitment.category</field>
+      <field name="model">quality.equipment.category</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Quality Equipment Category">
@@ -40,7 +40,7 @@
 
     <record id="view_quality_equipment_category_tree" model="ir.ui.view">
       <field name="name">quality.equipment.category.tree</field>
-      <field name="model">quality.equitment.category</field>
+      <field name="model">quality.equipment.category</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Quality Equipment Category">
@@ -56,7 +56,7 @@
     <record id="action_quality_equipment_category" model="ir.actions.act_window">
       <field name="name">Equipment Category</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">quality.equitment.category</field>
+      <field name="res_model">quality.equipment.category</field>
       <field name="view_mode">tree,form</field>
       <field name="view_id" ref="view_quality_equipment_category_tree" />
       <field name="help" type="html">
@@ -65,8 +65,8 @@
         </p>
       </field>
     </record>
-  
-    <menuitem 
+
+    <menuitem
       id="menu_quality_equipment_category"
       name="Equipment Category"
       parent="tbps_quality_equipment.menu_quality_equipment_setting"
@@ -74,8 +74,7 @@
       sequence="1"
       groups="base.group_system"
     />
-  
-  
+
+
   </data>
 </odoo>
-

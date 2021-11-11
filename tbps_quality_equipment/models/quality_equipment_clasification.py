@@ -6,7 +6,7 @@ from odoo import models, fields, api, _
 
 
 class QualityEquipmentClasification(models.Model):
-    _name = 'quality.equitment.clasification'
+    _name = 'quality.equipment.clasification'
     _description = 'Quiality Equipment Clasification'
     _order = 'name'
     _rec_name = 'name'
@@ -15,4 +15,3 @@ class QualityEquipmentClasification(models.Model):
     name = fields.Char(string="Name", required=True)
     image = fields.Binary(string="Image", max_width=128, max_height=128)
     note = fields.Text(string="Notes")
-

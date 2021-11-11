@@ -6,7 +6,7 @@ from odoo import models, fields, api, _
 
 
 class QualityEquipmentManufacturers(models.Model):
-    _name = 'quality.equitment.manufacturers'
+    _name = 'quality.equipment.manufacturers'
     _description = 'Quiality Equipment Manufacutrers'
     _order = 'name'
     _rec_name = 'name'
@@ -15,4 +15,3 @@ class QualityEquipmentManufacturers(models.Model):
     name = fields.Char(string="Name", required=True)
     image = fields.Binary(string="Image", max_width=128, max_height=128)
     note = fields.Text(string="Notes")
-
