@@ -4,6 +4,7 @@
 
 from odoo import models, fields, api, _
 import logging
+from dateutil.relativedelta import relativedelta
 _logger = logging.getLogger(__name__)
 
 
@@ -127,6 +128,21 @@ class QualityEquipment(models.Model):
             self.calibration_date = ""
             self.expiration_date = ""
         else:
-            _logger.info("Frecuencia: " + str(self.frequency_cal_ver))
             if self.frequency_cal_ver != 0 and self.calibration_date:
-                self.expiration_date = fields.Date.context_today(self)
+                # self.expiration_date = fields.Date.context_today(self)
+
+                _logger.info("###################################################")
+                _logger.info("Frecuencia: " + str(self.frequency_cal_ver))
+                _logger.info("Fecha : " + str(self.calibration_date))
+                _logger.info(type(self.calibration_date))
+                _logger.info(type(self.calibration_date))
+                _logger.info("Expiracion: " + str(self.expiration_date))
+                _logger.info(type(self.expiration_date))
+                # fecha = self.calibration_date + 24
+                expired_date = (
+                    fields.Datetime.from_string(self.calibration_date) + 
+                    relativedelta(months=int(self.frequency_cal_ver))
+                )
+                self.expiration_date= expired_date
+
+
