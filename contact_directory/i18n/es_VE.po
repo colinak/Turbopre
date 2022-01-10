@@ -40,7 +40,7 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:contact_directory.inherit_view_employee_form
 #: model_terms:ir.ui.view,arch_db:contact_directory.inherit_view_employee_tree
 msgid "Telephone Extension"
-msgstr "Extención Telefónica"
+msgstr "Extensión Telefónica"
 
 #. module: hr
 #: model:ir.ui.menu,name:hr.menu_hr_root

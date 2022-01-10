@@ -24,3 +24,24 @@ class ToolRoomCategory(models.Model):
     )
     note = fields.Text(string="Notes")
 
+
+
+class ToolRoomQuadrant(models.Model):
+    _name = 'toolroom.quadrant'
+    _description = 'Toolroom Quadrant'
+    _order = 'name'
+    _rec_name = 'name'
+
+
+    name = fields.Char(string="Description", required=True)
+
+
+
+class ToolRoomMeasure(models.Model):
+    _name = 'toolroom.measure'
+    _description = 'Toolroom Measure'
+    _order = 'name'
+    _rec_name = 'name'
+
+
+    name = fields.Char(string="Description", required=True)

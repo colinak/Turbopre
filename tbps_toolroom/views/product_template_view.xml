@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <!--<record id="inherit_view_product_template_form" model="ir.ui.view">-->
+    
+    <!--</record>-->
+
+
+    
+
+
+    <menuitem 
+      id="menu_products_add"
+      name="Productos"
+      parent="tbps_toolroom.menu_toolroom_equipment_title"
+      action="product.product_template_action"
+      groups="base.group_system"
+      sequence="1"
+    />
+  </data>
+</odoo>

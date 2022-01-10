@@ -245,7 +245,11 @@
       <field name="model">quality.equipment</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <tree string="Quality Equipment">
+        <tree string="Quality Equipment" 
+          decoration-success="status_id == 1"
+          decoration-muted="status_id == 2"
+          decoration-info="status_id in (3,6)"
+        >
           <field name="equipment_id" string="Equipment" />
           <field name="code" />
           <field name="serial_no" />

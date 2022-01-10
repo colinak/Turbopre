@@ -5,5 +5,6 @@
 from . import toolroom_manufacturers
 from . import toolroom_category
 from . import toolroom_equipment
+from . import product
 
 

@@ -1,0 +1,470 @@
+"id","name"
+measure_001,11/64"
+measure_002,47/64"
+measure_003,3/8"
+measure_004,43/64"
+measure_005,35/64"
+measure_006,17/64"
+measure_007,9/16"
+measure_008,11/16"
+measure_009,13/64"
+measure_010,13/16"
+measure_011,39/64"
+measure_012,51/64"
+measure_013,3/16"
+measure_014,37/64"
+measure_015,21/64"
+measure_016,1/64"
+measure_017,1/16"
+measure_018,15/32"
+measure_019,1/4"
+measure_020,45/64"
+measure_021,41/64"
+measure_022,7/64"
+measure_023,5/8"
+measure_024,11/32"
+measure_025,23/64"
+measure_026,9/32"
+measure_027,5/32"
+measure_028,1/2"
+measure_029,1/8"
+measure_030,53/64"
+measure_031,23/32"
+measure_032,13/32"
+measure_033,5/16"
+measure_034,1/32"
+measure_035,21/32"
+measure_036,5/64"
+measure_037,49/64"
+measure_038,17/32"
+measure_039,19/32"
+measure_040,31/64"
+measure_041,25/32"
+measure_042,3/64"
+measure_043,9/64"
+measure_044,25/64"
+measure_045,33/64"
+measure_046,27/64"
+measure_047,3/32"
+measure_048,19/64"
+measure_049,7/32"
+measure_050,15/64"
+measure_051,7/16"
+measure_052,3/4"
+measure_053,29/64"
+measure_054,27/32"
+measure_055,55/64"
+measure_056,7/8"
+measure_057,57/64"
+measure_058,29/32"
+measure_059,59/64"
+measure_060,15/16"
+measure_061,61/64"
+measure_062,31/32"
+measure_063,63/64"
+measure_064,1"
+measure_065,1 1/16"
+measure_066,1 3/32"
+measure_067,1 1/8"
+measure_068,1 3/16"
+measure_069,1 1/4"
+measure_070,1 5/16"
+measure_071,1 3/8"
+measure_072,1 7/16"
+measure_073,1 1/2"
+measure_074,1 9/16"
+measure_075,1 5/8"
+measure_076,1 11/16"
+measure_077,1 3/4"
+measure_078,1 13/16"
+measure_079,1 7/8"
+measure_080,1 15/16"
+measure_081,2"
+measure_082,2 1/16"
+measure_083,2 3/32"
+measure_084,2 1/8"
+measure_085,2 3/16"
+measure_086,2 1/4"
+measure_087,2 5/16"
+measure_088,2 3/8"
+measure_089,2 7/16"
+measure_090,2 1/2"
+measure_091,2 9/16"
+measure_092,2 5/8"
+measure_093,2 11/16"
+measure_094,2 3/4"
+measure_095,2 13/16"
+measure_096,2 7/8"
+measure_097,2 15/16"
+measure_098,3"
+measure_099,3 1/16"
+measure_100,3 3/32"
+measure_101,3 1/8"
+measure_102,3 3/16"
+measure_103,3 1/4"
+measure_104,3 5/16"
+measure_105,3 3/8"
+measure_106,3 7/16"
+measure_107,3 1/2"
+measure_108,3 9/16"
+measure_109,3 5/8"
+measure_110,3 11/16"
+measure_111,3 3/4"
+measure_112,3 13/16"
+measure_113,3 7/8"
+measure_114,3 15/16"
+measure_115,4"
+measure_116,0,028"
+measure_117,0,035"
+measure_118,0,050"
+measure_119,1 MM
+measure_120,2 MM
+measure_121,3 MM
+measure_122,4 MM
+measure_123,5 MM
+measure_124,6 MM
+measure_125,7 MM
+measure_126,8 MM
+measure_127,9 MM
+measure_128,10 MM
+measure_129,11 MM
+measure_130,12 MM
+measure_131,13 MM
+measure_132,14 MM
+measure_133,15 MM
+measure_134,16 MM
+measure_135,17 MM
+measure_136,18 MM
+measure_137,19 MM
+measure_138,20 MM
+measure_139,21 MM
+measure_140,22 MM
+measure_141,23 MM
+measure_142,24 MM
+measure_143,25 MM
+measure_144,26 MM
+measure_145,27 MM
+measure_146,28 MM
+measure_147,29 MM
+measure_148,30 MM
+measure_149,31 MM
+measure_150,32 MM
+measure_151,33 MM
+measure_152,34 MM
+measure_153,35 MM
+measure_154,36 MM
+measure_155,37 MM
+measure_156,38 MM
+measure_157,39 MM
+measure_158,40 MM
+measure_159,41 MM
+measure_160,42 MM
+measure_161,43 MM
+measure_162,44 MM
+measure_163,45 MM
+measure_164,46 MM
+measure_165,47 MM
+measure_166,48 MM
+measure_167,49 MM
+measure_168,50 MM
+measure_169,51 MM
+measure_170,52 MM
+measure_171,53 MM
+measure_172,54 MM
+measure_173,55 MM
+measure_174,56 MM
+measure_175,57 MM
+measure_176,58 MM
+measure_177,59 MM
+measure_178,60 MM
+measure_179,61 MM
+measure_180,62 MM
+measure_181,63 MM
+measure_182,64 MM
+measure_183,65 MM
+measure_184,66 MM
+measure_185,67 MM
+measure_186,68 MM
+measure_187,69 MM
+measure_188,70 MM
+measure_189,71 MM
+measure_190,72 MM
+measure_191,73 MM
+measure_192,74 MM
+measure_193,75 MM
+measure_194,76 MM
+measure_195,77 MM
+measure_196,78 MM
+measure_197,79 MM
+measure_198,80 MM
+measure_199,81 MM
+measure_200,82 MM
+measure_201,83 MM
+measure_202,84 MM
+measure_203,85 MM
+measure_204,86 MM
+measure_205,87 MM
+measure_206,88 MM
+measure_207,89 MM
+measure_208,90 MM
+measure_209,91 MM
+measure_210,92 MM
+measure_211,93 MM
+measure_212,94 MM
+measure_213,95 MM
+measure_214,96 MM
+measure_215,97 MM
+measure_216,98 MM
+measure_217,99 MM
+measure_218,100 MM
+measure_219,101 MM
+measure_220,102 MM
+measure_221,103 MM
+measure_222,104 MM
+measure_223,105 MM
+measure_224,106 MM
+measure_225,107 MM
+measure_226,108 MM
+measure_227,109 MM
+measure_228,110 MM
+measure_229,5"
+measure_230,6"
+measure_231,7"
+measure_232,8"
+measure_233,9"
+measure_234,10"
+measure_235,11"
+measure_236,12"
+measure_237,13"
+measure_238,14"
+measure_239,15"
+measure_240,16"
+measure_241,17"
+measure_242,18"
+measure_243,19"
+measure_244,20"
+measure_245,21"
+measure_246,22"
+measure_247,23"
+measure_248,24"
+measure_249,25"
+measure_250,26"
+measure_251,27"
+measure_252,28"
+measure_253,29"
+measure_254,30"
+measure_255,31"
+measure_256,32"
+measure_257,33"
+measure_258,34"
+measure_259,35"
+measure_260,36"
+measure_261,37"
+measure_262,38"
+measure_263,39"
+measure_264,40"
+measure_265,41"
+measure_266,42"
+measure_267,43"
+measure_268,44"
+measure_269,45"
+measure_270,46"
+measure_271,47"
+measure_272,48"
+measure_273,49"
+measure_274,50"
+measure_275,1Mts
+measure_276,2Mts
+measure_277,3Mts
+measure_278,4Mts
+measure_279,5Mts
+measure_280,6Mts
+measure_281,7Mts
+measure_282,8Mts
+measure_283,9Mts
+measure_284,10Mts
+measure_285,11Mts
+measure_286,12Mts
+measure_287,13Mts
+measure_288,14Mts
+measure_289,15Mts
+measure_290,16Mts
+measure_291,17Mts
+measure_292,18Mts
+measure_293,19Mts
+measure_294,20Mts
+measure_295,21Mts
+measure_296,22Mts
+measure_297,23Mts
+measure_298,24Mts
+measure_299,25Mts
+measure_300,26Mts
+measure_301,27Mts
+measure_302,28Mts
+measure_303,29Mts
+measure_304,30Mts
+measure_305,31Mts
+measure_306,32Mts
+measure_307,33Mts
+measure_308,34Mts
+measure_309,35Mts
+measure_310,36Mts
+measure_311,37Mts
+measure_312,38Mts
+measure_313,39Mts
+measure_314,40Mts
+measure_315,41Mts
+measure_316,42Mts
+measure_317,43Mts
+measure_318,44Mts
+measure_319,45Mts
+measure_320,46Mts
+measure_321,47Mts
+measure_322,48Mts
+measure_323,49Mts
+measure_324,50Mts
+measure_325,1FT
+measure_326,2FT
+measure_327,3FT
+measure_328,4FT
+measure_329,5FT
+measure_330,6FT
+measure_331,7FT
+measure_332,8FT
+measure_333,9FT
+measure_334,10FT
+measure_335,11FT
+measure_336,12FT
+measure_337,13FT
+measure_338,14FT
+measure_339,15FT
+measure_340,16FT
+measure_341,17FT
+measure_342,18FT
+measure_343,19FT
+measure_344,20FT
+measure_345,21FT
+measure_346,22FT
+measure_347,23FT
+measure_348,24FT
+measure_349,25FT
+measure_350,26FT
+measure_351,27FT
+measure_352,28FT
+measure_353,29FT
+measure_354,30FT
+measure_355,31FT
+measure_356,32FT
+measure_357,33FT
+measure_358,34FT
+measure_359,35FT
+measure_360,36FT
+measure_361,37FT
+measure_362,38FT
+measure_363,39FT
+measure_364,40FT
+measure_365,41FT
+measure_366,42FT
+measure_367,43FT
+measure_368,44FT
+measure_369,45FT
+measure_370,46FT
+measure_371,47FT
+measure_372,48FT
+measure_373,49FT
+measure_374,50FT
+measure_375,1/8"NC
+measure_376,3/16"NC
+measure_377,1/4"NC
+measure_378,5/16"NC
+measure_379,3/8"NC
+measure_380,7/16"NC
+measure_381,1/2"NC
+measure_382,9/16"NC
+measure_383,5/8"NC
+measure_384,11/16"NC
+measure_385,3/4"NC
+measure_386,13/16"NC
+measure_387,7/8"NC
+measure_388,15/16"NC
+measure_389,2"NC
+measure_390,1/8"NF
+measure_391,3/16"NF
+measure_392,1/4"NF
+measure_393,5/16"NF
+measure_394,3/8"NF
+measure_395,7/16"NF
+measure_396,1/2"NF
+measure_397,9/16"NF
+measure_398,5/8"NF
+measure_399,11/16"NF
+measure_400,3/4"NF
+measure_401,13/16"NF
+measure_402,7/8"NF
+measure_403,15/16"NF
+measure_404,2"NF
+measure_405,1/8"NPT
+measure_406,3/16"NPT
+measure_407,1/4"NPT
+measure_408,5/16"NPT
+measure_409,3/8"NPT
+measure_410,7/16"NPT
+measure_411,1/2"NPT
+measure_412,9/16"NPT
+measure_413,5/8"NPT
+measure_414,11/16"NPT
+measure_415,3/4"NPT
+measure_416,13/16"NPT
+measure_417,7/8"NPT
+measure_418,15/16"NPT
+measure_419,2"NPT
+measure_420,#1
+measure_421,#2
+measure_422,#3
+measure_423,#4
+measure_424,#5
+measure_425,#6
+measure_426,#7
+measure_427,#8
+measure_428,#9
+measure_429,#10
+measure_430,#11
+measure_431,#12
+measure_432,#13
+measure_433,#14
+measure_434,#15
+measure_435,#16
+measure_436,#17
+measure_437,#18
+measure_438,#19
+measure_439,#20
+measure_440,#21
+measure_441,#22
+measure_442,#23
+measure_443,#24
+measure_444,#25
+measure_445,#26
+measure_446,#27
+measure_447,#28
+measure_448,#29
+measure_449,#30
+measure_450,#31
+measure_451,#32
+measure_452,#33
+measure_453,#34
+measure_454,#35
+measure_455,#36
+measure_456,#37
+measure_457,#38
+measure_458,#39
+measure_459,#40
+measure_460,#41
+measure_461,#42
+measure_462,#43
+measure_463,#44
+measure_464,#45
+measure_465,#46
+measure_466,#47
+measure_467,#48
+measure_468,#49
+measure_469,#50

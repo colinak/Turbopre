@@ -64,6 +64,17 @@ class QualityEquipment(models.Model):
         required=True,
         help="Calibration Status"
     )
+    # status = fields.Selection(
+        # [
+            # ('available', 'Available'),
+            # ('assigned', 'Assigned'),
+            # ('loan', 'Loan'),
+            # ('in_custody', 'In Custody'),
+            # ('discarded', 'Out of Service'),
+        # ],
+        # string="Stage",
+        # default='available'
+    # )
     stage = fields.Selection(
         [
             ('available', 'Available'),
