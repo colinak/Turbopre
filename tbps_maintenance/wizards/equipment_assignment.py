@@ -95,7 +95,10 @@ class EquipmanetAssignment(models.TransientModel):
     def get_report(self):
         if len(self.equipment_ids) > 0:
             try:
-                return self.env.ref('tbps_maintenance.action_equipment_assignment_report').report_action(self)
+                return self.env.ref(
+                    'tbps_maintenance.action_equipment_assignment_report'
+                ).report_action(self)
+                # ,self.next_func_toclose()
             except:
                 raise UserError(
                     "Disculple Hubo un Error al Intenter Imprimir el Reporte" + 

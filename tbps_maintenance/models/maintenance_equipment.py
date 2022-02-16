@@ -65,12 +65,16 @@ class MaintenanceEquipment(models.Model):
             ('culmination', 'Termino de Relación Laboral')
         ],
         string="Tipo de Asignación",
-        help="Denife el tipo se Asignación de Equipos"
+        help="Define el tipo se Asignación de Equipos"
     )
     type_discard = fields.Selection(
-        [('discard', 'Discard'), ('replacement', 'Replacement')],
+        selection=[
+            ('discard', 'Discard'), 
+            ('replacement', 'Replacement'),
+            ('donation', 'Donation')
+        ],
         string="Tipo de Desecho",
-        help="Denife si el equipo sirve para respuesto, o debe ser desechado"
+        help="Define si el equipo sirve para respuesto, o debe ser desechado"
     )
     out_of_service = fields.Boolean(
         string="Out of Service",

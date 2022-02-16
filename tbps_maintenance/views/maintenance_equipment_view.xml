@@ -16,9 +16,6 @@
             <div class="o_kanban_image">
               <field name="image_1920" widget='image' class="o_kanban_image_fill_left" 
                 options='{"zoom": true, "zoom_delay": 1000, "preview_image": "image_1920", "preventClicks": false}' />
-              <!--<field name="image_1920" widget='image' class="oe_kanban_avatar float-rihgt mr-3" -->
-                <!--options='{"zoom": true, "zoom_delay": 1000, "preview_image": "image_1920", "preventClicks": false}' />-->
-              <!--<img t-att-src="kanban_image('maintenance.equipment', 'image_1920')" alt="Image" class="oe_kanban_avatar float-rihgt mr-3" width="64" height="64"/>-->
             </div>
           </div>
         </div>
@@ -51,6 +48,7 @@
           <field string="Model" name="model"/>
           <field string="Serial Number" name="serial_no"/>
           <field string="Other" name="other"/>
+          <field string="Location" name="location"/>
         </field>
         <filter name="available" position="replace">
           <filter string="Unassigned" name="available" domain="[('equipment_assign_to', '=', 'unassigned')]"/>
@@ -147,9 +145,9 @@
         <field name="technician_user_id" position="replace">
           <field name="depto_responsible_id" attrs="{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}" />
         </field>
-        <field name="location" position="attributes">
-          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
-        </field>
+        <!--<field name="location" position="attributes">-->
+          <!--<attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>-->
+        <!--</field>-->
         <field name="partner_ref" position="replace">
           <field name="brand_id" attrs="{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}" />
         </field>
@@ -212,6 +210,9 @@
       <field name="model">maintenance.equipment</field>
       <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
       <field name="arch" type="xml">
+        <field name="employee_id" position="after">
+          <field name="location" />
+        </field>
         <field name="assign_date" position="after">
           <field name="brand_id" />
           <field name="model" />

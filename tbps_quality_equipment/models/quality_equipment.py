@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import models, fields, api, _
-import logging
 from dateutil.relativedelta import relativedelta
+import logging
 _logger = logging.getLogger(__name__)
 
 
@@ -12,9 +12,14 @@ class QualityEquipment(models.Model):
     _name = 'quality.equipment'
     _description = 'Quiality Equipment'
     _order = 'name'
-    _rec_name = 'name'
+    _rec_name = 'equipment_id'
 
 
+    @api.onchange('equipment_id')
+    def _onchange_equipment(self):
+        if self.equipment_id:
+            self.name = ""
+            self.name = self.equipment_id.name
 
     name = fields.Char(
         string="Name",
@@ -61,7 +66,8 @@ class QualityEquipment(models.Model):
     status_id = fields.Many2one(
         'quality.status',
         string="Status",
-        required=True,
+        compute="_compute_calibration_frequency",
+        store=True,
         help="Calibration Status"
     )
     # status = fields.Selection(
@@ -86,8 +92,14 @@ class QualityEquipment(models.Model):
         string="Stage",
         default='available'
     )
-    calibration_date = fields.Date(string="Calibration Date")
-    expiration_date = fields.Date(string="Expiration Date")
+    calibration_date = fields.Date(
+        string="Calibration Date",
+#         compute="_compute_calibration_frequency",
+    )
+    expiration_date = fields.Date(
+        string="Expiration Date",
+        # compute="_compute_calibration_frequency",
+    )
     location = fields.Char(string="Location", required=True)
     shelf_number = fields.Char(string="Shelf Number")
     shelf_position = fields.Char(string="Shelf Position")
@@ -133,27 +145,22 @@ class QualityEquipment(models.Model):
             self.expiration_date = ""
 
 
-    @api.onchange('frequency_cal_ver', 'calibration_date')
-    def _onchange_expiration_date(self):
-        if self.frequency_cal_ver < 1:
-            self.calibration_date = ""
-            self.expiration_date = ""
-        else:
-            if self.frequency_cal_ver != 0 and self.calibration_date:
-                # self.expiration_date = fields.Date.context_today(self)
+    @api.depends('calibration_verification_ids')
+    def _compute_calibration_frequency(self):
+        _logger.info("###############################################")
+        _logger.info("SELF: " + str(self.calibration_verification_ids))
+        _logger.info("IDS: " + str(self.calibration_verification_ids[-1]))
+        if self.calibration_verification_ids:
+            _logger.info("SELF: " + str(self.calibration_verification_ids))
+            for rec in self:
+                _logger.info("REC: "+ str(rec))
+                # cal_verif = rec.calibration_verification_ids[-1]
+                # rec.calibration_date = cal_verif.date_execute
+                # rec.expiration_date = cal_verif.date_expiration
+                # rec.status_id = cal_verif.final_condition_id
+        # else:
+            # pass
 
-                _logger.info("###################################################")
-                _logger.info("Frecuencia: " + str(self.frequency_cal_ver))
-                _logger.info("Fecha : " + str(self.calibration_date))
-                _logger.info(type(self.calibration_date))
-                _logger.info(type(self.calibration_date))
-                _logger.info("Expiracion: " + str(self.expiration_date))
-                _logger.info(type(self.expiration_date))
-                # fecha = self.calibration_date + 24
-                expired_date = (
-                    fields.Datetime.from_string(self.calibration_date) + 
-                    relativedelta(months=int(self.frequency_cal_ver))
-                )
-                self.expiration_date= expired_date
+
 
 

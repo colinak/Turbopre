@@ -93,8 +93,8 @@
                   <!--</th>-->
                 </tr>
 
-                <tr t-foreach="o.equipment_ids" t-as="eq" 
-                  style="text-align: left; font-size: 80%;" 
+                <tr t-foreach="o.equipment_ids" t-as="eq"
+                  style="text-align: left; font-size: 80%;"
                   >
                   <td colspan="2" style="border: 1px solid #000;">
                     <span style="margin-left: 5px;" t-field="eq.name"/>
@@ -145,7 +145,7 @@
                     <ul style="margin-top: 10px;">
                       <li>
                         <span>
-                          El equipo entregado es propiedad de la empresa TURBOPRE SERVICES C.A., y se asigna al Usuario para que 
+                          El equipo entregado es propiedad de la empresa TURBOPRE SERVICES C.A., y se asigna al Usuario para que
                           pueda cumplir con sus tareas asignadas, por lo que se prohíbe el uso del mismo para otros fines.
                         </span>
                       </li>
@@ -161,27 +161,27 @@
                       </li>
                       <li>
                         <span>
-                          En el caso de computadoras, está completamente prohibido la instalación de cualquier software adicional 
+                          En el caso de computadoras, está completamente prohibido la instalación de cualquier software adicional
                           a los autorizados. Cualquier excepción debe de ser consultada antes con la Coordinación de IT.
                         </span>
                       </li>
                       <li>
                         <span>
-                          En el caso de equipos conectados a la red de la empresa, el Usuario debe concientizar en el uso de la 
-                          misma y evitar el acceso a páginas de descarga de contenido ajeno a la empresa, tales como música, 
+                          En el caso de equipos conectados a la red de la empresa, el Usuario debe concientizar en el uso de la
+                          misma y evitar el acceso a páginas de descarga de contenido ajeno a la empresa, tales como música,
                           vídeos, juegos, contenido pornográfico, entre otros.
                         </span>
                       </li>
                       <li>
                         <span>
-                          La Coordinación de IT se reserva el derecho de revisar el contenido y programas instalados en computadoras 
+                          La Coordinación de IT se reserva el derecho de revisar el contenido y programas instalados en computadoras
                           sin previa autorización del Usuario.
                         </span>
                       </li>
                       <li>
                         <span>
-                          El Usuario tiene la responsabilidad de reportar cualquier falla o funcionamiento incorrecto del equipo 
-                          a la Coordinación de IT, por lo que está prohibido tomar acción en la reparación o configuración, 
+                          El Usuario tiene la responsabilidad de reportar cualquier falla o funcionamiento incorrecto del equipo
+                          a la Coordinación de IT, por lo que está prohibido tomar acción en la reparación o configuración,
                           ni extraer el mismo fuera del lugar de trabajo.
                         </span>
                       </li>
@@ -313,7 +313,7 @@
       </t>
     </template>
 
-    <report 
+    <report
       id="action_equipment_assignment_report"
       model="equipment.assignment.report.wizar"
       string="Asignación de Equipos"
