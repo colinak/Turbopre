@@ -18,7 +18,6 @@ class MaintenanceEquipment(models.Model):
         user = self.env['hr.employee'].search(
             [('user_id.id', '=', user_id)]
         )
-
         return user
 
 
@@ -124,11 +123,13 @@ class MaintenanceEquipment(models.Model):
         if self.out_of_service == False:
             self.type_discard = False
 
-    @api.depends('stage')
-    def discarded(self):
-        pass
-        # if self.stage == 'in_custody':
-            # self.stage = 'assigned'
+    # @api.depends('stage')
+    # def discarded(self):
+        # _logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>")
+        # if self.stage == 'in_custody' or self.stage == 'assigned':
+            # raise UserError('Error no puede archivar un equipo mientras este asignado')
+        # else:
+            # self.active = False
 
     @api.depends('stage')
     def reserve(self):
@@ -140,18 +141,16 @@ class MaintenanceEquipment(models.Model):
         if self.stage == 'in_custody':
             self.stage = 'assigned'
 
-    @api.depends('stage')
-    def unassigned(self):
-        pass
-        # if self.stage == 'in_custody':
-            # self.stage = 'assigned'
+    # @api.depends('stage')
+    # def unassigned(self):
+        # if self.stage == 'in_custody' or self.stage == 'assigned':
+            # self.stage = 'available'
 
 
-    @api.depends('stage')
-    def refurbish(self):
-        pass
-        # if self.stage == 'in_custody':
-            # self.stage = 'assigned'
+    # @api.depends('stage')
+    # def refurbish(self):
+        # if self.stage == 'out_of_service' or self.active == True:
+            # self.stage = 'available'
 
 
     @api.model
@@ -173,13 +172,11 @@ class MaintenanceEquipment(models.Model):
 
     def write(self, vals):
         if vals.get('out_of_service'):
-            _logger.info("IF")
             if vals.get('type_discard') == 'discard':
                 self.location = "Archivo Muerto"
             self.stage = 'discarded'
             self.active = False
         elif vals.get('out_of_service') == False:
-            _logger.info("ELIF")
             self.active = True
             self.location = False
             self.stage = 'available'
