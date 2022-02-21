@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    
+    <!-- View Tree Maintenance Activity -->
+    <record id="view_maintenance_activity_tree" model="ir.ui.view">
+      <field name="name">maintenance.activity.tree</field>
+      <field name="model">maintenance.activity</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Actividad de Mantenimiento" editable="bottom">
+          <field name="name" required="True"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Action Maintenance Activity-->
+    <record id="action_maintenance_activity" model="ir.actions.act_window">
+      <field name="name">Actividad de Mantenimiento</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">maintenance.activity</field>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="tbps_maintenance.view_maintenance_activity_tree"/>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Crear Nueva actividad de Mantenimiento
+        </p>
+      </field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem 
+      id="maintenance_activity_menu" 
+      name="Actividad de Mantenimiento" 
+      parent="maintenance.menu_maintenance_configuration" 
+      sequence="6" 
+      action="tbps_maintenance.action_maintenance_activity" 
+      groups="base.group_system,maintenance.group_equipment_manager"
+    />
+
+  </data>
+</odoo>

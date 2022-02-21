@@ -19,13 +19,16 @@
         'tbps_header_footer_layout'
     ],
     'data': [
+        "data/maintenance.activity.csv",
         'security/ir.model.access.csv',
         'security/maintenance_security.xml',
         'report/equipment_assignment_report.xml',
         'report/equipment_unassigned_report.xml',
         'report/resport_assigment_equipments.xml',
+        'views/equipment_request_view.xml',
         'views/maintenance_equipment_category_view.xml',
         'views/maintenance_manufacturers_view.xml',
+        'views/maintenance_activity_view.xml',
         'views/maintenance_equipment_view.xml',
         'wizards/equipment_assignment_view.xml',
     ],

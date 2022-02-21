@@ -1,0 +1,8 @@
+"id","name","active"
+activity_001,"Actualiza el sistema operativo",True
+activity_002,"Actualiza aplicaciones y controladores",True
+activity_003,"Realiza tareas de Backup",True
+activity_004,"Limpieza del registro del sistema",True
+activity_005,"Activa la restauración del sistema",True
+activity_006,"Asignación de IP",True
+

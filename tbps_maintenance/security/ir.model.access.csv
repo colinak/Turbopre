@@ -4,3 +4,6 @@ access_maintenance_manufacturers_system,acc.maintenance.manufacturers.system,tbp
 access_maintenance_manufacturers_user,acc.maintenance.manufacturers.user,tbps_maintenance.model_maintenance_manufacturers,base.group_user,1,0,0,0
 access_equipment_assignment_system,acc.equipment.assignment.system,tbps_maintenance.model_equipment_assignment_report_wizar,base.group_system,1,1,1,1
 access_equipment_assignment_manager,acc.equipment.assignment.manager,tbps_maintenance.model_equipment_assignment_report_wizar,maintenance.group_equipment_manager,1,1,1,1
+access_maintenance_activity_system,acc.maintenance.activity.system,tbps_maintenance.model_maintenance_activity,base.group_system,1,1,1,1
+access_maintenance_activity_manager,acc.equipment.activity.manager,tbps_maintenance.model_maintenance_activity,maintenance.group_equipment_manager,1,1,1,1
+access_maintenance_activity_user,acc.maintenance.activity.user,tbps_maintenance.model_maintenance_activity,base.group_user,1,0,0,0
