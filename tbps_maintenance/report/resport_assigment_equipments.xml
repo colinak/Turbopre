@@ -162,7 +162,7 @@
                       <li>
                         <span>
                           En el caso de computadoras, está completamente prohibido la instalación de cualquier software adicional
-                          a los autorizados. Cualquier excepción debe de ser consultada antes con la Coordinación de IT.
+                          a los autorizados. Cualquier excepción debe de ser consultada antes con la Gerencia de IT.
                         </span>
                       </li>
                       <li>
@@ -174,14 +174,14 @@
                       </li>
                       <li>
                         <span>
-                          La Coordinación de IT se reserva el derecho de revisar el contenido y programas instalados en computadoras
+                          La Gerencia de IT se reserva el derecho de revisar el contenido y programas instalados en computadoras
                           sin previa autorización del Usuario.
                         </span>
                       </li>
                       <li>
                         <span>
                           El Usuario tiene la responsabilidad de reportar cualquier falla o funcionamiento incorrecto del equipo
-                          a la Coordinación de IT, por lo que está prohibido tomar acción en la reparación o configuración,
+                          a la Gerencia de IT, por lo que está prohibido tomar acción en la reparación o configuración,
                           ni extraer el mismo fuera del lugar de trabajo.
                         </span>
                       </li>
@@ -313,6 +313,22 @@
       </t>
     </template>
 
+    <record id="paperformat_equipment_assignment_report" model="report.paperformat">
+      <field name="name">A4 Equipment Assignment Report</field>
+      <field name="default" eval="True"/>
+      <field name="format">custom</field>
+      <field name="page_height">300</field>
+      <field name="page_width">210</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">40</field>
+      <field name="margin_bottom">35</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_line" eval="False"/>
+      <field name="header_spacing">35</field>
+      <field name="dpi">90</field>
+    </record>
+
     <report
       id="action_equipment_assignment_report"
       model="equipment.assignment.report.wizar"
@@ -321,7 +337,10 @@
       file="tbps_maintenance.report_assignment_equipments"
       report_type="qweb-pdf"
       print_report_name="'Asignación de Equipos - %s' % (object.name).replace('/','-')"
+      paperformat="tbps_maintenance.paperformat_equipment_assignment_report"
     />
+
+    
 
   </data>
 </odoo>
