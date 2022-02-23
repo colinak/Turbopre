@@ -123,13 +123,6 @@ class MaintenanceEquipment(models.Model):
         if self.out_of_service == False:
             self.type_discard = False
 
-    # @api.depends('stage')
-    # def discarded(self):
-        # _logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>")
-        # if self.stage == 'in_custody' or self.stage == 'assigned':
-            # raise UserError('Error no puede archivar un equipo mientras este asignado')
-        # else:
-            # self.active = False
 
     @api.depends('stage')
     def reserve(self):
@@ -141,16 +134,20 @@ class MaintenanceEquipment(models.Model):
         if self.stage == 'in_custody':
             self.stage = 'assigned'
 
-    # @api.depends('stage')
-    # def unassigned(self):
-        # if self.stage == 'in_custody' or self.stage == 'assigned':
-            # self.stage = 'available'
+    @api.depends('stage')
+    def unassigned(self):
+        if self.stage == 'in_custody' or self.stage == 'assigned':
+            self.equipment_assign_to = 'unassigned'
+        else:
+            raise UserError('Error, Contacte al Administrador del Sistema.')
 
 
-    # @api.depends('stage')
-    # def refurbish(self):
-        # if self.stage == 'out_of_service' or self.active == True:
-            # self.stage = 'available'
+    @api.depends('stage')
+    def refurbish(self):
+        if self.stage == 'out_of_service' or self.active == False:
+            self.stage = 'available'
+            self.out_of_service = False
+            self.active = True
 
 
     @api.model

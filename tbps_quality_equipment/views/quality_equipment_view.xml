@@ -65,12 +65,14 @@
                       <!--<b class="o_kanban_record_title"><field name="name"/><small><span t-if="record.model.raw_value"> (<field name="model"/>)</span></small></b>-->
                   <!--</div>-->
                   <div class="o_kanban_record_body">
-                      <!--<div t-if="record.serial_no.raw_value"><field name="serial_no"/></div>-->
+                    <!--<div t-if="record.serial_no.raw_value"><field name="serial_no"/></div>-->
                     <t t-name="kanban-tooltip">
                       <ul class="oe_kanban_tooltip" style="list-style: none;">
-                        <li> <b>Code:</b> <field name="code"/> </li>
-                        <li> <b>Serial Number:</b> <field name="serial_no"/></li>
-                        <li> <b>Model Number:</b> <field name="model"/></li>
+                        <li> <b>Code:</b> <field name="code"/></li>
+                        <li> <b>Marca:</b> <field name="make_id"/></li>
+                        <li> <b>Rango:</b> <field name="rango"/></li>
+                        <li> <b>Status:</b> <field name="status_id"/></li>
+                        <li> <b>Ubicación:</b> <field name="location"/> <field name="shelf_number"/> <field name="shelf_position"/></li>
                       </ul>
                     </t>
                   </div>

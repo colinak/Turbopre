@@ -75,27 +75,22 @@
       <field name="arch" type="xml">
         <xpath expr="//sheet[1]" position="before">
           <header>
-            <!--<button string="Unassigned" name="unassigned" type="object" class="btn-primary" -->
-              <!--attrs="{-->
-              <!--'invisible': [-->
-                  <!--'|',-->
-                  <!--('stage', '=', 'available'), -->
-                  <!--('stage', '=', 'discarded')-->
-                <!--]-->
-              <!--}"-->
-            <!--/>-->
+            <button string="Unassigned" name="unassigned" type="object" class="btn-primary" 
+              attrs="{
+              'invisible': [
+                  '|',
+                  ('stage', '=', 'available'), 
+                  ('stage', '=', 'discarded')
+                ]
+              }"
+            />
             <button string="Reserve" name="reserve" type="object" class="btn-primary" attrs="{'invisible': [('stage', '!=', 'assigned')]}"/>
             <button string="Set Free" name="set_free" type="object" class="btn-primary" attrs="{'invisible': [('stage', '!=', 'in_custody')]}"/>
-            <!--<button string="Discarded" class="btn-primary" name="discarded" type="object"-->
-              <!--attrs="{-->
-                <!--'invisible': [('stage', '!=', 'available')]-->
-              <!--}"-->
-            <!--/>-->
-            <!--<button string="Refurbish" class="btn-primary" name="refurbish" type="object"-->
-              <!--attrs="{-->
-                <!--'invisible': [('stage', '!=', 'discarded')]-->
-              <!--}"-->
-            <!--/>-->
+            <button string="Refurbish" class="btn-primary" name="refurbish" type="object"
+              attrs="{
+                'invisible': [('stage', '!=', 'discarded')]
+              }"
+            />
             <field name="stage" widget="statusbar" statusbar_visible="available,assigned,in_custody,discarded"/>
           </header>
         </xpath>
