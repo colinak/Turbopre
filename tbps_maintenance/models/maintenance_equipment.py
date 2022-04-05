@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 class MaintenanceEquipment(models.Model):
     _inherit = 'maintenance.equipment'
     _description = 'Equipment'
-
+    _order = 'name'
 
 
     def default_current_user_id(self):
@@ -138,6 +138,7 @@ class MaintenanceEquipment(models.Model):
     def unassigned(self):
         if self.stage == 'in_custody' or self.stage == 'assigned':
             self.equipment_assign_to = 'unassigned'
+            self.type_assignment = False
         else:
             raise UserError('Error, Contacte al Administrador del Sistema.')
 

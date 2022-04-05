@@ -9,6 +9,7 @@ _logger = logging.getLogger(__name__)
 class MaintenanceEquipmentCategory(models.Model):
     _inherit = 'maintenance.equipment.category'
     _description = 'Equipment Categories'
+    _order = 'name'
 
     @api.onchange('depto_responsible_id')
     def _onchange_depto_responsible_id(self):

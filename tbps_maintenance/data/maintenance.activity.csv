@@ -4,5 +4,9 @@ activity_002,"Actualiza aplicaciones y controladores",True
 activity_003,"Realiza tareas de Backup",True
 activity_004,"Limpieza del registro del sistema",True
 activity_005,"Activa la restauración del sistema",True
-activity_006,"Asignación de IP",True
+activity_006,"Reserva y asignación de IP",True
+activity_007,"Reemplazo de toner o cartuchos",True
+activity_008,"Reemplazo deposito de toner",True
+activity_009,"Limpieza de cabezales",True
+activity_010,"Problemas de conexión de impresora o scanner",True
 
