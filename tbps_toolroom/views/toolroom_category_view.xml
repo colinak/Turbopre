@@ -23,9 +23,12 @@
             <div class="oe_title">
               <label for="name" class="oe_edit_only" />
               <h1>
-                <field name="name" string="Name" placeholder="Tools Category Name" style="width: 75%;"/>
+                <field name="name" string="Nombre" placeholder="Tools Category Name" style="width: 75%;"/>
               </h1>
             </div>
+            <group name="first" col="2">
+              <field name="parent_id" class="oe_inline"/>
+            </group>
             <group col="4">
               <field name="technician_user_id" placeholder="Select"/>
               <field name="dpto_responsible_id" string="Dpto Responsible" placeholder="Select" />
@@ -45,8 +48,8 @@
       <field name="arch" type="xml">
         <tree string="Tools Category">
           <field name="name" string="Name" />
-          <field name="technician_user_id" />
-          <field name="dpto_responsible_id" />
+          <!--<field name="technician_user_id" />-->
+          <!--<field name="dpto_responsible_id" />-->
           <field name="note" />
         </tree>
       </field>
@@ -54,7 +57,7 @@
 
 
     <record id="action_tools_category" model="ir.actions.act_window">
-      <field name="name">Tools of Category</field>
+      <field name="name">Categorías de herramientas</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">toolroom.category</field>
       <field name="view_mode">tree,form</field>
@@ -66,15 +69,15 @@
       </field>
     </record>
   
+
     <menuitem 
       id="menu_tools_category"
-      name="Tools of Category"
-      parent="tbps_toolroom.menu_toolroom_equipment_setting"
+      name="Categorías"
+      parent="tbps_toolroom.menu_tools_equipment"
       action="tbps_toolroom.action_tools_category"
       sequence="1"
       groups="base.group_system"
     />
-  
   
   </data>
 </odoo>

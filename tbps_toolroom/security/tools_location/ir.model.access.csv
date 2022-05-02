@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_toolroom_location_system,toolroom.location.system,model_tr_stock_location,base.group_system,1,1,1,1
+
+

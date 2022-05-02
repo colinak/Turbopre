@@ -2,25 +2,25 @@
 <odoo>
   <data>
 
-    <record id="view_toolroom_equipment_search" model="ir.ui.view">
-      <field name="name">toolroom.equipment.search</field>
-      <field name="model">toolroom.equipment</field>
-      <field name="type">search</field>
-      <field name="arch" type="xml">
-        <search string="Toolroom Equipment">
-          <field string="Description" name="name"/>
-          <field string="Category" name="category_id"/>
-          <field string="Make" name="make_id"/>
-          <field string="Model" name="model"/>
-          <field string="Identification Code" name="identification_code"/>
-          <field string="Serial Number" name="serial_number"/>
-          <group string="Group By">
-            <filter string="Category" name="category" domain="" context="{'group_by': 'category_id'}"/>
-            <filter string="Make" name="make" domain="" context="{'group_by': 'make_id'}"/>
-          </group>
-        </search>
-      </field>
-    </record>
+    <!--<record id="view_toolroom_equipment_search" model="ir.ui.view">-->
+      <!--<field name="name">toolroom.equipment.search</field>-->
+      <!--<field name="model">toolroom.equipment</field>-->
+      <!--<field name="type">search</field>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<search string="Toolroom Equipment">-->
+          <!--<field string="Description" name="name"/>-->
+          <!--<field string="Category" name="category_id"/>-->
+          <!--<field string="Make" name="make_id"/>-->
+          <!--<field string="Model" name="model"/>-->
+          <!--<field string="Identification Code" name="identification_code"/>-->
+          <!--<field string="Serial Number" name="serial_number"/>-->
+          <!--<group string="Group By">-->
+            <!--<filter string="Category" name="category" domain="" context="{'group_by': 'category_id'}"/>-->
+            <!--<filter string="Make" name="make" domain="" context="{'group_by': 'make_id'}"/>-->
+          <!--</group>-->
+        <!--</search>-->
+      <!--</field>-->
+    <!--</record>-->
     
     <record id="view_toolroom_equipment_form" model="ir.ui.view">
       <field name="name">toolroom.equipment.form</field>
@@ -33,29 +33,62 @@
               <!--<field name="stage" widget="statusbar" statusbar_visible="available,assigned,discarded"/>-->
             <!--</header>-->
             <div class="oe_title">
-              <field name="image" widget="image" class="oe_avatar" />
+              <field name="image_1920" widget="image" class="oe_avatar" />
               <label for="name" class="oe_edit_only" />
               <h1>
-                <field name="name" string="Name" placeholder="Equipment Name" style="width: 75%;"/>
+                <field name="name" string="Nombre" placeholder="Equipment Name" style="width: 75%;"/>
               </h1>
             </div>
-            <group>
-              <group>
-                <field name="category_id" placeholder="Select" />
-                <field name="make_id" placeholder="Select" />
-                <field name="model" />
-                <field name="serial_number" />
-                <field name="identification_code" />
-                <!--<field name="status" />-->
-                <!--<field name="stage" />-->
-              </group>
-              <group>
-                <field name="measure_id" placeholder="Select" />
-                <field name="quadrant_id" placeholder="Select" />
-                <field name="uom_id" placeholder="Select" />
-                <field name="location" />
-              </group>
-            </group>
+            <notebook>
+              <page string="Información General">
+                <group col="4">
+                  <field name="type" string="Tipo de Producto" />
+                  <field name="category_id" string="Categoría de Producto" />
+                  <field name="default_code" string="Referencia Interna" />
+                  <field name="uom_id" string="Unidad de Medida" />
+                  <field name="barcode" string="Código de Barras" />
+                  <field name="active" invisible="1"/>
+                </group>
+                <group string="Notas Internas">
+                    <field name="description" nolabel="1" placeholder="Esta nota es solo para fines internos."/>
+                </group>
+              </page>
+              <page string="Variantes">
+                <!--<field name="attribute_line_ids" widget="one2many" context="{'show_attribute': False}">-->
+                  <!--<tree string="Variantes" editable="bottom">-->
+                    <!--<field name="attribute_id" string="Atributo" attrs="{'readonly': [('id', '!=', False)]}"/>-->
+                    <!--<field name="value_ids" string="Valores" widget="many2many_tags" options="{'no_create_edit': True}" context="{'default_attribute_id': attribute_id, 'show_attribute': False}"/>-->
+                  <!--</tree>-->
+                <!--</field>-->
+              </page>
+              <page string="Inventario" name="inventory">
+                <!--<group name="inventory">-->
+                  <!--<group name="traceability" string="Trazabilidad">-->
+                    <!--<field name="tracking" string="Seguimiento"/>-->
+                  <!--</group>-->
+                  <!--<group name="group_lots_and_weight" string="Logistica">-->
+                    <!--<field name="respondible_id" string="Responsable"/>-->
+                  <!--</group>-->
+                <!--</group>-->
+              </page>
+            </notebook>
+            <!--<group>-->
+              <!--<group>-->
+                <!--<field name="category_id" placeholder="Select" />-->
+                <!--<field name="make_id" placeholder="Select" />-->
+                <!--<field name="model" />-->
+                <!--<field name="serial_number" />-->
+                <!--<field name="identification_code" />-->
+                <!--[><field name="status" /><]-->
+                <!--[><field name="stage" /><]-->
+              <!--</group>-->
+              <!--<group>-->
+                <!--<field name="measure_id" placeholder="Select" />-->
+                <!--<field name="quadrant_id" placeholder="Select" />-->
+                <!--<field name="uom_id" placeholder="Select" />-->
+                <!--<field name="location" />-->
+              <!--</group>-->
+            <!--</group>-->
           </sheet>
         </form>
       </field>
@@ -68,21 +101,17 @@
       <field name="arch" type="xml">
         <tree string="Toolroom Equipment">
           <field name="name" string="Name" />
-          <field name="category_id" placeholder="Select" />
-          <field name="make_id" placeholder="Select" />
-          <field name="model" />
-          <field name="measure_id" />
-          <field name="quadrant_id" />
-          <field name="identification_code" />
-          <field name="uom_id" placeholder="Select" />
-          <field name="location" />
-          <field name="serial_number" />
+          <field name="type" />
+          <field name="category_id" />
+          <field name="default_code" />
+          <field name="uom_id" />
+          <field name="barcode" />
         </tree>
       </field>
     </record>
 
     <record id="action_toolroom_equipment" model="ir.actions.act_window">
-      <field name="name">Tools Equipment</field>
+      <field name="name">Equipment and Tools</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">toolroom.equipment</field>
       <field name="view_mode">tree,form</field>
@@ -95,9 +124,9 @@
     </record>
   
     <menuitem 
-      id="menu_toolroom_equipment_title"
-      name="Tools and Equipment"
-      parent="tbps_toolroom.menu_toolroom_equipment_root"
+      id="menu_equipment"
+      name="Equipment and Tools"
+      parent="tbps_toolroom.menu_toolroom_equipment"
       action="tbps_toolroom.action_toolroom_equipment"
       sequence="1"
       groups="base.group_system"

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_toolroom_attribute_system,toolroom.attribute.system,model_toolroom_attribute,base.group_system,1,1,1,1
+

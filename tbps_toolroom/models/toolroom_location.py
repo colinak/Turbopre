@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+
+
+from odoo import models, fields, api, _
+import logging
+_logger = logging.getLogger(__name__)
+
+
+class ToolroomLocation(models.Model):
+    _name = "tr.stock.location"
+    _inherit = "stock.location"
+    _description = "Inventory Locations"
+    # _parent_name = "location_id"
+    # _parent_store = True
+    # _order = 'complete_name'
+    # _rec_name = 'complete_name'
+
+
+class ToolroonRoute(models.Model):
+    _name = 'tr.stock.location.route'
+    _inherit = 'stock.location.route'
+    _description = "Inventory Routes"
+
+
+    product_ids = fields.Many2many(
+        'toolroom.equipment',
+        'tr_stock_route_product_rel',
+        'route_id',
+        'equipment_id',
+        string="Equipos"
+    )
+    categ_ids = fields.Many2many(
+        'toolroom.category',
+        'tr_stock_location_route_category_rel',
+        'route_id',
+        'categ_id',
+        string=u"Categoría de Producto"
+    )
+    warehouse_ids = fields.Many2many(
+        'tr.stock.location',
+        'tr_stock_route_warehouse_rel',
+        'route_id',
+        'warehouse_id',
+        string="Alamacenes"
+    )

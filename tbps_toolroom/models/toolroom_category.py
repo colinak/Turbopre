@@ -6,12 +6,17 @@ from odoo import models, fields, api, _
 
 class ToolRoomCategory(models.Model):
     _name = 'toolroom.category'
+    _inherit = 'product.category'
     _description = 'Toolroom Category'
     _order = 'name'
     _rec_name = 'name'
 
 
-    name = fields.Char(string="Name", required=True)
+    parent_id = fields.Many2one(
+        'toolroom.category',
+        string="Categoría Padre",
+        help="Categoría Padre"
+    )
     dpto_responsible_id = fields.Many2one(
         'hr.department',
         string="Responsible Department",
@@ -23,25 +28,13 @@ class ToolRoomCategory(models.Model):
         help="Responsible"
     )
     note = fields.Text(string="Notes")
+    route_ids = fields.Many2many(
+        'stock.location.route',
+        'toolroom_equipment_category_rel',
+        'category_id',
+        'route_id',
+        string="Rutas"
+    )
 
 
 
-class ToolRoomQuadrant(models.Model):
-    _name = 'toolroom.quadrant'
-    _description = 'Toolroom Quadrant'
-    _order = 'name'
-    _rec_name = 'name'
-
-
-    name = fields.Char(string="Description", required=True)
-
-
-
-class ToolRoomMeasure(models.Model):
-    _name = 'toolroom.measure'
-    _description = 'Toolroom Measure'
-    _order = 'name'
-    _rec_name = 'name'
-
-
-    name = fields.Char(string="Description", required=True)

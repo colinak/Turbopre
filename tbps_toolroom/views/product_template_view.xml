@@ -12,7 +12,7 @@
     <menuitem 
       id="menu_products_add"
       name="Productos"
-      parent="tbps_toolroom.menu_toolroom_equipment_title"
+      parent="tbps_toolroom.menu_toolroom_equipment"
       action="product.product_template_action"
       groups="base.group_system"
       sequence="1"

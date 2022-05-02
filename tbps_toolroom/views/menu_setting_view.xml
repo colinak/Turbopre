@@ -10,10 +10,43 @@
     />
 
     <menuitem 
-      id="menu_toolroom_equipment_title"
-      name="Productos"
+      id="toolroom_inventory_summary"
+      name="General information"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
       sequence="1"
+      groups="base.group_system"
+    />
+
+    <menuitem 
+      id="menu_operations"
+      name="Operations"
+      parent="tbps_toolroom.menu_toolroom_equipment_root"
+      sequence="2"
+      groups="base.group_system"
+    />
+
+    <menuitem 
+      id="menu_toolroom_equipment"
+      name="Equipos y Herramientas"
+      parent="tbps_toolroom.menu_toolroom_equipment_root"
+      sequence="3"
+      groups="base.group_system"
+    />
+
+    <menuitem 
+      id="menu_tools_equipment"
+      name="Equipos y Herramientas"
+      parent="tbps_toolroom.menu_toolroom_equipment_setting"
+      action="tbps_toolroom.action_tools_category"
+      sequence="3"
+      groups="base.group_system"
+    />
+
+    <menuitem 
+      id="menu_toolroom_informed"
+      name="Informed"
+      parent="tbps_toolroom.menu_toolroom_equipment_root"
+      sequence="4"
       groups="base.group_system"
     />
 
@@ -22,7 +55,15 @@
       name="Setting"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
       groups="base.group_system"
-      sequence="15"
+      sequence="5"
+    />
+
+    <menuitem 
+      id="menu_toolroom_warehouse_location"
+      name="Gestión de Almacenes"
+      parent="tbps_toolroom.menu_toolroom_equipment_setting"
+      groups="base.group_system"
+      sequence="2"
     />
   
     <!--Units of Measure-->

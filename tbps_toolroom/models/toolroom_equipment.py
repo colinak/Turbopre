@@ -7,56 +7,36 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class ToolRoomEquipment(models.Model):
+    _inherit = 'product.template'
     _name = 'toolroom.equipment'
     _description = 'Toolroom Equipment'
     _order = 'name'
     _rec_name = 'name'
 
 
-    # @api.depends('category_id', 'make_id', 'model', 'measure_id', 'quadrant_id')
-    # def _compute_name(self):
-        # _logger.info("########################################3")
-        # self.name = self.category_id.name + ' ' + self.measure_id.name + ' ' + self.quadrant_id.name
-        # if self.category_id and self.model and self.make_id:
-            # for record in self:
-                # record.name = record.category_id.name + record.measure_id.name + \
-                # " " + record.quadrant_id.name + " " + record.make_id.name + \
-                # " " + record.model
-            # self.name
-            # _logger.info("Nombre: " + str(self.name))
-            
-
     name = fields.Char(
         string="Name",
-        # compute=_compute_name
     )
-    image = fields.Binary(string="Image", max_width=128, max_height=128)
+    # type = fields.Selection(
+        # default='product',
+        # readonly=True,
+    # )
     category_id = fields.Many2one(
         'toolroom.category',
-        string="Category",
-        help="Category of tools"
+        string="Product Category",
+        required=True,
+        help="Seleccionar categoría para el producto actual"
     )
-    make_id = fields.Many2one(
-        'toolroom.manufacturers',
-        string="Make",
-        help="Manufacturers of tools"
+    route_ids = fields.Many2many(
+        'stock.location.route',
+        'tr_stock_route_equipment_rel',
+        'equipment_id',
+        'route_id',
+        string="Rutas"
     )
-    model = fields.Char(string="Model")
-    measure_id = fields.Many2one(
-        'toolroom.measure',
-        string="Measure"
-    )
-    quadrant_id = fields.Many2one(
-        'toolroom.quadrant',
-        string="Quadrant"
-    )
-    identification_code = fields.Char(string="Identification Code")
-    uom_id = fields.Many2one(
-        'uom.uom',
-        string="Units of Measure"
-    )
-    location = fields.Char(string="Location")
-    serial_number = fields.Char(string="Serial Number")
-    active = fields.Boolean(string="Active", default=True)
-    out_of_service = fields.Boolean(string="Out of Service", default=False)
+
+
+    # identification_code = fields.Char(string="Identification Code")
+    # location = fields.Char(string="Location")
+    # serial_number = fields.Char(string="Serial Number")
 
