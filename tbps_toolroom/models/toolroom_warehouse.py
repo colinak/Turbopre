@@ -14,9 +14,10 @@ class TrStockWarehouse(models.Model):
     _rec_name = 'name'
 
 
-    # name = fields.Char(
-        # string="Name",
-    # )
+    note = fields.Text(
+        string="Notas",
+        help="Notas para fines internos"
+    )
     route_ids = fields.Many2many(
         'stock.location.route',
         'tr_stock_route_warehouse_rel',

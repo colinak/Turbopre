@@ -7,6 +7,7 @@ from . import toolroom_category
 from . import toolroom_attribute
 from . import toolroom_warehouse
 from . import toolroom_location
+# from . import toolroom_tools
 from . import toolroom_equipment
 
 

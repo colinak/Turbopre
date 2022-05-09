@@ -2,14 +2,14 @@
 <odoo>
   <data>
 
-    <!--<record id="view_toolroom_equipment_search" model="ir.ui.view">-->
-      <!--<field name="name">toolroom.equipment.search</field>-->
-      <!--<field name="model">toolroom.equipment</field>-->
-      <!--<field name="type">search</field>-->
-      <!--<field name="arch" type="xml">-->
-        <!--<search string="Toolroom Equipment">-->
-          <!--<field string="Description" name="name"/>-->
-          <!--<field string="Category" name="category_id"/>-->
+    <record id="view_toolroom_equipment_search" model="ir.ui.view">
+      <field name="name">toolroom.equipment.search</field>
+      <field name="model">tr.product.template</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Toolroom Equipment">
+          <field string="Description" name="name"/>
+          <field string="Category" name="category_id"/>
           <!--<field string="Make" name="make_id"/>-->
           <!--<field string="Model" name="model"/>-->
           <!--<field string="Identification Code" name="identification_code"/>-->
@@ -18,13 +18,13 @@
             <!--<filter string="Category" name="category" domain="" context="{'group_by': 'category_id'}"/>-->
             <!--<filter string="Make" name="make" domain="" context="{'group_by': 'make_id'}"/>-->
           <!--</group>-->
-        <!--</search>-->
-      <!--</field>-->
-    <!--</record>-->
+        </search>
+      </field>
+    </record>
     
     <record id="view_toolroom_equipment_form" model="ir.ui.view">
       <field name="name">toolroom.equipment.form</field>
-      <field name="model">toolroom.equipment</field>
+      <field name="model">tr.product.template</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Toolroom Equipment">
@@ -96,7 +96,7 @@
 
     <record id="view_toolroom_equipment_tree" model="ir.ui.view">
       <field name="name">toolroom.equipment.tree</field>
-      <field name="model">toolroom.equipment</field>
+      <field name="model">tr.product.template</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Toolroom Equipment">
@@ -113,7 +113,7 @@
     <record id="action_toolroom_equipment" model="ir.actions.act_window">
       <field name="name">Equipment and Tools</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">toolroom.equipment</field>
+      <field name="res_model">tr.product.template</field>
       <field name="view_mode">tree,form</field>
       <field name="view_id" ref="view_toolroom_equipment_tree" />
       <field name="help" type="html">

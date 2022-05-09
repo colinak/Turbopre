@@ -38,13 +38,19 @@ class ToolRoomAttribute(models.Model):
 
 
 
-    # # toolroom_attribute_value_id = fields.Many2one(
-        # # 'toolroom.attribute',
-    # # )
+    # toolroom_attribute_value_id = fields.Many2one(
+        # 'toolroom.attribute',
+    # )
     # attribute_id = fields.Many2one(
         # 'toolroom.attribute',
         # string="Atributo",
         # help="Atributo"
+    # )
+    # active = fields.Boolean(
+        # string="Activo?"
+    # )
+    # product_tmpl_id = fields.Many2one(
+        # string="Herramienta"
     # )
 
 

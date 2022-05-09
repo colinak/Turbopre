@@ -18,6 +18,14 @@ class ToolroomLocation(models.Model):
     # _rec_name = 'complete_name'
 
 
+    location_id = fields.Many2one(
+        'tr.stock.location',
+        string="Parent location",
+        domain="[('company_id', 'in', [company_id, False])]",
+        help="La ubicación Principal, que incluye esta ubicación"
+    )
+
+
 class ToolroonRoute(models.Model):
     _name = 'tr.stock.location.route'
     _inherit = 'stock.location.route'

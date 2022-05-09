@@ -2,6 +2,7 @@
 <odoo>
   <data>
 
+    <!--View search location-->
     <record id="view_toolroom_location_search" model="ir.ui.view">
       <field name="name">tr.stock.location.search</field>
       <field name="model">tr.stock.location</field>
@@ -13,35 +14,7 @@
       </field>
     </record>
 
-    <!--view kanban of Manufacturers-->
-    <!--<record id="view_toolroom_warehouse_kanban" model="ir.ui.view">-->
-      <!--<field name="name">tr.stock.warehouse.kanban</field>-->
-      <!--<field name="model">tr.stock.warehouse</field>-->
-      <!--<field name="type">kanban</field>-->
-      <!--<field name="arch" type="xml">-->
-        <!--<kanban class="o_res_partner_kanban">-->
-          <!--<field name="id"/>-->
-          <!--<field name="name"/>-->
-          <!--<templates>-->
-            <!--<t t-name="kanban-box">-->
-              <!--<div class="oe_kanban_vignette oe_semantic_html_override">-->
-                <!--<a type="open" href="#" class="o_kanban_image oe_kanban_action">-->
-                  <!--<img alt="Open" t-att-src="kanban_image('maintenance.manufacturers', 'image', record.id.raw_value)" class="img-fluid" style="width:100px;"/>-->
-                <!--</a>-->
-                <!--<div class="oe_kanban_details">-->
-                  <!--<h4 class="oe_partner_heading">-->
-                    <!--<a type="open" class="o_kanban_record_title">-->
-                      <!--<field name="name"/>-->
-                    <!--</a>-->
-                  <!--</h4>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</t>-->
-          <!--</templates>-->
-        <!--</kanban>-->
-      <!--</field>-->
-    <!--</record>-->
-
+    <!--View form location-->
     <record id="view_toolroom_location_form" model="ir.ui.view">
       <field name="name">tr.stock.location.form</field>
       <field name="model">tr.stock.location</field>
@@ -49,33 +22,51 @@
       <field name="arch" type="xml">
         <form string="Toolromm location">
           <sheet>
+            <field name="active" invisible="1"/>
+            <div class="oe_button_box" name="button_box">
+              <button string="Stock Actual" class="oe_stat_button" icon="fa-cubes"/>
+            </div>
+            <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <div class="oe_title">
-              <!--<field name="image" widget="image" class="oe_avatar" />-->
-              <label for="name" class="oe_edit_only" />
+              <label for="name" string="Nombre de la Ubicación" class="oe_edit_only" />
               <h1>
                 <field name="name" string="Nombre" placeholder="Nombre Ubicación" style="width: 75%;"/>
               </h1>
+              <label for="location_id" string="Ubicación padre" class="oe_edit_only" />
+              <h2>
+                <field name="location_id" style="width: 30%;"/>
+                <field name="company_id" invisible="1" style="width: 30%;"/>
+              </h2>
             </div>
             <group>
-              <!--<field name="note" />-->
+              <group string="Información Adicional">
+                <field name="usage" string="Tipo de ubicación" />
+                <field name="scrap_location" string="¿Es una ubicación de chatarra?" />
+                <field name="return_location" string="¿Es una ubicación de devolución?"/>
+              </group>
+            </group>
+            <group string="Notas Externas">
+              <field name="comment" string="Información adicional" placeholder="Nota Externa..." />
             </group>
           </sheet>
         </form>
       </field>
     </record>
 
+    <!--View tree location-->
     <record id="view_toolroom_location_tree" model="ir.ui.view">
       <field name="name">tr.stock.location.tree</field>
       <field name="model">tr.stock.location</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Toolroom Location">
-          <field name="name" string="Name" />
+          <field name="complete_name" string="Lugar" />
+          <field name="usage" string="Tipo de ubicación" />
         </tree>
       </field>
     </record>
 
-
+    <!--View action location-->
     <record id="action_toolroom_location" model="ir.actions.act_window">
       <field name="name">Ubicaciones</field>
       <field name="type">ir.actions.act_window</field>

@@ -73,7 +73,7 @@
     <menuitem 
       id="menu_tools_category"
       name="Categorías"
-      parent="tbps_toolroom.menu_tools_equipment"
+      parent="tbps_toolroom.menu_tools_equipment_setting"
       action="tbps_toolroom.action_tools_category"
       sequence="1"
       groups="base.group_system"

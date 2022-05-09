@@ -2,16 +2,16 @@
 <odoo>
   <data>
 
-    <!--<record id="view_toolroom_attribute_search" model="ir.ui.view">-->
-      <!--<field name="name">toolroom.attribute.search</field>-->
-      <!--<field name="model">toolroom.attribute</field>-->
-      <!--<field name="type">search</field>-->
-      <!--<field name="arch" type="xml">-->
-        <!--<search string="Toolroom Attribure">-->
-          <!--<field string="Name" name="Nombre"/>-->
-        <!--</search>-->
-      <!--</field>-->
-    <!--</record>-->
+    <record id="view_toolroom_attribute_search" model="ir.ui.view">
+      <field name="name">toolroom.attribute.search</field>
+      <field name="model">toolroom.attribute</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Toolroom Attribure">
+          <field name="name" string="Nombre" />
+        </search>
+      </field>
+    </record>
 
     <record id="view_toolroom_attribute_form" model="ir.ui.view">
       <field name="name">toolroom.attribute.form</field>
@@ -21,21 +21,24 @@
         <form string="Tools Attribute">
           <sheet>
             <div class="oe_title">
-              <label for="name" string="Nombre" class="oe_edit_only" />
+              <label for="name" string="Nombre del Atributo	" class="oe_edit_only" />
               <h2>
                 <field name="name" string="Nombre" placeholder="Descripción" style="width: 75%;"/>
               </h2>
             </div>
-            <!--<group name="first" col="2">-->
-              <!--<field name="parent_id" class="oe_inline"/>-->
-            <!--</group>-->
-            <!--<group col="4">-->
-              <!--<field name="technician_user_id" placeholder="Select"/>-->
-              <!--<field name="dpto_responsible_id" string="Dpto Responsible" placeholder="Select" />-->
-            <!--</group>-->
-            <!--<group>-->
-              <!--<field name="note" />-->
-            <!--</group>-->
+            <notebook>
+              <page string="Valores del Atributo">
+                <field name="value_ids" widget="one2many" nolabel="1">
+                  <tree string="Values" editable="bottom">
+                    <!--<field name="sequence" widget="handle"/>-->
+                    <field name="name"/>
+                    <!--<field name="display_type" invisible="1"/>-->
+                    <!--<field name="is_custom" groups="product.group_product_variant"/>-->
+                    <!--<field name="html_color" attrs="{'column_invisible': [('parent.display_type', '!=', 'color')]}" widget="color"/>-->
+                  </tree>
+                </field>
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>
@@ -48,9 +51,6 @@
       <field name="arch" type="xml">
         <tree string="Tools Attribute">
           <field name="name" string="Nombre" />
-          <!--<field name="technician_user_id" />-->
-          <!--<field name="dpto_responsible_id" />-->
-          <!--<field name="note" />-->
         </tree>
       </field>
     </record>
@@ -73,7 +73,7 @@
     <menuitem 
       id="menu_toolroom_attribute"
       name="Atributos"
-      parent="tbps_toolroom.menu_tools_equipment"
+      parent="tbps_toolroom.menu_tools_equipment_setting"
       action="tbps_toolroom.action_toolroom_attribute"
       sequence="1"
       groups="base.group_system"

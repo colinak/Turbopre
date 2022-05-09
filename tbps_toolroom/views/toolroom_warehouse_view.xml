@@ -2,46 +2,19 @@
 <odoo>
   <data>
 
-    <!--<record id="view_toolroom_warehouse_search" model="ir.ui.view">-->
-      <!--<field name="name">tr.stock.warehouse.search</field>-->
-      <!--<field name="model">tr.stock.warehouse</field>-->
-      <!--<field name="type">search</field>-->
-      <!--<field name="arch" type="xml">-->
-        <!--<search string="Toolroom Warehouse">-->
-          <!--<field string="Nombre" name="name"/>-->
-        <!--</search>-->
-      <!--</field>-->
-    <!--</record>-->
+    <!--view search of warehouse-->
+    <record id="view_toolroom_warehouse_search" model="ir.ui.view">
+      <field name="name">tr.stock.warehouse.search</field>
+      <field name="model">tr.stock.warehouse</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Toolroom Warehouse">
+          <field string="Nombre" name="name"/>
+        </search>
+      </field>
+    </record>
 
-    <!--view kanban of Manufacturers-->
-    <!--<record id="view_toolroom_warehouse_kanban" model="ir.ui.view">-->
-      <!--<field name="name">tr.stock.warehouse.kanban</field>-->
-      <!--<field name="model">tr.stock.warehouse</field>-->
-      <!--<field name="type">kanban</field>-->
-      <!--<field name="arch" type="xml">-->
-        <!--<kanban class="o_res_partner_kanban">-->
-          <!--<field name="id"/>-->
-          <!--<field name="name"/>-->
-          <!--<templates>-->
-            <!--<t t-name="kanban-box">-->
-              <!--<div class="oe_kanban_vignette oe_semantic_html_override">-->
-                <!--<a type="open" href="#" class="o_kanban_image oe_kanban_action">-->
-                  <!--<img alt="Open" t-att-src="kanban_image('maintenance.manufacturers', 'image', record.id.raw_value)" class="img-fluid" style="width:100px;"/>-->
-                <!--</a>-->
-                <!--<div class="oe_kanban_details">-->
-                  <!--<h4 class="oe_partner_heading">-->
-                    <!--<a type="open" class="o_kanban_record_title">-->
-                      <!--<field name="name"/>-->
-                    <!--</a>-->
-                  <!--</h4>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</t>-->
-          <!--</templates>-->
-        <!--</kanban>-->
-      <!--</field>-->
-    <!--</record>-->
-
+    <!--view form of warehouse-->
     <record id="view_toolroom_warehouse_from" model="ir.ui.view">
       <field name="name">tr.stock.warehouse.form</field>
       <field name="model">tr.stock.warehouse</field>
@@ -49,21 +22,31 @@
       <field name="arch" type="xml">
         <form string="Toolromm Warehouse">
           <sheet>
-            <div class="oe_title">
-              <!--<field name="image" widget="image" class="oe_avatar" />-->
-              <label for="name" class="oe_edit_only" />
-              <h1>
-                <field name="name" string="Nombre" placeholder="Nombre Almacen" style="width: 75%;"/>
-              </h1>
+            <field name="active" invisible="1"/>
+            <div class="oe_button_box" name="button_box">
+              <button string="Stock Actual" class="oe_stat_button" icon="fa-cubes"/>
             </div>
-            <group>
-              <!--<field name="note" />-->
+            <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+            <div class="oe_title">
+              <label for="name" string="Nombre" class="oe_edit_only" />
+              <h2>
+                <field name="name" string="Nombre" placeholder="Nombre Almacen" style="width: 70%;"/>
+              </h2>
+            </div>
+            <group col="4">
+              <field name="code" string="Nombre Corto" />
+              <field name="partner_id" string="Dirección"/>
+              <field name="company_id" invisible="1" />
+            </group>
+            <group string="Notas Internas">
+                <field name="note" nolabel="1" placeholder="Esta nota es solo para fines internos."/>
             </group>
           </sheet>
         </form>
       </field>
     </record>
 
+    <!--view tree of warehouse-->
     <record id="view_toolroom_warehouse_tree" model="ir.ui.view">
       <field name="name">tr.stock.warehouse.tree</field>
       <field name="model">tr.stock.warehouse</field>
@@ -71,11 +54,14 @@
       <field name="arch" type="xml">
         <tree string="Toolroom Warehouse">
           <field name="name" string="Name" />
+          <field name="lot_stock_id" string="Ubicación de Stock" />
+          <field name="partner_id" string="Dirección" />
         </tree>
       </field>
     </record>
 
 
+    <!--view action of warehouse-->
     <record id="action_toolroom_warehouse" model="ir.actions.act_window">
       <field name="name">Almacenes</field>
       <field name="type">ir.actions.act_window</field>
