@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_tr_stock_picking_type_system,tr.stock.picking.type.system,model_tr_stock_picking_type,base.group_system,1,1,1,1

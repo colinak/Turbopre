@@ -30,15 +30,29 @@ class TrProductTemplate(models.Model):
         'route_id',
         string="Rutas"
     )
-    # product_variant_id = fields.Many2one(
-        # 'tr.product.product',
-        # string="Herramienta"
-    # )
-    # product_variant_id = fields.One2many(
+    product_variant_id = fields.Many2one(
+        'tr.product.product',
+        string="Herramienta"
+    )
+    # product_variant_ids = fields.One2many(
         # 'tr.product.template',
         # 'product_tmpl_id',
         # string="Herramientas"
     # )
+    taxes_id = fields.Many2many(
+        'account.tax',
+        'tr_product_taxes_rel',
+        'equipment_id',
+        'tax_id',
+        string="Impuestos"
+    )
+    supplier_taxes_id = fields.Many2many(
+        'account.tax',
+        'tr_product_supplier_taxes_rel',
+        'equipment_id',
+        'tax_id',
+        string="Impuestos"
+    )
 
 
     # identification_code = fields.Char(string="Identification Code")
@@ -70,7 +84,7 @@ class TrProductProduct(models.Model):
 		'tool_id',
 		'route_id',
 		string="Rutas"
-	)
+	)   
     # product_tmpl_id = fields.Many2one(
         # 'tr.product.template',
         # string="Herramienta",
