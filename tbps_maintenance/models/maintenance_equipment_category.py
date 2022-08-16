@@ -18,9 +18,20 @@ class MaintenanceEquipmentCategory(models.Model):
 
     depto_responsible_id = fields.Many2one(
         'hr.department',
-        # related="name",
         string="Responsible Department",
         help="Department Responsible for Equipment"
+    )
+    parent_id = fields.Many2one(
+        'maintenance.equipment.category',
+        string="Categoría Padre",
+        help="Categoría Padre",
+        index=True,
+        ondelete='cascade'
+    )
+    child_id = fields.One2many(
+        'maintenance.equipment.category',
+        'parent_id',
+        string='Categorías hijos'
     )
 
 
