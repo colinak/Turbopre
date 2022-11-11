@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_check_availability_tool_user,acc.check.availability.tool.user,model_check_availability_tool_wizard,base.group_user,1,1,1,1
+acs_check_availability_tool_system,acc.check.availability.tool.system,model_check_availability_tool_wizard,base.group_system,1,1,1,1
+

@@ -5,7 +5,7 @@
     <!--view search type operations-->
     <record id="view_tr_stock_picking_type_search" model="ir.ui.view">
       <field name="name">tr.stock.picking.type.search</field>
-      <field name="model">tr.stock.picking.type</field>
+      <field name="model">stock.picking.type</field>
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Toolroom tipo de Operación">
@@ -17,7 +17,7 @@
     <!--view form type operations-->
     <record id="view_tr_stock_picking_type_form" model="ir.ui.view">
       <field name="name">tr.stock.picking.type.form</field>
-      <field name="model">tr.stock.picking.type</field>
+      <field name="model">stock.picking.type</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Toolromm tipo de operaciones">
@@ -51,14 +51,14 @@
     <!--view tree type operations-->
     <record id="view_tr_stock_picking_type_tree" model="ir.ui.view">
       <field name="name">tr.stock.picking.type.tree</field>
-      <field name="model">tr.stock.picking.type</field>
+      <field name="model">stock.picking.type</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Toolroom Warehouse">
           <field name="name" string="Name" />
           <field name="warehouse_id" string="Almacén"/>
           <field name="sequence_id" string="Secuencia de la referencia"/>
-          <!--<field name="code" string="Tipo de Operación" />-->
+          <field name="code" string="Tipo de Operación" />
           <!--<field name="secuense_code" string="Código"/>-->
         </tree>
       </field>
@@ -69,7 +69,7 @@
     <record id="action_tr_stock_picking_type" model="ir.actions.act_window">
       <field name="name">Tipo de Operaciones</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">tr.stock.picking.type</field>
+      <field name="res_model">stock.picking.type</field>
       <field name="view_mode">tree,form</field>
       <field name="view_id" ref="view_tr_stock_picking_type_tree" />
       <field name="help" type="html">

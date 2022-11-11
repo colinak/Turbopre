@@ -8,5 +8,12 @@
 #
 ###############################################################################
 
-from . import models
+from odoo import models, fields, api, _
+import logging
+_logger = logging.getLogger(__name__)
+
+class TrStockProductionLot(models.Model):
+    _inherit = 'stock.production.lot'
+
+
 

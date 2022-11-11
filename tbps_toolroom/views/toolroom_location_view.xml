@@ -5,7 +5,7 @@
     <!--View search location-->
     <record id="view_toolroom_location_search" model="ir.ui.view">
       <field name="name">tr.stock.location.search</field>
-      <field name="model">tr.stock.location</field>
+      <field name="model">stock.location</field>
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Toolroom Location">
@@ -17,7 +17,7 @@
     <!--View form location-->
     <record id="view_toolroom_location_form" model="ir.ui.view">
       <field name="name">tr.stock.location.form</field>
-      <field name="model">tr.stock.location</field>
+      <field name="model">stock.location</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Toolromm location">
@@ -56,7 +56,7 @@
     <!--View tree location-->
     <record id="view_toolroom_location_tree" model="ir.ui.view">
       <field name="name">tr.stock.location.tree</field>
-      <field name="model">tr.stock.location</field>
+      <field name="model">stock.location</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Toolroom Location">
@@ -70,7 +70,7 @@
     <record id="action_toolroom_location" model="ir.actions.act_window">
       <field name="name">Ubicaciones</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">tr.stock.location</field>
+      <field name="res_model">stock.location</field>
       <field name="view_mode">tree,form</field>
       <field name="view_id" ref="view_toolroom_location_tree" />
       <field name="help" type="html">

@@ -8,5 +8,4 @@
 #
 ###############################################################################
 
-from . import models
-
+from . import check_availability_tools

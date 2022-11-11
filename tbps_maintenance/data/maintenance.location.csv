@@ -1,0 +1,28 @@
+"id","name","parent_id","type_location","scrap_location","active"
+location_001,"Turbopre",,"internal",False,True
+location_002,"Termozulia",,"external",False,True
+location_003,"El Furrial",,"external",False,True
+location_004,"Ana María Campos",,"external",False,True
+location_005,"CRP",,"external",False,True
+location_006,"Refinería el Palito",,"external",False,True
+location_007,"Planta Lama",,"external",False,True
+location_008,"Talento Humano","Turbopre","internal",False,True
+location_009,"Almacén y Herramientas","Turbopre","internal",False,True
+location_010,"Informática y Tecnología","Turbopre","internal",False,True
+location_011,"Contabilidad y Costos","Turbopre","internal",False,True
+location_012,"Inngeniería y Soporte Técnico","Turbopre","internal",False,True
+location_013,"Control de Calidad","Turbopre","internal",False,True
+location_014,"Gerencia SGI","Turbopre","internal",False,True
+location_015,"Mantenimiento","Turbopre","internal",False,True
+location_016,"Mercadeo y Ventas","Turbopre","internal",False,True
+location_017,"Procura","Turbopre","internal",False,True
+location_018,"Seguridad Física","Turbopre","internal",False,True
+location_019,"Servicios de Taller","Turbopre","internal",False,True
+location_021,"TG47","CRP","external",False,True
+location_022,"TG19","CRP","external",False,True
+location_023,"TG16","CRP","external",False,True
+location_024,"TG12","CRP","external",False,True
+location_025,"TZ01","Termozulia","external",False,True
+location_026,"TZ02","Termozulia","external",False,True
+location_027,"TZ04","Termozulia","external",False,True
+location_028,"TZ07","Termozulia","external",False,True

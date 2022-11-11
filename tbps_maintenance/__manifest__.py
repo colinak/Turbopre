@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+###############################################################################
+# Author: KEWITZ COLINA
+# Copyleft: 2020-Present.
+# License LGPL-3.0 or later (http: //www.gnu.org/licenses/lgpl.html).
+#
+#
+###############################################################################
 
 {
     'name': "Tbps Maintenance",
@@ -20,6 +27,7 @@
     ],
     'data': [
         "data/maintenance.activity.csv",
+        "data/maintenance.location.csv",
         'security/ir.model.access.csv',
         'security/maintenance_security.xml',
         'report/equipment_assignment_report.xml',
@@ -30,6 +38,7 @@
         'views/maintenance_manufacturers_view.xml',
         'views/maintenance_activity_view.xml',
         'views/maintenance_equipment_view.xml',
+        'views/maintenance_location_view.xml',
         'wizards/equipment_assignment_view.xml',
     ],
     'demo': [],

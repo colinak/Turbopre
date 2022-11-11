@@ -98,7 +98,7 @@
           <field name="image_1920" widget="image" class="oe_avatar" />
         </div>
         <field name="name" position="attributes">
-          <attribute name="style">width: 80%;</attribute>
+          <attribute name="style">width: 65%;</attribute>
           <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
         </field>
         <field name="category_id" position="attributes">
@@ -128,6 +128,9 @@
            }"  
           />
         </field>
+        <field name="location" position="before">
+          <field name="location_id" placeholder="Seleccione"/>
+        </field>
         <field name="location" position="after">
           <field name="out_of_service" 
             attrs="{
@@ -139,9 +142,6 @@
         <field name="technician_user_id" position="replace">
           <field name="depto_responsible_id" attrs="{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}" />
         </field>
-        <!--<field name="location" position="attributes">-->
-          <!--<attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>-->
-        <!--</field>-->
         <field name="partner_ref" position="replace">
           <field name="brand_id" attrs="{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}" />
         </field>
@@ -151,9 +151,6 @@
         <field name="serial_no" position="attributes">
           <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
         </field>
-        <!--<field name="note" position="attributes">-->
-          <!--<attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>-->
-        <!--</field>-->
         <field name="partner_id" position="attributes">
           <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
         </field>

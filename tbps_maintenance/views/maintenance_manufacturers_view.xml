@@ -55,7 +55,7 @@
 
     <!--view tree of Manufacturers-->
     <record id="view_maintenance_manufacturers_tree" model="ir.ui.view">
-      <field name="name">maintenance.manufacturers.form</field>
+      <field name="name">maintenance.manufacturers.tree</field>
       <field name="model">maintenance.manufacturers</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">

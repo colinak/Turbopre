@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+###############################################################################
+# Author: KEWITZ COLINA
+# Copyleft: 2020-Present.
+# License LGPL-3.0 or later (http: //www.gnu.org/licenses/lgpl.html).
+#
+#
+###############################################################################
 
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
@@ -81,6 +87,10 @@ class MaintenanceEquipment(models.Model):
     )
     image_1920 = fields.Image(
         string="Image",
+    )
+    location_id = fields.Many2one(
+        "maintenance.location",
+        string="Ubicación"
     )
 
     @api.depends('equipment_assign_to')

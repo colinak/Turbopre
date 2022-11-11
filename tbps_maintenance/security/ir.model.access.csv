@@ -7,3 +7,6 @@ access_equipment_assignment_manager,acc.equipment.assignment.manager,tbps_mainte
 access_maintenance_activity_system,acc.maintenance.activity.system,tbps_maintenance.model_maintenance_activity,base.group_system,1,1,1,1
 access_maintenance_activity_manager,acc.equipment.activity.manager,tbps_maintenance.model_maintenance_activity,maintenance.group_equipment_manager,1,1,1,1
 access_maintenance_activity_user,acc.maintenance.activity.user,tbps_maintenance.model_maintenance_activity,base.group_user,1,0,0,0
+access_maintenance_location_system,acc.maintenance.location.system,tbps_maintenance.model_maintenance_location,base.group_system,1,1,1,1
+access_maintenance_location_manager,acc.maintenance.location.manager,tbps_maintenance.model_maintenance_location,maintenance.group_equipment_manager,1,1,1,0
+access_maintenance_location_user,acc.maintenance.location.user,tbps_maintenance.model_maintenance_location,base.group_user,1,0,0,0

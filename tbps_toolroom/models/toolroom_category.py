@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+###############################################################################
+# Author: KEWITZ COLINA
+# Copyleft: 2020-Present.
+# License LGPL-3.0 or later (http: //www.gnu.org/licenses/lgpl.html).
+#
+#
+###############################################################################
 
 from odoo import models, fields, api, _
 
 class ToolRoomCategory(models.Model):
-    _name = 'toolroom.category'
     _inherit = 'product.category'
-    _description = 'Toolroom Category'
-    _order = 'name'
-    _rec_name = 'name'
+    # _description = 'Toolroom Category'
+    # _order = 'name'
+    # _rec_name = 'name'
 
 
-    parent_id = fields.Many2one(
-        'toolroom.category',
-        string="Categoría Padre",
-        help="Categoría Padre"
-    )
+    # parent_id = fields.Many2one(
+        # 'toolroom.category',
+        # string="Categoría Padre",
+        # help="Categoría Padre"
+    # )
     dpto_responsible_id = fields.Many2one(
         'hr.department',
         string="Responsible Department",
@@ -28,13 +33,6 @@ class ToolRoomCategory(models.Model):
         help="Responsible"
     )
     note = fields.Text(string="Notes")
-    route_ids = fields.Many2many(
-        'stock.location.route',
-        'toolroom_equipment_category_rel',
-        'category_id',
-        'route_id',
-        string="Rutas"
-    )
 
 
 

@@ -5,7 +5,7 @@
     <!--view search of warehouse-->
     <record id="view_toolroom_warehouse_search" model="ir.ui.view">
       <field name="name">tr.stock.warehouse.search</field>
-      <field name="model">tr.stock.warehouse</field>
+      <field name="model">stock.warehouse</field>
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Toolroom Warehouse">
@@ -17,15 +17,15 @@
     <!--view form of warehouse-->
     <record id="view_toolroom_warehouse_from" model="ir.ui.view">
       <field name="name">tr.stock.warehouse.form</field>
-      <field name="model">tr.stock.warehouse</field>
+      <field name="model">stock.warehouse</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Toolromm Warehouse">
           <sheet>
             <field name="active" invisible="1"/>
-            <div class="oe_button_box" name="button_box">
-              <button string="Stock Actual" class="oe_stat_button" icon="fa-cubes"/>
-            </div>
+            <!--<div class="oe_button_box" name="button_box">-->
+              <!--<button string="Stock Actual" class="oe_stat_button" icon="fa-cubes"/>-->
+            <!--</div>-->
             <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <div class="oe_title">
               <label for="name" string="Nombre" class="oe_edit_only" />
@@ -38,9 +38,9 @@
               <field name="partner_id" string="Dirección"/>
               <field name="company_id" invisible="1" />
             </group>
-            <group string="Notas Internas">
-                <field name="note" nolabel="1" placeholder="Esta nota es solo para fines internos."/>
-            </group>
+            <!--<group string="Notas Internas">-->
+                <!--<field name="note" nolabel="1" placeholder="Esta nota es solo para fines internos."/>-->
+            <!--</group>-->
           </sheet>
         </form>
       </field>
@@ -49,7 +49,7 @@
     <!--view tree of warehouse-->
     <record id="view_toolroom_warehouse_tree" model="ir.ui.view">
       <field name="name">tr.stock.warehouse.tree</field>
-      <field name="model">tr.stock.warehouse</field>
+      <field name="model">stock.warehouse</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Toolroom Warehouse">
@@ -65,7 +65,7 @@
     <record id="action_toolroom_warehouse" model="ir.actions.act_window">
       <field name="name">Almacenes</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">tr.stock.warehouse</field>
+      <field name="res_model">stock.warehouse</field>
       <field name="view_mode">tree,form</field>
       <field name="view_id" ref="view_toolroom_warehouse_tree" />
       <field name="help" type="html">

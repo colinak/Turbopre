@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <!--View Search of Locations-->
+    <record id="view_maintenance_location_search" model="ir.ui.view">
+      <field name="name">maintenance.location.search</field>
+      <field name="model">maintenance.location</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Locations">
+          <field name="name"/>
+          <field name="parent_id"/>
+          <filter string="Archivado" name="inactive" domain="[('active','=',False)]"/>
+          <field name="type_location"/>
+        </search>
+      </field>
+    </record>
+
+    <!--View From of Locations-->
+    <record id="view_maintenance_location_form" model="ir.ui.view">
+      <field name="name">maintenance.location.form</field>
+      <field name="model">maintenance.location</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Maintenance Location">
+          <sheet>
+            <field name="complete_name" invisible="1"/>
+            <div class="oe_button_box" name="button_box">
+              <!--<button string="Putaway Rules" class="oe_stat_button" icon="fa-random" name="257" type="action" groups="stock.group_stock_multi_locations" context="{'default_company_id': company_id}"/>-->
+              <!--<button string="Stock Actual" class="oe_stat_button" icon="fa-cubes" name="current_stock" type="action"/>-->
+              <button string="Stock Actual" class="oe_stat_button" icon="fa-cubes" />
+            </div>
+            <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+            <label for="name" string="Nombre de ubicación" class="oe_edit_only"/>
+            <h1>
+              <field name="name" placeholder="Nombre de ubicación" style="width: 70%;"/>
+            </h1>
+            <label for="parent_id" class="oe_edit_only"/>
+            <h2><field name="parent_id" placeholder="Seleccione" style="width: 35%;" options="{'no_create': True}"/></h2>
+            <group>
+              <group string="Información Adicional" name="additional_info">
+                <field name="active" invisible="1"/>
+                <field name="responsible_id"/>
+                <field name="type_location"/>
+                <field name="scrap_location" attrs="{'invisible': [('type_location', 'not in', ('inventory', 'internal'))]}"/>
+              <field name="active"/>
+              </group>
+            </group>
+            <field name="note" placeholder="Notas externas..."/>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!--View Tree of Locations-->
+    <record id="view_maintenance_location_tree" model="ir.ui.view">
+      <field name="name">maintenance.location.tree</field>
+      <field name="model">maintenance.location</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Model Make">
+          <field name="name"/>
+          <field name="parent_id"/>
+          <field name="responsible_id"/>
+          <field name="type_location"/>
+          <field name="active"/>
+        </tree>
+      </field>
+    </record>
+
+    <!--Action Locations-->
+    <record id="action_view_maintenance_location" model="ir.actions.act_window">
+      <field name="name">Ubicaciones</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">maintenance.location</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="tbps_maintenance.view_maintenance_location_tree" />
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+            Create New Locations
+        </p>
+      </field>
+    </record>
+
+    <!--Menu-->
+    <menuitem 
+      id="locations_menu"
+      name="Ubicaciones"
+      parent="maintenance.menu_maintenance_configuration"
+      sequence="6"
+      action="tbps_maintenance.action_view_maintenance_location"
+      groups="base.group_system,maintenance.group_equipment_manager"
+    />
+  </data>
+</odoo>
