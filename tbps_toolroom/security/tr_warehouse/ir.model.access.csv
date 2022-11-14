@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_tr_stock_warehouse_system,tr.stock.warehouse.system,model_tr_stock_warehouse,base.group_system,1,1,1,1
+acs_tr_stock_warehouse_user,tr.stock.warehouse.user,model_tr_stock_warehouse,base.group_user,1,0,0,0
+
