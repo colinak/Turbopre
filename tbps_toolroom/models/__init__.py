@@ -11,9 +11,9 @@
 # from . import toolroom_manufacturers
 from . import tr_warehouse
 from . import tr_location
+from . import tr_stock_picking_type
 # from . import toolroom_category
 # from . import toolroom_attribute
-# from . import tr_stock_picking_type
 # from . import tr_stock_picking
 # from . import toolroom_equipment
 # from . import toolroom_tools
