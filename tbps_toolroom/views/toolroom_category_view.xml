@@ -3,8 +3,8 @@
   <data>
 
     <record id="view_toolroom_category_search" model="ir.ui.view">
-      <field name="name">toolroom.category.search</field>
-      <field name="model">product.category</field>
+      <field name="name">tr.product.category.search</field>
+      <field name="model">tr.product.category</field>
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Toolroom Category">
@@ -14,24 +14,27 @@
     </record>
 
     <record id="view_toolroom_category_form" model="ir.ui.view">
-      <field name="name">toolroom.category.form</field>
-      <field name="model">product.category</field>
+      <field name="name">tr.product.category.form</field>
+      <field name="model">tr.product.category</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Tools Category">
+          <header>
+            <field name="complete_name" invisible="1"/>
+            <field name="product_count" invisible="1"/>
+          </header>
           <sheet>
             <div class="oe_title">
-              <label for="name" class="oe_edit_only" />
+              <label for="name" string="Nombre de categoría" class="oe_edit_only" />
               <h1>
-                <field name="name" string="Nombre" placeholder="Tools Category Name" style="width: 75%;"/>
+                <field name="name" placeholder="Ej: Hidráulicas" style="width: 65%;"/>
               </h1>
             </div>
             <group name="first" col="2">
-              <field name="parent_id" class="oe_inline"/>
+              <field name="parent_id" class="oe_inline" placeholder="Seleccione"/>
             </group>
             <group col="4">
-              <field name="technician_user_id" placeholder="Select"/>
-              <field name="dpto_responsible_id" string="Dpto Responsible" placeholder="Select" />
+              <field name="child_ids" invisible="1"/>
             </group>
             <group>
               <field name="note" />
@@ -42,15 +45,14 @@
     </record>
 
     <record id="view_toolroom_category_tree" model="ir.ui.view">
-      <field name="name">toolroom.category.tree</field>
-      <field name="model">product.category</field>
+      <field name="name">tr.product.category.tree</field>
+      <field name="model">tr.product.category</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Tools Category">
-          <field name="name" string="Name" />
-          <!--<field name="technician_user_id" />-->
-          <!--<field name="dpto_responsible_id" />-->
-          <field name="note" />
+          <field name="complete_name"/>
+          <field name="parent_id" />
+          <field name="product_count" />
         </tree>
       </field>
     </record>
@@ -59,12 +61,12 @@
     <record id="action_tools_category" model="ir.actions.act_window">
       <field name="name">Categorías de herramientas</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">product.category</field>
+      <field name="res_model">tr.product.category</field>
       <field name="view_mode">tree,form</field>
       <field name="view_id" ref="view_toolroom_category_tree" />
       <field name="help" type="html">
         <p class="o_view_nocontent_smiling_face">
-          Create New Category
+          Crear Nueva Categotía
         </p>
       </field>
     </record>

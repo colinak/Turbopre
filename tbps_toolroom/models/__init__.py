@@ -9,10 +9,10 @@
 ###############################################################################
 
 # from . import toolroom_manufacturers
-from . import tr_warehouse
-from . import tr_location
+from . import tr_stock_warehouse
+from . import tr_stock_location
 from . import tr_stock_picking_type
-# from . import toolroom_category
+from . import tr_product_category
 # from . import toolroom_attribute
 # from . import tr_stock_picking
 # from . import toolroom_equipment
