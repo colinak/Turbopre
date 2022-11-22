@@ -2,38 +2,38 @@
 <odoo>
   <data>
 
-    <record id="view_toolroom_tools_tree" model="ir.ui.view">
-      <field name="name">toolroom.tools.tree</field>
-      <field name="model">product.product</field>
-      <field name="type">tree</field>
-      <field name="arch" type="xml">
-        <tree string="Equipment">
-          <field name="name" string="Name" />
+    <!--<record id="view_toolroom_tools_tree" model="ir.ui.view">-->
+      <!--<field name="name">toolroom.tools.tree</field>-->
+      <!--<field name="model">product.product</field>-->
+      <!--<field name="type">tree</field>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<tree string="Equipment">-->
+          <!--<field name="name" string="Name" />-->
           <!--<field name="type" />-->
           <!--<field name="category_id" />-->
           <!--<field name="default_code" />-->
           <!--<field name="uom_id" />-->
           <!--<field name="barcode" />-->
-        </tree>
-      </field>
-    </record>
+        <!--</tree>-->
+      <!--</field>-->
+    <!--</record>-->
 
     <record id="action_toolroom_tools" model="ir.actions.act_window">
-      <field name="name">Equipment and Tools</field>
+      <field name="name">Variantes de Equipamientos</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">product.product</field>
       <field name="view_mode">tree,form</field>
-      <field name="view_id" ref="view_toolroom_tools_tree" />
+      <!--<field name="view_id" ref="view_toolroom_tools_tree" />-->
       <field name="help" type="html">
         <p class="o_view_nocontent_smiling_face">
-          Create New Variante
+          Crear Nueva Variante de Equipamientos
         </p>
       </field>
     </record>
   
     <menuitem 
       id="menu_tools"
-      name="Variantes de Productos"
+      name="Variantes de Herramientas"
       parent="tbps_toolroom.menu_toolroom_equipment"
       action="tbps_toolroom.action_toolroom_tools"
       sequence="2"

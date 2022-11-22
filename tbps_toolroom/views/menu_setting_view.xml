@@ -32,12 +32,11 @@
       sequence="3"
       groups="base.group_system"
     />
-      <!--name="Equipos y Herramientas"-->
-
+    <!--name="Equipos y Herramientas"-->
 
     <menuitem 
       id="menu_toolroom_informed"
-      name="Informed"
+      name="Informes"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
       sequence="4"
       groups="base.group_system"

@@ -44,6 +44,7 @@ class TrStockLocation(models.Model):
         selection=[
             ('internal', 'Ubicacion interna'),
             ('external', 'Ubicacion externa'),
+            ('virtual', 'Ubicacion Virtual'),
             ('supplier', 'Ubicacion de proveedor'),
             ('customer', 'Ubicacion de cliente'),
             ('transit', 'Ubicacion de tránsito'),

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_tr_stock_quant_system,tr.stock.quant.system,model_tr_stock_quant,base.group_system,1,1,1,1
+acs_tr_stock_quant_user,tr.stock.quant.user,model_tr_stock_quant,base.group_user,1,0,0,0
+

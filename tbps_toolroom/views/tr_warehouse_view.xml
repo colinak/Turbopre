@@ -28,18 +28,18 @@
             </div>
             <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <div class="oe_title">
-              <label for="name" string="Alamacén" class="oe_edit_only" />
+              <label for="name" string="Almacén" class="oe_edit_only" />
               <h2>
-                <field name="name" string="Nombre" placeholder="Nombre Almacen" style="width: 70%;"/>
+                <field name="name" string="Nombre" placeholder="Nombre del Almacén" style="width: 70%;"/>
               </h2>
             </div>
             <group col="4">
-              <field name="code" string="Nombre Corto" />
+              <field name="code" string="Nombre Corto" placeholder="Ej. Stock" />
               <field name="partner_id" string="Dirección"/>
               <field name="company_id" invisible="1" />
             </group>
             <group string="Notas Internas">
-                <field name="note" nolabel="1" placeholder="Esta nota es solo para fines internos."/>
+              <field name="note" nolabel="1" placeholder="Esta nota es solo para fines internos."/>
             </group>
           </sheet>
         </form>

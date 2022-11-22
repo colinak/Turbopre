@@ -38,9 +38,10 @@ class TrStockPickingType(models.Model):
         help="Esta es la ubicación destino predeterminada cuando crea un picking manualmente con este tipo de operación. ")
     code = fields.Selection(
         selection=[
-            ('incoming', 'Recivo'),
-            ('outgoing', 'Envío'),
-            ('internal', 'Transferencia Interna')
+            ('assignment', 'Asignación'),
+            ('loans', 'Prestamo'),
+            ('reception', 'Recepción'),
+            ('transfers', 'Transferencias')
         ],
         string='Tipo de Operación',
         required=True

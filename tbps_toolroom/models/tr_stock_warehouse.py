@@ -49,8 +49,9 @@ class TrStockWarehouse(models.Model):
     lot_stock_id = fields.Many2one(
         'tr.stock.location', 
         'Location Stock',
-        domain="[('usage', '=', 'internal'), ('company_id', '=', company_id)]",
-        required=True, check_company=True
+        # domain="[('usage', '=', 'internal'), ('company_id', '=', company_id)]",
+        # required=True, 
+        # check_company=True
     )
     sequence = fields.Integer(
         default=10,
