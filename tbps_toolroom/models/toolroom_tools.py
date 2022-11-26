@@ -20,21 +20,5 @@ class ToolRoomTools(models.Model):
     # _rec_name = 'name'
 
 
-    # name = fields.Char(
-        # string="Name",
-    # )
-    # category_id = fields.Many2one(
-        # 'toolroom.category',
-        # string="Product Category",
-        # required=True,
-        # help="Seleccionar categoría para el producto actual"
-    # )
-    # route_ids = fields.Many2many(
-        # 'stock.location.route',
-        # 'tr_stock_route_tools_rel',
-        # 'tool_id',
-        # 'route_id',
-        # string="Rutas"
-    # )
 
 

@@ -20,7 +20,8 @@
       <field name="model">tr.stock.quant</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <tree string="Toolroom Quantity">
+        <!--<tree string="Toolroom Quantity" editable="bottom" create="1" edit="1" import="0" js_class="singleton_list" sample="1">-->
+        <tree string="Toolroom Quantity" editable="bottom" create="1" edit="1" import="0" >
           <field name="name" string="Name" invisible="1"/>
           <field name="product_id" />
           <field name="product_tmpl_id" />

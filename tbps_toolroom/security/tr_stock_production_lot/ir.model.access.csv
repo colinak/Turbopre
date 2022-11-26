@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_tr_stock_production_lot_system,tr.stock.production.lot.system,model_tr_stock_production_lot,base.group_system,1,1,1,1
+acs_tr_stock_production_lot_user,tr.stock.production.lot.user,model_tr_stock_production_lot,base.group_user,1,1,1,1
+

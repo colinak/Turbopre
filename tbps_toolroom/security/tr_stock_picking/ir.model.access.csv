@@ -1,3 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acs_tr_stock_picking_type_system,tr.stock.picking.type.system,model_tr_stock_picking_type,base.group_system,1,1,1,1
-acs_tr_stock_picking_type_user,tr.stock.picking.type.user,model_tr_stock_picking_type,base.group_user,1,0,0,0
+acs_tr_stock_picking_system,tr.stock.picking.system,model_tr_stock_picking,base.group_system,1,1,1,1
+acs_tr_stock_picking_user,tr.stock.picking.user,model_tr_stock_picking,base.group_user,1,1,1,1

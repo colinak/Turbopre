@@ -20,7 +20,7 @@
       <field name="model">tr.stock.location</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
-        <form string="Toolromm location">
+        <form string="Toolroom location">
           <sheet>
             <field name="active" invisible="1"/>
             <div class="oe_button_box" name="button_box">
@@ -42,12 +42,11 @@
               <group string="Información Adicional">
                 <field name="usage" string="Tipo de ubicación" />
                 <field name="scrap_location" string="¿Es una ubicación de chatarra?" />
-                <field name="return_location" string="¿Es una ubicación de devolución?"/>
               </group>
             </group>
-            <!--<group string="Notas Externas">-->
-              <!--<field name="comment" string="Información adicional" placeholder="Nota Externa..." />-->
-            <!--</group>-->
+            <group string="Notas Externas">
+              <field name="comment" string="Información adicional" placeholder="Nota Externa..." />
+            </group>
           </sheet>
         </form>
       </field>
@@ -59,7 +58,14 @@
       <field name="model">tr.stock.location</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <tree string="Toolroom Location">
+        <tree string="Toolroom Location" 
+          decoration-info="usage == 'virtual'"
+          decoration-success="usage == 'internal'"
+          decoration-warning="usage == 'external'"
+          decoration-danger="usage == 'inventory'"
+          decoration-muted="usage == 'supplier'"
+          decoration-it="usage == 'transit'"
+        >
           <field name="complete_name" string="Lugar" />
           <field name="usage" string="Tipo de ubicación" />
         </tree>

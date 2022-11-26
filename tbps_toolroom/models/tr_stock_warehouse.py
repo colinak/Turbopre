@@ -31,6 +31,12 @@ class TrStockWarehouse(models.Model):
         help="Nombre abreviado utilizado para identificar su almacén"
     )
     active = fields.Boolean('Activo?', default=True)
+    virtual_location_id = fields.Many2one(
+        'tr.stock.location', 
+        'Virtual Location',
+        # domain="[('usage', '=', 'virtual'), ('company_id', '=', company_id)]",
+        # required=True
+    )
     company_id = fields.Many2one(
         'res.company', 
         'Compañia', 
@@ -48,8 +54,8 @@ class TrStockWarehouse(models.Model):
     )
     lot_stock_id = fields.Many2one(
         'tr.stock.location', 
-        'Location Stock',
-        # domain="[('usage', '=', 'internal'), ('company_id', '=', company_id)]",
+        string="Ubicación de Stock",
+        # domain="[('usage', '=', 'internal')",
         # required=True, 
         # check_company=True
     )
@@ -65,3 +71,15 @@ class TrStockWarehouse(models.Model):
         ('warehouse_name_uniq', 'unique(name, company_id)', '¡El nombre del almacén debe ser único por empresa!'),
         ('warehouse_code_uniq', 'unique(code, company_id)', '¡El nombre abreviado del almacén debe ser único por empresa!'),
     ]
+
+
+    
+    @api.model
+    def create(self, vals):
+        vals['virtual_location_id'] = self.env['tr.stock.location'].create(
+            {'name': vals.get('code'), 'usage': 'virtual', 'active': True}
+        ).id
+        warehouse = super(TrStockWarehouse, self).create(vals)
+
+        return warehouse
+

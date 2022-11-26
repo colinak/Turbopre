@@ -18,7 +18,7 @@ class TrStockLocation(models.Model):
     _name = "tr.stock.location"
     _description = "Inventory Locations"
     _parent_name = "location_id"
-    _parent_store = True
+    # _parent_store = True
     _order = 'complete_name'
     _rec_name = 'complete_name'
 
@@ -54,13 +54,13 @@ class TrStockLocation(models.Model):
         default='internal',
         index=True,
         required=True,
-        help="* Vendor Location: Virtual location representing the source location for products coming from your vendors"
-             "\n* View: Virtual location used to create a hierarchical structures for your warehouse, aggregating its child locations ; can't directly contain products"
-             "\n* Internal Location: Physical locations inside your own warehouses,"
-             "\n* Customer Location: Virtual location representing the destination location for products sent to your customers"
-             "\n* Inventory Loss: Virtual location serving as counterpart for inventory operations used to correct stock levels (Physical inventories)"
-             "\n* Production: Virtual counterpart location for production operations: this location consumes the components and produces finished products"
-             "\n* Transit Location: Counterpart location that should be used in inter-company or inter-warehouses operations"
+        help="* Ubicación interna: ubicaciones físicas dentro de sus propios almacenes"
+             "\n* Ubicación externa: ubicaciones físicas fuera de sus propios almacenes"
+             "\n* Virtual: ubicación virtual utilizada para crear estructuras jerárquicas para su almacén, agregando sus ubicaciones secundarias; no puede contener productos directamente"
+             "\n* Ubicación del proveedor: ubicación virtual que representa la ubicación de origen de los productos que provienen de sus proveedores"
+             "\n* Ubicación del cliente: ubicación virtual que representa la ubicación de destino de los productos enviados a sus clientes"
+             "\n* Pérdida de inventario: Ubicación virtual que sirve como contraparte para las operaciones de inventario utilizadas para corregir los niveles de existencias (Inventarios físicos)"
+             "\n* Ubicación de tránsito: ubicación de contraparte que se debe usar en operaciones entre empresas o entre almacenes"
     )
     company_id = fields.Many2one(
         'res.company',
@@ -73,13 +73,12 @@ class TrStockLocation(models.Model):
         default=False,
         help='Check this box to allow using this location to put scrapped/damaged goods.'
     )
-    return_location = fields.Boolean(
-        '¿Es una ubicación de devolución?',
-        help='Check this box to allow using this location as a return location.'
-    )
     warehouse_id = fields.Many2one(
         'tr.stock.warehouse', 
         # compute='_compute_warehouse_id'
+    )
+    comment = fields.Text(
+        string="Notas"
     )
 
     @api.depends('name', 'location_id.complete_name', 'usage')
