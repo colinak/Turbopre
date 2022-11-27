@@ -33,16 +33,17 @@ class TrStockProductionLot(models.Model):
     )
     product_uom_id = fields.Many2one(
         "uom.uom",
-        string="Unidad de medida"
+        string="Unidad de medida",
+        related="product_id.uom_id"
     )
     product_qty = fields.Integer(
         string="Cantidad"
     )
-    # quant_ids = fields.One2many(
-        # "tr.stock.quant",
-        # "lot_id",
-        # string="Cantidades"
-    # )
+    quant_ids = fields.One2many(
+        "tr.stock.quant",
+        "lot_id",
+        string="Cantidades"
+    )
     ref = fields.Char(
         string="Referencia"
     )

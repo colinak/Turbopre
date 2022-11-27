@@ -9,6 +9,7 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -55,9 +56,7 @@ class TrStockWarehouse(models.Model):
     lot_stock_id = fields.Many2one(
         'tr.stock.location', 
         string="Ubicación de Stock",
-        # domain="[('usage', '=', 'internal')",
-        # required=True, 
-        # check_company=True
+        required=True, 
     )
     sequence = fields.Integer(
         default=10,
@@ -79,7 +78,20 @@ class TrStockWarehouse(models.Model):
         vals['virtual_location_id'] = self.env['tr.stock.location'].create(
             {'name': vals.get('code'), 'usage': 'virtual', 'active': True}
         ).id
+        vals['lot_stock_id'] = self.env['tr.stock.location'].create(
+            {'name': 'Stock', 'location_id': vals.get('virtual_location_id'), 'usage': 'internal', 'active': True}
+        ).id
         warehouse = super(TrStockWarehouse, self).create(vals)
 
         return warehouse
 
+
+    def write(self, vals):
+        if vals.get('code'):
+            new_code = vals.get('code')
+            virtual_location_id = self.virtual_location_id.id
+            virtual_location = self.env['tr.stock.location'].browse(virtual_location_id)
+            for vl in virtual_location:
+                vl.write({'name': new_code})
+        warehouse = super(TrStockWarehouse, self).write(vals)
+            

@@ -11,7 +11,7 @@
 
     <menuitem 
       id="toolroom_inventory_summary"
-      name="General information"
+      name="Información General"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
       sequence="1"
       groups="base.group_system"
@@ -19,7 +19,7 @@
 
     <menuitem 
       id="menu_operations"
-      name="Operations"
+      name="Operaciones"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
       sequence="2"
       groups="base.group_system"

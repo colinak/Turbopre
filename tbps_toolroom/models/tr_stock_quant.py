@@ -21,7 +21,7 @@ class TrStockQuant(models.Model):
     )
     product_id = fields.Many2one(
         "product.product",
-        string="Variante Herramienta/Equipo"
+        string="Herramienta/Equipo"
     )
     product_tmpl_id = fields.Many2one(
         "product.template",
@@ -39,10 +39,10 @@ class TrStockQuant(models.Model):
         "tr.stock.location",
         string="Lugar"
     )
-    # lot_id = fields.Many2one(
-        # "tr.stock.production.lot",
-        # string="N° de serie"
-    # )
+    lot_id = fields.Many2one(
+        "tr.stock.production.lot",
+        string="N° de serie"
+    )
     in_date = fields.Date(
         string="Fecha de entrada"
     )

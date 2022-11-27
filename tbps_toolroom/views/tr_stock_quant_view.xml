@@ -23,10 +23,10 @@
         <!--<tree string="Toolroom Quantity" editable="bottom" create="1" edit="1" import="0" js_class="singleton_list" sample="1">-->
         <tree string="Toolroom Quantity" editable="bottom" create="1" edit="1" import="0" >
           <field name="name" string="Name" invisible="1"/>
-          <field name="product_id" />
-          <field name="product_tmpl_id" />
+          <field name="product_id" string="Herramienta/Equipo"/>
+          <field name="product_tmpl_id" string="Herramienta/Equipo" invisible="1"/>
           <field name="location_id" />
-          <!--<field name="lot_id" />-->
+          <field name="lot_id" />
           <field name="inventory_quantity" />
           <field name="available_quantity" />
           <field name="product_uom_id" />
