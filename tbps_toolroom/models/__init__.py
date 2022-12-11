@@ -15,8 +15,9 @@ from . import tr_stock_picking_type
 from . import tr_product_category
 from . import tr_stock_quant
 from . import tr_stock_picking
-# from . import toolroom_equipment
-# from . import toolroom_tools
+from . import tr_equipment
+from . import tr_tools
 from . import tr_stock_production_lot
-
-
+from . import hr_employee
+from . import tr_stock_inventory
+# from . import tr_stock_scrap

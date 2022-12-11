@@ -1,0 +1,7 @@
+"id","name","location_id","usage","scrap_location"
+location_001,Virtual Locations,,virtual,False
+location_002,Physical Locations,,virtual,False
+location_003,Clientes,Virtual Locations,customer,False
+location_004,Proveedores,Virtual Locations,supplier,False
+location_005,Perdida o Avería,Virtual Locations,inventory,True
+location_006,Ajuste de inventario,Virtual Locations,inventory,False

@@ -74,11 +74,16 @@ class TrStockLocation(models.Model):
         help='Check this box to allow using this location to put scrapped/damaged goods.'
     )
     warehouse_id = fields.Many2one(
-        'tr.stock.warehouse', 
+        'tr.stock.warehouse',
+        string=u"Almacén"
         # compute='_compute_warehouse_id'
     )
     comment = fields.Text(
         string="Notas"
+    )
+    inventory_id = fields.Many2one(
+        "tr.stock.inventory",
+        string="Inventario"
     )
 
     @api.depends('name', 'location_id.complete_name', 'usage')

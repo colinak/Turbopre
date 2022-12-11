@@ -21,4 +21,11 @@ class ToolRoomTools(models.Model):
 
 
 
-
+    employee_id = fields.Many2one(
+        "hr.employee",
+        string="Empleado"
+    )
+    inventory_id = fields.Many2one(
+        "tr.stock.inventory",
+        string="Inventario"
+    )

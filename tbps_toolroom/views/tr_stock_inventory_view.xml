@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <record id="view_stock_inventory_serch" model="ir.ui.view">
+      <field name="name">tr.stock.inventory.search</field>
+      <field name="model">tr.stock.inventory</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Inventory">
+          <field name="name" />
+        </search>
+      </field>
+    </record>
+
+
+    <record id="view_stock_inventory_form" model="ir.ui.view">
+      <field name="name">tr.stock.inventory.form</field>
+      <field name="model">tr.stock.inventory</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Inventory">
+          <header>
+              <button name="action_start" states="draft" string="Iniciar Inventario" type="object" class="oe_highlight" />
+              <button name="action_open_inventory_lines" states="confirm" string="Continuar Inventario" type="object" class="oe_highlight" />
+              <!--<button name="action_validate" string="Validar Inventario" type="object" attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('line_ids', '!=', [])]}" />-->
+              <!--<button name="action_validate" string="Validar Inventario" type="object" attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('line_ids', '=', [])]}" class="oe_highlight" />-->
+              <!--<button name="action_print" string="Print Count Sheet" type="object" attrs="{'invisible': [('state', '=', 'draft')]}" groups="stock.group_stock_user"/>-->
+              <!--<button name="action_cancel_draft" states="cancel" string="Set to Draft" type="object"/>-->
+              <!--<button name="action_cancel_draft" states="confirm" string="Cancel Inventory" type="object"-->
+                  <!--confirm="If you cancel this inventory adjustment, all its inventory adjustment lines will be lost. Are you sure you want to discard it ?"/>-->
+              <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+            <!--<field name="company_id" invisible="1" />-->
+          </header>
+          <sheet>
+            <div class="oe_title">
+              <label for="name" string="Referencia de inventario" class="oe_edit_only" />
+              <h1>
+                <field name="name" placeholder="Ej: Inventario Anual" style="width: 75%;"/>
+              </h1>
+            </div>
+            <group col="4">
+              <field name="location_ids" placeholder="Seleccione" widget="many2many_tags"/>
+              <field name="product_ids" placeholder="Seleccione" widget="many2many_tags" />
+            </group>
+            <group string="Lineas de Inventario">
+              <field name="line_ids"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+      
+    <record id="view_stock_inventory_tree" model="ir.ui.view">
+      <field name="name">tr.stock.inventory.tree</field>
+      <field name="model">tr.stock.inventory</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Inventory">
+          <field name="name" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="action_stock_inventory" model="ir.actions.act_window">
+      <field name="name">Ajustes de Inventario</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">tr.stock.inventory</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_stock_inventory_tree"/>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Crear Ajuste de Inventario
+        </p>
+      </field>
+    </record>
+
+    <menuitem 
+      id="menu_toolroom_inventory"
+      name="Ajustes de Inventario"
+      parent="tbps_toolroom.menu_operations"
+      action="tbps_toolroom.action_stock_inventory"
+      sequence="5"
+      groups="base.group_system"
+    />
+
+  </data>
+</odoo>

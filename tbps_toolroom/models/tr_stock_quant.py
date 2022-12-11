@@ -17,15 +17,17 @@ class TrStockQuant(models.Model):
 
     
     name = fields.Char(
-        string="Nombre"
+        string="Nombre",
+        required=True
     )
     product_id = fields.Many2one(
         "product.product",
-        string="Herramienta/Equipo"
+        string="Herramienta/Equipo",
+        required=True
     )
     product_tmpl_id = fields.Many2one(
         "product.template",
-        string="Herramienta/Equipo"
+        string="Herramienta/Equipo",
     )
     product_uom_id = fields.Many2one(
         "uom.uom",
@@ -37,11 +39,13 @@ class TrStockQuant(models.Model):
     )
     location_id = fields.Many2one(
         "tr.stock.location",
-        string="Lugar"
+        string="Lugar",
+        required=True
     )
     lot_id = fields.Many2one(
         "tr.stock.production.lot",
-        string="N° de serie"
+        string="N° de serie",
+        required=True
     )
     in_date = fields.Date(
         string="Fecha de entrada"
@@ -56,7 +60,7 @@ class TrStockQuant(models.Model):
         string="A mano",
         default=False
     )
-    owner_id = fields.Many2one(
+    employee_id = fields.Many2one(
         "hr.employee",
         string="Empleado"
     )

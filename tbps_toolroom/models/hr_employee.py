@@ -12,16 +12,28 @@ from odoo import models, fields, api, _
 import logging
 _logger = logging.getLogger(__name__)
 
-class HrEmployeeBase(models.Model):
-    _inherit = 'hr.employee.base'
+
+class HrEmployeePublic(models.Model):
+    _inherit = 'hr.employee.public'
 
 
-    equipment_id = fields.One2many(
-        "",
+    tools_ids = fields.One2many(
+        "product.product",
         "employee_id",
-        string="Equipos/Herramientas"
+        string="Equipos/Herramientas",
     )
-    
 
+
+
+# class HrEmployeePrivate(models.Model):
+    # _inherit = 'hr.employee'
+
+
+    # tools_ids = fields.One2many(
+        # "product.product",
+        # "employee_id",
+        # string="Equipos/Herramientas"
+    # )
+    
 
 

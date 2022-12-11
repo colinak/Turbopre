@@ -44,7 +44,7 @@
 
     <menuitem 
       id="menu_toolroom_equipment_setting"
-      name="Setting"
+      name="Ajustes"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
       groups="base.group_system"
       sequence="5"

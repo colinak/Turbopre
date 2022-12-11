@@ -21,7 +21,7 @@ class TrStockWarehouse(models.Model):
 
 
     name = fields.Char(
-        string="Nombre",
+        string="Almacén",
         index=True,
         required=True
     )

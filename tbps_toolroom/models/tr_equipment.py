@@ -20,3 +20,11 @@ class TrProductTemplate(models.Model):
     # _rec_name = 'name'
 
 
+    type = fields.Selection(selection_add=[
+        ('product', 'Almacenable')
+        ], 
+        tracking=True, 
+        default="product",
+        ondelete={'product': 'set default'}
+    )
+

@@ -9,7 +9,13 @@
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Toolroom Location">
-          <field string="Nombre" name="name"/>
+          <field name="complete_name" string="Ubicación Stock"/>
+          <filter name="in_location" string="Interno" domain="[('usage', '=', 'internal')]" help="Internal Locations"/>
+          <filter name="external" string="Externo" domain="[('usage', '=', 'external')]" help="External Locations"/>
+          <filter name="customer" string="Cliente" domain="[('usage', '=', 'customer')]" help="Customer Locations"/>
+          <filter name="supplier" string="Proveedor" domain="[('usage', '=', 'supplier')]" help="Vendor Locations"/>
+          <separator/>
+          <filter string="Archivado" name="inactive" domain="[('active','=',False)]"/>
         </search>
       </field>
     </record>
@@ -35,11 +41,12 @@
               <label for="location_id" string="Ubicación padre" class="oe_edit_only" />
               <h2>
                 <field name="location_id" style="width: 30%;"/>
-                <field name="company_id" invisible="1" style="width: 30%;"/>
+                <field name="company_id" invisible="1"/>
               </h2>
             </div>
             <group>
               <group string="Información Adicional">
+                <field name="warehouse_id"/>
                 <field name="usage" string="Tipo de ubicación" />
                 <field name="scrap_location" string="¿Es una ubicación de chatarra?" />
               </group>
@@ -79,9 +86,23 @@
       <field name="res_model">tr.stock.location</field>
       <field name="view_mode">tree,form</field>
       <field name="view_id" ref="view_toolroom_location_tree" />
+      <field name="search_view_id" ref="view_toolroom_location_search"/>
+      <field name="context">{'search_default_in_location':1}</field>
       <field name="help" type="html">
         <p class="o_view_nocontent_smiling_face">
           Crear Nueva Ubicación
+        </p>
+        <p>
+          Define sus ubicaciones para reflejar la estructura de su almacén y
+          su organización. El sistema es capaz de gestionar ubicaciones (
+          almacenes, estanterías, contenedores, etc.), ubicaciones de clientes 
+          y proveedores e incluso ubicaciones virtuales.
+        </p><p>
+          Cada operación de existencia mueve las herramientas de una ubicación a 
+          otra. Por ejemplo, si presta una herramienta de su stock principal, 
+          se moverá de de dicha ubicación a una ubicación que usted seleccione. 
+          Se pueden realizar informes por ubicaciones físicas, de terceros o 
+          virtuales.
         </p>
       </field>
     </record>

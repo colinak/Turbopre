@@ -26,6 +26,11 @@ class TrStockProductionLot(models.Model):
         "res.company",
         string="Compañia"
     )
+    location_id = fields.Many2one(
+        "tr.stock.location",
+        string="Ubicacion",
+        required=True
+    )
     product_id = fields.Many2one(
         "product.product",
         string="Producto",
@@ -37,7 +42,8 @@ class TrStockProductionLot(models.Model):
         related="product_id.uom_id"
     )
     product_qty = fields.Integer(
-        string="Cantidad"
+        string="Cantidad",
+        default=1
     )
     quant_ids = fields.One2many(
         "tr.stock.quant",
