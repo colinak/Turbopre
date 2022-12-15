@@ -14,10 +14,6 @@ _logger = logging.getLogger(__name__)
 
 class ToolRoomTools(models.Model):
     _inherit = 'product.product'
-    # _name = 'toolroom.tools'
-    # _description = 'Toolroom Tools'
-    # _order = 'name'
-    # _rec_name = 'name'
 
 
 

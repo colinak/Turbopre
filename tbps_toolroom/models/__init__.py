@@ -20,4 +20,6 @@ from . import tr_tools
 from . import tr_stock_production_lot
 from . import hr_employee
 from . import tr_stock_inventory
+from . import tr_stock_move
+from . import tr_stock_move_line
 # from . import tr_stock_scrap

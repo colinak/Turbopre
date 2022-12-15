@@ -39,12 +39,22 @@
               </h1>
             </div>
             <group col="4">
-              <field name="location_ids" placeholder="Seleccione" widget="many2many_tags"/>
-              <field name="product_ids" placeholder="Seleccione" widget="many2many_tags" />
+              <field name="location_ids" widget="many2many_tags" placeholder="Seleccione" />
+              <field name="product_ids" widget="many2many_tags" placeholder="Seleccione" />
             </group>
-            <group string="Lineas de Inventario">
-              <field name="line_ids"/>
-            </group>
+            <notebook>
+              <page string="Lineas de Inventario">
+                <field name="line_ids">
+                  <tree>
+                    <field name="product_id"/>
+                    <field name="location_id"/>
+                    <field name="prod_lot_id"/>
+                    <field name="theoretical_qty"/>
+                    <field name="product_qty"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>

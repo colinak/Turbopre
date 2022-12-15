@@ -50,6 +50,14 @@
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Product">
+          <header>
+            <button string="Configurar variantes"/>
+                <!--type="object" -->
+                <!--name="action_update_quantity_on_hand" -->
+            <button string="Actualizar la cantidad" 
+              attrs="{'invisible': [('type', '!=', 'product')]}"/>
+            <!--<button string="Reabastecer" type="action" name="253" context="{'default_product_tmpl_id': id}" attrs="{'invisible': [('type', '!=', 'product')]}"/>-->
+          </header>
           <sheet>
             <field name='active' invisible='1'/>
             <field name='product_variant_count' invisible='1'/>
@@ -59,6 +67,22 @@
               <button name="207" type="action" icon="fa-sitemap" class="oe_stat_button" attrs="{'invisible': [('product_variant_count', '&lt;=', 1)]}" groups="product.group_product_variant">
                 <field string="Variantes" name="product_variant_count" widget="statinfo"/>
               </button>
+              <!--type="object" name="action_open_quants"-->
+              <button  attrs="{'invisible':[('type', '!=', 'product')]}" class="oe_stat_button" icon="fa-cubes">
+                <div class="o_field_widget o_stat_info">
+                  <span class="o_stat_value" widget="statinfo">
+                    <!--<field name="qty_available" widget="statinfo" nolabel="1" class="mr4"/>-->
+                    <field name="uom_name"/>
+                  </span>
+                  <span class="o_stat_text">A Mano</span>
+                </div>
+              </button>
+              <!--type="object" name="action_view_stock_move_lines"-->
+              <!--groups="stock.group_stock_user"-->
+              <button string="Movimientos" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}" class="oe_stat_button" icon="fa-exchange" />
+              <!--type="object" name="action_open_product_lot"-->
+              <!--groups="stock.group_production_lot"-->
+              <button string="Números de Serie" class="oe_stat_button" icon="fa-bars" />
             </div>
             <widget name="web_ribbon" title="Archivar" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <field name="id" invisible="True"/>

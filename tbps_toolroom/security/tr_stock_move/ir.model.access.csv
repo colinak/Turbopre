@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_tr_stock_move_system,tr.stock.move.system,model_tr_stock_move,base.group_system,1,1,1,1
+acs_tr_stock_move_user,tr.stock.move.user,model_tr_stock_move,base.group_user,1,1,1,1
+acs_tr_stock_move_line_system,tr.stock.move.line.system,model_tr_stock_move_line,base.group_system,1,1,1,1
+acs_tr_stock_move_line_user,tr.stock.move.line.user,model_tr_stock_move_line,base.group_user,1,1,1,1
+
