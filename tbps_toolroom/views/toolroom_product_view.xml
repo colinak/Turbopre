@@ -2,33 +2,103 @@
 <odoo>
   <data>
 
-    <!--<record id="view_toolroom_tools_tree" model="ir.ui.view">-->
-      <!--<field name="name">toolroom.tools.tree</field>-->
-      <!--<field name="model">product.product</field>-->
-      <!--<field name="type">tree</field>-->
-      <!--<field name="arch" type="xml">-->
-        <!--<tree string="Equipment">-->
-          <!--<field name="name" string="Name" />-->
-          <!--<field name="type" />-->
-          <!--<field name="category_id" />-->
-          <!--<field name="default_code" />-->
-          <!--<field name="uom_id" />-->
-          <!--<field name="barcode" />-->
-        <!--</tree>-->
-      <!--</field>-->
-    <!--</record>-->
+    <record id="inherit_product_product_form_view" model="ir.ui.view">
+      <field name="name">inherit.product.product.form</field>
+      <field name="model">product.product</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Product">
+          <header>
+          </header>
+          <sheet>
+            <field name="id" invisible="True"/>
+            <field name='active' invisible='1'/>
+            <widget name="web_ribbon" title="Archivar" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+            <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+            <div class="oe_title">
+              <label class="oe_edit_only" for="name" string="Descripción"/>
+              <h1>
+                <field name="name" placeholder="Nombre del Equipo o Herramienta" style="width: 80%;"/>
+              </h1>
+              <div name="options" groups="base.group_user">
+                <div>
+                  <field name="product_tmpl_id" class="oe_inline" readonly="1" invisible="1" attrs="{'required': [('id', '!=', False)]}"/>
+                  <field name="product_template_attribute_value_ids" widget="many2many_tags" readonly="1" />
+                  <!--<field name="sale_ok"/>-->
+                  <!--<label for="sale_ok"/>-->
+                </div>
+                <!--<div>-->
+                  <!--<field name="purchase_ok"/>-->
+                  <!--<label for="purchase_ok"/>-->
+                <!--</div>-->
+              </div>
+            </div>
+            <notebook>
+              <page string="Información General" name="general_information">
+                <group>
+                  <group name="group_general">
+                    <field name="active" invisible="1"/>
+                    <field name="type"/>
+                    <field name="categ_id" string="Categoría de Producto"/>
+                    <field name="default_code"/>
+                    <field name="barcode"/>
+                  </group>
+                </group>
+                <group string="Notas internas">
+                  <field name="description" nolabel="1" placeholder="Esta nota es solo para fines internos."/>
+                </group>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="inherit_product_product_tree_view" model="ir.ui.view">
+      <field name="name">toolroom.tools.tree</field>
+      <field name="model">product.product</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Product Variants" multi_edit="1" duplicate="false" sample="1">
+          <field name="name" string="Nombre" readonly="1"/>
+          <field name="default_code" optional="show" readonly="1"/>
+          <field name="barcode" optional="hide" readonly="1"/>
+          <field name="product_template_attribute_value_ids" widget="many2many_tags" groups="product.group_product_variant" readonly="1"/>
+          <field name="company_id" groups="base.group_multi_company" optional="hide" readonly="1"/>
+          <field name="type" optional="hide" readonly="1"/>
+          <field name="categ_id" optional="hide"/>
+          <field name="uom_id" options="{'no_open': True, 'no_create': True}" optional="show" readonly="1"/>
+          <field name="product_tmpl_id" invisible="1" readonly="1"/>
+          <field name="active" invisible="1"/>
+        </tree>
+      </field>
+    </record>
 
     <record id="action_toolroom_tools" model="ir.actions.act_window">
       <field name="name">Variantes de Equipamientos</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">product.product</field>
       <field name="view_mode">tree,form</field>
-      <!--<field name="view_id" ref="view_toolroom_tools_tree" />-->
+      <field name="view_id" ref="inherit_product_product_tree_view" />
       <field name="help" type="html">
         <p class="o_view_nocontent_smiling_face">
           Crear Nueva Variante de Equipamientos
         </p>
       </field>
+    </record>
+      
+    <record id="inherit_product_product_action_tree_view" model="ir.actions.act_window.view">
+      <field eval="1" name="sequence"/>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="inherit_product_product_tree_view"/>
+      <field name="act_window_id" ref="action_toolroom_tools"/>
+    </record>
+
+    <record id="inherit_product_product_action_form_view" model="ir.actions.act_window.view">
+      <field eval="2" name="sequence"/>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="inherit_product_product_form_view"/>
+      <field name="act_window_id" ref="action_toolroom_tools"/>
     </record>
   
     <menuitem 
@@ -37,7 +107,7 @@
       parent="tbps_toolroom.menu_toolroom_equipment"
       action="tbps_toolroom.action_toolroom_tools"
       sequence="2"
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
     />
 
   </data>

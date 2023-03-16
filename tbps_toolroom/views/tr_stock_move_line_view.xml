@@ -146,6 +146,7 @@
       action="tr_stock_move_line_action" 
       id="tr_stock_move_line_menu" 
       parent="tbps_toolroom.menu_toolroom_informed"
+      groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
       sequence="4"
     />
 

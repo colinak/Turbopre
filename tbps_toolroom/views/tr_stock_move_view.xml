@@ -174,7 +174,7 @@
       action="tr_stock_move_action" 
       parent="tbps_toolroom.menu_toolroom_informed"
       sequence="4" 
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
     />
       <!--groups="base.group_no_one"-->
 

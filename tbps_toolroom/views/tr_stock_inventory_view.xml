@@ -91,7 +91,7 @@
       parent="tbps_toolroom.menu_operations"
       action="tbps_toolroom.action_stock_inventory"
       sequence="5"
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
     />
 
   </data>

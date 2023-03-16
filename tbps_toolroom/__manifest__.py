@@ -22,6 +22,7 @@
     """,
     'depends': [
         'base',
+        'mail',
         'product',
         'uom',
         'hr'
@@ -29,6 +30,7 @@
     'data': [
         "data/product.category.csv",
         "data/tr.stock.location.csv",
+        "security/tools_security.xml",
         "security/tr_warehouse/ir.model.access.csv",
         "security/tr_location/ir.model.access.csv",
         "security/tr_stock_picking/ir.model.access.csv",
@@ -37,7 +39,6 @@
         "security/tr_stock_inventory/ir.model.access.csv",
         "security/tr_stock_quant/ir.model.access.csv",
         "security/tr_stock_production_lot/ir.model.access.csv",
-        # "security/tr_check_availability/ir.model.access.csv",
         "views/menu_setting_view.xml",
         "views/tr_warehouse_view.xml",
         "views/tr_stock_location_view.xml",

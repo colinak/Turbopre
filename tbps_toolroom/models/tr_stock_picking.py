@@ -80,3 +80,4 @@ class TrStockPicking(models.Model):
     note = fields.Text(
         string="Notas"
     )
+    # active = fields.Boolenam("Activo")

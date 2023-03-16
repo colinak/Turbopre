@@ -8,90 +8,95 @@
       web_icon="tbps_toolroom,static/description/icon.png"
       sequence="100"
     />
+      <!--groups="group_tools_system,group_tools_manager,group_tools_user"-->
 
     <menuitem 
       id="toolroom_inventory_summary"
       name="Información General"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
       sequence="1"
-      groups="base.group_system"
     />
+      <!--groups="group_tools_system,group_tools_manager,group_tools_user"-->
 
     <menuitem 
       id="menu_operations"
       name="Operaciones"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
       sequence="2"
-      groups="base.group_system"
     />
+      <!--groups="group_tools_system,group_tools_manager,group_tools_user"-->
 
+    <!--name="Equipos y Herramientas"-->
     <menuitem 
       id="menu_toolroom_equipment"
       name="Equipamientos"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
       sequence="3"
-      groups="base.group_system"
     />
-    <!--name="Equipos y Herramientas"-->
+      <!--groups="group_tools_system,group_tools_manager,group_tools_user"-->
 
     <menuitem 
       id="menu_toolroom_informed"
       name="Informes"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
       sequence="4"
-      groups="base.group_system"
     />
+      <!--groups="group_tools_system,group_tools_manager"-->
 
     <menuitem 
       id="menu_toolroom_equipment_setting"
       name="Ajustes"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager"
       sequence="5"
     />
+      <!--groups="group_tools_system,group_tools_manager"-->
 
     <menuitem 
       id="menu_tools_equipment_setting"
       name="Equipos y Herramientas"
       parent="tbps_toolroom.menu_toolroom_equipment_setting"
+      groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
       sequence="3"
-      groups="base.group_system"
     />
 
     <menuitem 
       id="menu_toolroom_warehouse_location"
       name="Gestión de Almacenes"
       parent="tbps_toolroom.menu_toolroom_equipment_setting"
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager"
       sequence="2"
     />
+      <!--groups="group_tools_system,group_tools_manager,group_tools_user"-->
   
     <!--Units of Measure-->
     <menuitem 
       id="menu_uom_setting"
       name="Unidad de Medida"
       parent="tbps_toolroom.menu_toolroom_equipment_setting"
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager"
       sequence="15"
     />
+      <!--groups="group_tools_system,group_tools_manager"-->
 
     <menuitem 
       id="menu_uom_category_udm"
       name="Categorías UdM"
       parent="tbps_toolroom.menu_uom_setting"
       action="uom.product_uom_categ_form_action"
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager"
       sequence="1"
     />
+      <!--groups="group_tools_system,group_tools_manager"-->
 
     <menuitem 
       id="menu_uom"
       name="Unidad de Medida"
       parent="tbps_toolroom.menu_uom_setting"
       action="uom.product_uom_form_action"
-      groups="base.group_system"
       sequence="2"
     />
+      <!--groups="group_tools_system,group_tools_manager"-->
 
   </data>
 </odoo>

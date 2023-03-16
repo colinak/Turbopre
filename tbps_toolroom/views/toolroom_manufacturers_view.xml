@@ -95,7 +95,7 @@
       parent="tbps_toolroom.menu_toolroom_equipment_setting"
       action="tbps_toolroom.action_toolroom_manufacturers"
       sequence="2"
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager"
     />
   
   

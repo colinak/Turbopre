@@ -113,7 +113,7 @@
       parent="tbps_toolroom.menu_toolroom_warehouse_location"
       action="tbps_toolroom.action_toolroom_location"
       sequence="2"
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager"
     />
   
   </data>

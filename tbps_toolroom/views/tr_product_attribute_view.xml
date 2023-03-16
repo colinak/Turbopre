@@ -77,7 +77,7 @@
       parent="tbps_toolroom.menu_tools_equipment_setting"
       action="product.attribute_action"
       sequence="1"
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager"
     />
   
   </data>

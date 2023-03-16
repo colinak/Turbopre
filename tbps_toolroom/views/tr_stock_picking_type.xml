@@ -86,7 +86,7 @@
       parent="tbps_toolroom.menu_toolroom_warehouse_location"
       action="tbps_toolroom.action_tr_stock_picking_type"
       sequence="3"
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
     />
   </data>
 </odoo>

@@ -5,7 +5,7 @@
     <!--view search type operations-->
     <record id="view_tr_stock_production_lot_search" model="ir.ui.view">
       <field name="name">tr.stock.production.lot.search</field>
-      <field name="model">stock.production.lot</field>
+      <field name="model">tr.stock.production.lot</field>
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Lotes/Números de serie">
@@ -17,7 +17,7 @@
     <!--view form type operations-->
     <record id="view_tr_stock_production_lot_form" model="ir.ui.view">
       <field name="name">tr.stock.production.lot.form</field>
-      <field name="model">stock.production.lot</field>
+      <field name="model">tr.stock.production.lot</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Lotes/Números de serie">
@@ -41,7 +41,7 @@
     <!--view tree type operations-->
     <record id="view_tr_stock_production_lot_tree" model="ir.ui.view">
       <field name="name">tr.stock.production.lot.tree</field>
-      <field name="model">stock.production.lot</field>
+      <field name="model">tr.stock.production.lot</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Lotes/Números de serie">
@@ -56,7 +56,7 @@
     <record id="action_tr_stock_production_lot" model="ir.actions.act_window">
       <field name="name">Lotes/Números de serie</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">stock.production.lot</field>
+      <field name="res_model">tr.stock.production.lot</field>
       <field name="view_mode">tree,form</field>
       <field name="view_id" ref="view_tr_stock_production_lot_tree" />
       <field name="help" type="html">
@@ -72,7 +72,7 @@
       parent="tbps_toolroom.menu_toolroom_equipment"
       action="tbps_toolroom.action_tr_stock_production_lot"
       sequence="3"
-      groups="base.group_system"
+      groups="group_tools_system,group_tools_manager,group_tools_user"
     />
 
   </data>

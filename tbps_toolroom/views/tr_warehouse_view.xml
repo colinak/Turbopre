@@ -40,8 +40,6 @@
               <field name="code" string="Nombre Corto" placeholder="Ej. Stock" />
               <field name="partner_id" string="Dirección"/>
               <field name="company_id" invisible="1" />
-              <field name="lot_stock_id" />
-              <field name="virtual_location_id" />
               <field name="lot_stock_id" invisible="1"/>
               <field name="virtual_location_id" invisible="1"/>
             </group>
@@ -90,7 +88,7 @@
       parent="tbps_toolroom.menu_toolroom_warehouse_location"
       action="tbps_toolroom.action_toolroom_warehouse"
       sequence="1"
-      groups="base.group_system"
+      groups="base.group_system,group_tools_system,group_tools_manager"
     />
   
   </data>
