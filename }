@@ -92,16 +92,13 @@
       <field name="name">Product Variants</field>
       <field name="res_model">product.product</field>
       <field name="view_mode">tree,form</field>
+      <field name="view_mode">tree,form</field>
       <!--<field name="view_mode">tree,form,kanban</field>-->
-      <field name="domain">[('product_tmpl_id', '=', active_id)]</field>
-      <field name="view_ids"
-          eval="[(5, 0, 0),
-          (0, 0, {'view_mode': 'tree', 'view_id': ref('tbps_toolroom.inherit_product_product_tree_view')}),
-          (0, 0, {'view_mode': 'form', 'view_id': ref('tbps_toolroom.inherit_product_product_form_view')})]" />
-      <field name="context">{
-          'default_product_tmpl_id': active_id,
-          'search_default_active': 1,
-      }</field>
+      <!--<field name="domain">[('product_tmpl_id', '=', active_id)]</field>-->
+      <!--<field name="context">{-->
+          <!--'default_product_tmpl_id': active_id,-->
+          <!--'search_default_active': 1,-->
+      <!--}</field>-->
     </record>
       
     <record id="inherit_product_product_action_tree_view" model="ir.actions.act_window.view">
