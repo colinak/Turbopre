@@ -27,12 +27,12 @@ class TrStockPickingType(models.Model):
     )
     sequence_code = fields.Char('Code', required=True)
     default_location_src_id = fields.Many2one(
-        'stock.location', 
+        'tr.stock.location', 
         "Ubicación de origen predeterminada",
         check_company=True,
         help="Esta es la ubicación de origen predeterminada cuando crea un picking manualmente con este tipo de operación. ")
     default_location_dest_id = fields.Many2one(
-        'stock.location',
+        'tr.stock.location',
         "Ubicación destino prederterminada",
         check_company=True,
         help="Esta es la ubicación destino predeterminada cuando crea un picking manualmente con este tipo de operación. ")

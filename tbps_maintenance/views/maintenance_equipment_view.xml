@@ -206,8 +206,12 @@
       <field name="model">maintenance.equipment</field>
       <field name="inherit_id" ref="maintenance.hr_equipment_view_tree"/>
       <field name="arch" type="xml">
-        <field name="employee_id" position="after">
-          <field name="location" />
+        <field name="category_id" position="replace" />
+        <field name="message_needaction" position="before">
+          <field name="category_id" />
+        </field>
+        <field name="name" position="after">
+          <field name="assign_to" />
         </field>
         <field name="assign_date" position="after">
           <field name="brand_id" />
@@ -217,6 +221,23 @@
         <xpath expr="//tree[1]" position="inside">
           <field name="depto_responsible_id" optional="hide" />
         </xpath>
+      </field>
+    </record>
+
+    <record id="inherit_maintenance_equipment_view_tree_hr" model="ir.ui.view">
+      <field name="name">inherit.maintenance.equipment.view.tree.hr</field>
+      <field name="model">maintenance.equipment</field>
+      <field name="inherit_id" ref="hr_maintenance.maintenance_equipment_view_tree_inherit_hr"/>
+      <field name="arch" type="xml">
+        <field name="employee_id" position="attributes">
+          <attribute name="optional">hide</attribute>
+        </field>
+        <field name="department_id" position="attributes">
+          <attribute name="optional">hide</attribute>
+        </field>
+        <field name="employee_id" position="after">
+          <field name="location" />
+        </field>
       </field>
     </record>
 

@@ -2,5 +2,67 @@
 <odoo>
   <data>
 
+    <record id="view_stock_inventory_line_search" model="ir.ui.view">
+      <field name="name">tr.stock.inventory.search</field>
+      <field name="model">tr.stock.inventory.line</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Inventory Line">
+          <!--<field name="name" />-->
+          <!--<field name="display_name" invisible="True"/>-->
+          <field name="product_id" />
+          <field name="location_id" />
+          <field name="prod_lot_id" />
+          <!--<field name="package_id" />-->
+          <group  expand='0' string='Group by...'>
+              <filter string='Ubicación' name="location" domain="[]" context="{'group_by' : 'location_id'}"/>
+              <!--<filter string='Packaging' name="packaging" domain="[]" context="{'group_by' : 'package_id'}"/>-->
+              <filter string='Product' name="product" domain="[]" context="{'group_by' : 'product_id'}"/>
+              <filter string='Product Category' name="product_category" domain="[]" context="{'group_by' : 'category_id'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="view_stock_inventory_line_tree" model="ir.ui.view">
+      <field name="name">tr.stock.inventory.tree</field>
+      <field name="model">tr.stock.inventory.line</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Inventory Line">
+          <field name="display_name" invisible="True"/>
+          <field name="product_id" />
+          <field name="location_id" />
+          <field name="prod_lot_id" />
+          <field name="theoretical_qty" />
+          <field name="product_qty" />
+          <field name="difference_qty" />
+          <field name="product_uom_id" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="view_stock_inventory_line_from" model="ir.ui.view">
+      <field name="name">tr.stock.inventory.form</field>
+      <field name="model">tr.stock.inventory.line</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Inventory Line">
+          <sheet>
+            <group name="main">
+              <field name="display_name" invisible="True"/>
+              <field name="product_id" />
+              <field name="location_id" />
+              <field name="prod_lot_id" />
+              <field name="theoretical_qty" />
+              <field name="product_qty" />
+              <field name="difference_qty" />
+              <field name="product_uom_id" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
   </data>
 </odoo>

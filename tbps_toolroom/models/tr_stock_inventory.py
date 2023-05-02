@@ -28,47 +28,23 @@ class TrStockInventory(models.Model):
         readonly=True,
         default=fields.Datetime.now,
     )
-    location_ids = fields.Many2many(
-        'tr.stock.location', 
-        string='Ubicaciones',
-        readonly=True, 
-        # check_company=True,
-        states={'draft': [('readonly', False)]},
-        # domain="[('usage', 'in', ['internal', 'external'])]"
-        # domain="[('usage', '=', 'internal')]"
+    activity_user_id = fields.Many2one(
+        "res.users",
+        string="Usuario responsable",
+        default=lambda self: self.env.user
     )
-    # location_ids = fields.One2many(
-        # "tr.stock.location",
-        # "inventory_id",
-        # string=u"Ubicaciones",
-        # states={'done': [('readonly', True)]}
-    # )
     line_ids = fields.One2many(
         "tr.stock.inventory.line",
         "inventory_id",
         string="Lineas de Inventario",
-        states={'done': [('readonly', True)]}
-    )
-    product_ids = fields.Many2many(
-        'product.product', 
-        string='Productos', 
-        # check_company=True,
-        domain="[('type', '=', 'product')]", 
-        readonly=True,
-        states={'draft': [('readonly', False)]},
-        help="Especifique Productos para enfocar su inventario en Productos particulares.")
-    # product_ids = fields.One2many(
-        # "product.product",
-        # "inventory_id",
-        # string="Productos"
-        # domain=[('type', '=', 'product')]
-    # )
-    # move_ids = fields.One2many(
-        # "tr.stock.move",
-        # "inventory_id",
-        # string="Movimientos creados",
         # states={'done': [('readonly', True)]}
-    # )
+    )
+    move_ids = fields.One2many(
+        "tr.stock.move",
+        "inventory_id",
+        string="Movimientos creados",
+        # states={'done': [('readonly', True)]}
+    )
     state = fields.Selection(
         selection=[
             ('draft', 'Borrador'),
@@ -79,6 +55,29 @@ class TrStockInventory(models.Model):
         string="Stado",
         default="draft"
     )
+    company_id = fields.Many2one(
+        'res.company', 
+        string="Company",
+        readonly=True, index=True, required=True,
+        # states={'draft': [('readonly', False)]},
+        default=lambda self: self.env.company
+    )
+    location_ids = fields.Many2many(
+        'tr.stock.location', 
+        string='Ubicaciones',
+        readonly=True, 
+        # check_company=True,
+        # states={'draft': [('readonly', False)]},
+        domain="[('company_id', '=', company_id), ('usage', 'in', ['internal'])]"
+    )
+    product_ids = fields.Many2many(
+        'product.product', 
+        string='Productos', 
+        # check_company=True,
+        domain="[('type', '=', 'product')]", 
+        # readonly=True,
+        # states={'draft': [('readonly', False)]},
+        help="Especifique Productos para enfocar su inventario en Productos particulares.")
 
 
     def action_start(self):
@@ -100,6 +99,12 @@ class TrStockInventoryLine(models.Model):
 
     name = fields.Char(
         string="Nombre"
+    )
+    display_name = fields.Char(
+        string="Mostrar nombre"
+    )
+    inventory_date = fields.Datetime(
+        string="Fecha del inventario"
     )
     product_id = fields.Many2one(
         "product.product",
@@ -139,7 +144,12 @@ class TrStockInventoryLine(models.Model):
     )
     location_id = fields.Many2one(
         "tr.stock.location",
-        string="Lugar"
+        string="Ubicación"
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        string=u"Compañia",
+        related="inventory_id.company_id"
     )
     state = fields.Selection(
         string="Estado",
