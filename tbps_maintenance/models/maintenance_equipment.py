@@ -103,13 +103,13 @@ class MaintenanceEquipment(models.Model):
                 equipment.department_id = False
                 equipment.other = ""
                 equipment.employee_id = equipment.employee_id
-                equipment.assign_to = "Asignado a: " + equipment.employee_id.name
+                equipment.assign_to = "Asignado a: " + str(equipment.employee_id.name)
                 equipment.assign_date = fields.Date.context_today(self)
             elif equipment.equipment_assign_to == 'department':
                 equipment.employee_id = False
                 equipment.other = ""
                 equipment.department_id = equipment.department_id
-                equipment.assign_to = "Asignado a: " + equipment.department_id.name
+                equipment.assign_to = "Asignado a: " + str(equipment.department_id.name)
                 equipment.assign_date = fields.Date.context_today(self)
             elif equipment.equipment_assign_to == 'unassigned':
                 equipment.employee_id = False
