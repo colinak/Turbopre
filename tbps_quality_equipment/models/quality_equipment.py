@@ -72,7 +72,7 @@ class QualityEquipment(models.Model):
     status_id = fields.Many2one(
         'quality.status',
         string="Status",
-        compute="_compute_calibration_frequency",
+        # compute="_compute_calibration_frequency",
         store=True,
         help="Calibration Status"
     )
@@ -151,15 +151,15 @@ class QualityEquipment(models.Model):
             self.expiration_date = ""
 
 
-    @api.depends('calibration_verification_ids')
-    def _compute_calibration_frequency(self):
-        _logger.info("###############################################")
-        _logger.info("SELF: " + str(self.calibration_verification_ids))
-        _logger.info("IDS: " + str(self.calibration_verification_ids[-1]))
-        if self.calibration_verification_ids:
-            _logger.info("SELF: " + str(self.calibration_verification_ids))
-            for rec in self:
-                _logger.info("REC: "+ str(rec))
+    # @api.depends('calibration_verification_ids')
+    # def _compute_calibration_frequency(self):
+        # _logger.info("###############################################")
+        # _logger.info("SELF: " + str(self.calibration_verification_ids))
+        # _logger.info("IDS: " + str(self.calibration_verification_ids[-1]))
+        # if self.calibration_verification_ids:
+            # _logger.info("SELF: " + str(self.calibration_verification_ids))
+            # for rec in self:
+                # _logger.info("REC: "+ str(rec))
                 # cal_verif = rec.calibration_verification_ids[-1]
                 # rec.calibration_date = cal_verif.date_execute
                 # rec.expiration_date = cal_verif.date_expiration
