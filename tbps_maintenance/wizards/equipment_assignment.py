@@ -57,7 +57,7 @@ class EquipmanetAssignment(models.TransientModel):
     )
     date_assign = fields.Date(
         string="Assigned Date",
-        # compute=_compute_date,
+        compute=_compute_date,
         readonly=False
     )
     equipment_ids = fields.Many2many(
