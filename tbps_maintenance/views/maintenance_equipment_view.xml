@@ -156,8 +156,8 @@
         <field name="serial_no" position="attributes">
           <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
         </field>
-        <field name="partner_id" position="attributes">
-          <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
+        <field name="partner_id" position="replace">
+          <field name="identifier" attrs="{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}" />
         </field>
         <field name="effective_date" position="attributes">
           <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>

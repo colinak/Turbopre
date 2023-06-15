@@ -94,7 +94,16 @@ class MaintenanceEquipment(models.Model):
     )
     assign_to = fields.Char(
         string="Asignado a",
-        compute="_compute_equipment_assign")
+        compute="_compute_equipment_assign"
+    )
+    assign_date = fields.Date(
+        default=fields.Date.context_today(self)
+    )
+    identifier = fields.Char(
+        string="Identificador"
+        help="Nombre del equipo en el dominio, si es laptop o desktop"
+    )
+
 
     @api.depends('equipment_assign_to')
     def _compute_equipment_assign(self):
@@ -104,25 +113,25 @@ class MaintenanceEquipment(models.Model):
                 equipment.other = ""
                 equipment.employee_id = equipment.employee_id
                 equipment.assign_to = "Asignado a: " + str(equipment.employee_id.name)
-                equipment.assign_date = fields.Date.context_today(self)
+                # equipment.assign_date = fields.Date.context_today(self)
             elif equipment.equipment_assign_to == 'department':
                 equipment.employee_id = False
                 equipment.other = ""
                 equipment.department_id = equipment.department_id
                 equipment.assign_to = "Asignado a: " + str(equipment.department_id.name)
-                equipment.assign_date = fields.Date.context_today(self)
+                # equipment.assign_date = fields.Date.context_today(self)
             elif equipment.equipment_assign_to == 'unassigned':
                 equipment.employee_id = False
                 equipment.department_id = False
                 equipment.assign_date = False
                 equipment.other = ""
                 equipment.assign_to = "Sin Asignar"
-                equipment.assign_date = fields.Date.context_today(self)
+                # equipment.assign_date = fields.Date.context_today(self)
             else:
                 equipment.employee_id = False
                 equipment.department_id = False
                 equipment.other = equipment.other
-                equipment.assign_date = fields.Date.context_today(self)
+                # equipment.assign_date = fields.Date.context_today(self)
     
 
     @api.onchange('equipment_assign_to')
