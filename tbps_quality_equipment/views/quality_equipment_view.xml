@@ -302,7 +302,7 @@
     <menuitem 
       id="menu_quality_equipment_title"
       name="Equipment"
-      parent="tbps_quality_equipment.menu_quality_equipment_root"
+      parent="tbps_quality_equipment.menu_quality_equipment"
       action="tbps_quality_equipment.action_quality_equipment"
       sequence="1"
       groups="base.group_system"

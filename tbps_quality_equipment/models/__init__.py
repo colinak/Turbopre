@@ -14,5 +14,6 @@ from . import quality_equipment_manufacturers
 from . import quality_equipment_clasification
 from . import quality_traceability_equipment
 from . import quality_activity_type
-from . import assignment_equipment
+from . import quality_location
+from . import quality_loans_returns
 from . import quality_equipment

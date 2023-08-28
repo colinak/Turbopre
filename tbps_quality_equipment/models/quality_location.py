@@ -9,23 +9,19 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
-
-class QualityStatus(models.Model):
-    _name = 'assignment.equipment'
-    _description = 'Assignment Equipment'
+class QualityLocation(models.Model):
+    _name = 'quality.location'
+    _description = 'Ubicaciones'
+    _rec_name = 'complete_name'
     _order = 'name'
-    _rec_name = 'name'
 
-
-    name = fields.Char(string="Description")
-    project = fields.Char(string="Project")
-    services_order = fields.Char(string="Services Order")
-    location = fields.Char(string="Location")
-    equipment_id = fields.One2many(
-        'quality.equipment',
-        'assigned_id',
-        string="Equipments"
+    name = fields.Char(
+        string="Name"
+    )
+    complete_name = fields.Char(
+        string="Complete Name"
     )

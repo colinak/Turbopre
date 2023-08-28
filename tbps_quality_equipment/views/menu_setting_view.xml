@@ -10,6 +10,22 @@
     />
 
     <menuitem 
+      id="menu_quality_equipment_operations"
+      name="Operations"
+      parent="tbps_quality_equipment.menu_quality_equipment_root"
+      sequence="2"
+    />
+      <!--groups="base.group_system"-->
+
+    <menuitem 
+      id="menu_quality_equipment"
+      name="Equipment"
+      parent="tbps_quality_equipment.menu_quality_equipment_root"
+      sequence="3"
+    />
+      <!--groups="base.group_system"-->
+
+    <menuitem 
       id="menu_quality_equipment_setting"
       name="Setting"
       parent="tbps_quality_equipment.menu_quality_equipment_root"

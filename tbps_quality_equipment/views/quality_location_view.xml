@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record id="quality_location_view_search" model="ir.ui.view">
+      <field name="name">quality.location.search</field>
+      <field name="model">quality.location</field>
+      <field name="arch" type="xml">
+        <search string="Search">
+          <field string="Ubicación" name="name"/>
+          <!--<filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>-->
+        </search>
+      </field>
+    </record>
+    
+    <record id="quality_location_view_form" model="ir.ui.view">
+      <field name="name">quality.location.form</field>
+      <field name="model">quality.location</field>
+      <field name="arch" type="xml">
+        <form string="">
+          <sheet>
+            <group col="4">
+              <field name="name" />
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="quality_location_view_tree" model="ir.ui.view">
+      <field name="name">quality.location.tree</field>
+      <field name="model">quality.location</field>
+      <field name="arch" type="xml">
+        <tree string="">
+          <field name="name" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="quality_location_action_settings" model="ir.actions.act_window">
+      <field name="name">Locations</field>
+      <field name="res_model">quality.location</field>
+      <field name="view_mode">tree,form</field>
+      <field name="search_view_id" ref="quality_location_view_search"/>
+      <field name="view_id" ref="quality_location_view_tree" />
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Add New Location
+        </p>
+      </field>
+    </record>
+
+    <menuitem
+      id="menu_quality_location"
+      name="Locatinos"
+      parent="tbps_quality_equipment.menu_quality_equipment_setting"
+      action="tbps_quality_equipment.quality_location_action_settings"
+      groups="base.group_system"
+      sequence="6"
+    />
+
+  </data>
+</odoo>

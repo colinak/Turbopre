@@ -9,3 +9,4 @@
 ###############################################################################
 
 from . import hr_department
+from . import tps_employee

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record id="tps_employee_view_kanban" model="ir.ui.view">
+      <field name="name">tps.employee.kanban</field>
+      <field name="model">tps.employee</field>
+      <field name="arch" type="xml">
+        <kanban class="o_kanban_mobile">
+          <templates>
+            <t t-name="kanban-box">
+              <div t-attf-class="oe_kanban_global_click">
+                <div>
+                  <strong><field name="name"/></strong>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+
+    <record id="tps_employee_view_search" model="ir.ui.view">
+      <field name="name">tps.employee.search</field>
+      <field name="model">tps.employee</field>
+        <field name="arch" type="xml">
+            <search string="Employee">
+                <field string="Empleado" name="name"/>
+                <!--<filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>-->
+            </search>
+        </field>
+    </record>
+
+
+    <record id="tps_employee_view_tree" model="ir.ui.view">
+      <field name="name">quality.status.tree</field>
+      <field name="model">tps.employee</field>
+      <field name="arch" type="xml">
+        <tree string="Empleados" >
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="tps_employee_view_form" model="ir.ui.view">
+      <field name="name">tps.employee.form</field>
+      <field name="model">tps.employee</field>
+      <field name="arch" type="xml">
+        <form string="Empleados" >
+          <sheet>
+            <!--<widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>-->
+            <field name="image_1920" widget="image" class="oe_avatar" options="{&quot;zoom&quot;: true, &quot;preview_image&quot;:&quot;image_128&quot;}"/>
+            <div class="oe_title">
+              <h1 class="d-flex">
+                <field name="name" placeholder="Nombre del empleado" required="True" style="width: 70%;"/>
+              </h1>
+              <!--<h2>-->
+                <!--<field name="job_id" placeholder="Job Position"/>-->
+                <!--<field name="job_title" placeholder="Job Position"/>-->
+              <!--</h2>-->
+            </div>
+            <group>
+              <group>
+                <field name="department_id" placeholder="Seleccione"/>
+                <field name="parent_id" placeholder="Seleccione"/>
+                <field name="coach_id" placeholder="Seleccione"/>
+              </group>
+              <group>
+                <field name="job_id" placeholder="seleccione"/>
+                <field name="pin"/>
+                <field name="barcode"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="tps_employee_action_view" model="ir.actions.act_window">
+      <field name="name">Empleados</field>
+      <field name="res_model">tps.employee</field>
+      <field name="view_mode">tree,kanban,form</field>
+      <field name="search_view_id" ref="tps_employee_view_search"/>
+      <field name="view_id" ref="tps_employee_view_tree" />
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Add New Employee
+        </p>
+      </field>
+    </record>
+
+    <menuitem
+      id="menu_tps_employee"
+      name="Empleados"
+      parent="tbps_quality_equipment.menu_quality_equipment_setting"
+      action="tbps_quality_equipment.tps_employee_action_view"
+      groups="base.group_system"
+      sequence="7"
+    />
+  
+  
+  </data>
+</odoo>
+

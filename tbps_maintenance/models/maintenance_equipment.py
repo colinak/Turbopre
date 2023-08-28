@@ -97,10 +97,10 @@ class MaintenanceEquipment(models.Model):
         compute="_compute_equipment_assign"
     )
     assign_date = fields.Date(
-        default=fields.Date.context_today(self)
+        # default=fields.Date.context_today(self)
     )
     identifier = fields.Char(
-        string="Identificador"
+        string="Identificador",
         help="Nombre del equipo en el dominio, si es laptop o desktop"
     )
 

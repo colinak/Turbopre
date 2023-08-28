@@ -20,6 +20,7 @@
     'category': "Employee",
     'depends': ['base', 'hr'],
     'data': [
+        'security/quality_tps_employee/ir.model.access.csv',
         'views/contact_directory_view.xml',
     ],
     'demo': [],

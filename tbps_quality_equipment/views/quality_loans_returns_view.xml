@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    
+    <record id="view_quality_loans_returns_search" model="ir.ui.view">
+      <field name="name">quality.loans.returns.search</field>
+      <field name="model">quality.loans.returns</field>
+      <field name="type">search</field>
+      <field name="arch" type="xml">
+        <search string="Quality loans y returns">
+          <field string="Name" name="name"/>
+        </search>
+      </field>
+    </record>
+
+    <!--<record id="view_quality_loans_returns_form" model="ir.ui.view">-->
+      <!--<field name="name">quality.loans.returns.form</field>-->
+      <!--<field name="model">quality.loans.returns</field>-->
+      <!--<field name="type">form</field>-->
+      <!--<field name="arch" type="xml">-->
+        <!--<form string="Quality loans y returns">-->
+          <!--<field string="Name" name="name"/>-->
+        <!--</form>-->
+      <!--</field>-->
+    <!--</record>-->
+
+    <record id="view_quality_loans_returns_tree" model="ir.ui.view">
+      <field name="name">quality.loans.returns.tree</field>
+      <field name="model">quality.loans.returns</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Quality loans y returns" editable="top">
+          <field name="code"/>
+          <field name="equipment_id" placeholder="Seleccione" />
+          <field name="rango"/>
+          <field name="equipment_status_id"/>
+          <field name="applicant_id" placeholder="Seleccione" />
+          <field name="deadline" placeholder="Seleccione" />
+          <field name="signature_applicant"/>
+          <field name="signature_deliverer"/>
+          <field name="entry_date" placeholder="Seleccione" />
+          <field name="equipment_status_entry_id" placeholder="Seleccione"/>
+          <field name="receipt_signature"/>
+          <field name="signature_deliverer2"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="action_quality_loans_returns" model="ir.actions.act_window">
+      <field name="name">Loans y Returns</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">quality.loans.returns</field>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="view_quality_loans_returns_tree" />
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Create New Loans
+        </p>
+      </field>
+    </record>
+
+    <menuitem
+      id="menu_quality_loans_returns"
+      name="Loans y Returns"
+      parent="tbps_quality_equipment.menu_quality_equipment_operations"
+      action="tbps_quality_equipment.action_quality_loans_returns"
+      sequence="2"
+      groups="base.group_system"
+    />
+
+  </data>
+</odoo>
