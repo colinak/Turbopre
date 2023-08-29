@@ -100,7 +100,7 @@ class MaintenanceEquipment(models.Model):
         default=fields.Date.context_today(self)
     )
     identifier = fields.Char(
-        string="Identificador"
+        string="Identificador",
         help="Nombre del equipo en el dominio, si es laptop o desktop"
     )
 
@@ -113,26 +113,26 @@ class MaintenanceEquipment(models.Model):
                 equipment.other = ""
                 equipment.employee_id = equipment.employee_id
                 equipment.assign_to = "Asignado a: " + str(equipment.employee_id.name)
-                # equipment.assign_date = fields.Date.context_today(self)
+                equipment.assign_date = fields.Date.context_today(self)
             elif equipment.equipment_assign_to == 'department':
                 equipment.employee_id = False
                 equipment.other = ""
                 equipment.department_id = equipment.department_id
                 equipment.assign_to = "Asignado a: " + str(equipment.department_id.name)
-                # equipment.assign_date = fields.Date.context_today(self)
+                equipment.assign_date = fields.Date.context_today(self)
             elif equipment.equipment_assign_to == 'unassigned':
                 equipment.employee_id = False
                 equipment.department_id = False
                 equipment.assign_date = False
                 equipment.other = ""
                 equipment.assign_to = "Sin Asignar"
-                # equipment.assign_date = fields.Date.context_today(self)
+                equipment.assign_date = fields.Date.context_today(self)
             else:
                 equipment.employee_id = False
                 equipment.department_id = False
                 equipment.other = equipment.other
-                # equipment.assign_date = fields.Date.context_today(self)
-    
+                equipment.assign_date = fields.Date.context_today(self)
+
 
     @api.onchange('equipment_assign_to')
     def _onchange_equipment_assign_to(self):
@@ -183,7 +183,7 @@ class MaintenanceEquipment(models.Model):
             res.stage = 'available'
         elif res.equipment_assign_to != 'unassigned':
             res.stage = 'assigned'
-        else: 
+        else:
             if res.out_of_service:
                 if res.type_discard == 'discard':
                     res.location = "Archivo Muerto"
@@ -218,5 +218,3 @@ class MaintenanceEquipment(models.Model):
         res = super(MaintenanceEquipment, self).write(vals)
 
         return res
-
-
