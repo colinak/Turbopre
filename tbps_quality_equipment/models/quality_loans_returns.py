@@ -9,6 +9,7 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -47,16 +48,21 @@ class QualityLoansReturns(models.Model):
         string="Solicitante",
         required=True,
     )
+    delivery_id = fields.Many2one(
+        "tps.employee",
+        string="Entrega",
+        required=True,
+    )
     deadline = fields.Date(
         string="Fecha de entrega",
         required=True,
     )
     signature_applicant = fields.Char(
-        string="Firma solicitante",
+        string="PIN solicitante",
         required=True,
     )
     signature_deliverer = fields.Char(
-        string="Firma quien entrega",
+        string="PIN quien entrega",
         required=True,
     )
     entry_date = fields.Date(
@@ -67,10 +73,10 @@ class QualityLoansReturns(models.Model):
         string="Condición del equipo"
     )
     receipt_signature = fields.Char(
-        string="Firma quien recibe"
+        string="PIN quien recibe"
     )
     signature_deliverer2 = fields.Char(
-        string="Firma quien entrega"
+        string="PIN quien devuelve"
     )
 
     @api.onchange('code')
@@ -84,6 +90,37 @@ class QualityLoansReturns(models.Model):
                 if equipment:
                     self.equipment_id = equipment.id
                     self.equipment_status_id = equipment.status_id.id
+
+
+    @api.onchange('signature_applicant')
+    def _onchange_signature_applicant(self):
+        for rec in self:
+            if rec.signature_applicant:
+                employee = self.env['tps.employee'].search(
+                    [('pin', '=', self.signature_applicant)],
+                    limit=1
+                )
+                if employee:
+                    self.applicant_id = employee.id
+                else:
+                    raise UserError("Error, No se encontro ningún empleado Con ese código PIN, por favor verifíque e intente de nuevo.")
+
+
+    @api.onchange('signature_deliverer')
+    def _onchange_signature_deliverer(self):
+        for rec in self:
+            if rec.signature_deliverer:
+                employee = self.env['tps.employee'].search(
+                    [('pin', '=', self.signature_deliverer)],
+                    limit=1
+                )
+                if employee:
+                    self.delivery_id = employee.id
+                else:
+                    raise UserError("Error, No se encontro ningún empleado Con ese código PIN, por favor verifíque e intente de nuevo.")
+                    
+                
+
 
 
     # project = fields.Char(string="Project")

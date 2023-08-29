@@ -30,23 +30,23 @@ class TpsEmployee(models.Model):
     )
     job_id = fields.Many2one(
         "hr.job",
-        required=True,
+        # required=True,
         string="Puesto de trabajo"
     )
     department_id = fields.Many2one(
         "hr.department",
-        required=True,
+        # required=True,
         string="Departamento"
     )
     parent_id = fields.Many2one(
         "tps.employee",
-        required=True,
+        # required=True,
         string="Gerente de área",
         held="Seleccione el empleado que es el gerente de este departamento."
     )
     coach_id = fields.Many2one(
         "tps.employee",
-        required=True,
+        # required=True,
         string="Supervisor inmediato",
         held="Seleccione el empleado que es el supervidor de este empleado."
     )
@@ -55,12 +55,12 @@ class TpsEmployee(models.Model):
     # )
     pin = fields.Char(
         string="Código PIN",
-        required=True,
+        # required=True,
         held="PIN utilizado para registrar prestamos y devoluciones"
     )
     barcode = fields.Char(
         string="ID de credencial",
-        required=True,
+        # required=True,
         held="ID utilizado para identificar al empleado."
     )
     # active = fields.Boolean(

@@ -32,16 +32,17 @@
         <tree string="Quality loans y returns" editable="top">
           <field name="code"/>
           <field name="equipment_id" placeholder="Seleccione" />
-          <field name="rango"/>
-          <field name="equipment_status_id"/>
+          <field name="rango" optional="hide"/>
+          <field name="equipment_status_id" optional="hide"/>
+          <field name="signature_applicant"/>
           <field name="applicant_id" placeholder="Seleccione" />
           <field name="deadline" placeholder="Seleccione" />
-          <field name="signature_applicant"/>
           <field name="signature_deliverer"/>
+          <field name="delivery_id" placeholder="Seleccione" />
           <field name="entry_date" placeholder="Seleccione" />
           <field name="equipment_status_entry_id" placeholder="Seleccione"/>
-          <field name="receipt_signature"/>
           <field name="signature_deliverer2"/>
+          <field name="receipt_signature"/>
         </tree>
       </field>
     </record>
