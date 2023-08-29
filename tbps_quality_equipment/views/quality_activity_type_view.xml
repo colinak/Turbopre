@@ -100,7 +100,7 @@
       parent="tbps_quality_equipment.menu_quality_equipment_setting"
       action="tbps_quality_equipment.action_quality_activity_type"
       sequence="5"
-      groups="base.group_system"
+      groups="base.group_system,group_quality_system,group_quality_manager"
     />
   
   

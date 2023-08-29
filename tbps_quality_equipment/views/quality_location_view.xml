@@ -55,7 +55,7 @@
       name="Locatinos"
       parent="tbps_quality_equipment.menu_quality_equipment_setting"
       action="tbps_quality_equipment.quality_location_action_settings"
-      groups="base.group_system"
+      groups="base.group_system,group_quality_system,group_quality_manager,group_quality_user"
       sequence="6"
     />
 

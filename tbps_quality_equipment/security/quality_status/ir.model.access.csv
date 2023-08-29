@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acs_quality_status_system,quality_status_system,model_quality_status,base.group_system,1,1,1,1
-
+acs_quality_status_user,quality.status.user,model_quality_status,group_quality_user,1,0,0,0
+acs_quality_status_manager,quality.status.manager,model_quality_status,group_quality_manager,1,1,1,0
+acs_quality_status_admin,quality.status.admin,model_quality_status,group_quality_system,1,1,1,1
+acs_quality_status_system,quality.status.system,model_quality_status,base.group_system,1,1,1,1

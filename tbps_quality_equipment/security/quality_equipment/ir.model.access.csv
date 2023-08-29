@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acs_quality_equipment_system,quality_equipment_system,model_quality_equipment,base.group_system,1,1,1,1
+acs_quality_equipment_user,quality.equipment.user,model_quality_equipment,group_quality_user,1,1,1,0
+acs_quality_equipment_manager,quality.equipment.manager,model_quality_equipment,group_quality_manager,1,1,1,0
+acs_quality_equipment_admin,quality.equipment.admin,model_quality_equipment,group_quality_system,1,1,1,1
+acs_quality_equipment_system,quality.equipment.system,model_quality_equipment,base.group_system,1,1,1,1

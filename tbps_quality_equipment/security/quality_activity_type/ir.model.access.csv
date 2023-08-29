@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acs_quality_activity_type_system,quality_activity_type_system,model_quality_activity_type,base.group_system,1,1,1,1
+acs_quality_activity_type_user,quality.activity.type.user,model_quality_activity_type,group_quality_user,1,0,0,0
+acs_quality_activity_type_manager,quality.activity.type.manager,model_quality_activity_type,group_quality_manager,1,1,1,0
+acs_quality_activity_type_admin,quality.activity.type.admin,model_quality_activity_type,group_quality_system,1,1,1,1
+acs_quality_activity_type_system,quality.activity.type.system,model_quality_activity_type,base.group_system,1,1,1,1
 
