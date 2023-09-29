@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acs_quality_traceability_equipment_system,quality_traceability_equipment_system,model_quality_traceability_equipment,base.group_system,1,1,1,1
+acs_quality_traceability_equipment_user,quality.traceability.equipment.user,model_quality_traceability_equipment,group_quality_user,1,1,1,0
+acs_quality_traceability_equipment_manager,quality.traceability.equipment.manager,model_quality_traceability_equipment,group_quality_manager,1,1,1,1
+acs_quality_traceability_equipment_admin,quality.traceability.equipment.system,model_quality_traceability_equipment,group_quality_system,1,1,1,1
+acs_quality_traceability_equipment_system,quality.traceability.equipment.system,model_quality_traceability_equipment,base.group_system,1,1,1,1
 

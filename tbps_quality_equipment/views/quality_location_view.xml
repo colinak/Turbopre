@@ -8,8 +8,14 @@
       <field name="arch" type="xml">
         <search string="Search">
           <field string="Ubicación" name="name"/>
-          <!--<filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>-->
-        </search>
+          <field string="Location Parent" name="parent_id"/>
+          <filter string="Scrap Location" domain="[('scrap_location', '=', True)]" name="scrap_location"/>
+          <filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>
+          <group string="Group By">
+            <filter string="Parent" name="parent" domain="" context="{'group_by': 'parent_id'}"/>
+            <filter string="Usage" name="usage" domain="" context="{'group_by': 'usage'}"/>
+          </group>
+       </search>
       </field>
     </record>
     
@@ -19,8 +25,28 @@
       <field name="arch" type="xml">
         <form string="">
           <sheet>
-            <group col="4">
-              <field name="name" />
+            <field name="active" invisible="1"/>
+            <div class="oe_button_box" name="button_box">
+              <button string="Stock Actual" class="oe_stat_button" icon="fa-cubes"/>
+            </div>
+            <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+            <div class="oe_title">
+              <label for="name" string="Nombre de la Ubicación" class="oe_edit_only" />
+              <h1>
+                <field name="name" string="Nombre" placeholder="Nombre Ubicación" style="width: 75%;"/>
+              </h1>
+              <label for="parent_id" string="Ubicación padre" class="oe_edit_only" />
+              <h2>
+                <field name="parent_id" style="width: 30%;" placeholder="Seleccione" />
+              </h2>
+            </div>
+            <group col="4" string="Información Adicional">
+              <!--<field name="warehouse_id"/>-->
+              <field name="usage" string="Tipo de ubicación" />
+              <field name="scrap_location" string="¿Es una ubicación de chatarra?" />
+            </group>
+            <group string="Notas Externas">
+              <field name="comment" string="Información adicional" placeholder="Nota Externa..." />
             </group>
           </sheet>
         </form>
@@ -31,8 +57,19 @@
       <field name="name">quality.location.tree</field>
       <field name="model">quality.location</field>
       <field name="arch" type="xml">
-        <tree string="">
+        <tree string="Locarions" 
+          decoration-info="usage == 'virtual'"
+          decoration-success="usage == 'internal'"
+          decoration-warning="usage == 'external'"
+          decoration-danger="usage == 'inventory'"
+          decoration-muted="usage == 'supplier'"
+          decoration-it="usage == 'transit'"
+        >
+          <!--<field name="complete_name" />-->
           <field name="name" />
+          <field name="parent_id" />
+          <field name="usage" />
+          <field name="scrap_location" />
         </tree>
       </field>
     </record>
@@ -52,7 +89,7 @@
 
     <menuitem
       id="menu_quality_location"
-      name="Locatinos"
+      name="Locations"
       parent="tbps_quality_equipment.menu_quality_equipment_setting"
       action="tbps_quality_equipment.quality_location_action_settings"
       groups="base.group_system,group_quality_system,group_quality_manager,group_quality_user"

@@ -20,10 +20,6 @@
         </search>
       </field>
     </record>
-
-
-
-
     
     <record id="view_quality_equipment_kanban" model="ir.ui.view">
       <field name="name">quality.equipment.kanban</field>
