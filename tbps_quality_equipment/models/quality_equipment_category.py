@@ -30,3 +30,7 @@ class QualityEquipmentCategory(models.Model):
         help="Responsible"
     )
     note = fields.Text(string="Notes")
+    active = fields.Boolean(
+        string="Activo?",
+        default=True
+    )

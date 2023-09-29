@@ -9,6 +9,11 @@
       <field name="arch" type="xml">
         <search string="Quality Category">
           <field string="Name" name="name"/>
+          <filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>
+          <group string="Group By">
+            <filter string="Responsible" name="responsible" domain="" context="{'group_by': 'technician_user_id'}"/>
+            <filter string="Dpto Responsible" name="dpto_responsible" domain="" context="{'group_by': 'dpto_responsible_id'}"/>
+          </group>
         </search>
       </field>
     </record>
@@ -74,7 +79,6 @@
       sequence="1"
       groups="base.group_system,group_quality_system,group_quality_manager"
     />
-
 
   </data>
 </odoo>

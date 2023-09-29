@@ -9,6 +9,7 @@
       <field name="arch" type="xml">
         <search string="Quality loans y returns">
           <field string="Name" name="name"/>
+          <filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>
         </search>
       </field>
     </record>

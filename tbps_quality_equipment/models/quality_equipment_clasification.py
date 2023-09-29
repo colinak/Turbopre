@@ -21,3 +21,4 @@ class QualityEquipmentClasification(models.Model):
     name = fields.Char(string="Name", required=True)
     image = fields.Binary(string="Image", max_width=128, max_height=128)
     note = fields.Text(string="Notes")
+    active = fields.Boolean(string="Archived", default=True)

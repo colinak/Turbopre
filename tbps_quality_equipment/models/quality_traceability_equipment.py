@@ -57,6 +57,7 @@ class QualityTraceabilityEquipment(models.Model):
     certificate = fields.Binary(string="Certificado")
     note = fields.Text(string="Observations")
     Certificate_doc = fields.Char(string="Adjuntar Certificado")
+    active = fields.Boolean(string="Archived", default=True)
 
 
     @api.onchange('date_execute')

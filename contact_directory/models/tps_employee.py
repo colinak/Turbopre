@@ -63,8 +63,8 @@ class TpsEmployee(models.Model):
         # required=True,
         held="ID utilizado para identificar al empleado."
     )
-    # active = fields.Boolean(
-        # string="Activo?",
-        # default=True,
-    # )
+    active = fields.Boolean(
+        string="Activo?",
+        default=True,
+    )
 

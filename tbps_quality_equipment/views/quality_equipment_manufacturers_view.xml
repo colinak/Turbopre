@@ -9,6 +9,7 @@
       <field name="arch" type="xml">
         <search string="Manufacturers">
           <field string="Name" name="name"/>
+          <filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>
         </search>
       </field>
     </record>
@@ -97,7 +98,6 @@
       sequence="4"
       groups="base.group_system,group_quality_system,group_quality_manager"
     />
-
 
   </data>
 </odoo>

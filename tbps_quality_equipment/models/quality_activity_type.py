@@ -31,4 +31,5 @@ class QualityActivityType(models.Model):
         help="Empleado responsable"
     )
     description = fields.Html(string="Description")
+    active = fields.Boolean(string="Activo?", default=True)
 

@@ -9,38 +9,10 @@
       <field name="arch" type="xml">
         <search string="Activity Type">
           <field string="Name" name="name"/>
+          <filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>
         </search>
       </field>
     </record>
-
-    <!--view kanban of Manufacturers-->
-    <!--<record id="view_quality_activity_type_kanban" model="ir.ui.view">-->
-      <!--<field name="name">quality.activity.type.kanban</field>-->
-      <!--<field name="model">quality.activity.type</field>-->
-      <!--<field name="type">kanban</field>-->
-      <!--<field name="arch" type="xml">-->
-        <!--<kanban class="o_res_partner_kanban">-->
-          <!--<field name="id"/>-->
-          <!--<field name="name"/>-->
-          <!--<templates>-->
-            <!--<t t-name="kanban-box">-->
-              <!--<div class="oe_kanban_vignette oe_semantic_html_override">-->
-                <!--<a type="open" href="#" class="o_kanban_image oe_kanban_action">-->
-                  <!--<img alt="Open" t-att-src="kanban_image('maintenance.manufacturers', 'image', record.id.raw_value)" class="img-fluid" style="width:100px;"/>-->
-                <!--</a>-->
-                <!--<div class="oe_kanban_details">-->
-                  <!--<h4 class="oe_partner_heading">-->
-                    <!--<a type="open" class="o_kanban_record_title">-->
-                      <!--<field name="name"/>-->
-                    <!--</a>-->
-                  <!--</h4>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</t>-->
-          <!--</templates>-->
-        <!--</kanban>-->
-      <!--</field>-->
-    <!--</record>-->
 
     <record id="view_quality_activity_type_form" model="ir.ui.view">
       <field name="name">quality.activity.type.form</field>
@@ -80,7 +52,6 @@
       </field>
     </record>
 
-
     <record id="action_quality_activity_type" model="ir.actions.act_window">
       <field name="name">Type Activity</field>
       <field name="type">ir.actions.act_window</field>
@@ -102,7 +73,6 @@
       sequence="5"
       groups="base.group_system,group_quality_system,group_quality_manager"
     />
-  
   
   </data>
 </odoo>

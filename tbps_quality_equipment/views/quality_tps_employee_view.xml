@@ -20,18 +20,24 @@
       </field>
     </record>
 
-
     <record id="tps_employee_view_search" model="ir.ui.view">
       <field name="name">tps.employee.search</field>
       <field name="model">tps.employee</field>
-        <field name="arch" type="xml">
-            <search string="Employee">
-                <field string="Empleado" name="name"/>
-                <!--<filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>-->
-            </search>
-        </field>
+      <field name="arch" type="xml">
+        <search string="Employee">
+          <field string="Empleado" name="name"/>
+          <field string="PIN" name="pin"/>
+          <field string="Barcode" name="barcode"/>
+          <filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>
+          <group string="Group By">
+            <filter string="Departamento" name="department" domain="" context="{'group_by': 'department_id'}"/>
+            <filter string="Gerente de área" name="parent" domain="" context="{'group_by': 'parent_id'}"/>
+            <filter string="Supervisor inmediato" name="coach" domain="" context="{'group_by': 'coach_id'}"/>
+            <filter string="Puesto de trabajo" name="job" domain="" context="{'group_by': 'job_id'}"/>
+          </group>
+        </search>
+      </field>
     </record>
-
 
     <record id="tps_employee_view_tree" model="ir.ui.view">
       <field name="name">quality.status.tree</field>
@@ -98,7 +104,6 @@
       groups="base.group_system,group_quality_system,group_quality_manager,group_quality_user"
       sequence="7"
     />
-  
   
   </data>
 </odoo>

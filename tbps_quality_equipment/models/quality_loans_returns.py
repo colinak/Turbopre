@@ -78,6 +78,7 @@ class QualityLoansReturns(models.Model):
     signature_deliverer2 = fields.Char(
         string="PIN quien devuelve"
     )
+    active = fields.Boolean(string="Archived", default=True)
 
     @api.onchange('code')
     def _onchange_code(self):

@@ -20,18 +20,16 @@
       </field>
     </record>
 
-
     <record id="quality_status_view_search" model="ir.ui.view">
       <field name="name">quality.status.search</field>
       <field name="model">quality.status</field>
         <field name="arch" type="xml">
             <search string="Search">
                 <field string="Status" name="name"/>
-                <!--<filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>-->
+                <filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>
             </search>
         </field>
     </record>
-
 
     <record id="quality_status_view_tree" model="ir.ui.view">
       <field name="name">quality.status.tree</field>
@@ -64,7 +62,6 @@
       groups="base.group_system,group_quality_system,group_quality_manager"
       sequence="3"
     />
-  
   
   </data>
 </odoo>

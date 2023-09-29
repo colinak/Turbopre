@@ -25,4 +25,5 @@ class QualityStatus(models.Model):
         required=True,
         help="Description"
     )
+    active = fields.Boolean(string="Archived", default=True)
 
