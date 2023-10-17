@@ -25,6 +25,8 @@
       <field name="arch" type="xml">
         <form string="Quality Equipment Category">
           <sheet>
+            <field name="active" invisible="True" />
+            <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" />
               <h1>
@@ -48,7 +50,10 @@
       <field name="model">quality.equipment.category</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <tree string="Quality Equipment Category">
+        <tree string="Quality Equipment Category"
+          decoration-danger="active == False"
+        >
+          <field name="active" invisible="True" />
           <field name="name" string="Name" />
           <field name="technician_user_id" />
           <field name="dpto_responsible_id" />

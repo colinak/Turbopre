@@ -38,12 +38,14 @@
       <field name="model">quality.equipment.clasification</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <tree string="Quality Clasification" editable="bottom">
+        <tree string="Quality Clasification" editable="bottom"
+          decoration-danger="active == False"
+        >
+          <field name="active" invisible="True" />
           <field name="name" string="Name" />
         </tree>
       </field>
     </record>
-
 
     <record id="action_quality_equipment_clasification" model="ir.actions.act_window">
       <field name="name">Clasifications</field>

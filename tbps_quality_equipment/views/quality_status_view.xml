@@ -35,7 +35,10 @@
       <field name="name">quality.status.tree</field>
       <field name="model">quality.status</field>
       <field name="arch" type="xml">
-        <tree string="Quality Status" editable="bottom">
+        <tree string="Quality Status" editable="bottom"
+          decoration-danger="active == False"
+        >
+          <field name="active" invisible="True" />
           <field name="name"/>
         </tree>
       </field>
@@ -44,7 +47,7 @@
     <record id="quality_status_action_settings" model="ir.actions.act_window">
       <field name="name">Status</field>
       <field name="res_model">quality.status</field>
-      <field name="view_mode">tree,kanban,form</field>
+      <field name="view_mode">tree,kanban</field>
       <field name="search_view_id" ref="quality_status_view_search"/>
       <field name="view_id" ref="quality_status_view_tree" />
       <field name="help" type="html">

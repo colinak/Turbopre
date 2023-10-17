@@ -55,10 +55,12 @@ class QualityEquipment(models.Model):
     serial_no = fields.Char(string="Serial N°")
     rango = fields.Char(
         string="Range",
+        required=True,
         help="Measurement value range"
     )
     appreciation = fields.Char(
         string="Appreciation",
+        required=True,
         help="Minimum unit of measure"
     )
     frequency_cal_ver = fields.Integer(
@@ -76,17 +78,6 @@ class QualityEquipment(models.Model):
         store=True,
         help="Calibration Status"
     )
-    # status = fields.Selection(
-        # [
-            # ('available', 'Available'),
-            # ('assigned', 'Assigned'),
-            # ('loan', 'Loan'),
-            # ('in_custody', 'In Custody'),
-            # ('discarded', 'Out of Service'),
-        # ],
-        # string="Stage",
-        # default='available'
-    # )
     stage = fields.Selection(
         [
             ('available', 'Available'),
@@ -106,11 +97,17 @@ class QualityEquipment(models.Model):
         string="Expiration Date",
         # compute="_compute_calibration_frequency",
     )
-    location = fields.Char(string="Location", required=True)
+    # location = fields.Char(string="Location", required=True)
+    location_id = fields.Many2one(
+        "quality.location",
+        string="Location", 
+        required=True,
+        help="Seleccione la ubicación del equipo."
+    )
     shelf_number = fields.Char(string="Shelf Number")
     shelf_position = fields.Char(string="Shelf Position")
     technician_user_id = fields.Many2one(
-        "res.users",
+        "tps.employee",
         string="Responsible",
         required=True
     )
@@ -166,6 +163,16 @@ class QualityEquipment(models.Model):
                 # rec.status_id = cal_verif.final_condition_id
         # else:
             # pass
+
+    @api.onchange('calibration_date', 'frequency_cal_ver')
+    def _onchange_calibration_frequency(self):
+        if self.calibration_date and self.frequency_cal_ver != 0:
+            expired_date = (
+                fields.Datetime.from_string(self.calibration_date) + 
+                relativedelta(months=int(self.frequency_cal_ver))
+            )
+            self.expiration_date = expired_date
+
 
 
 

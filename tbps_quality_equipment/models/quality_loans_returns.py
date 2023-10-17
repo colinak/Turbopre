@@ -17,20 +17,22 @@ _logger = logging.getLogger(__name__)
 class QualityLoansReturns(models.Model):
     _name = 'quality.loans.returns'
     _description = 'Loans & Returns'
-    _order = 'name'
+    _order = 'deadline'
     _rec_name = 'name'
 
 
     name = fields.Char(string="Description")
+    code = fields.Char(
+        string="Código",
+        required=True,
+    )
     equipment_id = fields.Many2one(
         'quality.equipment',
         string="Equipo",
         required=True,
+        compute="_compute_equipment_date",
+        # readonly=True,
         domain="[('stage', '=', 'available')]"
-    )
-    code = fields.Char(
-        string="Código",
-        required=True,
     )
     rango = fields.Char(
         string="Rango",
@@ -41,21 +43,24 @@ class QualityLoansReturns(models.Model):
         "quality.status",
         string="Status",
         required=True,
-        # related="equipment_id.status_id"
+        related="equipment_id.status_id"
     )
     applicant_id = fields.Many2one(
         "tps.employee",
         string="Solicitante",
-        required=True,
+        # compute="_compute_applicant",
+        # required=True,
     )
     delivery_id = fields.Many2one(
         "tps.employee",
         string="Entrega",
-        required=True,
+        # compute="_compute_delivery",
+        # required=True,
     )
-    deadline = fields.Date(
+    deadline = fields.Datetime(
         string="Fecha de entrega",
         required=True,
+        default=fields.Datetime.now
     )
     signature_applicant = fields.Char(
         string="PIN solicitante",
@@ -65,7 +70,7 @@ class QualityLoansReturns(models.Model):
         string="PIN quien entrega",
         required=True,
     )
-    entry_date = fields.Date(
+    entry_date = fields.Datetime(
         string="Fecha de entrada"
     )
     equipment_status_entry_id = fields.Many2one(
@@ -75,10 +80,40 @@ class QualityLoansReturns(models.Model):
     receipt_signature = fields.Char(
         string="PIN quien recibe"
     )
+    receipt_id = fields.Many2one(
+        "tps.employee",
+        string="Recibe",
+    )
     signature_deliverer2 = fields.Char(
         string="PIN quien devuelve"
     )
+    delivery2_id = fields.Many2one(
+        "tps.employee",
+        string="Devuelve",
+    )
     active = fields.Boolean(string="Archived", default=True)
+
+
+    def _compute_equipment_date(self):
+        for rec in self:
+            if rec.code:
+                equipment = self.env['quality.equipment'].search(
+                    [('code', '=', rec.code)],
+                    limit=1
+                )
+                if equipment:
+                    self.equipment_id = equipment.id
+
+
+    def _compute_delivery(self):
+        for rec in self:
+            if rec.signature_deliverer:
+                employee = self.env['tps.employee'].search(
+                    [('pin', '=', rec.signature_deliverer)],
+                    limit=1
+                )
+                if employee:
+                    self.applicant_id = employee.id
 
     @api.onchange('code')
     def _onchange_code(self):
@@ -90,7 +125,6 @@ class QualityLoansReturns(models.Model):
                 )
                 if equipment:
                     self.equipment_id = equipment.id
-                    self.equipment_status_id = equipment.status_id.id
 
 
     @api.onchange('signature_applicant')
@@ -121,9 +155,30 @@ class QualityLoansReturns(models.Model):
                     raise UserError("Error, No se encontro ningún empleado Con ese código PIN, por favor verifíque e intente de nuevo.")
                     
                 
+    @api.onchange('signature_deliverer2')
+    def _onchange_signature_deliverer2(self):
+        for rec in self:
+            if rec.signature_deliverer2:
+                employee = self.env['tps.employee'].search(
+                    [('pin', '=', self.signature_deliverer2)],
+                    limit=1
+                )
+                if employee:
+                    self.delivery2_id = employee.id
+                else:
+                    raise UserError("Error, No se encontro ningún empleado Con ese código PIN, por favor verifíque e intente de nuevo.")
 
 
+    @api.onchange('receipt_signature')
+    def _onchange_signature_deliverer(self):
+        for rec in self:
+            if rec.receipt_signature:
+                employee = self.env['tps.employee'].search(
+                    [('pin', '=', self.receipt_signature)],
+                    limit=1
+                )
+                if employee:
+                    self.receipt_id = employee.id
+                else:
+                    raise UserError("Error, No se encontro ningún empleado Con ese código PIN, por favor verifíque e intente de nuevo.")
 
-    # project = fields.Char(string="Project")
-    # services_order = fields.Char(string="Services Order")
-    # location = fields.Char(string="Location")

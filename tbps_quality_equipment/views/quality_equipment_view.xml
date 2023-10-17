@@ -8,15 +8,28 @@
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Quality Equipment">
-          <field string="Description" name="name"/>
-          <field string="Code" name="code"/>
+          <field string="Descripción" name="name"/>
+          <field string="Código" name="code"/>
           <field string="Serial Number" name="serial_no"/>
-          <field string="Make" name="make_id"/>
-          <field string="Model" name="model"/>
-          <filter string="Archived" domain="[('active', '=', False)]" name="inactive"/>
+          <field string="Marca" name="make_id"/>
+          <field string="Modelo" name="model"/>
+          <field string="Responsable" name="technician_user_id"/>
+          <field string="Ubicación" name="location_id"/>
+          <field string="Clasifiacación" name="clasification_id"/>
+          <field string="Rango" name="rango"/>
+          <field string="Apreciación" name="appreciation"/>
+          <field string="Status" name="status_id"/>
+          <filter string="Asignados" domain="[('stage', '=', 'assigned')]" name="assigned"/>
+          <filter string="Pestados" domain="[('stage', '=', 'loan')]" name="loan"/>
+          <filter string="Sin asignar" domain="[('stage', '=', 'available')]" name="available"/>
+          <filter string="En custodia" domain="[('stage', '=', 'in_custody')]" name="in_custody"/>
+          <!--<filter string="En Mantenimiento" domain="[('active', '=', False)]" name="inactive"/>-->
+          <filter string="Fuera de servicio" domain="[('active', '=', False)]" name="inactive"/>
           <group string="Group By">
             <filter string="Equipment" name="equipment" domain="" context="{'group_by': 'equipment_id'}"/>
             <filter string="Make" name="make" domain="" context="{'group_by': 'make_id'}"/>
+            <filter string="Status" name="make" domain="" context="{'group_by': 'status_id'}"/>
+            <filter string="Clasification" name="make" domain="" context="{'group_by': 'clasification_id'}"/>
           </group>
         </search>
       </field>
@@ -69,7 +82,7 @@
                         <li> <b>Marca:</b> <field name="make_id"/></li>
                         <li> <b>Rango:</b> <field name="rango"/></li>
                         <li> <b>Status:</b> <field name="status_id"/></li>
-                        <li> <b>Ubicación:</b> <field name="location"/> <field name="shelf_number"/> <field name="shelf_position"/></li>
+                        <li> <b>Ubicación:</b> <field name="location_id"/> <field name="shelf_number"/> <field name="shelf_position"/></li>
                       </ul>
                     </t>
                   </div>
@@ -133,6 +146,8 @@
             <field name="stage" widget="statusbar" statusbar_visible="available,assigned,loan,in_custody,discarded"/>
           </header>
           <sheet>
+            <field name="active" invisible="True" />
+            <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <div class="oe_title">
               <field name="image_1920" widget="image" class="oe_avatar" />
               <label for="equipment_id" class="oe_edit_only" />
@@ -153,7 +168,7 @@
                 <field name="code" />
                 <field name="serial_no" />
                 <field name="technician_user_id" placeholder="Select" />
-                <field name="location" />
+                <field name="location_id" />
                 <field name="shelf_number" />
                 <field name="shelf_position" />
               </group>
@@ -182,8 +197,6 @@
                   }"
                 />
                     <!--'required': [('frequency_cal_ver', '>=', 1)],-->
-                <field name="out_of_service" />
-                <!--<field name="active" />-->
               </group>
               <group colspan="4">
                 <field name="note" string="Observations" />
@@ -255,7 +268,9 @@
           decoration-success="status_id == 1"
           decoration-muted="status_id == 2"
           decoration-info="status_id in (3,6)"
+          decoration-danger="active == False"
         >
+          <field name="active" invisible="True" />
           <field name="equipment_id" string="Equipment" />
           <field name="code" />
           <field name="serial_no" />
@@ -267,7 +282,7 @@
           <field name="status_id" />
           <field name="calibration_date" />
           <field name="expiration_date" />
-          <field name="location" optional="hide"/>
+          <field name="location_id" optional="hide"/>
           <field name="shelf_number" optional="hide"/>
           <field name="shelf_position" optional="hide"/>
           <field name="technician_user_id" optional="hide"/>

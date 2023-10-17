@@ -21,6 +21,8 @@
       <field name="arch" type="xml">
         <form string="Quality Activity Type">
           <sheet>
+            <field name="active" invisible="True" />
+            <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <div class="oe_title">
               <label for="name" class="oe_edit_only" />
               <h1>
@@ -44,7 +46,10 @@
       <field name="model">quality.activity.type</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <tree string="Quality Activity Type">
+        <tree string="Quality Activity Type"
+          decoration-danger="active == False"
+        >
+          <field name="active" invisible="True" />
           <field name="name" string="Name" />
           <field name="type_of_notification" />
           <field name="responsible_id" />
