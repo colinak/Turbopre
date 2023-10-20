@@ -4,28 +4,28 @@
 
     <!-- Standard Status for Quality -->
     <record id="status_01" model="quality.status">
-      <field name="name">Calibrado</field>
+      <field name="name">CALIBRADO</field>
     </record>
     <record id="status_02" model="quality.status">
-      <field name="name">Dañado</field>
+      <field name="name">DAÑADO</field>
     </record>
     <record id="status_03" model="quality.status">
-      <field name="name">Equipo Obsoleto Solo de Uso Referencial</field>
+      <field name="name">EQUIPO OBSOLETO SOLO DE USO REFERENCIAL</field>
     </record>
     <record id="status_04" model="quality.status">
-      <field name="name">Fuera de Calibracion</field>
+      <field name="name">FUERA DE CALIBRACIÓN</field>
     </record>
     <record id="status_05" model="quality.status">
-      <field name="name">No Requiere Calibracion</field>
+      <field name="name">NO REQUIERE CALIBRACIÓN</field>
     </record>
     <record id="status_06" model="quality.status">
-      <field name="name">Observacion</field>
+      <field name="name">OBSERVACIÓN</field>
     </record>
     <record id="status_07" model="quality.status">
-      <field name="name">Verificado</field>
+      <field name="name">VERIFICADO</field>
     </record>
     <record id="status_08" model="quality.status">
-      <field name="name">Pronto a Vencer</field>
+      <field name="name">PRONTO A VENCER</field>
     </record>
 
   </data>

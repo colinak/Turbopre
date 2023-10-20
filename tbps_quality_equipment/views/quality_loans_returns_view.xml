@@ -8,7 +8,7 @@
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Quality loans y returns">
-          <field string="Pin Socilicitante" name="signature_applicant"/>
+          <field string="Pin Solicitante" name="signature_applicant"/>
           <field string="Código Equipo" name="code"/>
           <field string="Equipo" name="equipment_id"/>
           <field string="Solicitante" name="applicant_id"/>
@@ -17,6 +17,7 @@
           <group string="Group By">
             <filter string="Solicitante" name="parent" domain="" context="{'group_by': 'applicant_id'}"/>
             <filter string="Equipo" name="usage" domain="" context="{'group_by': 'equipment_id'}"/>
+            <filter string="Estado" name="stage" domain="" context="{'group_by': 'stage'}"/>
           </group>
         </search>
       </field>
@@ -28,32 +29,57 @@
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Quality loans y returns">
+          <header>
+            <!--<button name="action_confirm" attrs="{'invisible': [('show_mark_as_todo', '=', False)]}" string="Validar" type="object" class="oe_highlight" groups="base.group_user" data-hotkey="x"/>-->
+            <!--<button name="action_cancel" attrs="{'invisible': [('state', 'not in', ('assigned', 'confirmed', 'draft', 'waiting'))]}" string="Cancelar" groups="base.group_user" type="object" data-hotkey="z"/>-->
+            <!--<button name="action_confirm" string="Validar" class="oe_highlight" />-->
+            <!--<button name="action_cancel" string="Cancelar" />-->
+            <field name="stage" widget="statusbar" statusbar_visible="draft,loan,done"/>
+          </header>
           <sheet>
+            <field name="id" invisible="1"/>
+            <widget name="web_ribbon" title="PRESTADO" bg_color="bg-info" attrs="{'invisible': [('stage', '!=', 'loan')]}"/>
+            <widget name="web_ribbon" title="DEVUELTO" bg_color="bg-success" attrs="{'invisible': [('stage', '!=', 'done')]}"/>
+            <widget name="web_ribbon" title="CANCELADO" bg_color="bg-danger" attrs="{'invisible': [('stage', '!=', 'cancel')]}"/>
             <div class="oe_title">
-              <label for="name" string="Descripción" class="oe_edit_only" />
               <h1>
                 <field name="name" string="Descripción" style="width: 85%;"/>
               </h1>
             </div>
             <group col="4" string="Datos del Equipo">
-              <field name="code" />
+              <field name="code" attrs="{'readonly': [('id', '!=', False)]}" />
               <field name="equipment_id" />
               <field name="rango" />
               <field name="equipment_status_id" />
             </group>
-            <group col="4" string="Datos de Salida">
-              <field name="signature_applicant" />
-              <field name="applicant_id" placeholder="Seleccione"/>
-              <field name="signature_deliverer" />
-              <field name="delivery_id" placeholder="Seleccione"/>
-              <field name="deadline" placeholder="Seleccione"/>
+            <group string="Datos de Salida">
+              <group>
+                <field name="signature_applicant" attrs="{'readonly': [('id', '!=', False)]}" />
+                <field name="signature_deliverer" attrs="{'readonly': [('id', '!=', False)]}" />
+                <field name="deadline" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)]}" />
+                <!--<field name="deadline" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)]}" decoration-danger="state not in ('done') and deadline &lt; now" decoration-success=""/>-->
+              </group>
+              <group>
+                <field name="applicant_id" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)]}" />
+                <field name="delivery_id" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)]}" />
+                <!--<field name="applicant_id" placeholder="Seleccione" readonly="True"/>-->
+                <!--<field name="delivery_id" placeholder="Seleccione" readonly="True"/>-->
+                <!--<field name="deadline" string="Fecha Programada" widget="remaining_days" readonly="True" widget="remaining_days" attrs="{'invisible':[('stage', 'in', ('done', 'cancel'))]}"/>-->
+              </group>
             </group>
-            <group col="4" string="Datos de Retorno">
-              <field name="signature_deliverer2" />
-              <field name="delivery2_id" placeholder="Seleccione" />
-              <field name="receipt_signature" />
-              <field name="receipt_id" placeholder="Seleccione" />
-              <field name="entry_date" placeholder="Seleccione" string="Fecha de Retorno" />
+            <group string="Datos de Retorno" attrs="{'invisible': [('id', '=', False)]}">
+              <group>
+                <field name="signature_deliverer2" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
+                <field name="receipt_signature" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}"/>
+                <field name="entry_date" placeholder="Seleccione" string="Fecha de Retorno" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
+              </group>
+              <group>
+                <field name="delivery2_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
+                <field name="receipt_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
+                <!--<field name="delivery2_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True"/>-->
+                <!--<field name="receipt_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True"/>-->
+                <field name="equipment_status_entry_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
+              </group>
             </group>
           </sheet>
         </form>
@@ -65,20 +91,24 @@
       <field name="model">quality.loans.returns</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <tree string="Quality loans y returns" default_order="deadline desc" >
+        <tree string="Quality loans y returns" default_order="name desc, id desc, deadline desc" >
           <field name="code"/>
           <field name="equipment_id" placeholder="Seleccione" />
           <field name="rango" optional="hide"/>
           <field name="equipment_status_id" optional="hide"/>
-          <field name="signature_applicant"/>
-          <field name="applicant_id" placeholder="Seleccione" />
-          <field name="deadline" placeholder="Seleccione" />
-          <field name="signature_deliverer"/>
-          <field name="delivery_id" placeholder="Seleccione" />
-          <field name="entry_date" placeholder="Seleccione" />
-          <field name="equipment_status_entry_id" placeholder="Seleccione"/>
-          <field name="signature_deliverer2"/>
-          <field name="receipt_signature"/>
+          <!--<field name="signature_applicant"/>-->
+          <field name="applicant_id" />
+          <field name="deadline" string="Fecha de Prestamo"/>
+          <!--<field name="signature_deliverer"/>-->
+          <field name="delivery_id" />
+          <field name="deadline" string="Fecha Programada" widget="remaining_days" attrs="{'invisible':[('stage', 'in', ('done', 'cancel'))]}"/>
+          <field name="entry_date" string="Fecha de Devolución"/>
+          <field name="equipment_status_entry_id" />
+          <!--<field name="signature_deliverer2"/>-->
+          <!--<field name="receipt_id"/>-->
+          <field name="delivery2_id" />
+          <field name="receipt_id"/>
+          <field name="stage" string="Estado" optional="hide" widget="badge" decoration-success="stage == 'done'" decoration-info="stage not in ('done', 'cancel', 'draft')" decoration-muted="stage == 'draft'" decoration-danger="stage == 'cancel'"/>
         </tree>
       </field>
     </record>

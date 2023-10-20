@@ -25,6 +25,7 @@
         'hr',
     ],
     'data': [
+        "data/sequence.xml",
         "data/data_status.xml",
         "data/quality.activity.type.csv",
         "data/quality.equipment.category.csv",

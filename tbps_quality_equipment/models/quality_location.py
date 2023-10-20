@@ -47,12 +47,12 @@ class QualityLocation(models.Model):
         help="By unchecking the active field, you may hide a location without deleting it.")
     usage = fields.Selection(
         selection=[
-            ('internal', 'Ubicacion interna'),
-            ('external', 'Ubicacion externa'),
-            ('virtual', 'Ubicacion Virtual'),
-            ('supplier', 'Ubicacion de proveedor'),
-            ('customer', 'Ubicacion de cliente'),
-            ('transit', 'Ubicacion de tránsito'),
+            ('internal', 'Ubicación interna'),
+            ('external', 'Ubicación externa'),
+            ('virtual', 'Ubicación Virtual'),
+            ('supplier', 'Ubicación de proveedor'),
+            ('customer', 'Ubicación de cliente'),
+            ('transit', 'Ubicación de tránsito'),
             ('inventory', 'Perdida de inventario')
         ],
         string='Location Type',
