@@ -10,6 +10,7 @@
 
 from odoo import models, fields, api, _
 from dateutil.relativedelta import relativedelta
+from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -67,6 +68,10 @@ class QualityEquipment(models.Model):
         string="Calibration Frequency",
         help="Calibration or verification frequency"
     )
+    cali_ver_string = fields.Char(
+        string="Frecuencia Calibración",
+        compute="_compute_cali_ver_string"
+    )
     clasification_id = fields.Many2one(
         'quality.equipment.clasification',
         string="Clasification"
@@ -74,8 +79,8 @@ class QualityEquipment(models.Model):
     status_id = fields.Many2one(
         'quality.status',
         string="Status",
-        # compute="_compute_calibration_frequency",
-        store=True,
+        default=lambda self: self.env['quality.status'].search(
+            [('id', '=', 1)],limit=1),
         help="Calibration Status"
     )
     stage = fields.Selection(
@@ -91,13 +96,10 @@ class QualityEquipment(models.Model):
     )
     calibration_date = fields.Date(
         string="Calibration Date",
-#         compute="_compute_calibration_frequency",
     )
     expiration_date = fields.Date(
         string="Expiration Date",
-        # compute="_compute_calibration_frequency",
     )
-    # location = fields.Char(string="Location", required=True)
     location_id = fields.Many2one(
         "quality.location",
         string="Location", 
@@ -123,8 +125,6 @@ class QualityEquipment(models.Model):
     note = fields.Text(string="Notes", help="Observations")
     out_of_service = fields.Boolean(
         string="Ouf of Service",
-        # compute='_compute_out_of_service',
-        # store=False
     )
     active = fields.Boolean(string="Active", default=True)
 
@@ -139,6 +139,11 @@ class QualityEquipment(models.Model):
         if self.make_id:
             pass
 
+    def _compute_cali_ver_string(self):
+        for rec in self:
+            if rec.frequency_cal_ver != 0:
+                self.cali_ver_string = f"{rec.frequency_cal_ver} Meses"
+
 
     @api.onchange('status_id')
     def _onchange_status(self):
@@ -147,22 +152,6 @@ class QualityEquipment(models.Model):
             self.calibration_date = ""
             self.expiration_date = ""
 
-
-    # @api.depends('calibration_verification_ids')
-    # def _compute_calibration_frequency(self):
-        # _logger.info("###############################################")
-        # _logger.info("SELF: " + str(self.calibration_verification_ids))
-        # _logger.info("IDS: " + str(self.calibration_verification_ids[-1]))
-        # if self.calibration_verification_ids:
-            # _logger.info("SELF: " + str(self.calibration_verification_ids))
-            # for rec in self:
-                # _logger.info("REC: "+ str(rec))
-                # cal_verif = rec.calibration_verification_ids[-1]
-                # rec.calibration_date = cal_verif.date_execute
-                # rec.expiration_date = cal_verif.date_expiration
-                # rec.status_id = cal_verif.final_condition_id
-        # else:
-            # pass
 
     @api.onchange('calibration_date', 'frequency_cal_ver')
     def _onchange_calibration_frequency(self):
@@ -174,6 +163,17 @@ class QualityEquipment(models.Model):
             self.expiration_date = expired_date
 
 
+    def write(self, vals):
+        if vals.get('calibration_verification_ids'):
+            _logger.info("Datos: " + str(vals.get('calibration_verification_ids')))
+            for rec in vals.get('calibration_verification_ids'):
+                if rec[0] == 0:
+                    self.status_id = rec[2].get('final_condition_id')
+                    self.calibration_date = rec[2].get('date_execute')
+                    self.expiration_date = rec[2].get('date_expiration')
+                     
+        res = super(QualityEquipment, self).write(vals)
+        return res
 
 
 

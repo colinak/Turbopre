@@ -44,6 +44,17 @@
           <field name="name"/>
           <field name="equipment_id"/>
           <field name="stage"/>
+          <!--<field name="technician_user_id"/>-->
+          <!--<field name="owner_user_id"/>-->
+          <!--<field name="category_id"/>-->
+          <!--<field name="serial_no"/>-->
+          <!--<field name="model"/>-->
+          <!--<field name="maintenance_ids"/>-->
+          <!--<field name="maintenance_open_count"/>-->
+          <!--<field name="next_action_date"/>-->
+          <!--<field name="activity_ids" />-->
+          <!--<field name="activity_state" />-->
+          <!--<progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>-->
           <templates>
             <t t-name="kanban-box">
               <div class="oe_kanban_global_click">
@@ -52,6 +63,33 @@
                     <img alt="Open" t-att-src="kanban_image('maintenance.manufacturers', 'image', record.id.raw_value)" class="img-fluid" style="width:100px;"/>
                   </a>
                   <div class="oe_kanban_details">
+
+
+                    <div class="float-right" t-if="stage == 'available'">
+                        <span class="fa fa-circle text-success" role="img" aria-label="Disponible" title="Disponible" name="available">
+                        </span>
+                    </div>
+                    <!--<div class="float-right" t-if="record.hr_icon_display.raw_value == 'presence_absent'">-->
+                        <!--[> Employee is absent and it is normal according to his work schedule  <]-->
+                        <!--<span class="fa fa-circle-o text-muted" role="img" aria-label="Absent" title="Absent" name="presence_absent">-->
+                        <!--</span>-->
+                    <!--</div>-->
+                    <!--<div class="float-right" t-if="record.hr_icon_display.raw_value == 'presence_absent_active'">-->
+                        <!--[> Employee is connected but according to his work schedule, he should not work for now  <]-->
+                        <!--<span class="fa fa-circle-o text-success" role="img" aria-label="Present but not active" title="Present but not active" name="presence_absent_active">-->
+                        <!--</span>-->
+                    <!--</div>-->
+                    <!--[> Employee is not here but according to his work schedule, he should be connected <]-->
+                    <!--<div class="float-right" t-if="record.hr_icon_display.raw_value == 'presence_to_define'">-->
+                        <!--<span class="fa fa-circle text-warning" role="img" aria-label="To define" title="To define" name="presence_to_define">-->
+                        <!--</span>-->
+                    <!--</div>-->
+
+
+
+
+
+
                     <h4 class="oe_partner_heading">
                       <a type="open" class="o_kanban_record_title">
                         <field name="equipment_id"/>
@@ -61,12 +99,13 @@
                 </div>
                 <div class="oe_kanban_content" >
                   <div class="o_kanban_record_body">
+                    <!--<div t-if="record.serial_no.raw_value"><field name="serial_no"/></div>-->
                     <t t-name="kanban-tooltip">
                       <ul class="oe_kanban_tooltip" style="list-style: none;">
                         <li> <b>Code:</b> <field name="code"/></li>
                         <li> <b>Marca:</b> <field name="make_id"/></li>
                         <li> <b>Rango:</b> <field name="rango"/></li>
-                        <li> <b>Status:</b> <field name="status_id"/> - <field name="stage"/></li>
+                        <li> <b>Status:</b> <field name="status_id"/> <field name="stage"/></li>
                         <li> <b>Ubicación:</b> <field name="location_id"/> <field name="shelf_number"/> <field name="shelf_position"/></li>
                       </ul>
                     </t>
@@ -74,6 +113,48 @@
                 </div>
               </div>
             </t>
+            <!--<t t-name="kanban-box">-->
+              <!--<div t-attf-class="{{!selection_mode ? 'oe_kanban_color_' + kanban_getcolor(record.color.raw_value) : ''}} oe_kanban_card oe_kanban_global_click">-->
+                <!--<div class="o_dropdown_kanban dropdown" t-if="!selection_mode">-->
+
+                  <!--<a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">-->
+                    <!--<span class="fa fa-ellipsis-v"/>-->
+                  <!--</a>-->
+                  <!--<div class="dropdown-menu" role="menu">-->
+                    <!--<t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit...</a></t>-->
+                    <!--<t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>-->
+                    <!--<div role="separator" class="dropdown-divider"></div>-->
+                    <!--<div role="separator" class="dropdown-header">Record Colour</div>-->
+                      <!--<ul class="oe_kanban_colorpicker" data-field="color"/>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                  <!--<div class="oe_kanban_content" tooltip="kanban-tooltip">-->
+                    <!--<div class="o_kanban_record_top">-->
+                        <!--<b class="o_kanban_record_title"><field name="name"/><small><span t-if="record.model.raw_value"> (<field name="model"/>)</span></small></b>-->
+                    <!--</div>-->
+                    <!--<div class="o_kanban_record_body">-->
+                        <!--<div t-if="record.serial_no.raw_value"><field name="serial_no"/></div>-->
+                    <!--</div>-->
+                    <!--<div class="o_kanban_record_bottom">-->
+                      <!--<div class="oe_kanban_bottom_left">-->
+                        <!--<div class="badge badge-danger" t-if="!selection_mode and record.maintenance_open_count.raw_value" >-->
+                          <!--<t t-raw="record.maintenance_open_count.raw_value"/> Request-->
+                        <!--</div>-->
+                        <!--<div class="badge badge-secondary" t-if="!selection_mode and record.next_action_date.raw_value" >-->
+                          <!--<t t-raw="moment(record.next_action_date.raw_value).format('MMMM Do')"/>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                      <!--<div class="oe_kanban_bottom_right">-->
+                        <!--<div class="o_kanban_inline_block" t-if="!selection_mode">-->
+                          <!--<field name="activity_ids" widget="kanban_activity" />-->
+                        <!--</div>-->
+                        <!--<field name="owner_user_id" widget="many2one_avatar_user"/>-->
+                      <!--</div>-->
+                    <!--</div>-->
+                  <!--</div>-->
+                <!--<div class="oe_clear"></div>-->
+              <!--</div>-->
+            <!--</t>-->
           </templates>
         </kanban>
       </field>
@@ -122,6 +203,7 @@
                 <field name="location_id" placeholder="Select" options="{'no_create': True, 'no_create_edit': True}"/>
                 <field name="shelf_number" />
                 <field name="shelf_position" />
+                <!--<field name="category_id" placeholder="Select" />-->
                 <label for="frequency_cal_ver" class="oe_edit_only" attrs="{'invisible': [('status_id', '=', 5)]}" />
                 <div class="o_row" attrs="{'invisible': [('status_id', '=', 5)]}">
                   <field name="frequency_cal_ver" 
@@ -131,20 +213,21 @@
                 </div>
                 <field name="calibration_date" placeholder="Select"
                   attrs="{
-                    'required': [('frequency_cal_ver', '>=', 1)],
                     'invisible': [('status_id', '=', 5)]
                   }"
                 />
+                    <!--'required': [('frequency_cal_ver', '>=', 1)],-->
                 <field name="expiration_date" placeholder="Select"
                   attrs="{
-                    'required': [('frequency_cal_ver', '>=', 1)],
                     'invisible': [('status_id', '=', 5)]
                   }"
                 />
+                    <!--'required': [('frequency_cal_ver', '>=', 1)],-->
               </group>
               <group colspan="4">
                 <field name="note" string="Observations" />
               </group>
+              <!--<field name="stage" />-->
             </group>
             <notebook attrs="{'invisible': [('id', '=', False)]}">
               <page string="Calibration / Verification" attrs="{'invisible': [('status_id', '=', 5)]}">

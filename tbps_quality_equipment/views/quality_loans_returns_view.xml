@@ -38,8 +38,8 @@
           </header>
           <sheet>
             <field name="id" invisible="1"/>
-            <widget name="web_ribbon" title="PRESTADO" bg_color="bg-info" attrs="{'invisible': [('stage', '!=', 'loan')]}"/>
-            <widget name="web_ribbon" title="DEVUELTO" bg_color="bg-success" attrs="{'invisible': [('stage', '!=', 'done')]}"/>
+            <widget name="web_ribbon" title="PRESTAMO" bg_color="bg-info" attrs="{'invisible': [('stage', '!=', 'loan')]}"/>
+            <widget name="web_ribbon" title="DEVOLUCIÓN" bg_color="bg-success" attrs="{'invisible': [('stage', '!=', 'done')]}"/>
             <widget name="web_ribbon" title="CANCELADO" bg_color="bg-danger" attrs="{'invisible': [('stage', '!=', 'cancel')]}"/>
             <div class="oe_title">
               <h1>
@@ -57,14 +57,10 @@
                 <field name="signature_applicant" attrs="{'readonly': [('id', '!=', False)]}" />
                 <field name="signature_deliverer" attrs="{'readonly': [('id', '!=', False)]}" />
                 <field name="deadline" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)]}" />
-                <!--<field name="deadline" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)]}" decoration-danger="state not in ('done') and deadline &lt; now" decoration-success=""/>-->
               </group>
               <group>
                 <field name="applicant_id" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)]}" />
                 <field name="delivery_id" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)]}" />
-                <!--<field name="applicant_id" placeholder="Seleccione" readonly="True"/>-->
-                <!--<field name="delivery_id" placeholder="Seleccione" readonly="True"/>-->
-                <!--<field name="deadline" string="Fecha Programada" widget="remaining_days" readonly="True" widget="remaining_days" attrs="{'invisible':[('stage', 'in', ('done', 'cancel'))]}"/>-->
               </group>
             </group>
             <group string="Datos de Retorno" attrs="{'invisible': [('id', '=', False)]}">
@@ -76,8 +72,6 @@
               <group>
                 <field name="delivery2_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
                 <field name="receipt_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
-                <!--<field name="delivery2_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True"/>-->
-                <!--<field name="receipt_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True"/>-->
                 <field name="equipment_status_entry_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
               </group>
             </group>
@@ -96,16 +90,12 @@
           <field name="equipment_id" placeholder="Seleccione" />
           <field name="rango" optional="hide"/>
           <field name="equipment_status_id" optional="hide"/>
-          <!--<field name="signature_applicant"/>-->
           <field name="applicant_id" />
           <field name="deadline" string="Fecha de Prestamo"/>
-          <!--<field name="signature_deliverer"/>-->
           <field name="delivery_id" />
           <field name="deadline" string="Fecha Programada" widget="remaining_days" attrs="{'invisible':[('stage', 'in', ('done', 'cancel'))]}"/>
           <field name="entry_date" string="Fecha de Devolución"/>
           <field name="equipment_status_entry_id" />
-          <!--<field name="signature_deliverer2"/>-->
-          <!--<field name="receipt_id"/>-->
           <field name="delivery2_id" />
           <field name="receipt_id"/>
           <field name="stage" string="Estado" optional="hide" widget="badge" decoration-success="stage == 'done'" decoration-info="stage not in ('done', 'cancel', 'draft')" decoration-muted="stage == 'draft'" decoration-danger="stage == 'cancel'"/>

@@ -28,8 +28,8 @@ class QualityTraceabilityEquipment(models.Model):
     )
     partner_id = fields.Many2one(
         'res.partner',
-        string="Enter Certificador",
-        help="Enter Certificador"
+        string="Ente Certificador",
+        help="Ente Certificador"
     )
     type_activity_id = fields.Many2one(
         'quality.activity.type',
@@ -37,12 +37,20 @@ class QualityTraceabilityEquipment(models.Model):
         required=True,
         help="Type of action to execute"
     )
+    clasification = fields.Selection(
+        [
+            ('follow-up', 'SEGUIMIENTO'),
+            ('measurement', 'MEDICIÓN'),
+        ],
+        string="Clasificación",
+    )
     date_execute = fields.Date(
         string="Date Execute",
         required=True,
     )
     date_expiration = fields.Date(
         string="Expiration Date",
+        required=True,
     )
     final_condition_id = fields.Many2one(
         'quality.status',
@@ -51,10 +59,10 @@ class QualityTraceabilityEquipment(models.Model):
     )
     made_by = fields.Char(
         string="Made by",
-        required=True,
     )
     certificate_no = fields.Char(string="Certificate Number")
     certificate = fields.Binary(string="Certificado")
+    certificate_name = fields.Char(string="File Name")
     note = fields.Text(string="Observations")
     Certificate_doc = fields.Char(string="Adjuntar Certificado")
     active = fields.Boolean(string="Archived", default=True)
@@ -72,7 +80,9 @@ class QualityTraceabilityEquipment(models.Model):
     
     @api.onchange('final_condition_id')
     def _onchange_final_condition(self):
-        if self.final_condition_id.name == 'Dañado':
+        if self.final_condition_id.name == 'DAÑADO':
             self.date_expiration = False
-        elif self.final_condition_id.name == 'Equipo Obsoleto Solo de Uso Referencial':
+        elif self.final_condition_id.name == 'EQUIPO OBSOLETO SSOLO DE USO REFERENCIAL':
             self.date_expiration = False
+
+

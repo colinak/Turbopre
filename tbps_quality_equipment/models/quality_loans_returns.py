@@ -38,7 +38,8 @@ class QualityLoansReturns(models.Model):
         string="Equipo",
         required=True,
         compute="_compute_equipment_date",
-        domain="[('stage', '=', 'available')]"
+        domain="[('stage', '=', 'available')]",
+        ondelete="RESTRICT"
     )
     rango = fields.Char(
         string="Rango",
@@ -49,13 +50,14 @@ class QualityLoansReturns(models.Model):
         "quality.status",
         string="Status",
         required=True,
-        related="equipment_id.status_id"
+        related="equipment_id.status_id",
+        ondelete="RESTRICT"
     )
     stage = fields.Selection(
         [
             ('draft', 'Borrador'),
-            ('loan', 'Prestado'),
-            ('done', 'Devuelto'),
+            ('loan', 'Prestamo'),
+            ('done', 'Devolución'),
             ('cancel', 'Cancelado'),
         ],
         string="Stage",
@@ -65,11 +67,13 @@ class QualityLoansReturns(models.Model):
         "tps.employee",
         string="Solicitante",
         required=True,
+        ondelete="RESTRICT"
     )
     delivery_id = fields.Many2one(
         "tps.employee",
         string="Entrega",
         required=True,
+        ondelete="RESTRICT"
     )
     deadline = fields.Datetime(
         string="Fecha de entrega",
@@ -89,7 +93,8 @@ class QualityLoansReturns(models.Model):
     )
     equipment_status_entry_id = fields.Many2one(
         "quality.status",
-        string="Condición del equipo"
+        string="Condición del equipo",
+        ondelete="RESTRICT"
     )
     receipt_signature = fields.Char(
         string="PIN quien recibe"
@@ -97,6 +102,7 @@ class QualityLoansReturns(models.Model):
     receipt_id = fields.Many2one(
         "tps.employee",
         string="Recibe",
+        ondelete="RESTRICT"
     )
     signature_deliverer2 = fields.Char(
         string="PIN quien devuelve"
@@ -104,6 +110,7 @@ class QualityLoansReturns(models.Model):
     delivery2_id = fields.Many2one(
         "tps.employee",
         string="Devuelve",
+        ondelete="RESTRICT"
     )
     active = fields.Boolean(string="Archived", default=True)
 
@@ -111,7 +118,6 @@ class QualityLoansReturns(models.Model):
     _sql_constraints = [
         ('name_uniq', 'unique(name)', 'Reference must be unique per company!'),
     ]
-
 
 
     def _compute_equipment_date(self):

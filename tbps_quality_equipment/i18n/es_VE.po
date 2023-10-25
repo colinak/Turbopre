@@ -1,0 +1,1284 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* tbps_quality_equipment
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0-20220812\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-20 17:58+0000\n"
+"PO-Revision-Date: 2023-10-20 17:58+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_location__usage
+msgid ""
+"* Ubicación interna: ubicaciones físicas dentro de sus propios almacenes\n"
+"* Ubicación externa: ubicaciones físicas fuera de sus propios almacenes\n"
+"* Virtual: ubicación virtual utilizada para crear estructuras jerárquicas para su almacén, agregando sus ubicaciones secundarias; no puede contener productos directamente\n"
+"* Ubicación del proveedor: ubicación virtual que representa la ubicación de origen de los productos que provienen de sus proveedores\n"
+"* Ubicación del cliente: ubicación virtual que representa la ubicación de destino de los productos enviados a sus clientes\n"
+"* Pérdida de inventario: Ubicación virtual que sirve como contraparte para las operaciones de inventario utilizadas para corregir los niveles de existencias (Inventarios físicos)\n"
+"* Ubicación de tránsito: ubicación de contraparte que se debe usar en operaciones entre empresas o entre almacenes"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_kanban
+msgid "<b>Code:</b>"
+msgstr "Código"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_kanban
+msgid "<b>Marca:</b>"
+msgstr "Marca"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_kanban
+msgid "<b>Rango:</b>"
+msgstr "Rango"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_kanban
+msgid "<b>Status:</b>"
+msgstr "Estatus"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_kanban
+msgid "<b>Ubicación:</b>"
+msgstr "Ubicación"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_form
+msgid "<span>Months</span>"
+msgstr "Meses"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__active
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__active
+msgid "Active"
+msgstr "Activo"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_activity_type_search
+msgid "Activity Type"
+msgstr "Tipo de Actividad"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type__active
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category__active
+msgid "Activo?"
+msgstr "Activo?"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.actions.act_window,help:tbps_quality_equipment.tps_employee_action_view
+msgid "Add New Employee"
+msgstr "Agregar Nuevo Empleado"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.actions.act_window,help:tbps_quality_equipment.quality_location_action_settings
+msgid "Add New Location"
+msgstr "Agregar Nueva Ubicación"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.actions.act_window,help:tbps_quality_equipment.quality_status_action_settings
+msgid "Add New Status"
+msgstr "Agregar Nuevo Estatus"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__Certificate_doc
+msgid "Adjuntar Certificado"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:res.groups,name:tbps_quality_equipment.group_quality_system
+msgid "Administrador"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_activity_type__type_of_notification__alert
+msgid "Alert"
+msgstr "Alerta"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__appreciation
+msgid "Appreciation"
+msgstr "Apreciación"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Apreciación"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model,name:tbps_quality_equipment.model_quality_activity_type
+#: model:ir.model,name:tbps_quality_equipment.model_quality_traceability_equipment
+msgid "Aquality Traceability Equipment"
+msgstr "Trazabilidad de Equipos de Calidad"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_activity_type_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_manufacturers_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_search
+msgid "Archivado"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_clasification__active
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_manufacturers__active
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__active
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_status__active
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__active
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_status_view_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_activity_type_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_clasification_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_manufacturers_search
+msgid "Archived"
+msgstr "Archivado"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Asignados"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__assigned_id
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_equipment__stage__assigned
+msgid "Assigned"
+msgstr "Asignado"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_equipment__stage__available
+msgid "Available"
+msgstr "Disponible"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_search
+msgid "Barcode"
+msgstr "Código de barras"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_loans_returns__stage__draft
+msgid "Borrador"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_location__active
+msgid ""
+"By unchecking the active field, you may hide a location without deleting it."
+msgstr "Al desmarcar el campo activo, puede ocultar una ubicación sin eliminarla"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_form
+msgid "CANCELADO"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_form
+msgid "Calibracion or Verificacion"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_form
+msgid "Calibration / Verification"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__calibration_date
+msgid "Calibration Date"
+msgstr "Fecha de Calibración"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__frequency_cal_ver
+msgid "Calibration Frequency"
+msgstr "Frecuencia de Calibración"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment__status_id
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_loans_returns__equipment_status_id
+msgid "Calibration Status"
+msgstr "Estatus de Calibración"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment__frequency_cal_ver
+msgid "Calibration or verification frequency"
+msgstr "Frecuencia de Calibración o Verificación"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__calibration_verification_ids
+msgid "Calibrations Verification"
+msgstr "Calibración Verificación"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_loans_returns__stage__cancel
+msgid "Cancelado"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment__equipment_id
+msgid "Category Equipment"
+msgstr "Categoría de Equipos"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__certificate
+msgid "Certificado"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__certificate_no
+msgid "Certificate Number"
+msgstr "Número de Certificado"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_location__scrap_location
+msgid ""
+"Check this box to allow using this location to put scrapped/damaged goods."
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Clasificación"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__clasification_id
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Clasification"
+msgstr "Clasificación"
+
+#. module: tbps_quality_equipment
+#: model:ir.actions.act_window,name:tbps_quality_equipment.action_quality_equipment_clasification
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_equipment_clasificacion
+msgid "Clasifications"
+msgstr "Clasificación"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__code
+msgid "Code"
+msgstr "Código"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment__code
+msgid "Code for Equipment"
+msgstr "Código del Equipo"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__equipment_status_entry_id
+msgid "Condición del equipo"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__child_ids
+msgid "Contains"
+msgstr "Contiene"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.actions.act_window,help:tbps_quality_equipment.action_quality_equipment_clasification
+msgid "Create New Clasifications"
+msgstr "Crear Nueva Clasificación"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.actions.act_window,help:tbps_quality_equipment.action_quality_equipment
+msgid "Create New Equipment"
+msgstr "Crear Nuevo Equipo"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.actions.act_window,help:tbps_quality_equipment.action_quality_equipment_category
+msgid "Create New Equipment Category"
+msgstr "Crear Nueva Categoría de Equipos"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.actions.act_window,help:tbps_quality_equipment.action_quality_loans_returns
+msgid "Create New Loans"
+msgstr "Crear Nuevo Prestamo"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.actions.act_window,help:tbps_quality_equipment.action_quality_equipment_manufacturers
+msgid "Create New Manufacturers"
+msgstr "Crear nuevo Fabricante"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.actions.act_window,help:tbps_quality_equipment.action_quality_activity_type
+msgid "Create New Type Activity"
+msgstr "Crear Nuevo Tipo de Actividad"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type__create_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__create_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category__create_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_clasification__create_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_manufacturers__create_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__create_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__create_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_status__create_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type__create_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__create_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category__create_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_clasification__create_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_manufacturers__create_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__create_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__create_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_status__create_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__code
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Código"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_search
+msgid "Código Equipo"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_form
+msgid "DEVOLUCIÓN"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__date_execute
+msgid "Date Execute"
+msgstr "Fecha de Ejecución"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_form
+msgid "Datos de Retorno"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_form
+msgid "Datos de Salida"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_form
+msgid "Datos del Equipo"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_search
+msgid "Departamento"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_form
+msgid "Descripción"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type__description
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__name
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_status__name
+msgid "Description"
+msgstr "Descripción"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_loans_returns__stage__done
+msgid "Devolución"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__delivery2_id
+msgid "Devuelve"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type__display_name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__display_name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category__display_name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_clasification__display_name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_manufacturers__display_name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__display_name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__display_name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_status__display_name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__display_name
+msgid "Display Name"
+msgstr "Nombre a Mostrar"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_search
+msgid "Dpto Responsible"
+msgstr "Dpto Responsable"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_search
+msgid "Empleado"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_activity_type__responsible_id
+msgid "Empleado responsable"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.actions.act_window,name:tbps_quality_equipment.tps_employee_action_view
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_tps_employee
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_tree
+msgid "Empleados"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_search
+msgid "Employee"
+msgstr "Empleado"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "En custodia"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__partner_id
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_traceability_equipment__partner_id
+msgid "Ente Certificador"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__delivery_id
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_search
+msgid "Entrega"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.actions.act_window,name:tbps_quality_equipment.action_quality_equipment
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_equipment
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_equipment_title
+msgid "Equipment"
+msgstr "Equipos"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__equipment_id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__equipment_id
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_tree
+msgid "Equipment"
+msgstr "Equipo"
+
+
+#. module: tbps_quality_equipment
+#: model:ir.actions.act_window,name:tbps_quality_equipment.action_quality_equipment_category
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_equipment_category
+msgid "Equipment Category"
+msgstr "Categoría de Equipos"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_form
+msgid "Equipment Category Name"
+msgstr "Nombre Categoría de Equipo"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment__name
+msgid "Equipment Description"
+msgstr "Descripción de Equipo"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__equipment_id
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_search
+msgid "Equipos"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.module.category,name:tbps_quality_equipment.module_category_quality_equipment
+msgid "Equipos de Medición"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_activity_type__type_of_notification__error
+msgid "Error"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_tree
+msgid "Estado"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__expiration_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__date_expiration
+msgid "Expiration Date"
+msgstr "Fecha de Caducidad"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_tree
+msgid "Fecha Programada"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_tree
+msgid "Fecha de Devolución"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_tree
+msgid "Fecha de Prestamo"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_form
+msgid "Fecha de Retorno"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__entry_date
+msgid "Fecha de entrada"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__deadline
+msgid "Fecha de entrega"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__final_condition_id
+msgid "Final Condition"
+msgstr "Condición Final"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Fuera de servicio"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__complete_name
+msgid "Full Location Name"
+msgstr "Nombre Completo Ubicación"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_search
+msgid "Gerente de área"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_search
+msgid "Group By"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type__id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category__id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_clasification__id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_manufacturers__id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_status__id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__id
+msgid "ID"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__image_1920
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_clasification__image
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_manufacturers__image
+msgid "Image"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_equipment__stage__in_custody
+msgid "In Custody"
+msgstr "En Custodia"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+msgid "Información Adicional"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+msgid "Información Adicional"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.module.category,description:tbps_quality_equipment.module_category_quality_equipment
+msgid ""
+"Inventario prestamos, asignación y recepción de equipos de medición de la "
+"calidad"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type____last_update
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment____last_update
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category____last_update
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_clasification____last_update
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_manufacturers____last_update
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns____last_update
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location____last_update
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_status____last_update
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type__write_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__write_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category__write_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_clasification__write_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_manufacturers__write_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__write_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__write_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_status__write_uid
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type__write_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__write_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category__write_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_clasification__write_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_manufacturers__write_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__write_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__write_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_status__write_date
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_equipment__stage__loan
+msgid "Loan"
+msgstr "Prestamo"
+
+#. module: tbps_quality_equipment
+#: model:ir.model,name:tbps_quality_equipment.model_quality_loans_returns
+msgid "Loans & Returns"
+msgstr "Prestamos y Devoluciones"
+
+#. module: tbps_quality_equipment
+#: model:ir.actions.act_window,name:tbps_quality_equipment.action_quality_loans_returns
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_loans_returns
+msgid "Loans y Returns"
+msgstr "Prestamos y Devoluciones"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_tree
+msgid "Locations"
+msgstr "Ubicación"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__location_id
+msgid "Location"
+msgstr "Ubicación"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_location__name
+msgid "Location Name"
+msgstr "Nombre Ubicación"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_search
+msgid "Location Parent"
+msgstr "Ubicación Padre"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__usage
+msgid "Location Type"
+msgstr "Tipo de Ubicación"
+
+#. module: tbps_quality_equipment
+#: model:ir.actions.act_window,name:tbps_quality_equipment.quality_location_action_settings
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_location
+msgid "Locations"
+msgstr "Ubicaciones"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__made_by
+msgid "Made by"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__make_id
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Make"
+msgstr "Marca"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment__make_id
+msgid "Make for Equipment"
+msgstr "Marca del Equipo"
+
+#. module: tbps_quality_equipment
+#: model:res.groups,name:tbps_quality_equipment.group_quality_manager
+msgid "Manager"
+msgstr "Gerente"
+
+#. module: tbps_quality_equipment
+#: model:ir.actions.act_window,name:tbps_quality_equipment.action_quality_equipment_manufacturers
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_equipment_manufacturers
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_manufacturers_search
+msgid "Manufacturers"
+msgstr "Fabricantes"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_manufacturers_form
+msgid "Manufacturers Name"
+msgstr "Nombre de Fabricantes"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Marca"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment__rango
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_loans_returns__rango
+msgid "Measurement value range"
+msgstr "Rango de Valores de Medición"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment__appreciation
+msgid "Minimum unit of measure"
+msgstr "Unidad Mínima de Medida"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__model
+msgid "Model"
+msgstr "Modelo"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Modelo"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category__name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_clasification__name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_manufacturers__name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__name
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_status__name
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_activity_type_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_activity_type_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_activity_type_tree
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_tree
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_clasification_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_clasification_tree
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_manufacturers_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_manufacturers_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_manufacturers_tree
+msgid "Name"
+msgstr "Nombre"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_activity_type_form
+msgid "Name Activity"
+msgstr "Nombre Actividad"
+
+#. module: tbps_quality_equipment
+#: code:addons/tbps_quality_equipment/models/quality_loans_returns.py:0
+#: code:addons/tbps_quality_equipment/models/quality_loans_returns.py:0
+#: code:addons/tbps_quality_equipment/models/quality_loans_returns.py:0
+#: code:addons/tbps_quality_equipment/models/quality_loans_returns.py:0
+#, python-format
+msgid "New"
+msgstr "Nuevo"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+msgid "Nombre"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+msgid "Nombre Ubicación"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+msgid "Nombre de la Ubicación"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_form
+msgid "Nombre del empleado"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+msgid "Nota Externa..."
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__comment
+msgid "Notas"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+msgid "Notas Externas"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__note
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category__note
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_clasification__note
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_manufacturers__note
+msgid "Notes"
+msgstr "Notas"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_form
+msgid "N° carnet"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_form
+msgid "N° tarjeta magnetica"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__note
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment__note
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_form
+msgid "Observations"
+msgstr "Observaciones"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_kanban
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_manufacturers_kanban
+msgid "Open"
+msgstr "Abierto"
+
+#. module: tbps_quality_equipment
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_equipment_operations
+msgid "Operations"
+msgstr "Operaciones"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__out_of_service
+msgid "Ouf of Service"
+msgstr "Fuera de Servicio"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_equipment__stage__discarded
+msgid "Out of Service"
+msgstr "Fuera de Servicio"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_search
+msgid "PIN"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__signature_deliverer2
+msgid "PIN quien devuelve"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__signature_deliverer
+msgid "PIN quien entrega"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__receipt_signature
+msgid "PIN quien recibe"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__signature_applicant
+msgid "PIN solicitante"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_form
+msgid "PRESTAMO"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_search
+msgid "Parent"
+msgstr "Padre"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__parent_id
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_location__parent_id
+msgid "Parent Location"
+msgstr "Ubicación Padre"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_location__usage__inventory
+msgid "Perdida de inventario"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Prestados"
+msgstr "Prestados"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_loans_returns__stage__loan
+msgid "Prestamo"
+msgstr "Prestamo"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_search
+msgid "Pin Solicitante"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_search
+msgid "Puesto de Trabajo"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_search
+msgid "Puesto de trabajo"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_activity_type_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_activity_type_tree
+msgid "Quality Activity Type"
+msgstr "Tipo de Actividad Calidad"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_search
+msgid "Quality Category"
+msgstr "Categoría Calidad"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_clasification_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_clasification_tree
+msgid "Quality Clasification"
+msgstr "Clasificación Calidad"
+
+#. module: tbps_quality_equipment
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_equipment_root
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_tree
+msgid "Quality Equipment"
+msgstr "Equipos de Calidad"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_tree
+msgid "Quality Equipment Category"
+msgstr "Categoría de Equipos de Calidad"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_manufacturers_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_manufacturers_tree
+msgid "Quality Equipment Manufacturers"
+msgstr "Fabricante de Equipos de Calidad"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_status_view_tree
+msgid "Quality Status"
+msgstr "Estatus de Calidad"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_tree
+msgid "Quality loans y returns"
+msgstr "Prestamos y Devoluciones"
+
+#. module: tbps_quality_equipment
+#: model:ir.model,name:tbps_quality_equipment.model_quality_equipment
+msgid "Quiality Equipment"
+msgstr "Equipos de Calidad"
+
+#. module: tbps_quality_equipment
+#: model:ir.model,name:tbps_quality_equipment.model_quality_equipment_category
+msgid "Quiality Equipment Category"
+msgstr "Categoría de Equipos de Calidad"
+
+#. module: tbps_quality_equipment
+#: model:ir.model,name:tbps_quality_equipment.model_quality_equipment_clasification
+msgid "Quiality Equipment Clasification"
+msgstr "Clasificación de Equipos de Calidad"
+
+#. module: tbps_quality_equipment
+#: model:ir.model,name:tbps_quality_equipment.model_quality_equipment_manufacturers
+msgid "Quiality Equipment Manufacutrers"
+msgstr "Fabricante de Equipos de Calidad"
+
+#. module: tbps_quality_equipment
+#: model:ir.model,name:tbps_quality_equipment.model_quality_status
+msgid "Quiality Status"
+msgstr "Estatus Calidad"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__rango
+msgid "Range"
+msgstr "Rango"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__rango
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Range"
+msgstr "Rango"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__receipt_id
+msgid "Recibe"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.constraint,message:tbps_quality_equipment.constraint_quality_loans_returns_name_uniq
+msgid "¡La referencia debe ser única por empresa!"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__name
+msgid "Referencia"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Responsable"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type__responsible_id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__technician_user_id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category__technician_user_id
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment_category__technician_user_id
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_category_search
+msgid "Responsible"
+msgstr "Responsable"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment_category__dpto_responsible_id
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment_category__dpto_responsible_id
+msgid "Responsible Department"
+msgstr "Departamento Responsable"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_search
+msgid "Scrap Location"
+msgstr "Ubicación de Chatarra"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_status_view_search
+msgid "Search"
+msgstr "Buscar"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_tree
+msgid "Seleccione"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_equipment__location_id
+msgid "Seleccione la ubicación del equipo."
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_activity_type_form
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_form
+msgid "Select"
+msgstr "Seleccione"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_form
+msgid "Select Activity"
+msgstr "Seleccione Actividad"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_form
+msgid "Select Equipment"
+msgstr "Seleccione Equipo"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Serial Number"
+msgstr "Número de Serie"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__serial_no
+msgid "Serial N°"
+msgstr "N° Serie"
+
+#. module: tbps_quality_equipment
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_equipment_setting
+msgid "Setting"
+msgstr "Configuración"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__shelf_number
+msgid "Shelf Number"
+msgstr "Número de Estante"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__shelf_position
+msgid "Shelf Position"
+msgstr "Posición Estante"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Sin asignar"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__applicant_id
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_loans_returns_search
+msgid "Solicitante"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__stage
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__stage
+msgid "Stage"
+msgstr "Estado"
+
+#. module: tbps_quality_equipment
+#: model:ir.actions.act_window,name:tbps_quality_equipment.quality_status_action_settings
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_equipment__status_id
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_loans_returns__equipment_status_id
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_status
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_status_view_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Status"
+msgstr "Estatus"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+msgid "Stock Actual"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_search
+msgid "Supervisor inmediato"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.constraint,message:tbps_quality_equipment.constraint_quality_equipment_code_unique
+msgid "There is another asset with this code!"
+msgstr "Hay otro activo con este código."
+
+#. module: tbps_quality_equipment
+#: model:ir.model.constraint,message:tbps_quality_equipment.constraint_quality_equipment_name_serial_no
+msgid "There is another asset with this serial number!"
+msgstr "Hay otro activo con este número de serie."
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+msgid "Tipo de ubicación"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.actions.act_window,name:tbps_quality_equipment.action_quality_activity_type
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_traceability_equipment__type_activity_id
+#: model:ir.ui.menu,name:tbps_quality_equipment.menu_quality_type_activity
+msgid "Type Activity"
+msgstr "Tipo de Actividad"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type__type_of_notification
+msgid "Type de decoration"
+msgstr "Tipo de Decoración"
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,help:tbps_quality_equipment.field_quality_traceability_equipment__type_activity_id
+msgid "Type of action to execute"
+msgstr "Tipo de acción a ejecutar"
+
+#. module: tbps_quality_equipment
+#: model:ir.model,name:tbps_quality_equipment.model_quality_location
+msgid "Ubicaciones"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_search
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.view_quality_equipment_search
+msgid "Ubicación"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_location__usage__virtual
+msgid "Ubicación Virtual"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_location__usage__customer
+msgid "Ubicación de cliente"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_location__usage__supplier
+msgid "Ubicación de proveedor"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_location__usage__transit
+msgid "Ubicación de tránsito"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_location__usage__external
+msgid "Ubicación externa"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields.selection,name:tbps_quality_equipment.selection__quality_location__usage__internal
+msgid "Ubicación interna"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+msgid "Ubicación padre"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_search
+msgid "Usage"
+msgstr "Usado"
+
+#. module: tbps_quality_equipment
+#: model:res.groups,name:tbps_quality_equipment.group_quality_user
+msgid "Usuario"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_activity_type__name
+msgid "name"
+msgstr "Nombre"
+
+#. module: tbps_quality_equipment
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.tps_employee_view_form
+msgid "seleccione"
+msgstr ""
+
+#. module: tbps_quality_equipment
+#: model:ir.model.fields,field_description:tbps_quality_equipment.field_quality_location__scrap_location
+#: model_terms:ir.ui.view,arch_db:tbps_quality_equipment.quality_location_view_form
+msgid "¿Es una ubicación de chatarra?"
+msgstr ""

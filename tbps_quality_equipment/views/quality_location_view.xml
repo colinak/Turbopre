@@ -41,7 +41,6 @@
               </h2>
             </div>
             <group col="4" string="Información Adicional">
-              <!--<field name="warehouse_id"/>-->
               <field name="usage" string="Tipo de ubicación" />
               <field name="scrap_location" string="¿Es una ubicación de chatarra?" />
             </group>
@@ -57,7 +56,7 @@
       <field name="name">quality.location.tree</field>
       <field name="model">quality.location</field>
       <field name="arch" type="xml">
-        <tree string="Locarions" 
+        <tree string="Locations" 
           decoration-info="usage == 'virtual'"
           decoration-success="usage == 'internal'"
           decoration-warning="usage == 'external'"
