@@ -52,6 +52,7 @@
         "views/quality_equipment_view.xml",
         "views/quality_loans_returns_view.xml",
         "views/quality_tps_employee_view.xml",
+        "views/res_partner_view.xml",
     ],
     'demo': [],
     'qweb': [],

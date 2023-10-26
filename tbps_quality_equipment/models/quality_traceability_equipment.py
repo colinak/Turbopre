@@ -29,6 +29,7 @@ class QualityTraceabilityEquipment(models.Model):
     partner_id = fields.Many2one(
         'res.partner',
         string="Ente Certificador",
+        domain="[('supplier', '=', True)]",
         help="Ente Certificador"
     )
     type_activity_id = fields.Many2one(
