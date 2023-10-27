@@ -25,9 +25,6 @@ class TpsEmployee(models.Model):
         required=True,
         held="Nombre del empleado"
     )
-    image_1920 = fields.Binary(
-        string="Imagen"
-    )
     job_id = fields.Many2one(
         "hr.job",
         required=True,
@@ -62,4 +59,18 @@ class TpsEmployee(models.Model):
         string="Activo?",
         default=True,
     )
+
+    # all image fields are base64 encoded and PIL-supporte
+    image_1920 = fields.Image("Image", max_width=1920, max_height=1920)
+
+    # resized fields stored (as attachment) for performance
+    image_1024 = fields.Image("Image 1024", related="image_1920", max_width=1024, max_height=1024, store=True)
+    image_512 = fields.Image("Image 512", related="image_1920", max_width=512, max_height=512, store=True)
+    image_256 = fields.Image("Image 256", related="image_1920", max_width=256, max_height=256, store=True)
+    image_128 = fields.Image("Image 128", related="image_1920", max_width=128, max_height=128, store=True)
+
+    _sql_constraints = [
+        ('barcode_uniq', 'unique (barcode)', "El ID de la Credencial debe ser único, éste ya está asignado a otro empleado."),
+        ('pin_uniq', 'unique (pin)', "El Código PIN debe ser único, éste ya está asignado a otro empleado.")
+    ]
 

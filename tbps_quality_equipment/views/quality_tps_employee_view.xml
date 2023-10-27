@@ -7,11 +7,31 @@
       <field name="model">tps.employee</field>
       <field name="arch" type="xml">
         <kanban class="o_kanban_mobile">
+          <field name="id" />
+          <field name="image_128" />
+          <field name="name" />
+          <field name="job_id" />
+          <field name="coach_id" />
+          <field name="pin" />
+          <field name="barcode" />
+          <field name="department_id" />
+          <field name="parent_id" />
           <templates>
             <t t-name="kanban-box">
-              <div t-attf-class="oe_kanban_global_click">
-                <div>
-                  <strong><field name="name"/></strong>
+              <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                <field name="image_128" widget="image" class="o_kanban_image_fill_left" options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}"/>
+                <div class="oe_kanban_details">
+                  <div class="o_kanban_record_top">
+                    <div class="o_kanban_record_headings">
+                      <div>
+                        <strong><field name="name"/></strong>
+                      </div>
+                      <span class="o_kanban_record_subtitle"><field name="job_id"/></span>
+                      <span class="o_kanban_record_subtitle"><field name="coach_id"/></span>
+                      <span class="o_kanban_record_subtitle"><field name="pin"/></span>
+                      <span class="o_kanban_record_subtitle"><field name="barcode"/></span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </t>
@@ -68,15 +88,12 @@
           <sheet>
             <field name="active" invisible="True" />
             <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
-            <field name="image_1920" widget="image" class="oe_avatar" options="{&quot;zoom&quot;: true, &quot;preview_image&quot;:&quot;image_128&quot;}"/>
+            <!--<field name="image_1920" widget="image" class="oe_avatar" options="{&quot;zoom&quot;: true, &quot;preview_image&quot;:&quot;image_128&quot;}"/>-->
+            <field name="image_1920" widget='image' class="oe_avatar" options='{"zoom": true, "preview_image":"image_128"}'/>
             <div class="oe_title">
               <h1 class="d-flex">
                 <field name="name" placeholder="Nombre del empleado" required="True" style="width: 70%;"/>
               </h1>
-              <!--<h2>-->
-                <!--<field name="job_id" placeholder="Job Position"/>-->
-                <!--<field name="job_title" placeholder="Job Position"/>-->
-              <!--</h2>-->
             </div>
             <group>
               <group>

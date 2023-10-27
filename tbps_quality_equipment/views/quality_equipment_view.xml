@@ -46,32 +46,30 @@
           <field name="stage"/>
           <templates>
             <t t-name="kanban-box">
-              <div class="oe_kanban_global_click">
-                <div class="oe_kanban_vignette oe_semantic_html_override">
-                  <a type="open" href="#" class="o_kanban_image oe_kanban_action">
-                    <img alt="Open" t-att-src="kanban_image('maintenance.manufacturers', 'image', record.id.raw_value)" class="img-fluid" style="width:100px;"/>
-                  </a>
+              <div class="oe_kanban_global_click o_kanban_record_has_image_fill o_hr_kanban_record">
+                <field name="image_128" widget="image" class="o_kanban_image_fill_left" options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}"/>
+                <!--<div class="oe_kanban_vignette oe_semantic_html_override">-->
                   <div class="oe_kanban_details">
                     <h4 class="oe_partner_heading">
                       <a type="open" class="o_kanban_record_title">
                         <field name="equipment_id"/>
                       </a>
                     </h4>
+                    <div class="oe_kanban_content" >
+                      <div class="o_kanban_record_body">
+                        <t t-name="kanban-tooltip">
+                          <ul class="oe_kanban_tooltip" style="list-style: none;">
+                            <li> <b>Code:</b> <field name="code"/></li>
+                            <li> <b>Marca:</b> <field name="make_id"/></li>
+                            <li> <b>Rango:</b> <field name="rango"/></li>
+                            <li> <b>Status:</b> <field name="status_id"/> - <field name="stage"/></li>
+                            <li> <b>Ubicación:</b> <field name="location_id"/> <field name="shelf_number"/> <field name="shelf_position"/></li>
+                          </ul>
+                        </t>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="oe_kanban_content" >
-                  <div class="o_kanban_record_body">
-                    <t t-name="kanban-tooltip">
-                      <ul class="oe_kanban_tooltip" style="list-style: none;">
-                        <li> <b>Code:</b> <field name="code"/></li>
-                        <li> <b>Marca:</b> <field name="make_id"/></li>
-                        <li> <b>Rango:</b> <field name="rango"/></li>
-                        <li> <b>Status:</b> <field name="status_id"/> - <field name="stage"/></li>
-                        <li> <b>Ubicación:</b> <field name="location_id"/> <field name="shelf_number"/> <field name="shelf_position"/></li>
-                      </ul>
-                    </t>
-                  </div>
-                </div>
+                <!--</div>-->
               </div>
             </t>
           </templates>
@@ -94,7 +92,7 @@
             <field name="active" invisible="True" />
             <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <div class="oe_title">
-              <field name="image_1920" widget="image" class="oe_avatar" />
+              <field name="image_1920" widget='image' class="oe_avatar" options='{"zoom": true, "preview_image":"image_128"}'/>
               <label for="equipment_id" class="oe_edit_only" />
               <h1>
                 <field name="equipment_id" string="Equipment"
