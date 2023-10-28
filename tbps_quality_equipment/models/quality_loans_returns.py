@@ -112,6 +112,18 @@ class QualityLoansReturns(models.Model):
         string="Devuelve",
         ondelete="RESTRICT"
     )
+    location_id = fields.Many2one(
+        "quality.location",
+        string="Ubicación",
+        domain="[('usage', '=', 'internal'), ('scrap_location', '=', False)]",
+        help="Ubicación donde sera utilizado el equipo."
+    )
+    location_return_id = fields.Many2one(
+        "quality.location",
+        string="Ubicación",
+        domain="[('usage', '=', 'internal'), ('scrap_location', '=', False)]",
+        help="Ubicación donde sera utilizado el equipo."
+    )
     active = fields.Boolean(string="Archived", default=True)
 
 
@@ -231,7 +243,10 @@ class QualityLoansReturns(models.Model):
             ],limit=1)
             if equipment.stage == 'available':
                 vals['stage'] = 'loan'
-                equipment.write({'stage': 'loan'})
+                equipment.write({
+                    'stage': 'loan', 
+                    'location_id': vals.get('location_id')
+                })
             if vals.get('name', _('New')) == _('New'):
                 vals['name'] = self.env['ir.sequence'].next_by_code('quality.loans.returns') or _('New')
             else:
@@ -264,7 +279,10 @@ class QualityLoansReturns(models.Model):
                 equipment = self.env['quality.equipment'].search([
                     ('code', '=', self.code)
                 ],limit=1)
-                equipment.write({'stage': 'available'})
+                equipment.write({
+                    'stage': 'available',
+                    'location_id': vals.get('location_return_id')
+                })
                 vals['stage'] = 'done'
         res = super(QualityLoansReturns, self).write(vals)
         return res

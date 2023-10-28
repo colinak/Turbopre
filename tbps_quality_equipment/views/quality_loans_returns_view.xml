@@ -61,6 +61,7 @@
               <group>
                 <field name="applicant_id" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)]}" />
                 <field name="delivery_id" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)]}" />
+                <field name="location_id" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)], 'required': [('id', '=', False)]}" />
               </group>
             </group>
             <group string="Datos de Retorno" attrs="{'invisible': [('id', '=', False)]}">
@@ -68,6 +69,7 @@
                 <field name="signature_deliverer2" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
                 <field name="receipt_signature" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}"/>
                 <field name="entry_date" placeholder="Seleccione" string="Fecha de Retorno" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
+                <field name="location_return_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
               </group>
               <group>
                 <field name="delivery2_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
