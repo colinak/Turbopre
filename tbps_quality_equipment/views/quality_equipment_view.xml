@@ -8,12 +8,13 @@
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Quality Equipment">
-          <field string="Descripción" name="name"/>
+          <field string="Equipo" name="equipment_id"/>
           <field string="Código" name="code"/>
           <field string="Serial Number" name="serial_no"/>
           <field string="Marca" name="make_id"/>
           <field string="Modelo" name="model"/>
           <field string="Responsable" name="technician_user_id"/>
+          <field string="Asignado a " name="employee_assigned_id"/>
           <field string="Ubicación" name="location_id"/>
           <field string="Clasifiacación" name="clasification_id"/>
           <field string="Rango" name="rango"/>
@@ -84,6 +85,7 @@
       <field name="arch" type="xml">
         <form string="Quality Equipment">
           <field name="id" invisible="1"/>
+          <field name="employee_assigned_id" invisible="1"/>
           <field name="cali_ver_string" invisible="1"/>
           <header>
             <field name="stage" widget="statusbar" statusbar_visible="available,assigned,loan,in_custody,discarded"/>
@@ -229,6 +231,7 @@
           <field name="shelf_number" optional="hide"/>
           <field name="shelf_position" optional="hide"/>
           <field name="technician_user_id" optional="hide"/>
+          <field name="employee_assigned_id" optional="hide"/>
           <field name="clasification_id" optional="hide"/>
           <field name="stage" optional="hide" widget="badge" decoration-success="stage == 'available'" decoration-info="stage == 'loan'" decoration-muted="stage == 'assigned'" decoration-danger="stage == 'discarded'" />
         </tree>

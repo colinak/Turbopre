@@ -41,6 +41,16 @@ class QualityLocation(models.Model):
         recursive=True, 
         store=True
     )
+    equipment_ids = fields.One2many(
+        "quality.equipment",
+        "location_id",
+        string="Equipos",
+        help="Listado de Equipos"
+    )
+    equipment_count = fields.Integer(
+        string="Equipos",
+        compute="_compute_equipment_count"
+    )
     active = fields.Boolean(
         'Active',
         default=True,
@@ -83,6 +93,12 @@ class QualityLocation(models.Model):
                 location.complete_name = '%s/%s' % (location.parent_id.complete_name, location.name)
             else:
                 location.complete_name = location.name
+
+
+    @api.depends('equipment_ids')
+    def _compute_equipment_count(self):
+        for location in self:
+            location.equipment_count = len(location.equipment_ids)
 
 
 

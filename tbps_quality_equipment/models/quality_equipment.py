@@ -110,10 +110,14 @@ class QualityEquipment(models.Model):
         string="Responsible",
         required=True
     )
-    assigned_id = fields.Many2one(
-        'assignment.equipment',
-        string="Assigned"
+    employee_assigned_id = fields.Many2one(
+        "tps.employee",
+        string="Empleado Asignado",
     )
+    # assigned_id = fields.Many2one(
+        # 'assignment.equipment',
+        # string="Assigned"
+    # )
     calibration_verification_ids = fields.One2many(
         'quality.traceability.equipment',
         'equipment_id',
@@ -167,6 +171,12 @@ class QualityEquipment(models.Model):
                 relativedelta(months=int(self.frequency_cal_ver))
             )
             self.expiration_date = expired_date
+
+
+    @api.onchange('equipment_id')
+    def _onchange_equipment(self):
+        if self.equipment_id:
+            self.technician_user_id = self.equipment_id.technician_user_id.id
 
 
     def write(self, vals):

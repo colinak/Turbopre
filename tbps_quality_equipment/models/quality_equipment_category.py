@@ -25,12 +25,29 @@ class QualityEquipmentCategory(models.Model):
         help="Responsible Department"
     )
     technician_user_id = fields.Many2one(
-        'res.users',
+        'tps.employee',
         string="Responsible",
         help="Responsible"
     )
     note = fields.Text(string="Notes")
+    equipment_ids = fields.One2many(
+        "quality.equipment",
+        "equipment_id",
+        string="Equipos",
+        help="Listado de Equipos"
+    )
+    equipment_count = fields.Integer(
+        string="Equipos",
+        compute="_compute_equipment_count"
+    )
     active = fields.Boolean(
         string="Activo?",
         default=True
     )
+
+
+
+    @api.depends('equipment_ids')
+    def _compute_equipment_count(self):
+        for category in self:
+            category.equipment_count = len(category.equipment_ids)

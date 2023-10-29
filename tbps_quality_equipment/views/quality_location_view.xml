@@ -28,8 +28,16 @@
             <field name="active" invisible="True" />
             <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <div class="oe_button_box" name="button_box">
-              <button string="Stock Actual" class="oe_stat_button" icon="fa-cubes"/>
+              <button 
+                name="%(tbps_quality_equipment.action_quality_equipment)d" 
+                context="{'search_default_location_id': id, 'default_location_id': id}" 
+                class="o_stat_button" 
+                icon="fa-cubes" 
+                type="action">
+                <field name="equipment_count" widget="statinfo"/>
+              </button>
             </div>
+
             <div class="oe_title">
               <label for="name" string="Nombre de la Ubicación" class="oe_edit_only" />
               <h1>
@@ -47,6 +55,11 @@
             <group string="Notas Externas">
               <field name="comment" string="Información adicional" placeholder="Nota Externa..." />
             </group>
+            <notebook>
+              <page invisible="True" >
+                <field name="equipment_ids" widget="many2many_tags" invisible="True" readonly="True" />
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>

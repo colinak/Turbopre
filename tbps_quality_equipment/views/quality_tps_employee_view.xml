@@ -88,7 +88,16 @@
           <sheet>
             <field name="active" invisible="True" />
             <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
-            <!--<field name="image_1920" widget="image" class="oe_avatar" options="{&quot;zoom&quot;: true, &quot;preview_image&quot;:&quot;image_128&quot;}"/>-->
+            <div class="oe_button_box" name="button_box">
+                <button 
+                  name="%(tbps_quality_equipment.action_quality_equipment)d" 
+                  context="{'search_default_employee_assigned_id': id, 'default_employee_assigned_id': id}" 
+                  class="o_stat_button" 
+                  icon="fa-cubes" 
+                  type="action">
+                <field name="equipment_count" widget="statinfo"/>
+              </button>
+            </div>
             <field name="image_1920" widget='image' class="oe_avatar" options='{"zoom": true, "preview_image":"image_128"}'/>
             <div class="oe_title">
               <h1 class="d-flex">

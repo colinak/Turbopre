@@ -245,7 +245,8 @@ class QualityLoansReturns(models.Model):
                 vals['stage'] = 'loan'
                 equipment.write({
                     'stage': 'loan', 
-                    'location_id': vals.get('location_id')
+                    'location_id': vals.get('location_id'),
+                    'employee_assigned_id': vals.get('applicant_id')
                 })
             if vals.get('name', _('New')) == _('New'):
                 vals['name'] = self.env['ir.sequence'].next_by_code('quality.loans.returns') or _('New')
@@ -281,7 +282,8 @@ class QualityLoansReturns(models.Model):
                 ],limit=1)
                 equipment.write({
                     'stage': 'available',
-                    'location_id': vals.get('location_return_id')
+                    'location_id': vals.get('location_return_id'),
+                    'employee_assigned_id': False
                 })
                 vals['stage'] = 'done'
         res = super(QualityLoansReturns, self).write(vals)
