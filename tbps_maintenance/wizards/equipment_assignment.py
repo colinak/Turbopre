@@ -13,17 +13,6 @@ class EquipmanetAssignment(models.TransientModel):
     _description = 'Asignación de Equipos'
 
 
-    @api.depends('department_id', 'employee_id')
-    def _compute_name(self):
-        if self.equipment_assignment_to == 'department' and self.department_id != False:
-            self.name = self.department_id.name
-        if self.equipment_assignment_to == 'employee' and self.employee_id != False:
-            self.name = self.employee_id.name
-    
-
-    def _compute_date(self):
-        self.date_assign = fields.Date.context_today(self)
-
 
     def default_current_user_id(self):
         user_id = self.env.user.id
@@ -35,7 +24,7 @@ class EquipmanetAssignment(models.TransientModel):
 
     name = fields.Char(
         string="Name",
-        compute=_compute_name
+        compute="_compute_name"
     )
     equipment_assignment_to = fields.Selection(
         [
@@ -57,7 +46,7 @@ class EquipmanetAssignment(models.TransientModel):
     )
     date_assign = fields.Date(
         string="Assigned Date",
-        compute=_compute_date,
+        default=fields.Date.today(),
         readonly=False
     )
     equipment_ids = fields.Many2many(
@@ -67,11 +56,26 @@ class EquipmanetAssignment(models.TransientModel):
     note = fields.Text(
         string="Observations"
     )
-    type_report = fields.Selection(
-        [('assignment', 'Assignment'),('reception','Reception')],
+    type_report = fields.Selection([
+            ('assignment', 'Assignment'),
+            ('reception','Reception')
+        ],
         string="Type Report"
     )
     location = fields.Char(strinG="Location")
+    location_id = fields.Many2one(
+        "maintenance.location",
+        string="Ubicación",
+    )
+
+
+    @api.depends('department_id', 'employee_id')
+    def _compute_name(self):
+        if self.equipment_assignment_to == 'department':
+            self.name = self.department_id.name
+        elif self.equipment_assignment_to == 'employee':
+            self.name = self.employee_id.name
+
 
     @api.onchange('equipment_assignment_to')
     def _onchange_equipment_assignment_to(self):

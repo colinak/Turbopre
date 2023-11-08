@@ -11,7 +11,7 @@
 
 {
     'name': "Contact Directory",
-    'version': "1.0",
+    'version': "14.0.1",
     'author': "Kewitz Colina",
     'website': "https://github.com/colinak",
     'summary': "Directorio de Contactos Turbopre",

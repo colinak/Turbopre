@@ -49,8 +49,8 @@
                   </th>
                   <td colspan="4" style="border: 1px solid #000;">
                     <span t-if="o.employee_id">
-                      <span t-if="o.employee_id.job_id" style="margin-left: 5px;" t-field="o.employee_id.job_id.name"/>
-                      <span t-elif="o.employee_id.job_title" style="margin-left: 5px;" t-field="o.employee_id.job_title"/>
+                      <span t-if="o.employee_id.job_title" style="margin-left: 5px;" t-field="o.employee_id.job_title"/>
+                      <span t-elif="o.employee_id.job_id" style="margin-left: 5px;" t-field="o.employee_id.job_id.name"/>
                     </span>
                     <span t-elif="o.department_id">
                       <span t-if="o.department_id.manager_id.job_id" style="margin-left: 5px;" t-field="o.department_id.manager_id.job_id.name"/>
@@ -64,7 +64,7 @@
                     <span style="margin-left: 5px;">Localidad / Oficina: </span>
                   </th>
                   <td colspan="4" style="border: 1px solid #000;">
-                    <span style="margin-left: 5px;" t-field="o.location"/>
+                    <span style="margin-left: 5px;" t-field="o.location_id.name"/>
                   </td>
                 </tr>
                 <tr style="text-align: center; font-size: 80%;">
@@ -88,9 +88,6 @@
                   <th colspan="1" style="border: 1px solid #000;">
                     <strong>N° de Serie</strong>
                   </th>
-                  <!--<th colspan="1" style="border: 1px solid #000;">-->
-                    <!--<strong>N° de Serie</strong>-->
-                  <!--</th>-->
                 </tr>
 
                 <tr t-foreach="o.equipment_ids" t-as="eq"
@@ -134,7 +131,7 @@
                   </t>
                 </tr>
               </tbody>
-              <tfoot>
+              <tfoot >
                 <tr style="text-align: center; font-size: 85%;">
                   <th colspan="6" style="border: 1px solid #000;">
                     <strong>CONDICIONES DE USO</strong>
@@ -192,7 +189,9 @@
                       </li>
                     </ul>
                     <br/>
-                    <br/>
+                    <div t-if="o.type_report == 'reception'" style="text-align: center;">
+                      <h3 style="margin: 0px; padding: 0px;">                      N/A</h3>
+                    </div>
                     <div style="text-align: center;">
                       <span>____________________________________________________</span>
                       <br/>

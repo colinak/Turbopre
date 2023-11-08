@@ -97,7 +97,9 @@ class MaintenanceEquipment(models.Model):
         compute="_compute_equipment_assign"
     )
     assign_date = fields.Date(
-        # default=fields.Date.context_today(self)
+        default=fields.Date.today()
+        # compute="_compute_equipment_assign",
+        # store=True
     )
     identifier = fields.Char(
         string="Identificador",
