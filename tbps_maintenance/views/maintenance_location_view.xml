@@ -9,10 +9,15 @@
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Locations">
-          <field name="name"/>
+          <field string="Nombre" name="complete_name"/>
           <field name="parent_id"/>
-          <filter string="Archivado" name="inactive" domain="[('active','=',False)]"/>
+          <field name="responsible_id"/>
           <field name="type_location"/>
+          <filter string="Archivado" name="inactive" domain="[('active','=',False)]"/>
+          <group string="Group By">
+            <filter string="Responsable" name="responsible" domain="" context="{'group_by': 'responsible_id'}"/>
+            <filter string="Tipo de ubicación" name="type_location" domain="" context="{'group_by': 'type_location'}"/>
+          </group>
         </search>
       </field>
     </record>

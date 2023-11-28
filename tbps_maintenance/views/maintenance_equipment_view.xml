@@ -30,6 +30,9 @@
           <field name="equipment_assign_to" attrs="{'invisible': [('equipment_assign_to', '!=', 'unassigned')]}" />
           <div t-if="!record.brand_id.raw_value">N/A</div>
           <div t-if="record.brand_id.value"><field name="brand_id"/></div>
+          <div t-if="record.project_id != False">
+            <field name="project_id" />
+          </div>
           <div t-if="record.other != False">
             <field name="other" />
           </div>
@@ -46,8 +49,9 @@
           <field string="Make" name="brand_id"/>
           <field string="Model" name="model"/>
           <field string="Serial Number" name="serial_no"/>
-          <field string="Other" name="other"/>
+          <field string="Proyecto" name="project_id"/>
           <field string="Location" name="location"/>
+          <field string="Locatización" name="location_id"/>
         </field>
         <filter name="available" position="replace">
           <filter string="Unassigned" name="available" domain="[('equipment_assign_to', '=', 'unassigned')]"/>
@@ -166,7 +170,7 @@
         <field name="partner_id" position="replace">
           <field name="identifier" 
             placeholder="MAC Address Laptop / Desktop"
-            attrs="{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}" />
+          />
         </field>
         <field name="effective_date" position="attributes">
           <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
@@ -184,9 +188,10 @@
           <attribute name="attrs">{'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]}</attribute>
         </field>
         <field name="assign_date" position="attributes">
+          <attribute name="placeholder">Seleccione</attribute>
           <attribute name="attrs">{
               'invisible': [('equipment_assign_to', '=', 'unassigned')],
-              'required': True,
+              'required': [('equipment_assign_to', '!=', 'unassigned')],
               'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]
             }
           </attribute>
@@ -245,7 +250,11 @@
           <attribute name="optional">hide</attribute>
         </field>
         <field name="employee_id" position="after">
-          <field name="location" />
+          <field name="location_id" string="Ubicación" optional="hide" />
+          <!--<field name="location" />-->
+        </field>
+        <field name="department_id" position="after">
+          <field name="project_id" optional="hide" />
         </field>
       </field>
     </record>
@@ -286,8 +295,20 @@
           />
         </field>
         <field name="department_id" position="after">
+          <field name="project_id" placeholder="Seleccione"
+            options="{'no_create': True, 'no_create_edit': True}"
+            attrs="{
+              'invisible': [('equipment_assign_to', '!=', 'project')], 
+              'required': [('equipment_assign_to', '=', 'project')], 
+              'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]
+            }"
+            />
           <field name="other" 
-            attrs="{'invisible': [('equipment_assign_to', '!=', 'other')], 'required': [('equipment_assign_to', '=', 'other')]}"/>
+            attrs="{
+              'invisible': [('equipment_assign_to', '!=', 'other')], 
+              'required': [('equipment_assign_to', '=', 'other')],
+              'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]
+            }"/>
         </field>
       </field>
     </record>

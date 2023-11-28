@@ -38,6 +38,11 @@ class MaintenanceEquipment(models.Model):
         required=True,
         help="Department Responsible for Equipment"
     )
+    project_id = fields.Many2one(
+        "maintenance.location",
+        string="Proyecto",
+        domain="[('type_location', '=', 'external')]"
+    )
     stage = fields.Selection(
         [
             ('available', 'Available'),
@@ -56,6 +61,7 @@ class MaintenanceEquipment(models.Model):
         [
             ('department', 'Department'),
             ('employee', 'Employee'),
+            ('project', 'Proyecto'),
             ('other', 'Other'),
             ('unassigned', 'Unassigned'),
         ],
@@ -97,9 +103,9 @@ class MaintenanceEquipment(models.Model):
         compute="_compute_equipment_assign"
     )
     assign_date = fields.Date(
-        default=fields.Date.today()
-        # compute="_compute_equipment_assign",
-        # store=True
+        # default=fields.Date.today()
+        compute="_compute_equipment_assign",
+        store=True
     )
     identifier = fields.Char(
         string="Identificador",
@@ -112,28 +118,35 @@ class MaintenanceEquipment(models.Model):
         for equipment in self:
             if equipment.equipment_assign_to == 'employee':
                 equipment.department_id = False
+                equipment.project_id = False
                 equipment.other = ""
                 equipment.employee_id = equipment.employee_id
                 equipment.assign_to = "Asignado a: " + str(equipment.employee_id.name)
-                # equipment.assign_date = fields.Date.context_today(self)
             elif equipment.equipment_assign_to == 'department':
                 equipment.employee_id = False
+                equipment.project_id = False
                 equipment.other = ""
                 equipment.department_id = equipment.department_id
                 equipment.assign_to = "Asignado a: " + str(equipment.department_id.name)
-                # equipment.assign_date = fields.Date.context_today(self)
+            elif equipment.equipment_assign_to == 'project':
+                equipment.employee_id = False
+                equipment.other = ""
+                equipment.project_id = equipment.project_id
+                equipment.assign_to = "Asignado a: " + str(equipment.project_id.complete_name)
             elif equipment.equipment_assign_to == 'unassigned':
                 equipment.employee_id = False
                 equipment.department_id = False
+                equipment.project_id = False
                 equipment.assign_date = False
                 equipment.other = ""
                 equipment.assign_to = "Sin Asignar"
-                # equipment.assign_date = fields.Date.context_today(self)
             else:
-                equipment.employee_id = False
-                equipment.department_id = False
+                equipment.employee_id = equipment.employee_id
+                equipment.department_id = equipment.department_id
+                equipment.project_id = equipment.project_id
                 equipment.other = equipment.other
-                # equipment.assign_date = fields.Date.context_today(self)
+                equipment.assign_to = "Sin Asignar"
+            equipment.assign_date = fields.Date.context_today(self)
     
 
     @api.onchange('equipment_assign_to')
@@ -149,6 +162,14 @@ class MaintenanceEquipment(models.Model):
     def _onchange_out_of_service(self):
         if self.out_of_service == False:
             self.type_discard = False
+
+
+    @api.onchange('project_id')
+    def _onchange_project(self):
+        if self.project_id != False:
+            self.location_id = self.project_id
+        elif self.project_id == False:
+            self.location_id = False
 
 
     @api.depends('stage')
@@ -214,6 +235,7 @@ class MaintenanceEquipment(models.Model):
                 self.active = True
             elif (vals.get('equipment_assign_to') == 'employee' or
                     vals.get('equipment_assign_to') == 'department' or
+                    vals.get('equipment_assign_to') == 'project' or
                     vals.get('equipment_assign_to') == 'other'):
                 self.stage = 'assigned'
 
