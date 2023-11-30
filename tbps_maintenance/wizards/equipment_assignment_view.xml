@@ -26,6 +26,13 @@
                   'required': [('equipment_assignment_to', '=', 'employee')]
                 }"
               />
+              <field name="project_id" placeholder="Seleccione"
+                options="{'no_create': True, 'no_create_edit': True}"
+                attrs="{
+                  'invisible': [('equipment_assignment_to', '!=', 'project')],
+                  'required': [('equipment_assignment_to', '=', 'project')]
+                }"
+              />
             </group>
           </group>
           <group col="4">
@@ -39,7 +46,8 @@
             <field name="equipment_ids" widget="many2many" 
               domain="[
                 ('employee_id', '=', employee_id),
-                ('department_id', '=', department_id)
+                ('department_id', '=', department_id),
+                ('project_id', '=', project_id)
               ]" 
               >
               <tree>

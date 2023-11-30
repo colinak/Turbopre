@@ -190,7 +190,6 @@
         <field name="assign_date" position="attributes">
           <attribute name="placeholder">Seleccione</attribute>
           <attribute name="attrs">{
-              'invisible': [('equipment_assign_to', '=', 'unassigned')],
               'required': [('equipment_assign_to', '!=', 'unassigned')],
               'readonly': ['|', ('stage', '=', 'assigned'), ('stage', '=', 'in_custody')]
             }

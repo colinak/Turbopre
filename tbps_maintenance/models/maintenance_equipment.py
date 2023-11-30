@@ -104,13 +104,27 @@ class MaintenanceEquipment(models.Model):
     )
     assign_date = fields.Date(
         # default=fields.Date.today()
-        compute="_compute_equipment_assign",
-        store=True
+        compute="_compute_assign_date",
     )
     identifier = fields.Char(
         string="Identificador",
         help="Nombre del equipo en el dominio, si es laptop o desktop"
     )
+
+
+    @api.depends('equipment_assign_to')
+    def _compute_assign_date(self):
+        for equipment in self:
+            if equipment.equipment_assign_to == 'employee':
+                self.assign_date = fields.Date.today()
+            elif equipment.equipment_assign_to == 'department':
+                self.assign_date = fields.Date.today()
+            elif equipment.equipment_assign_to == 'project':
+                self.assign_date = fields.Date.today()
+            elif equipment.equipment_assign_to == 'unassigned':
+                self.assign_date = fields.Date.today()
+            else:
+                self.assign_date = fields.Date.today()
 
 
     @api.depends('equipment_assign_to')
@@ -146,7 +160,7 @@ class MaintenanceEquipment(models.Model):
                 equipment.project_id = equipment.project_id
                 equipment.other = equipment.other
                 equipment.assign_to = "Sin Asignar"
-            equipment.assign_date = fields.Date.context_today(self)
+            # equipment.assign_date = fields.Date.context_today(self)
     
 
     @api.onchange('equipment_assign_to')

@@ -41,6 +41,7 @@
                   <td colspan="4" style="border: 1px solid #000;">
                     <span t-if="o.employee_id" style="margin-left: 5px;" t-field="o.employee_id.name"/>
                     <span t-elif="o.department_id" style="margin-left: 5px;" t-field="o.department_id.manager_id.name"/>
+                    <span t-elif="o.project_id.responsible_id" style="margin-left: 5px;" t-field="o.project_id.responsible_id.name"/>
                   </td>
                 </tr>
                 <tr style="font-size: 80%;">
@@ -56,6 +57,10 @@
                       <span t-if="o.department_id.manager_id.job_id" style="margin-left: 5px;" t-field="o.department_id.manager_id.job_id.name"/>
                       <span t-elif="o.department_id.manager_id.job_title" style="margin-left: 5px;" t-field="o.department_id.manager_id.job_title"/>
                       <span t-else="" style="margin-left: 5px;" t-field="o.department_id.manager_id.job_id.name"/>
+                    </span>
+                    <span t-elif="o.project_id">
+                      <span t-if="o.project_id.responsible_id.job_id" style="margin-left: 5px;" t-field="o.project_id.responsible_id.job_id.name"/>
+                      <span t-elif="o.project_id.responsible_id.job_title" style="margin-left: 5px;" t-field="o.project_id.responsible_id.job_title"/>
                     </span>
                   </td>
                 </tr>
@@ -230,6 +235,7 @@
                 <span t-if="o.type_report == 'assignment'">
                   <span t-if="o.employee_id" t-field="o.employee_id.name" style="padding-top10: 10px;"/>
                   <span t-elif="o.department_id" t-field="o.department_id.manager_id.name" style="padding-top10: 10px;"/>
+                  <span t-elif="o.project_id" t-field="o.project_id.responsible_id.name" style="padding-top10: 10px;"/>
                 </span>
                 <span t-elif="o.type_report == 'reception'">
                   <span t-field="o.default_current_user_id().name" style="padding-top10: 10px;"/><br/>
@@ -247,6 +253,10 @@
                   <span t-elif="o.department_id">
                     <span t-if="o.department_id.manager_id.job_id" t-field="o.department_id.manager_id.job_id.name" style="padding-top10: 10px;"/>
                     <span t-elif="o.department_id.manager_id.job_title" t-field="o.department_id.manager_id.job_title" style="padding-top10: 10px;"/>
+                  </span>
+                  <span t-elif="o.project_id">
+                    <span t-if="o.project_id.responsible_id.job_id" t-field="o.project_id.responsible_id.job_id.name" style="padding-top10: 10px;"/>
+                    <span t-elif="o.project_id.responsible_id.job_title" t-field="o.project_id.responsible_id.job_title" style="padding-top10: 10px;"/>
                   </span>
                 </span>
                 <span t-elif="o.type_report == 'reception'">
@@ -270,6 +280,7 @@
                 <span t-elif="o.type_report == 'reception'">
                   <span t-if="o.employee_id" t-field="o.employee_id.name" style="padding-top10: 10px;"/>
                   <span t-elif="o.department_id" t-field="o.department_id.manager_id.name" style="padding-top10: 10px;"/>
+                  <span t-elif="o.project_id" t-field="o.project_id.responsible_id.name" style="padding-top10: 10px;"/>
                 </span>
                 <span>___________________________</span>
               </div>
@@ -287,6 +298,10 @@
                   <span t-elif="o.department_id">
                     <span t-if="o.department_id.manager_id.job_id" t-field="o.department_id.manager_id.job_id.name" style="padding-top10: 10px;"/>
                     <span t-elif="o.department_id.manager_id.job_title" t-field="o.department_id.manager_id.job_title" style="padding-top10: 10px;"/>
+                  </span>
+                  <span t-elif="o.project_id">
+                    <span t-if="o.project_id.responsible_id.job_id" t-field="o.project_id.responsible_id.job_id.name" style="padding-top10: 10px;"/>
+                    <span t-elif="o.project_id.responsible_id.job_title" t-field="o.project_id.responsible_id.job_title" style="padding-top10: 10px;"/>
                   </span>
                 </span>
                 <span>___________________________</span>

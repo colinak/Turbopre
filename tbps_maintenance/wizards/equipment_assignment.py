@@ -30,7 +30,7 @@ class EquipmanetAssignment(models.TransientModel):
         [
             ('department', 'Department'),
             ('employee', 'Employee'),
-            # ('other', 'Other'),
+            ('project', 'Proyecto')
         ],
         string="Used By",
         required=True,
@@ -43,6 +43,11 @@ class EquipmanetAssignment(models.TransientModel):
     employee_id = fields.Many2one(
         'hr.employee',
         string="Employee"
+    )
+    project_id = fields.Many2one(
+        'maintenance.location',
+        string="Proyecto",
+        domain="[('type_location', '=', 'external')]"
     )
     date_assign = fields.Date(
         string="Assigned Date",
@@ -69,21 +74,29 @@ class EquipmanetAssignment(models.TransientModel):
     )
 
 
-    @api.depends('department_id', 'employee_id')
+    @api.depends('department_id', 'employee_id', 'project_id')
     def _compute_name(self):
         if self.equipment_assignment_to == 'department':
             self.name = self.department_id.name
         elif self.equipment_assignment_to == 'employee':
             self.name = self.employee_id.name
+        elif self.equipment_assignment_to == 'project':
+            self.name = self.project_id.complete_name
 
 
     @api.onchange('equipment_assignment_to')
     def _onchange_equipment_assignment_to(self):
         if self.equipment_assignment_to != 'department':
             self.department_id = ''
+            self.project_id = False
             self.equipment_ids = [(6, 0, [])]
         elif self.equipment_assignment_to != 'employee':
             self.employee_id = ''
+            self.project_id = False
+            self.equipment_ids = [(6, 0, [])]
+        elif self.equipment_assignment_to != 'project':
+            self.employee_id = ''
+            self.department_id = ''
             self.equipment_ids = [(6, 0, [])]
 
     @api.onchange('department_id')
@@ -94,6 +107,11 @@ class EquipmanetAssignment(models.TransientModel):
     @api.onchange('employee_id')
     def _onchange_employee(self):
         if self.employee_id != False:
+            self.equipment_ids = [(6, 0, [])]
+
+    @api.onchange('project_id')
+    def _onchange_project(self):
+        if self.project_id != False:
             self.equipment_ids = [(6, 0, [])]
 
     def get_report(self):

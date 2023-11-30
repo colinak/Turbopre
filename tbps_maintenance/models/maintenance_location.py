@@ -54,6 +54,16 @@ class MaintenanceLocation(models.Model):
         "hr.employee",
         string="Responsable"
     )
+    equipment_count = fields.Integer(
+        string="Equipos",
+        compute="_compute_equipment_count"
+    )
+    equipment_ids = fields.One2many(
+        "maintenance.equipment",
+        "project_id",
+        strin="Equipamientos",
+        help="Listado de Equipos"
+    )
 
 
     @api.depends('name', 'parent_id.complete_name')
@@ -63,3 +73,10 @@ class MaintenanceLocation(models.Model):
                 location.complete_name = '%s / %s' % (location.parent_id.complete_name, location.name)
             else:
                 location.complete_name = location.name
+
+
+    @api.depends('equipment_ids')
+    def _compute_equipment_count(self):
+        for location in self:
+            location.equipment_count = len(location.equipment_ids)
+
