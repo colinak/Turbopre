@@ -14,10 +14,6 @@ _logger = logging.getLogger(__name__)
 
 class TrProductTemplate(models.Model):
     _inherit = 'product.template'
-    # _name = 'tr.product.template'
-    # _description = 'Toolroom Equipment'
-    # _order = 'name'
-    # _rec_name = 'name'
 
 
     type = fields.Selection(selection_add=[
@@ -26,5 +22,12 @@ class TrProductTemplate(models.Model):
         tracking=True, 
         default="product",
         ondelete={'product': 'set default'}
+    )
+    available_qty = fields.Float(
+        "Cantidad a la mano",
+        # compute='_compute_quantities', 
+        # search='_search_qty_available',
+        # compute_sudo=False, 
+        # digits='Product Unit of Measure'
     )
 

@@ -29,7 +29,6 @@ class TrStockProductionLot(models.Model):
     location_id = fields.Many2one(
         "tr.stock.location",
         string="Ubicacion",
-        required=True
     )
     product_id = fields.Many2one(
         "product.product",

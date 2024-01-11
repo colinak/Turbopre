@@ -16,7 +16,6 @@ class ToolRoomTools(models.Model):
     _inherit = 'product.product'
 
 
-
     employee_id = fields.Many2one(
         "hr.employee",
         string="Empleado"
@@ -24,4 +23,10 @@ class ToolRoomTools(models.Model):
     inventory_id = fields.Many2one(
         "tr.stock.inventory",
         string="Inventario"
+    )
+    available_qty = fields.Integer(
+        "Cantidad disponible", 
+        # compute='_compute_quantities', 
+        # search='_search_qty_available',
+        # compute_sudo=False,
     )

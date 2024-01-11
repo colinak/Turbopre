@@ -81,10 +81,22 @@ class TrStockLocation(models.Model):
     comment = fields.Text(
         string="Notas"
     )
+    default_location = fields.Boolean(
+        "Ubicación stock predeterminada",
+        default=False
+    )
     inventory_id = fields.Many2one(
         "tr.stock.inventory",
         string="Inventario"
     )
+
+    _sql_constraints = [('default_location', 
+            'UNIQUE(default_location)', 
+            'Ya existe una ubicación de stock predeterminada por defecto, ' \
+            'intente desactivar la que ya exite y regrese aquí para ' \
+            'activar esta ubicación como de stock predeterminada'
+        )
+    ]
 
     @api.depends('name', 'location_id.complete_name', 'usage')
     def _compute_complete_name(self):

@@ -48,9 +48,9 @@ class TrStockInventory(models.Model):
     state = fields.Selection(
         selection=[
             ('draft', 'Borrador'),
-            ('cancel', 'Cancelada'),
             ('confirm', 'En Progreso'),
             ('done', 'Validado'),
+            ('cancel', 'Cancelada'),
         ],
         string="Stado",
         default="draft"
@@ -84,7 +84,14 @@ class TrStockInventory(models.Model):
         pass
 
 
+    def action_validate(self):
+        pass
+
+
     def action_open_inventory_lines(self):
+        pass
+
+    def action_cancel_draft(self):
         pass
 
 
@@ -115,11 +122,14 @@ class TrStockInventoryLine(models.Model):
         string="N° de Serie"
     )
     product_qty = fields.Integer(
-        string="Cantidad"
+        string="Cantidad",
+        default=1
     )
     product_uom_id = fields.Many2one(
         "uom.uom",
-        string="Unidad de medida"
+        string="Unidad de medida",
+        related="product_id.uom_id",
+        readonly="True"
     )
     category_id = fields.Many2one(
         "product.category",
@@ -130,7 +140,9 @@ class TrStockInventoryLine(models.Model):
         string="Inventario"
     )
     theoretical_qty = fields.Integer(
-        string="A mano"
+        string="A mano",
+        related="product_id.available_qty",
+        readonly="True"
     )
     difference_qty = fields.Integer(
         string="Diferencia"
@@ -144,7 +156,10 @@ class TrStockInventoryLine(models.Model):
     )
     location_id = fields.Many2one(
         "tr.stock.location",
-        string="Ubicación"
+        string="Ubicación",
+        default=lambda self: self.env['tr.stock.location'].search([
+            ('default_location', '=', True)
+        ])
     )
     company_id = fields.Many2one(
         "res.company",
@@ -154,4 +169,9 @@ class TrStockInventoryLine(models.Model):
     state = fields.Selection(
         string="Estado",
         related='inventory_id.state'
+    )
+    inventory_date = fields.Datetime(
+        string = "Fecha del inventario",
+        default= fields.Datetime.now(),
+        help=u"Última fecha en que se calculó la cantidad disponible."
     )
