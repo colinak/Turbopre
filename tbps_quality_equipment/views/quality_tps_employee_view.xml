@@ -89,12 +89,14 @@
             <field name="active" invisible="True" />
             <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <div class="oe_button_box" name="button_box">
-                <button 
+              <button 
                   name="%(tbps_quality_equipment.action_quality_equipment)d" 
                   context="{'search_default_employee_assigned_id': id, 'default_employee_assigned_id': id}" 
                   class="o_stat_button" 
                   icon="fa-cubes" 
-                  type="action">
+                  type="action"
+                  groups="base.group_system,group_quality_system,group_quality_manager,group_quality_user"
+                >
                 <field name="equipment_count" widget="statinfo"/>
               </button>
             </div>

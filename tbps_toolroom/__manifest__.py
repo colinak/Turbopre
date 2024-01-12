@@ -25,7 +25,9 @@
         'mail',
         'product',
         'uom',
-        'hr'
+        'hr',
+        'contact_directory',
+        'tbps_quality_equipment'
     ],
     'data': [
         "data/product.category.csv",
@@ -51,9 +53,10 @@
         "views/tr_product_attribute_view.xml",
         "views/toolroom_equipment_view.xml",
         "views/tr_stock_production_lot_view.xml",
-        "views/hr_employee_view.xml",
+        # "views/hr_employee_view.xml",
         "views/tr_stock_inventory_view.xml",
         "views/tr_stock_inventory_line_view.xml",
+        "views/tr_tps_employee_view.xml",
         # "wizards/check_availability_tools_wizard.xml",
     ],
     'demo': [],

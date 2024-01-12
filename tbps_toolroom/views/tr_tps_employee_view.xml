@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record id="inherit_view_tps_employee_form" model="ir.ui.view">
+      <field name="name">inherit.tps.employee.form</field>
+      <field name="model">tps.employee</field>
+      <field name="inherit_id" ref="tbps_quality_equipment.tps_employee_view_form" />
+      <field name="arch" type="xml">
+        <div name="button_box" position="inside">
+          <button 
+            name="%(tbps_toolroom.action_toolroom_equipment)d" 
+            context="{'search_default_employee_assigned_id': id, 'default_employee_assigned_id': id}" 
+            class="o_stat_button" 
+            icon="fa-cubes" 
+            type="action"
+            groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
+          >
+            <field name="tools_count" widget="statinfo"/>
+          </button>
+        </div>
+      </field>
+    </record>
+
+
+    <menuitem 
+      id="menu_hr_employee"
+      name="Inventario Empleados"
+      parent="tbps_toolroom.menu_toolroom_informed"
+      action="tbps_quality_equipment.tps_employee_action_view"
+      sequence="1"
+      groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
+    />
+
+  </data>
+</odoo>

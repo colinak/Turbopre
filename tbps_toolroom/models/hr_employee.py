@@ -13,8 +13,9 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class HrEmployeePublic(models.Model):
-    _inherit = 'hr.employee.public'
+
+class TpsEmployee(models.Model):
+    _inherit = 'tps.employee'
 
 
     tools_ids = fields.One2many(
@@ -22,18 +23,13 @@ class HrEmployeePublic(models.Model):
         "employee_id",
         string="Equipos/Herramientas",
     )
+    tools_count = fields.Integer(
+        string="Herramientas Asignadas",
+        compute="_compute_tools_count"
+    )
 
 
-
-# class HrEmployeePrivate(models.Model):
-    # _inherit = 'hr.employee'
-
-
-    # tools_ids = fields.One2many(
-        # "product.product",
-        # "employee_id",
-        # string="Equipos/Herramientas"
-    # )
-    
-
-
+    @api.depends('tools_ids')
+    def _compute_tools_count(self):
+        for location in self:
+            location.tools_count = len(location.tools_ids)
