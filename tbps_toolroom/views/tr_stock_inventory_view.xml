@@ -13,7 +13,7 @@
           <filter string="En Progreso" name="confirm" domain="[('state', '=', 'confirm')]"/>
           <filter string="Validado" name="done" domain="[('state', '=', 'done')]"/>
           <separator/>
-          <filter string="Feche de Inventio" name="inventory_date" date="date"/>
+          <filter string="Fecha de Inventario" name="inventory_date" date="date"/>
           <group expand="0" string="Group By">
               <filter string="Status" name="status" domain="[]" context="{'group_by': 'state'}"/>
               <!--<filter string="Inventory Date" name="inventories_month" domain="[]" context="{'group_by': 'date'}" help="Physical Inventories by Date"/>-->
@@ -31,13 +31,13 @@
         <form string="Inventory">
           <header>
               <button name="action_start" states="draft" string="Iniciar Inventario" type="object" class="oe_highlight" />
-              <!--<button name="action_open_inventory_lines" states="confirm" string="Continuar Inventario" type="object" class="oe_highlight" />-->
+              <button name="action_open_inventory_lines" states="confirm" string="Continuar Inventario" type="object" class="oe_highlight" />
               <button name="action_validate" string="Validar Inventario" type="object" attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('line_ids', '!=', [])]}" />
               <button name="action_validate" string="Validar Inventario" type="object" attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('line_ids', '=', [])]}" class="oe_highlight" />
               <!--<button name="action_print" string="Print Count Sheet" type="object" attrs="{'invisible': [('state', '=', 'draft')]}" groups="stock.group_stock_user"/>-->
-              <!--<button name="action_cancel_draft" states="cancel" string="Set to Draft" type="object"/>-->
-              <button name="action_cancel_draft" states="confirm" string="Cancel Inventory" type="object"
-                  confirm="If you cancel this inventory adjustment, all its inventory adjustment lines will be lost. Are you sure you want to discard it ?"/>
+              <!--<button name="action_cancel_draft" states="cancel" string="Establecer a borrador" type="object"/>-->
+              <button name="action_cancel_draft" states="confirm" string="Cancelar Inventario" type="object"
+                  confirm="Si cancela este ajuste de inventario, se perderán todas sus líneas de ajuste de inventario. ¿Estás seguro de que quieres descartarlo?"/>
               <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
             <field name="company_id" invisible="1" />
           </header>
@@ -46,17 +46,17 @@
             <div class="oe_title">
               <label for="name" string="Referencia de inventario" class="oe_edit_only" />
               <h1>
-                <field name="name" placeholder="Ej: Inventario Anual" style="width: 75%;"/>
+                <field name="name" placeholder="Ej: Inventario Anual" style="width: 75%;" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
               </h1>
             </div>
-            <group col="4">
-              <field name="date" placeholder="Seleccione" />
-              <field name="activity_user_id" placeholder="Seleccione" />
+            <group col="4" attrs="{'readonly': [('state', '!=', 'draft')]}">
+              <field name="date" placeholder="Seleccione" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+              <field name="activity_user_id" placeholder="Seleccione" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
               <field name="company_id" invisible="True" />
             </group>
             <notebook>
-              <page string="Lineas de Inventario">
-                <field name="line_ids" widget="one2many">
+              <page string="Lineas de Inventario" attrs="{'invisible': [('state', '=', 'draft')]}">
+                <field name="line_ids" widget="one2many" readonly="True">
                   <tree editable="bottom">
                     <field name="product_id" placeholder="Seleccione" required="True" />
                     <field name="location_id" placeholder="Seleccione" required="True" />
@@ -92,7 +92,10 @@
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Inventory">
+          <field name="date" />
           <field name="name" />
+          <field name="activity_user_id" />
+          <field name="state" string="Estado" widget="badge" decoration-success="state == 'done'" decoration-info="state in ('draft', 'confirm')" />
         </tree>
       </field>
     </record>

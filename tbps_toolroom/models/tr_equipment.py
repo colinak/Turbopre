@@ -17,7 +17,7 @@ class TrProductTemplate(models.Model):
 
 
     type = fields.Selection(selection_add=[
-        ('product', 'Almacenable')
+            ('product', 'Almacenable')
         ], 
         tracking=True, 
         default="product",

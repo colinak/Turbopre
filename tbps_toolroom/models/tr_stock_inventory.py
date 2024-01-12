@@ -52,7 +52,7 @@ class TrStockInventory(models.Model):
             ('done', 'Validado'),
             ('cancel', 'Cancelada'),
         ],
-        string="Stado",
+        string="Estado",
         default="draft"
     )
     company_id = fields.Many2one(
@@ -81,17 +81,59 @@ class TrStockInventory(models.Model):
 
 
     def action_start(self):
+        self.ensure_one()
+        self._action_start()
+        return self.action_open_inventory_lines()
         pass
 
 
-    def action_validate(self):
-        pass
+    def _action_start(self):
+        """ Confirma el Ajuste de Inventario y genera sus líneas de inventario.
+        si su estado es borrador y aún no tiene líneas de inventario (puede 
+        suceder con datos de demostración o pruebas).action_start
+        """
+        for inventory in self:
+            if inventory.state != 'draft':
+                continue
+            vals = {
+                'state': 'confirm',
+                'date': fields.Datetime.now()
+            }
+            inventory.write(vals)
 
 
     def action_open_inventory_lines(self):
-        pass
+        self.ensure_one()
+        action = {
+            'type': 'ir.actions.act_window',
+            'view_mode': 'tree',
+            'name': _('Lineas de Inventario'),
+            'res_model': 'tr.stock.inventory.line',
+        }
+        # Define domains and context
+        context = {
+            'default_is_editable': True,
+            'default_inventory_id': self.id,
+            'default_company_id': self.company_id.id,
+        }
+        
+        domain = [
+            ('inventory_id', '=', self.id),
+            ('location_id.usage', 'in', ['internal', 'transit'])
+        ]
+
+        action['view_id'] = self.env.ref('tbps_toolroom.view_stock_inventory_line_tree').id
+        action['context'] = context
+        action['domain'] = domain
+        return action
 
     def action_cancel_draft(self):
+        # self.mapped('move_ids')._action_cancel()
+        self.line_ids.unlink()
+        self.write({'state': 'draft'})
+
+
+    def action_validate(self):
         pass
 
 
