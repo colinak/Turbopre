@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 ###############################################################################
+#
 # Author: KEWITZ COLINA
 # Copyleft: 2020-Present.
 # License LGPL-3.0 or later (http: //www.gnu.org/licenses/lgpl.html).
 #
-#
 ###############################################################################
 
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
+import logging
+_logger = logging.getLogger(__name__)
 
 class TrStockInventory(models.Model):
     _name = 'tr.stock.inventory'
@@ -23,7 +26,7 @@ class TrStockInventory(models.Model):
         required=True,
         states={'draft': [('readonly', False)]}
     )
-    date = fields.Date(
+    date = fields.Datetime(
         string="Fecha de inventario",
         readonly=True,
         default=fields.Datetime.now,
@@ -37,13 +40,13 @@ class TrStockInventory(models.Model):
         "tr.stock.inventory.line",
         "inventory_id",
         string="Lineas de Inventario",
-        # states={'done': [('readonly', True)]}
+        states={'done': [('readonly', True)]}
     )
     move_ids = fields.One2many(
         "tr.stock.move",
         "inventory_id",
         string="Movimientos creados",
-        # states={'done': [('readonly', True)]}
+        states={'done': [('readonly', True)]}
     )
     state = fields.Selection(
         selection=[
@@ -133,8 +136,86 @@ class TrStockInventory(models.Model):
         self.write({'state': 'draft'})
 
 
+    def create_stock_quant(self):
+        if len(self.line_ids) > 0:
+            stock_quant = self.env['tr.stock.quant']
+            for line in self.line_ids:
+                stock_quant.create({
+                    'name': line.product_id.name,
+                    'display_name': line.product_id.name,
+                    'product_tmpl_id': line.product_id.product_tmpl_id.id,
+                    'product_id': line.product_id.id,
+                    'location_id': 6,
+                    'lot_id': line.prod_lot_id.id,
+                    # 'on_hand': line.product_id.available_qty,
+                    'inventory_quantity': -1,
+                    'available_quantity': -1,
+                    'quantity': -1,
+                    'product_uom_id': line.product_uom_id.id,
+                    'in_date': self.date,
+                    'quantity': -1
+                })
+                
+                stock_quant.create({
+                    'name': line.product_id.name,
+                    'display_name': line.product_id.name,
+                    'product_tmpl_id': line.product_id.product_tmpl_id.id,
+                    'product_id': line.product_id.id,
+                    'location_id': line.location_id.id,
+                    'lot_id': line.prod_lot_id.id,
+                    # 'on_hand': line.product_id.available_qty,
+                    'inventory_quantity': line.product_qty,
+                    'available_quantity': line.product_qty,
+                    'quantity': line.product_qty,
+                    'product_uom_id': line.product_uom_id.id,
+                    'in_date': self.date,
+                    'quantity': -1
+                })
+        else:
+            pass
+
+
+
+    def create_stock_move(self):
+        if len(self.line_ids) > 0:
+            for line in self.line_ids:
+                stock_move = self.env['tr.stock.move'].create({
+                    'name': line.product_id.name,
+                    'date': self.date,
+                    'reference': f"INV: {self.name}",
+                    'product_tmpl_id': line.product_id.product_tmpl_id.id,
+                    'product_id': line.product_id.id,
+                    'location_id': 6,
+                    'location_dest_id': line.location_id.id,
+                    'product_uom_qty': line.product_qty,
+                    'product_uom': line.product_uom_id.id,
+                    'state': "done",
+                    'move_line_ids': self.env['tr.stock.move.line'].create({
+                        'name': line.product_id.name,
+                        'date': self.date,
+                        'reference': f"INV {self.name}",
+                        'product_id': line.product_id.id,
+                        'lot_id': line.prod_lot_id.id,
+                        'location_id': 6,
+                        'location_dest_id': line.location_id.id,
+                        'qty_done': line.product_qty,
+                        'product_uom_id': line.product_uom_id.id,
+                        'state': "done"
+                    }),
+                })
+                
+        else:
+            pass
+        
+
+
+
     def action_validate(self):
-        pass
+        try:
+            self.create_stock_quant()
+            self.create_stock_move()
+        except:
+            raise UserError("Error")
 
 
 
@@ -153,7 +234,10 @@ class TrStockInventoryLine(models.Model):
         string="Mostrar nombre"
     )
     inventory_date = fields.Datetime(
-        string="Fecha del inventario"
+        string="Fecha del inventario",
+        readonly=True,
+        default=fields.Datetime.now,
+        help="Última fecha en la que se calculó la cantidad disponible.."
     )
     product_id = fields.Many2one(
         "product.product",
@@ -193,9 +277,6 @@ class TrStockInventoryLine(models.Model):
         "res.partner",
         string="Propietario"
     )
-    inventory_date = fields.Date(
-        string="Fecha del inventario"
-    )
     location_id = fields.Many2one(
         "tr.stock.location",
         string="Ubicación",
@@ -211,9 +292,4 @@ class TrStockInventoryLine(models.Model):
     state = fields.Selection(
         string="Estado",
         related='inventory_id.state'
-    )
-    inventory_date = fields.Datetime(
-        string = "Fecha del inventario",
-        default= fields.Datetime.now(),
-        help=u"Última fecha en que se calculó la cantidad disponible."
     )

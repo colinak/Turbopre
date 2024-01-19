@@ -47,7 +47,7 @@ class TrStockQuant(models.Model):
         string="N° de serie",
         required=True
     )
-    in_date = fields.Date(
+    in_date = fields.Datetime(
         string="Fecha de entrada"
     )
     inventory_quantity = fields.Integer(

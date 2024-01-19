@@ -9,9 +9,28 @@
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Toolroom Quantity">
-          <field name="lot_id" string="N° de Serie" />
           <field name="product_id" />
           <field name="location_id" />
+          <field name="lot_id" string="N° de Serie" />
+          <group expand='0' string='Filters'>
+            <filter name='internal_loc' string="Ubicaciones Internas" domain="[('location_id.usage','=', 'internal')]"/>
+            <filter name='external_loc' string="Ubicaciones Extrernas" domain="[('location_id.usage' ,'=', 'external')]"/>
+            <filter name="on_hand" string="A mano" domain="[('on_hand', '=', True)]"/>
+            <separator/>
+            <filter name="negative" string="Stock Negativo" domain="[('quantity', '&lt;', 0)]"/>
+            <filter name="positive" string="Stock Positivo" domain="[('quantity', '&gt;', 0)]"/>
+            <!--<filter name="reserved" string="Reservado" domain="[('reserved_quantity', '&gt;', 0)]"/>-->
+            <separator/>
+            <filter name="filter_in_date" date="in_date"/>
+          </group>
+          <group expand='0' string='Group by...'>
+            <filter string='Product' name="productgroup" context="{'group_by': 'product_id'}"/>
+            <filter string='Location' name="locationgroup" domain="[]" context="{'group_by': 'location_id'}"/>
+            <!--<filter string='Owner' name="owner" context="{'group_by': 'owner_id'}" groups="stock.group_tracking_owner"/>-->
+            <filter string='Lot/Serial Number' name="Lot_Serial_number" context="{'group_by': 'lot_id'}" groups="stock.group_production_lot"/>
+            <!--<filter string='Package' name="package" domain="[]" context="{'group_by': 'package_id'}" groups="stock.group_tracking_lot"/>-->
+            <!--<filter string='Company' name="company" domain="[]" context="{'group_by': 'company_id'}" groups="base.group_multi_company"/>-->
+          </group>
         </search>
       </field>
     </record>
@@ -24,16 +43,17 @@
       <field name="arch" type="xml">
         <!--<tree string="Toolroom Quantity" editable="bottom" create="1" edit="1" import="0" js_class="singleton_list" sample="1">-->
         <!--<tree string="Toolroom Quantity" editable="bottom" create="1" edit="1" import="0" >-->
-        <tree string="Valoración de inventario" js_class="inventory_report_list" create="0" delete="0" edit="0" >
+        <!--<tree string="Valoración de inventario" js_class="inventory_report_list" create="0" delete="0" edit="0" >-->
+        <tree string="Valoración de inventario" create="0" delete="0" edit="0">
           <field name="name" string="Name" invisible="1"/>
           <field name="product_id" string="Herramienta/Equipo"/>
           <field name="product_tmpl_id" string="Herramienta/Equipo" invisible="1"/>
           <field name="location_id" />
           <field name="employee_id" />
           <field name="lot_id" />
-          <field name="inventory_quantity" />
+          <field name="inventory_quantity" decoration-danger="inventory_quantity &lt; 0" readonly="0" />
           <field name="available_quantity" />
-          <field name="product_uom_id" />
+          <field name="product_uom_id" optional="hide"/>
           <!--<field name="lot_stock_id" string="Ubicación de Stock" />-->
         </tree>
       </field>
@@ -47,6 +67,8 @@
       <field name="res_model">tr.stock.quant</field>
       <field name="view_mode">tree</field>
       <field name="view_id" ref="view_tr_stock_quant_tree" />
+      <field name="search_view_id" ref="view_tr_stock_quant_search"/>
+      <field name="context">{'search_default_internal_loc': 1, 'search_default_productgroup':1, 'search_default_locationgroup':1}</field>
       <field name="help" type="html">
         <p class="o_view_nocontent_smiling_face">
           Crear Nuevo Informe
