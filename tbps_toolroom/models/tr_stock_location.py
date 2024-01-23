@@ -89,6 +89,15 @@ class TrStockLocation(models.Model):
         "tr.stock.inventory",
         string="Inventario"
     )
+    prod_lot_id = fields.One2many(
+        "tr.stock.production.lot",
+        "location_id",
+        string="Serial Producto"
+    )
+    product_serial_count = fields.Integer(
+        string="Herramientas",
+        compute="_compute_tools_count"
+    )
 
     _sql_constraints = [('default_location', 
             'UNIQUE(default_location)', 

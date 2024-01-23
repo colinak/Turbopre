@@ -44,7 +44,7 @@
         <!--<tree string="Toolroom Quantity" editable="bottom" create="1" edit="1" import="0" js_class="singleton_list" sample="1">-->
         <!--<tree string="Toolroom Quantity" editable="bottom" create="1" edit="1" import="0" >-->
         <!--<tree string="Valoración de inventario" js_class="inventory_report_list" create="0" delete="0" edit="0" >-->
-        <tree string="Valoración de inventario" create="0" delete="0" edit="0">
+        <tree string="Valoración de inventario" create="0" delete="1" edit="0">
           <field name="name" string="Name" invisible="1"/>
           <field name="product_id" string="Herramienta/Equipo"/>
           <field name="product_tmpl_id" string="Herramienta/Equipo" invisible="1"/>
@@ -75,6 +75,13 @@
         </p>
       </field>
     </record>
+
+    <!--<record model="ir.actions.act_window" id="tr_location_open_quants"> [> Used in location <]-->
+        <!--<field name="context">{'search_default_productgroup': 1}</field>-->
+        <!--<field name="domain">[('location_id', 'child_of', active_ids)]</field>-->
+        <!--<field name="name">Stock Actual</field>-->
+        <!--<field name="res_model">tr.stock.quant</field>-->
+    <!--</record>-->
   
     <menuitem 
       id="menu_tr_stock_quant"

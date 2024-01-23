@@ -13,6 +13,24 @@
           <sheet>
             <field name="id" invisible="True"/>
             <field name='active' invisible='1'/>
+            <div class="oe_button_box" name="button_box">
+              <!--[>type="object" name="action_open_quants"<]-->
+              <button  attrs="{'invisible':[('type', '!=', 'product')]}" class="oe_stat_button" icon="fa-cubes">
+                <div class="o_field_widget o_stat_info">
+                  <span class="o_stat_value" widget="statinfo">
+                    <field name="available_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                    <field name="uom_name"/>
+                  </span>
+                  <span class="o_stat_text">A Mano</span>
+                </div>
+              </button>
+              <!--[>type="object" name="action_view_stock_move_lines"<]-->
+              <!--[>groups="stock.group_stock_user"<]-->
+              <button string="Movimientos" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}" class="oe_stat_button" icon="fa-exchange" />
+              <!--[>type="object" name="action_open_product_lot"<]-->
+              <!--[>groups="stock.group_production_lot"<]-->
+              <button string="Números de Serie" class="oe_stat_button" icon="fa-bars" />
+            </div>
             <widget name="web_ribbon" title="Archivar" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
             <div class="oe_title">
@@ -24,13 +42,7 @@
                 <div>
                   <field name="product_tmpl_id" class="oe_inline" readonly="1" invisible="1" attrs="{'required': [('id', '!=', False)]}"/>
                   <field name="product_template_attribute_value_ids" widget="many2many_tags" readonly="1" />
-                  <!--<field name="sale_ok"/>-->
-                  <!--<label for="sale_ok"/>-->
                 </div>
-                <!--<div>-->
-                  <!--<field name="purchase_ok"/>-->
-                  <!--<label for="purchase_ok"/>-->
-                <!--</div>-->
               </div>
             </div>
             <notebook>

@@ -89,7 +89,7 @@
               <button  attrs="{'invisible':[('type', '!=', 'product')]}" class="oe_stat_button" icon="fa-cubes">
                 <div class="o_field_widget o_stat_info">
                   <span class="o_stat_value" widget="statinfo">
-                    <!--<field name="qty_available" widget="statinfo" nolabel="1" class="mr4"/>-->
+                    <field name="available_qty" widget="statinfo" nolabel="1" class="mr4"/>
                     <field name="uom_name"/>
                   </span>
                   <span class="o_stat_text">A Mano</span>
@@ -131,6 +131,9 @@
                     <field name="product_variant_id" invisible="1"/>
                   </group>
                 </group>
+                <!--<group>-->
+                  <!--<field name="prod_lot_ids" />-->
+                <!--</group>-->
                 <group string="Notas internas">
                   <field name="description" nolabel="1" placeholder="Esta nota es solo para fines internos."/>
                 </group>

@@ -28,6 +28,7 @@
         <form string="Toolroom N° Serie">
           <header>
             <field name="company_id" invisible="1" />
+            <field name="state" widget="statusbar" statusbar_visible="draft,done,cancel"/>
           </header>
           <sheet>
             <div class="oe_title">
@@ -72,6 +73,7 @@
           <!--<field name="product_uom_id" />-->
           <field name="create_date" optional="show" string="Creado en"/>
           <field name="company_id" invisible="1"/>
+          <field name="state" string="Estatus" widget="badge" decoration-success="state == 'done'" decoration-info="state in ('draft', 'confirm')" />
         </tree>
       </field>
     </record>

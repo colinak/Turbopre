@@ -87,7 +87,6 @@ class TrStockInventory(models.Model):
         self.ensure_one()
         self._action_start()
         return self.action_open_inventory_lines()
-        pass
 
 
     def _action_start(self):
@@ -171,9 +170,6 @@ class TrStockInventory(models.Model):
                     'in_date': self.date,
                     'quantity': -1
                 })
-        else:
-            pass
-
 
 
     def create_stock_move(self):
@@ -193,7 +189,7 @@ class TrStockInventory(models.Model):
                     'move_line_ids': self.env['tr.stock.move.line'].create({
                         'name': line.product_id.name,
                         'date': self.date,
-                        'reference': f"INV {self.name}",
+                        'reference': f"INV: {self.name}",
                         'product_id': line.product_id.id,
                         'lot_id': line.prod_lot_id.id,
                         'location_id': 6,
@@ -204,18 +200,31 @@ class TrStockInventory(models.Model):
                     }),
                 })
                 
-        else:
-            pass
-        
+
+
+    def inventory_validate(self):
+        if len(self.line_ids) > 0:
+            self.state = "done"
+            for line in self.line_ids:
+                line.prod_lot_id.write({
+                    'state': "done",
+                    'location_id': line.location_id,
+                    'ref': f"INV: {self.name}"
+                })
 
 
 
     def action_validate(self):
-        try:
-            self.create_stock_quant()
-            self.create_stock_move()
-        except:
-            raise UserError("Error")
+        if len(self.line_ids) > 0:
+            try:
+                self.create_stock_quant()
+                self.create_stock_move()
+                self.inventory_validate()
+            except:
+                raise UserError("Error inesperado contacte con el administrador")
+        else:
+            raise UserError("No se puede validar un invetario sin lineas de productos")
+
 
 
 
@@ -293,3 +302,10 @@ class TrStockInventoryLine(models.Model):
         string="Estado",
         related='inventory_id.state'
     )
+
+
+    _sql_constraints = [('unique_serial_lot',
+            'UNIQUE(prod_lot_id)', 
+            'Ya existe un número de serie registrado para este producto.'
+        )
+    ]
