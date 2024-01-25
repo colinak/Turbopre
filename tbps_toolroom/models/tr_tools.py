@@ -45,7 +45,7 @@ class ToolRoomTools(models.Model):
         for rec in self:
             rec.available_qty = rec.lot_ids.search_count([
                 ('state', '=', 'done'),
-                ('product_id.id', '=', rec.id)
+                ('product_id', '=', rec.id)
             ])
 
 

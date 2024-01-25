@@ -52,7 +52,7 @@ class TrProductTemplate(models.Model):
         for rec in self:
             rec.available_qty = rec.product_variant_ids.lot_ids.search_count([
                 ('state', '=', 'done'),
-                ('product_id.id', '=', rec.id)
+                ('product_id', '=', rec.id)
             ])
 
 

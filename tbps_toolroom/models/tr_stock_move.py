@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 ###############################################################################
+#
 # Author: KEWITZ COLINA
 # Copyleft: 2020-Present.
 # License LGPL-3.0 or later (http: //www.gnu.org/licenses/lgpl.html).
-#
 #
 ###############################################################################
 
@@ -19,7 +19,7 @@ class TrStockMove(models.Model):
     name = fields.Char('Descripción', index=True, required=True)
     date = fields.Datetime(
         'Fecha programada', 
-        default=fields.Datetime.now, 
+        default=fields.Datetime.now,
         index=True, 
         required=True,
         help="Fecha programada hasta que se realiza el movimiento, luego fecha de procesamiento del movimiento real"
@@ -41,6 +41,12 @@ class TrStockMove(models.Model):
         # store=True, 
         # compute_sudo=True,
         help='Cantidad en la UM por defecto del producto'
+    )
+    qty_done = fields.Integer(
+        string="Hecho",
+        default=1,
+        # digits='Product Unit of Measure', 
+        # copy=False
     )
     availability = fields.Integer(
         string="Cantidad pronosticada"
@@ -66,13 +72,14 @@ class TrStockMove(models.Model):
         "tr.stock.location",
         string="Ubicación origen"
     )
-    # lot_ids = fields.Many2many(
-        # "tr.stock.production.lot",
-        # "move_id",
-        # "lot_id",
-        # "tr_stock_move_production_lot_rel",
-        # string="Números de serie"
-    # )
+    lot_ids = fields.Many2many(
+        "tr.stock.production.lot",
+        "move_id",
+        "lot_id",
+        "tr_stock_move_production_lot_rel",
+        string="Números de serie"
+    )
+    lot_name = fields.Char('N° de serie')
     move_dest_ids = fields.Many2many(
         "tr.stock.move",
         "move_orig_id",
@@ -133,13 +140,9 @@ class TrStockMove(models.Model):
     state = fields.Selection(
         selection=[
             ('draft', 'Nuevo'),
-            ('cancel', 'Cancelada'),
             ('done', 'Realizado'),
-            # ('', ''),
-            # ('', ''),
+            ('cancel', 'Cancelada'),
         ],
         string="Estado"
     )
-
-
 

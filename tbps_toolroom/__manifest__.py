@@ -30,6 +30,7 @@
         'tbps_quality_equipment'
     ],
     'data': [
+        "data/sequence.xml",
         "data/product.category.csv",
         "data/tr.stock.location.csv",
         "security/tools_security.xml",
