@@ -28,7 +28,11 @@ class TrStockProductionLot(models.Model):
     )
     location_id = fields.Many2one(
         "tr.stock.location",
-        string="Ubicacion",
+        string="Ubicación",
+    )
+    employee_id = fields.Many2one(
+        "tps.employee",
+        string="Empleado Asignado"
     )
     product_id = fields.Many2one(
         "product.product",
@@ -55,12 +59,22 @@ class TrStockProductionLot(models.Model):
     state = fields.Selection(
         selection=[
             ('draft', 'Borrador'),
-            # ('confirm', 'En Progreso'),
             ('done', 'Validado'),
             ('cancel', 'Cancelada'),
         ],
         string="Estado",
         default="draft"
+    )
+    stage = fields.Selection(
+        [
+            ('available', 'Disponible'),
+            ('assigned', 'Asignado'),
+            ('loan', 'Prestado'),
+            ('in_custody', 'En Custodia'),
+            ('discarded', 'Service'),
+        ],
+        string="Stage",
+        default='available'
     )
     note = fields.Text(
         string="Descripción"

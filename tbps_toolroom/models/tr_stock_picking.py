@@ -62,7 +62,7 @@ class TrStockPicking(models.Model):
     picking_type_code = fields.Selection(
         selection=[
             ('assignment', 'Asignación'),
-            ('discard', 'Desechar'),
+            # ('discard', 'Desechar'),
             ('loans', 'Prestamo'),
             ('reception', 'Recepción'),
             ('transfers', 'Transferencias')
@@ -114,7 +114,6 @@ class TrStockPicking(models.Model):
     # active = fields.Boolenam("Activo")
 
 
-
     @api.onchange('signature_applicant')
     def _onchange_signature_applicant(self):
         if self.signature_applicant:
@@ -122,11 +121,12 @@ class TrStockPicking(models.Model):
                 [('pin', '=', self.signature_applicant)],
                 limit=1
             )
-            if applicant:
-                self.applicant_id = applicant.id
-            else:
+            if len(applicant) < 1:
+                self.signature_applicant = ""
                 self.applicant_id = ""
                 raise UserError("Error, No se encontro ningún empleado Con ese código PIN, por favor verifíque e intente de nuevo.")
+            else:
+                self.applicant_id = applicant.id
 
 
 
@@ -137,36 +137,89 @@ class TrStockPicking(models.Model):
                 [('pin', '=', self.signature_deliverer)],
                 limit=1
             )
-            if deliverer:
-                self.delivery_id = deliverer.id
-            else:
+            if len(deliverer) < 1:
+                self.signature_deliverer = ""
                 self.delivery_id = ""
                 raise UserError("Error, No se encontro ningún empleado Con ese código PIN, por favor verifíque e intente de nuevo.")
-
-
-    @api.model
-    def create(self, vals):
-        if vals.get('name', _('Nuevo')) == _('Nuevo'):
-            if vals.get('picking_type_code') == "assignment":
-                vals['name'] = self.env['ir.sequence'].next_by_code('tr.stock.picking.assignment') or _('Nuevo')
-            elif vals.get('picking_type_code') == "loans":
-                vals['name'] = self.env['ir.sequence'].next_by_code('tr.stock.picking.loans') or _('Nuevo')
-            elif vals.get('picking_type_code') == "reception":
-                vals['name'] = self.env['ir.sequence'].next_by_code('tr.stock.picking.returns') or _('Nuevo')
-            elif vals.get('picking_type_code') == "Transfers":
-                vals['name'] = self.env['ir.sequence'].next_by_code('tr.stock.picking.transfers') or _('Nuevo')
-        res = super(TrStockPicking, self).create(vals)
-        return res
-
-
-
-    def action_validate(self):
-        pass
-
+            else:
+                self.delivery_id = deliverer.id
 
 
     def action_cancel_draft(self):
         pass
+
+
+    def assigned_confirm(self):
+        for line in self.move_line_ids:
+            try:
+                line.reference = self.name
+                line.state = "done"
+                line.lot_id.write({
+                    'location_id': line.location_dest_id.id,
+                    'stage': "assigned",
+                    'employee_id': self.applicant_id.id,
+                    # 'move_id': 
+                })
+            except:
+                raise UserError("¡Error!")
+
+
+    
+    def loan_confirm(self):
+        for line in self.move_line_ids:
+            try:
+                line.reference = self.name
+                line.state = "done"
+                line.lot_id.write({
+                    'location_id': line.location_dest_id.id,
+                    'stage': "loan",
+                    'employee_id': self.applicant_id.id,
+                    # 'move_id': 
+                })
+            except:
+                raise UserError("¡Error!")
+
+
+    def return_confirm(self):
+        for line in self.move_line_ids:
+            try:
+                line.reference = self.name
+                line.state = "done"
+                line.lot_id.write({
+                    'location_id': line.location_dest_id.id,
+                    'stage': "available",
+                    'employee_id': False
+                    # 'move_id': 
+                })
+            except:
+                raise UserError("¡Error!")
+
+    def transfer_confirm(self):
+        pass
+
+
+    def action_validate(self):
+        try:
+            if self.name == 'Nuevo':
+                if self.picking_type_code == "assignment":
+                    self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.assignment') or _('Nuevo')
+                    self.assigned_confirm()
+                    self.state = "done"
+                elif self.picking_type_code == "loans":
+                    self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.loans') or _('Nuevo')
+                    self.loan_confirm()
+                    self.state = "done"
+                elif self.picking_type_code == "reception":
+                    self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.returns') or _('Nuevo')
+                    self.return_confirm()
+                    self.state = "done"
+                elif self.picking_type_code == "Transfers":
+                    self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.transfers') or _('Nuevo')
+                    self.transfer_confirm()
+                    self.state = "done"
+        except:
+            raise UserError("¡Error!")
+
 
 
 

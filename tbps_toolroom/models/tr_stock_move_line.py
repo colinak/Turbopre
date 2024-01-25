@@ -17,7 +17,7 @@ class TrStockMoveLine(models.Model):
     _name = 'tr.stock.move.line'
     _description = 'Toolroom Stock Move line'
     _rec_name = "product_id"
-    _order = 'reference'
+    _order = 'reference, id'
 
     
     name = fields.Char(
@@ -136,14 +136,24 @@ class TrStockMoveLine(models.Model):
                 'name', '=', self.lot_name
             )],limit=1)
             if len(serial_lot) < 1:
-                raise UserError("Error, No se encontro ninguna herramienta con este número de serie.")
+                self.lot_name = ""
+                self.lot_id = ""
+                self.product_id = ""
+                self.location_id = ""
+                self.product_uom_id = ""
+                raise UserError("¡Error! \nNo se encontro ninguna herramienta con este número de serie.")
+            # elif serial_lot.stage != "available":
+                # self.lot_name = ""
+                # self.lot_id = ""
+                # self.product_id = ""
+                # self.location_id = ""
+                # self.product_uom_id = ""
+                # raise UserError("¡Error! \nLa herramienta que intenta prestar no está disponible.")
             else:
                 self.lot_id = serial_lot.id
                 self.product_id = serial_lot.product_id.id
                 self.location_id = serial_lot.location_id.id
                 self.product_uom_id = serial_lot.product_uom_id.id
-
-
 
 
 

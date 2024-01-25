@@ -19,7 +19,7 @@ class TpsEmployee(models.Model):
 
 
     tools_ids = fields.One2many(
-        "product.product",
+        "tr.stock.production.lot",
         "employee_id",
         string="Equipos/Herramientas",
     )
