@@ -62,10 +62,10 @@ class TrStockPicking(models.Model):
     picking_type_code = fields.Selection(
         selection=[
             ('assignment', 'Asignación'),
-            # ('discard', 'Desechar'),
             ('loans', 'Prestamo'),
-            ('reception', 'Recepción'),
+            ('reception', 'Devolución'),
             ('transfers', 'Transferencias')
+            # ('discard', 'Desechar'),
         ],
         string='Tipo de Operación',
         required=True,

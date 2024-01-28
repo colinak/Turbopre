@@ -14,22 +14,28 @@
             <field name="id" invisible="True"/>
             <field name='active' invisible='1'/>
             <div class="oe_button_box" name="button_box">
-              <!--[>type="object" name="action_open_quants"<]-->
-              <button  attrs="{'invisible':[('type', '!=', 'product')]}" class="oe_stat_button" icon="fa-cubes">
+              <button type="object" name="action_open_total_quants" attrs="{'invisible':[('type', '!=', 'product')]}" class="oe_stat_button" icon="fa-cubes">
+                <div class="o_field_widget o_stat_info">
+                  <span class="o_stat_value" widget="statinfo">
+                    <field name="total_qty" widget="statinfo" nolabel="1" class="mr4"/>
+                    <field name="uom_name"/>
+                  </span>
+                  <span class="o_stat_text">Totales</span>
+                </div>
+              </button>
+
+              <button type="object" name="action_open_available_quants" attrs="{'invisible':[('type', '!=', 'product')]}" class="oe_stat_button" icon="fa-cubes">
                 <div class="o_field_widget o_stat_info">
                   <span class="o_stat_value" widget="statinfo">
                     <field name="available_qty" widget="statinfo" nolabel="1" class="mr4"/>
                     <field name="uom_name"/>
                   </span>
-                  <span class="o_stat_text">A Mano</span>
+                  <span class="o_stat_text">Disponibles</span>
                 </div>
               </button>
-              <!--[>type="object" name="action_view_stock_move_lines"<]-->
-              <!--[>groups="stock.group_stock_user"<]-->
-              <button string="Movimientos" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}" class="oe_stat_button" icon="fa-exchange" />
-              <!--[>type="object" name="action_open_product_lot"<]-->
-              <!--[>groups="stock.group_production_lot"<]-->
-              <button string="Números de Serie" class="oe_stat_button" icon="fa-bars" />
+
+              <button type="object" name="action_view_tr_stock_move_lines" string="Movimientos" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}" class="oe_stat_button" icon="fa-exchange" />
+
             </div>
             <widget name="web_ribbon" title="Archivar" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
@@ -52,8 +58,8 @@
                     <field name="active" invisible="1"/>
                     <field name="type"/>
                     <field name="categ_id" string="Categoría de Producto"/>
-                    <field name="default_code"/>
-                    <field name="barcode"/>
+                    <field name="default_code" string="Código del Fabricante"/>
+                    <field name="barcode" invisible="1" />
                   </group>
                 </group>
                 <group string="Notas internas">
@@ -73,12 +79,14 @@
       <field name="arch" type="xml">
         <tree string="Product Variants" multi_edit="1" duplicate="false" sample="1">
           <field name="name" string="Nombre" readonly="1"/>
-          <field name="default_code" optional="show" readonly="1"/>
-          <field name="barcode" optional="hide" readonly="1"/>
+          <field name="default_code" optional="show" readonly="1" string="Código del Fabricante"/>
+          <field name="barcode" invisible="1"/>
           <field name="product_template_attribute_value_ids" widget="many2many_tags" groups="product.group_product_variant" readonly="1"/>
           <field name="company_id" groups="base.group_multi_company" optional="hide" readonly="1"/>
           <field name="type" optional="hide" readonly="1"/>
-          <field name="categ_id" optional="hide"/>
+          <field name="categ_id" optional="show"/>
+          <field name="available_qty" optional="show"/>
+          <field name="total_qty" optional="show"/>
           <field name="uom_id" options="{'no_open': True, 'no_create': True}" optional="show" readonly="1"/>
           <field name="product_tmpl_id" invisible="1" readonly="1"/>
           <field name="active" invisible="1"/>

@@ -56,9 +56,9 @@ class TrStockQuant(models.Model):
     available_quantity = fields.Integer(
         string="Cantidad disponible"
     )
-    on_hand = fields.Boolean(
+    on_hand = fields.Integer(
         string="A mano",
-        default=False
+        related="product_id.total_qty"
     )
     employee_id = fields.Many2one(
         "hr.employee",

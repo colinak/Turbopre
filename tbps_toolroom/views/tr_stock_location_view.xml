@@ -30,7 +30,15 @@
           <sheet>
             <field name="active" invisible="1"/>
             <div class="oe_button_box" name="button_box">
-              <button string="Stock Actual" class="oe_stat_button" icon="fa-cubes"/>
+              <button 
+                name="%(tbps_toolroom.action_tr_stock_production_lot)d" 
+                string="Stock Actual"
+                class="o_stat_button" 
+                icon="fa-cubes" 
+                type="action"
+                context="{'search_default_location_id': id, 'default_location_id': id}" 
+                groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
+            />
             </div>
             <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
             <div class="oe_title">

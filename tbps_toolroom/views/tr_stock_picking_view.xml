@@ -80,12 +80,12 @@
                       <field name="name" invisible="1" />
                       <field name="company_id" invisible="1" />
                       <group col="4">
-                        <field name="lot_name" required="1" />
-                        <field name="product_id" placeholder="Seleccione" required="1"
+                        <field name="product_id" string="Herramienta" placeholder="Seleccione" required="1"
                           domain="[('type', '!=', 'service')]"
                           options="{'no_create': True, 'no_create_edit': True}"
                           readonly="1" force_save="1"
                         />
+                        <field name="lot_name" required="1" />
                         <field name="location_id" placeholder="Seleccione" domain="[('usage', '=', 'internal')]" 
                          readonly="1" force_save="1" />
                         <field name="location_dest_id" placeholder="Seleccione" domain="[('usage', '=', 'internal')]" />
@@ -99,7 +99,7 @@
 
                     <tree>
                       <field name="lot_name" required="1" />
-                      <field name="product_id" placeholder="Seleccione" required="1" readonly="1" force_save="1"/>
+                      <field name="product_id" string="Herramienta" placeholder="Seleccione" required="1" readonly="1" force_save="1"/>
                       <field name="location_id" placeholder="Seleccione" readonly="1" force_save="1"/>
                       <field name="location_dest_id" placeholder="Seleccione" />
                       <field name="product_uom_qty" invisible="1" />
@@ -154,7 +154,7 @@
 
     <menuitem 
       id="menu_tr_stock_picking"
-      name="Prestamos"
+      name="Prestamos y Devoluciones"
       parent="tbps_toolroom.menu_operations"
       action="tbps_toolroom.action_tr_stock_picking"
       sequence="2"

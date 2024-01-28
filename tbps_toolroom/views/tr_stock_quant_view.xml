@@ -15,7 +15,7 @@
           <group expand='0' string='Filters'>
             <filter name='internal_loc' string="Ubicaciones Internas" domain="[('location_id.usage','=', 'internal')]"/>
             <filter name='external_loc' string="Ubicaciones Extrernas" domain="[('location_id.usage' ,'=', 'external')]"/>
-            <filter name="on_hand" string="A mano" domain="[('on_hand', '=', True)]"/>
+            <!--<filter name="on_hand" string="A mano" domain="[('on_hand', '=', True)]"/>-->
             <separator/>
             <filter name="negative" string="Stock Negativo" domain="[('quantity', '&lt;', 0)]"/>
             <filter name="positive" string="Stock Positivo" domain="[('quantity', '&gt;', 0)]"/>
@@ -52,7 +52,7 @@
           <field name="employee_id" />
           <field name="lot_id" />
           <field name="inventory_quantity" decoration-danger="inventory_quantity &lt; 0" readonly="0" />
-          <field name="available_quantity" />
+          <field name="available_quantity" invisible="1" />
           <field name="product_uom_id" optional="hide"/>
           <!--<field name="lot_stock_id" string="Ubicación de Stock" />-->
         </tree>

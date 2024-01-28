@@ -118,6 +118,11 @@
                 <field name="barcode" placeholder="N° carnet" />
               </group>
             </group>
+            <notebook>
+              <page name="equipment" string="Equipos" groups="tbps_quality_equipment.group_quality_user">
+
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>

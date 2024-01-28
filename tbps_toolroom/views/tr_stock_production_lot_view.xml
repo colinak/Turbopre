@@ -9,10 +9,16 @@
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Toolroom N° de Serie">
-          <field string="Número de serie" name="name" filter_domain="['|', ('name', 'ilike', self),('ref', 'ilike', self)]"/>
-          <field name="product_id"/>
+          <field string="N° Serial TPS" name="name" filter_domain="['|', ('name', 'ilike', self),('ref', 'ilike', self)]"/>
+          <field name="product_id" string="Herramienta"/>
+          <field name="ref"/>
+          <field name="employee_id"/>
+          <field name="location_id"/>
           <group expand="0" string="Group By">
             <filter name="group_by_product" string="Producto" domain="[]" context="{'group_by': 'product_id'}"/>
+            <filter name="group_by_employee" string="Empleado" domain="[]" context="{'group_by': 'employee_id'}"/>
+            <filter name="group_by_location" string="Ubicación" domain="[]" context="{'group_by': 'location_id'}"/>
+            <filter name="group_by_stage" string="Disponibilidad" domain="[]" context="{'group_by': 'stage'}"/>
           </group>
         </search>
       </field>
@@ -27,19 +33,20 @@
       <field name="arch" type="xml">
         <form string="Toolroom N° Serie">
           <header>
+            <field name="active" invisible="1" />
             <field name="company_id" invisible="1" />
             <field name="state" widget="statusbar" statusbar_visible="draft,done,cancel"/>
           </header>
           <sheet>
             <div class="oe_title">
-              <label for="name" class="oe_edit_only"/>
+              <label for="name" string="N° Serial TPS" class="oe_edit_only"/>
               <h1>
                 <field name="name" placeholder="Ej. LOT/0001/20121" style="width: 80%;" />
               </h1>
             </div>
             <group name="main_group">
               <group>
-                <field name="product_id" placeholder="Seleccione" context="{'default_type': 'product'}" help="Producto que contiene este número de serie. Ya no puedes cambiarlo si ya se ha movido."/>
+                <field name="product_id" string="Herramienta" placeholder="Seleccione" context="{'default_type': 'product'}" help="Producto que contiene este número de serie. Ya no puedes cambiarlo si ya se ha movido."/>
                 <label for="product_qty" />
                 <div class="o_row" >
                   <field name="product_qty" readonly="1"/>
@@ -63,17 +70,17 @@
       <field name="model">tr.stock.production.lot</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <!--<header>-->
-          <!--<button string="Carga Madiva" class="oe_stat_button" icon="fa-cubes"/>-->
-        <!--</header>-->
         <tree string="Lots/Serial Numbers" multi_edit="1">
-          <field name="name" string="N° de serie" decoration-bf="1"/>
-          <field name="ref" optional="show" />
-          <field name="product_id" readonly="1" />
-          <!--<field name="product_uom_id" />-->
+          <field name="name" string="N° Serial TPS" decoration-bf="1"/>
+          <field name="product_id" string="Herramienta" readonly="1" />
+          <field name="employee_id" string="Empleado Asignado" optional="hide"/>
+          <field name="location_id" string="Ubicación" optional="hide"/>
+          <field name="ref" optional="hide" />
           <field name="create_date" optional="show" string="Creado en"/>
           <field name="company_id" invisible="1"/>
+          <field name="stage" string="Disponibilidad" widget="badge" decoration-success="stage == 'available'" decoration-info="stage in ('assigned', 'loan', 'in_custody')" decoration-danger="stage == 'discarded'"/>
           <field name="state" string="Estatus" widget="badge" decoration-success="state == 'done'" decoration-info="state in ('draft', 'confirm')" />
+          <field name="product_qty" />
         </tree>
       </field>
     </record>
@@ -96,7 +103,7 @@
   
     <menuitem 
       id="menu_tr_stock_production_lot"
-      name="Números de serie"
+      name="Números de Serie"
       parent="tbps_toolroom.menu_toolroom_equipment"
       action="tbps_toolroom.action_tr_stock_production_lot"
       sequence="3"

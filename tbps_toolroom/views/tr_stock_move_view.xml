@@ -9,7 +9,7 @@
       <field name="arch" type="xml">
         <search string="Stock Moves">
           <!--<field name="origin" filter_domain="['|', '|', ('origin', 'ilike', self), ('name', 'ilike', self), ('picking_id', 'ilike', self)]" string="Reference"/>-->
-          <field name="product_id"/>
+          <field name="product_id" string="Herramienta"/>
           <field name="name" string="Lugar" filter_domain="['|',('location_id', 'ilike', self),('location_dest_id', 'ilike', self)]"/>
           <field name="partner_id" string="Contacto" filter_domain="[('picking_id.partner_id', 'child_of', self)]"/>
           <filter string="Nuevo" name="draft" domain="[('state','=','draft')]" />
@@ -21,7 +21,7 @@
           <separator/>
           <filter string="Fecha" name="today" date="date" help="Scheduled or processing date"/>
           <group expand="0" string="Group By">
-            <filter string="Producto" name="by_product" domain="[]"  context="{'group_by': 'product_id'}"/>
+            <filter string="Herramienta" name="by_product" domain="[]"  context="{'group_by': 'product_id'}"/>
             <filter string="Picking" name="groupby_picking_id" domain="[]"  context="{'group_by': 'picking_id'}"/>
             <filter string="Ubicación origen" name="groupby_location_id" domain="[]" context="{'group_by': 'location_id'}" groups="stock.group_stock_multi_locations"/>
             <filter string="Ubicación destino" name="groupby_dest_location_id" domain="[]" context="{'group_by': 'location_dest_id'}" groups="stock.group_stock_multi_locations"/>
@@ -38,7 +38,7 @@
       <field name="model">tr.stock.move</field>
       <field name="arch" type="xml">
         <pivot string="Stock Moves Analysis" sample="1">
-          <field name="product_id" type="row"/>
+          <field name="product_id" string="Herramienta" type="row"/>
           <!--<field name="location_dest_id" groups="stock.group_stock_multi_locations" type="row"/>-->
           <field name="location_dest_id" type="row"/>
           <field name="product_uom_qty" type="measure"/>
@@ -52,7 +52,7 @@
       <field name="model">tr.stock.move</field>
       <field name="arch" type="xml">
           <graph string="Stock Moves Analysis" sample="1">
-              <field name="product_id"/>
+              <field name="product_id" string="Herramienta"/>
               <field name="location_dest_id" type="row"/>
               <!--<field name="location_dest_id" groups="stock.group_stock_multi_locations" type="row"/>-->
               <field name="product_uom_qty" type="measure"/>
@@ -71,7 +71,7 @@
           <field name="reference"/>
           <!--<field name="picking_type_id" invisible="1"/>-->
           <field name="create_date" invisible="1" />
-          <field name="product_id"/>
+          <field name="product_id" string="Herramienta"/>
           <field name="location_id" options="{'no_create': True}" string="Desde"/>
           <field name="location_dest_id" options="{'no_create': True}" string="Hasta"/>
           <field name="product_uom_qty" string="Demanda" />
@@ -103,7 +103,7 @@
                   <!--<field name="company_id" groups="base.group_multi_company"/>-->
                 </group>
                 <group name="main_grp_col2">
-                  <field name="product_id"/>
+                  <field name="product_id" string="Herramienta"/>
                   <field name="product_uom_category_id" invisible="1"/>
                   <label for="product_uom_qty"/>
                   <div class="o_row">
@@ -118,31 +118,6 @@
                   <field name="date" readonly="1" nolabel="1"/>
                   <field name="date_deadline" force_save="1"/>
                 </group>
-              </group>
-              <group name="origin_grp" string="Origin" groups="base.group_no_one" >
-                <!--<field name="origin"/>-->
-                <!--<field name="group_id"/>-->
-                <!--<field name="procure_method" attrs="{'readonly': [('state', '!=', 'draft')]}" groups="stock.group_adv_location"/>-->
-              </group>
-              <group name="linked_group" string="Linked Moves" colspan="2">
-                <!--<field name="move_orig_ids" string="Origin Moves" readonly="1">-->
-                  <!--<tree>-->
-                    <!--<field name="location_id"/>-->
-                    <!--<field name="location_dest_id"/>-->
-                    <!--<field name="product_uom_qty"/>-->
-                    <!--[><field name="product_uom"/><]-->
-                    <!--<field name="state"/>-->
-                  <!--</tree>-->
-                <!--</field>-->
-                <field name="move_dest_ids" string="Destination Moves" >
-                  <tree>
-                    <field name="location_id"/>
-                    <field name="location_dest_id"/>
-                    <field name="product_uom_qty"/>
-                    <field name="product_uom"/>
-                    <field name="state"/>
-                  </tree>
-                </field>
               </group>
             </group>
           </sheet>
@@ -176,7 +151,6 @@
       sequence="4" 
       groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
     />
-      <!--groups="base.group_no_one"-->
 
   </data>
 </odoo>

@@ -8,7 +8,7 @@
         <tree string="Move Lines" create="0" default_order="date">
           <field name="date"/>
           <field name="reference" string="Referencia" invisible="context.get('no_reference', False)"/>
-          <field name="product_id"/>
+          <field name="product_id" string="Herramienta"/>
           <field name="lot_id" groups="stock.group_production_lot"/>
           <field name="location_id"/>
           <field name="location_dest_id"/>
@@ -37,7 +37,7 @@
               <field name="date"/>
               <field name="location_id" options="{'no_create': True}" />
               <field name="location_dest_id" options="{'no_create': True}" />
-              <field name="product_id" domain="[('type', '!=', 'service')]" />
+              <field name="product_id" string="Herramienta" domain="[('type', '!=', 'service')]" />
               <field name="lot_id" string="N° de serie	" />
               <!--<field name="lot_name" />-->
               <field name="qty_done" string="Cantidad Hecha" />
@@ -55,7 +55,7 @@
         <search string="Stock Moves">
           <field name="picking_id" string="Transfer"/>
           <field name="reference" string="Reference"/>
-          <field name="product_id"/>
+          <field name="product_id" string="Herramienta"/>
           <field name="location_id" string="Source Location" groups="stock.group_stock_multi_locations"/>
           <field name="location_dest_id" string="Destination Location" groups="stock.group_stock_multi_locations"/>
           <separator/>
@@ -69,7 +69,7 @@
           <filter string="Desecho" name="internal" domain="[('picking_id.picking_type_code', '=', 'discard')]"/>
           <separator/>
           <group expand="0" string="Group By">
-            <filter string="Productos" name="groupby_product_id" domain="[]" context="{'group_by': 'product_id'}"/>
+            <filter string="Herramientas" name="groupby_product_id" domain="[]" context="{'group_by': 'product_id'}"/>
             <filter string="Status" name="by_state" domain="[]"  context="{'group_by': 'state'}"/>
             <filter string="Fecha" name="by_date" domain="[]" context="{'group_by': 'date'}"/>
           </group>

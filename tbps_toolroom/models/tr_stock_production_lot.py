@@ -71,13 +71,17 @@ class TrStockProductionLot(models.Model):
             ('assigned', 'Asignado'),
             ('loan', 'Prestado'),
             ('in_custody', 'En Custodia'),
-            ('discarded', 'Service'),
+            ('discarded', 'Desechado'),
         ],
         string="Stage",
         default='available'
     )
     note = fields.Text(
         string="Descripción"
+    )
+    active = fields.Boolean(
+        string="Activo?",
+        default=True
     )
 
 

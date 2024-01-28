@@ -51,7 +51,7 @@ class TrStockInventory(models.Model):
     state = fields.Selection(
         selection=[
             ('draft', 'Borrador'),
-            ('confirm', 'En Progreso'),
+            ('confirm', 'En Proceso'),
             ('done', 'Validado'),
             ('cancel', 'Cancelada'),
         ],
@@ -207,6 +207,7 @@ class TrStockInventory(models.Model):
             self.state = "done"
             for line in self.line_ids:
                 line.prod_lot_id.write({
+                    'stage': "available",
                     'state': "done",
                     'location_id': line.location_id,
                     'ref': f"INV: {self.name}"

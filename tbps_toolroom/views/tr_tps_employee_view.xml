@@ -9,8 +9,8 @@
       <field name="arch" type="xml">
         <div name="button_box" position="inside">
           <button 
-            name="%(tbps_toolroom.action_toolroom_equipment)d" 
-            context="{'search_default_employee_assigned_id': id, 'default_employee_assigned_id': id}" 
+            name="%(tbps_toolroom.action_tr_stock_production_lot)d" 
+            context="{'search_default_employee_id': id, 'default_employee_id': id}" 
             class="o_stat_button" 
             icon="fa-cubes" 
             type="action"
@@ -19,13 +19,27 @@
             <field name="tools_count" widget="statinfo"/>
           </button>
         </div>
+
+        <page name="equipment" position="after">
+          <page name="tools" string="Equipos y Herramientas" groups="tbps_toolroom.group_tools_user">
+            <field name="tools_ids" options="{'no_create': True, 'no_create_edit': True}" readonly="1"> 
+              <tree default_order="stage">
+                <field name="product_id" string="Herramienta"/>
+                <field name="name" />
+                <field name="location_id" />
+                <field name="stage" string="Operación" widget="badge" decoration-success="stage == 'assigned'" decoration-info="stage == 'loan'" decoration-warning="stage == 'in_custody'" />
+              </tree>
+            </field>
+          </page>
+        </page>
+
       </field>
     </record>
 
 
     <menuitem 
       id="menu_hr_employee"
-      name="Inventario Empleados"
+      name="Informe de Empleados"
       parent="tbps_toolroom.menu_toolroom_informed"
       action="tbps_quality_equipment.tps_employee_action_view"
       sequence="1"
