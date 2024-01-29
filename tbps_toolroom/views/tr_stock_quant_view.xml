@@ -50,7 +50,7 @@
           <field name="product_tmpl_id" string="Herramienta/Equipo" invisible="1"/>
           <field name="location_id" />
           <field name="employee_id" />
-          <field name="lot_id" />
+          <field name="lot_id" string="N° Serial TPS"/>
           <field name="inventory_quantity" decoration-danger="inventory_quantity &lt; 0" readonly="0" />
           <field name="available_quantity" invisible="1" />
           <field name="product_uom_id" optional="hide"/>

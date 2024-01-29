@@ -160,6 +160,13 @@ class TrStockPicking(models.Model):
                     'employee_id': self.applicant_id.id,
                     # 'move_id': 
                 })
+                quants = self.env['tr.stock.quant'].search([
+                    ('lot_id', '=', line.lot_id.id)
+                ])
+                quants.write({
+                    'location_id': line.location_dest_id.id,
+                    'inventory_quantity': 1
+                })
             except:
                 raise UserError("¡Error!")
 
@@ -176,6 +183,13 @@ class TrStockPicking(models.Model):
                     'employee_id': self.applicant_id.id,
                     # 'move_id': 
                 })
+                quants = self.env['tr.stock.quant'].search([
+                    ('lot_id', '=', line.lot_id.id)
+                ])
+                quants.write({
+                    'location_id': line.location_dest_id.id,
+                    'inventory_quantity': 1
+                })
             except:
                 raise UserError("¡Error!")
 
@@ -191,11 +205,21 @@ class TrStockPicking(models.Model):
                     'employee_id': False
                     # 'move_id': 
                 })
+                quants = self.env['tr.stock.quant'].search([
+                    ('lot_id', '=', line.lot_id.id)
+                ])
+                quants.write({
+                    'location_id': line.location_dest_id.id,
+                    'inventory_quantity': 1
+                })
             except:
                 raise UserError("¡Error!")
 
+
+
     def transfer_confirm(self):
         pass
+
 
 
     def action_validate(self):
