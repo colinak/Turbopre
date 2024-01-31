@@ -21,8 +21,11 @@
         </div>
 
         <page name="equipment" position="after">
-          <page name="tools" string="Equipos y Herramientas" groups="tbps_toolroom.group_tools_user">
-            <field name="tools_ids" options="{'no_create': True, 'no_create_edit': True}" readonly="1"> 
+          <page name="tools" string="Herramientas Prestadas" groups="tbps_toolroom.group_tools_user">
+            <field name="loans" invisible="1" />
+            <field name="tools_ids" options="{'no_create': True, 'no_create_edit': True}" readonly="1"
+              widget="many2many">
+              <!--domain="[(stage, '=', 'loan')]">-->
               <tree default_order="stage">
                 <field name="product_id" string="Herramienta"/>
                 <field name="name" />
@@ -31,6 +34,18 @@
               </tree>
             </field>
           </page>
+          <!--<page name="tools" string="Herramientas Asignadas" groups="tbps_toolroom.group_tools_user">-->
+            <!--<field name="tools_ids" options="{'no_create': True, 'no_create_edit': True}" readonly="1"-->
+              <!--widget="many2many">-->
+              <!--[>domain="[(stage, '=', 'assigned')]"><]-->
+              <!--<tree default_order="stage">-->
+                <!--<field name="product_id" string="Herramienta"/>-->
+                <!--<field name="name" />-->
+                <!--<field name="location_id" />-->
+                <!--<field name="stage" string="Operación" widget="badge" decoration-success="stage == 'assigned'" decoration-info="stage == 'loan'" decoration-warning="stage == 'in_custody'" />-->
+              <!--</tree>-->
+            <!--</field>-->
+          <!--</page>-->
         </page>
 
       </field>

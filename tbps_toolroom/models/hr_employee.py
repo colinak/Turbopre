@@ -22,10 +22,19 @@ class TpsEmployee(models.Model):
         "tr.stock.production.lot",
         "employee_id",
         string="Equipos/Herramientas",
+        # domain="[(stage, '=', 'assigned')]"
     )
     tools_count = fields.Integer(
         string="Herramientas Asignadas",
         compute="_compute_tools_count"
+    )
+    assignment = fields.Char(
+        string="Assignment",
+        default="assigned"
+    )
+    loans = fields.Char(
+        string="Loans",
+        default="loan"
     )
 
 

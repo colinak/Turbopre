@@ -46,9 +46,11 @@
           <field name="date" invisible="1" />
           <field name="company_id" invisible="1" />
           <field name="user_id" invisible="1" />
+          <field name="count_line" invisible="1" />
           <!--<widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>-->
           <header>
-            <button name="action_validate" states="draft" string="Validar" type="object" class="oe_highlight" />
+            <button name="action_validate" string="Validar" type="object" class="oe_highlight" 
+              attrs="{'invisible': ['|', ('count_line', '=', 0), ('state', '!=', 'draft')]}" />
             <button name="action_cancel_draft" states="done" string="Cancelar" type="object" groups="tbps_toolroom.group_tools_manager,tbps_toolroom.group_tools_system"
               confirm="Si cancela esta operación, se perderán todas sus líneas de ajuste de prestamos, asignaciones, transferencias o devoluciones. ¿Estás seguro de que quieres descartarlo?"
             />
@@ -66,8 +68,10 @@
               <field name="date" placeholder="Seleccione" attrs="{'readonly': [('state', '=', 'done')]}" />
               <field name="signature_applicant" placeholder="Código del Carnet" required="1" attrs="{'readonly': [('state', '=', 'done')]}" />
               <field name="applicant_id" placeholder="Seleccione" required="1" readonly="1" force_save="1"  />
-              <field name="signature_deliverer" placeholder="Código del Carnet" required="1" attrs="{'readonly': [('state', '=', 'done')]}" />
-              <field name="delivery_id" placeholder="Seleccione" required="1" readonly="1" force_save="1" />
+              <field name="signature_deliverer" placeholder="Código del Carnet"
+                attrs="{'readonly': [('state', '=', 'done')], 'required': [('picking_type_code', '!=', 'transfers')], 'invisible': [('picking_type_code', '=', 'transfers')]}" />
+              <field name="delivery_id" placeholder="Seleccione" readonly="1" force_save="1" 
+                attrs="{'required': [('picking_type_code', '!=', 'transfers')], 'invisible': [('picking_type_code', '=', 'transfers')]}" />
             </group>
             <notebook>
               <page string="Lineas de Herramientas">

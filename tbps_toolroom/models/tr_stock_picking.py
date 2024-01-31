@@ -111,7 +111,16 @@ class TrStockPicking(models.Model):
         string="Estado",
         default="draft"
     )
+    count_line = fields.Integer(
+        string="Lineas de Herramientas",
+        compute="_compute_count_line"
+    )
     # active = fields.Boolenam("Activo")
+
+
+    def _compute_count_line(self):
+        for line in self:
+            line.count_line = len(line.move_line_ids)
 
 
     @api.onchange('signature_applicant')
@@ -223,30 +232,30 @@ class TrStockPicking(models.Model):
 
 
     def action_validate(self):
-        try:
-            if self.name == 'Nuevo':
-                if self.picking_type_code == "assignment":
-                    self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.assignment') or _('Nuevo')
-                    self.assigned_confirm()
-                    self.state = "done"
-                elif self.picking_type_code == "loans":
-                    self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.loans') or _('Nuevo')
-                    self.loan_confirm()
-                    self.state = "done"
-                elif self.picking_type_code == "reception":
-                    self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.returns') or _('Nuevo')
-                    self.return_confirm()
-                    self.state = "done"
-                elif self.picking_type_code == "Transfers":
-                    self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.transfers') or _('Nuevo')
-                    self.transfer_confirm()
-                    self.state = "done"
-        except:
-            raise UserError("¡Error!")
-
-
-
-
-
+        if self.applicant_id == self.delivery_id:
+            raise UserError("¡Error!\n No es posible solicitar y entregar una herramienta al mismo tiempo.")
+        elif len(self.move_line_ids) < 1:
+            raise UserError(f"¡Error!\n No es posible validar un {self.picking_type_code} sin lineas de herramientas.")
+        else:
+            try:
+                if self.name == 'Nuevo':
+                    if self.picking_type_code == "assignment":
+                        self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.assignment') or _('Nuevo')
+                        self.assigned_confirm()
+                        self.state = "done"
+                    elif self.picking_type_code == "loans":
+                        self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.loans') or _('Nuevo')
+                        self.loan_confirm()
+                        self.state = "done"
+                    elif self.picking_type_code == "reception":
+                        self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.returns') or _('Nuevo')
+                        self.return_confirm()
+                        self.state = "done"
+                    elif self.picking_type_code == "Transfers":
+                        self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.transfers') or _('Nuevo')
+                        self.transfer_confirm()
+                        self.state = "done"
+            except:
+                raise UserError("¡Error!")
 
 

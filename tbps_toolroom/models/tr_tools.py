@@ -25,13 +25,13 @@ class ToolRoomTools(models.Model):
         string="Inventario"
     )
     available_qty = fields.Integer(
-        "Cantidad disponible", 
+        "Cantidad disponible",
         compute='_compute_available_qty',
         # search='_search_qty_available',
         # compute_sudo=False,
     )
     total_qty = fields.Integer(
-        "Cantidad disponible", 
+        "Cantidad Total",
         compute='_compute_total_qty',
         # search='_search_qty_available',
         # compute_sudo=False,

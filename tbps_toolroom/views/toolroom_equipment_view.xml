@@ -150,9 +150,6 @@
                     <field name="product_variant_id" invisible="1"/>
                   </group>
                 </group>
-                <group>
-                  <field name="product_variant_ids" />
-                </group>
                 <group string="Notas internas">
                   <field name="description" nolabel="1" placeholder="Esta nota es solo para fines internos."/>
                 </group>
@@ -216,8 +213,8 @@
           <field name="company_id" groups="base.group_multi_company" optional="hide" readonly="1"/>
           <field name="type" optional="show" readonly="1"/>
           <field name="categ_id" optional="show"/>
-          <field name="available_qty" string="Cantidad Disponible" optional="show"/>
           <field name="total_qty" string="Cantidad Total" optional="show"/>
+          <field name="available_qty" string="Cantidad Disponible" optional="show"/>
           <field name="uom_id" options="{'no_open': True, 'no_create': True}" optional="show" readonly="1"/>
           <field name="active" invisible="1"/>
           <field name="product_variant_id" />

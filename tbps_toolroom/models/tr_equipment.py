@@ -31,7 +31,7 @@ class TrProductTemplate(models.Model):
         # digits='Product Unit of Measure'
     )
     total_qty = fields.Integer(
-        "Cantidad Disponible",
+        "Cantidad Total",
         compute='_compute_total_qty',
         # search='_search_qty_available',
         # compute_sudo=False, 
