@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    
+    <record id="view_tr_stock_scrap_search_view" model="ir.ui.view">
+      <field name="name">tr.stock.scrap.search</field>
+      <field name="model">tr.stock.scrap</field>
+      <field name="arch" type="xml">
+        <search string="Search Scrap">
+          <field name="name" string="Reference"/>
+          <field name="date_done"/>
+          <group string="Group By">
+            <filter string="Tipo de Operación" name="type_operation" domain="" context="{'group_by': 'type_operation'}"/>
+          </group>
+        </search>
+      </field>
+    </record>
+
+    <record id="view_tr_stock_scrap_from" model="ir.ui.view">
+      <field name="name">tr.stock.scrap.form</field>
+      <field name="model">tr.stock.scrap</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Toolroom Desechos">
+          <field name="id" invisible="1"/>
+          <field name="name" invisible="1"/>
+          <field name="count_line" invisible="1"/>
+          <header>
+            <button name="action_validate" string="Validar" type="object" class="oe_highlight" 
+              attrs="{'invisible': ['|', ('count_line', '=', 0), ('stage', '!=', 'draft')]}" />
+            <button name="action_cancel_draft" attrs="{'invisible': [('stage', '!=', 'done')]}" string="Cancelar" type="object" 
+              groups="tbps_toolroom.group_tools_manager,tbps_toolroom.group_tools_system"
+              confirm="Si cancela esta operación, se perderán todas sus líneas de ajuste de desecho. ¿Estás seguro de que quieres descartarlo?"
+            />
+            <field name="stage" widget="statusbar" statusbar_visible="draft,done,cancel"/>
+          </header>
+          <sheet>
+            <widget name="web_ribbon" title="VALIDADO" bg_color="bg-success" attrs="{'invisible': [('stage', '!=', 'done')]}"/>
+            <widget name="web_ribbon" title="CANCELADO" bg_color="bg-danger" attrs="{'invisible': [('stage', '!=', 'cancel')]}"/>
+            <div class="oe_title">
+              <label for="name" string="Referencia" class="oe_edit_only"/>
+              <h1>
+                <field name="name" string="Descripción" style="width: 85%;"/>
+              </h1>
+            </div>
+            <group col="4">
+              <field name="type_operation" required="True" placeholder="Seleccione" />
+              <field name="date_done" />
+              <field name="document" required="True" widget="binary" filename="file_name" attrs="{'required': [('type_operation', '=', 'fault')]}" />
+              <field name="file_name" invisible="True" />
+            </group>
+            <notebook>
+              <page string="Lineas de Herramientas">
+                <group>
+                  <field name="tools_lot_line_ids" string="Código TPS" widget="many2many_tags" />
+                </group>
+                <!--<field name="lot_tools_ids" widget="section_and_note_one2many" mode="tree,form"-->
+                  <!--options="{'no_create': False, 'no_create_edit': False}" -->
+                  <!--attrs="{'readonly': [('stage', '=', 'done')]}"-->
+                  <!-->-->
+                    <!--<form>-->
+                      <!--<group col="4">-->
+                        <!--<field name="lot_id" placeholder="Seleccione" required="1" options="{'no_create': True, 'no_create_edit': True}" />-->
+                        <!--<field name="product_id" string="Herramienta" placeholder="Seleccione" required="1" readonly="1" force_save="1" -->
+                          <!--options="{'no_create': True, 'no_create_edit': True}"/>-->
+                        <!--<field name="location_id" placeholder="Seleccione" readonly="1" force_save="1" options="{'no_create': True, 'no_create_edit': True}"/>-->
+                        <!--<field name="location_dest_id" placeholder="Seleccione" required="1" options="{'no_create': True, 'no_create_edit': True}" />-->
+                      <!--</group>-->
+                    <!--</form>-->
+                    <!--<tree>-->
+                      <!--<field name="lot_id" placeholder="Seleccione" required="1" options="{'no_create': True, 'no_create_edit': True}" />-->
+                      <!--<field name="product_id" string="Herramienta" placeholder="Seleccione" required="1" readonly="1" force_save="1"/>-->
+                      <!--<field name="location_id" placeholder="Seleccione" readonly="1" force_save="1"/>-->
+                      <!--<field name="location_dest_id" placeholder="Seleccione" />-->
+                      <!--[><field name="lot_id" invisible="1" force_save="1"/><]-->
+                    <!--</tree>-->
+                <!--</field>-->
+              </page>
+            </notebook>
+            <group>
+              <field name="notes" placeholder="Añadir una note interna..."/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <record id="view_tr_stock_scrap_tree" model="ir.ui.view">
+      <field name="name">tr.stock.scrap.tree</field>
+      <field name="model">tr.stock.scrap</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Toolroom Scrap">
+          <field name="name" string="Referencia" />
+          <field name="date_done" />
+          <field name="document" string="Adjunto" widget="binary" filename="file_name" />
+          <field name="file_name" invisible="True" />
+          <field name="stage" string="Estatus" widget="badge" decoration-success="stage == 'done'" decoration-info="stage == 'draft'" decoration-danger="stage == 'cancel'" />
+        </tree>
+      </field>
+    </record>
+
+
+    <!--view action of operations-->
+    <record id="action_tr_stock_scrap" model="ir.actions.act_window">
+      <field name="name">Ordenes de Desecho</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">tr.stock.scrap</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_tr_stock_scrap_tree" />
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Crear Nueva Orden de Desecho
+        </p>
+        <p>
+          Desechar una herramienta la eliminará de tu stock. Las herramientas
+          terminan en una ubicación de desecho que se puede utilizar para fines de informes.
+        </p>
+      </field>
+    </record>
+
+    <menuitem 
+      id="menu_tr_stock_scrap"
+      name="Desechar"
+      parent="tbps_toolroom.menu_operations"
+      action="tbps_toolroom.action_tr_stock_scrap"
+      sequence="4"
+      groups="base.group_system,group_tools_system,group_tools_manager"
+    />
+
+  </data>
+</odoo>

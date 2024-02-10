@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs.tr.stock.scrap.admin,tr_stock_scrap_admin,model_tr_stock_scrap,group_tools_system,1,1,1,0
+acs.tr.stock.scrap.manager,tr_stock_scrap_manager,model_tr_stock_scrap,group_tools_manager,1,1,1,0
+acs.tr.stock.scrap.admin,tr_stock_scrap_user,model_tr_stock_scrap,group_tools_user,0,0,0,0
+acs.tr.stock.scrap.system,tr_stock_scrap_system,model_tr_stock_scrap,base.group_system,1,1,1,1
+acs.tr.stock.scrap.line.admin,tr_stock_scrap_line_admin,model_tr_stock_scrap_line,group_tools_system,1,1,1,0
+acs.tr.stock.scrap.line.manager,tr_stock_scrap_line_manager,model_tr_stock_scrap_line,group_tools_manager,1,1,1,0
+acs.tr.stock.scrap.line.admin,tr_stock_scrap_line_user,model_tr_stock_scrap_line,group_tools_user,0,0,0,0
+acs.tr.stock.scrap.line.system,tr_stock_scrap_line_system,model_tr_stock_scrap_line,base.group_system,1,1,1,1

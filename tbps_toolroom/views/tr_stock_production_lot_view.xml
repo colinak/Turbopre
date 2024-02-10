@@ -35,9 +35,15 @@
           <header>
             <field name="active" invisible="1" />
             <field name="company_id" invisible="1" />
+            <field name="stage" invisible="1" />
             <field name="state" widget="statusbar" statusbar_visible="draft,done,cancel"/>
           </header>
           <sheet>
+            <widget name="web_ribbon" title="DISPONIBLE" bg_color="bg-success" attrs="{'invisible': [('stage', '!=', 'available')]}"/>
+            <widget name="web_ribbon" title="ASIGNADA" bg_color="bg-info" attrs="{'invisible': [('stage', '!=', 'assigned')]}"/>
+            <widget name="web_ribbon" title="PRESTADA" bg_color="bg-info" attrs="{'invisible': [('stage', '!=', 'loan')]}"/>
+            <widget name="web_ribbon" title="CUSTODIADA" bg_color="bg-waraning" attrs="{'invisible': [('stage', '!=', 'in_custody')]}"/>
+            <widget name="web_ribbon" title="DESECHADA" bg_color="bg-danger" attrs="{'invisible': [('stage', '!=', 'discarded')]}"/>
             <div class="oe_title">
               <label for="name" string="N° Serial TPS" class="oe_edit_only"/>
               <h1>

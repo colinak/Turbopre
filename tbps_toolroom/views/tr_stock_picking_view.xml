@@ -128,7 +128,7 @@
       <field name="model">tr.stock.picking</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
-        <tree string="Toolroom Warehouse">
+        <tree string="Toolroom Picking">
           <field name="name" string="Referencia" />
           <field name="picking_type_code" />
           <field name="delivery_id" string="Entrega" />
@@ -144,7 +144,7 @@
 
     <!--view action of operations-->
     <record id="action_tr_stock_picking" model="ir.actions.act_window">
-      <field name="name">Prestamos</field>
+      <field name="name">Prestamos y Devoluciones</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">tr.stock.picking</field>
       <field name="view_mode">tree,form</field>
