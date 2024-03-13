@@ -31,7 +31,7 @@
           <header>
             <button name="action_start" states="draft" string="Iniciar Inventario" type="object" class="oe_highlight" groups="tbps_toolroom.group_tools_user" />
             <button name="action_open_inventory_lines" states="confirm" string="Continuar Inventario" type="object" class="oe_highlight" groups="tbps_toolroom.group_tools_user" />
-            <button name="action_validate" string="Validar Inventario" type="object" attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('line_ids', '!=', [])]}" groups="tbps_toolroom.group_tools_manager" />
+            <!--<button name="action_validate" string="Validar Inventario" type="object" attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('line_ids', '!=', [])]}" groups="tbps_toolroom.group_tools_manager" />-->
             <button name="action_validate" string="Validar Inventario" type="object" attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('line_ids', '=', [])]}" class="oe_highlight" groups="tbps_toolroom.group_tools_manager" />
             <!--[><button name="action_print" string="Print Count Sheet" type="object" attrs="{'invisible': [('state', '=', 'draft')]}" groups="stock.group_stock_user"/><]-->
             <button name="action_cancel_draft" states="cancel" string="Establecer a borrador" type="object"/>

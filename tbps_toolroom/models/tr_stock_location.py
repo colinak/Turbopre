@@ -11,6 +11,7 @@
 
 from odoo import models, fields, api, _
 import logging
+from odoo.exceptions import UserError
 _logger = logging.getLogger(__name__)
 
 
@@ -99,13 +100,6 @@ class TrStockLocation(models.Model):
         compute="_compute_tools_count"
     )
 
-    _sql_constraints = [('default_location', 
-            'UNIQUE(default_location)', 
-            'Ya existe una ubicación de stock predeterminada por defecto, ' \
-            'intente desactivar la que ya exite y regrese aquí para ' \
-            'activar esta ubicación como de stock predeterminada'
-        )
-    ]
 
     @api.depends('name', 'location_id.complete_name', 'usage')
     def _compute_complete_name(self):
@@ -115,21 +109,44 @@ class TrStockLocation(models.Model):
             else:
                 location.complete_name = location.name
 
-
-    # @api.depends('warehouse_view_ids')
-    # def _compute_warehouse_id(self):
-        # warehouses = self.env['tr.stock.warehouse'].search([('view_location_id', 'parent_of', self.ids)])
-        # view_by_wh = OrderedDict((wh.view_location_id.id, wh.id) for wh in warehouses)
-        # self.warehouse_id = False
-        # for loc in self:
-            # path = set(int(loc_id) for loc_id in loc.parent_path.split('/')[:-1])
-            # for view_location_id in view_by_wh:
-                # if view_location_id in path:
-                    # loc.warehouse_id = view_by_wh[view_location_id]
-                    # break
     
     @api.onchange('usage')
     def _onchange_usage(self):
         if self.usage not in ('internal', 'inventory'):
             self.scrap_location = False
+
+
+    @api.model
+    def create(self, vals):
+        if vals.get('default_location') == True:
+            location = self.env['tr.stock.location'].search([
+                ('default_location', '=', True)
+            ],limit=1)
+            if location:
+                msj = """Ya existe una ubicación de stock predeterminada por
+                defecto, intente desactivar la que ya existe y regrese aquí
+                para activar esta ubicación como ubicación stock predeterminada.
+                """
+                raise UserError(msj)
+
+        res = super(TrStockLocation, self).create(vals)
+        return res
+
+
+
+    def write(self, vals):
+        if vals.get('default_location') == True:
+            location = self.env['tr.stock.location'].search([
+                ('default_location', '=', True)
+            ],limit=1)
+            if location:
+                msj = """Ya existe una ubicación de stock predeterminada por
+                defecto, intente desactivar la que ya existe y regrese aquí
+                para activar esta ubicación como ubicación stock predeterminada.
+                """
+                raise UserError(msj)
+
+        res = super(TrStockLocation, self).write(vals)
+        return res
+
 

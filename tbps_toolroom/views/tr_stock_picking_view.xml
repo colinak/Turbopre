@@ -68,17 +68,80 @@
               <field name="date" placeholder="Seleccione" attrs="{'readonly': [('state', '=', 'done')]}" />
               <field name="signature_applicant" placeholder="Código del Carnet" required="1" attrs="{'readonly': [('state', '=', 'done')]}" />
               <field name="applicant_id" placeholder="Seleccione" required="1" readonly="1" force_save="1"  />
+              <field name="location_id" placeholder="Seleccione" force_save="1" attrs="{'readonly': [('state', '=', 'done')]}" />
+              <field name="location_dest_id" placeholder="Seleccione" force_save="1" attrs="{'readonly': [('state', '=', 'done')]}" />
               <field name="signature_deliverer" placeholder="Código del Carnet"
                 attrs="{'readonly': [('state', '=', 'done')], 'required': [('picking_type_code', '!=', 'transfers')], 'invisible': [('picking_type_code', '=', 'transfers')]}" />
               <field name="delivery_id" placeholder="Seleccione" readonly="1" force_save="1" 
                 attrs="{'required': [('picking_type_code', '!=', 'transfers')], 'invisible': [('picking_type_code', '=', 'transfers')]}" />
             </group>
             <notebook>
+              <page string="Reservar Herramientas">
+                <!--<field name="move_lines" />-->
+                <field name="move_lines" mode="tree,form" options="{'no_create': False, 'no_create_edit': False}"
+                  context="{'default_name': name}">
+<!--editable="buttom"-->
+                  <tree>
+                  <!--<tree>-->
+                    <field name="name" invisible="True" />
+                    <field name="state" invisible="True" />
+                    <field name="product_uom_category_id" invisible="True" />
+                    <!--[>[><field name="lot_name" required="1" /><]<]-->
+                    <!--<field name="product_available_id" string="Herramienta" placeholder="Seleccione" required="1" />-->
+                    <field name="product_id" placeholder="Seleccione" required="True" />
+                    <field name="location_id" placeholder="Seleccione" optional="show"/>
+                    <field name="location_dest_id" placeholder="Seleccione" optional="show" />
+                    <field name="product_uom_qty" />
+                    <!--<field name="product_uom_qty" string="Reservado"/>-->
+                    <field name="qty_done" />
+                    <field name="date" string="Fecha Programada" readonly="True" />
+                    <field name="lot_ids" string="Códigos TPS" invisible="1" force_save="1"/>
+                  </tree>
+                  <form>
+                    <field name="name" invisible="True" />
+                    <field name="product_uom_category_id" invisible="True" />
+                    <header>
+                      <field name="state" widget="statusbar"/>
+                    </header>
+                    <group>
+                      <group>
+                        <field name="product_id" string="Herramienta" placeholder="Seleccione" required="1"
+                          domain="[('available_qty', '&gt;', 0)]" />
+                        <field name="product_availability" />
+                        <!--<field name="product_available_id" string="Herramienta" placeholder="Seleccione" required="1" -->
+                          <!--domain="[('available_qty', '&gt;', 0)]"-->
+                          <!--/>-->
+                        <!--<field name="location_id" placeholder="Seleccione"/>-->
+                      </group>
+                      <group>
+                        <field name="product_uom_qty" string="Reservar" />
+                        <!--<field name="product_uom" />-->
+                        <!--<field name="location_dest_id" placeholder="Seleccione" />-->
+                      </group>
+                      <!--<field name="date" string="Fecha Programada" />-->
+                      <!--<field name="qty_done" />-->
+                      <!--<field name="lot_ids" widget="many2many_tags" />-->
+                    </group>
+                  </form>
+
+                </field>
+              </page>
               <page string="Lineas de Herramientas">
                 <field name="move_line_ids" mode="tree,form" widget="section_and_note_one2many" options="{'no_create': False, 'no_create_edit': False}" 
                   context="{'default_product_uom_qty': 1, 'default_qty_done': 1}"
-                  attrs="{'readonly': [('state', '=', 'done')]}"
                   >
+                    <tree editable="bottom">
+                      <field name="lot_name" required="1" />
+                      <field name="product_id" string="Herramienta" placeholder="Seleccione" required="1" readonly="1" force_save="1"/>
+                      <field name="location_id" placeholder="Seleccione" readonly="1" force_save="1"/>
+                      <field name="location_dest_id" placeholder="Seleccione" domain="[('usage', '=', 'internal'), ('id', '!=', location_id)]" />
+                      <field name="product_uom_qty" invisible="1" />
+                      <field name="qty_done" string="Cantidad" optional="hide" readonly="1" force_save="1" />
+                      <field name="product_uom_id" optional="hide" />
+                      <field name="lot_id" invisible="1" force_save="1"/>
+                      <field name="company_id" invisible="1" force_save="1"/>
+                      <field name="product_uom_category_id" invisible="1" force_save="1"/>
+                    </tree>
                     <form create="1" edit="1">
                       <field name="product_uom_category_id" invisible="1" />
                       <field name="name" invisible="1" />
@@ -101,16 +164,6 @@
                       </group>
                     </form>
 
-                    <tree>
-                      <field name="lot_name" required="1" />
-                      <field name="product_id" string="Herramienta" placeholder="Seleccione" required="1" readonly="1" force_save="1"/>
-                      <field name="location_id" placeholder="Seleccione" readonly="1" force_save="1"/>
-                      <field name="location_dest_id" placeholder="Seleccione" />
-                      <field name="product_uom_qty" invisible="1" />
-                      <field name="qty_done" string="Cantidad" optional="hide" readonly="1" force_save="1" />
-                      <field name="product_uom_id" optional="hide" />
-                      <field name="lot_id" invisible="1" force_save="1"/>
-                    </tree>
                 </field>
               </page>
             </notebook>

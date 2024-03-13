@@ -26,14 +26,14 @@ class TrProductTemplate(models.Model):
     available_qty = fields.Integer(
         "Cantidad Disponible",
         compute='_compute_available_qty',
-        # search='_search_qty_available',
+        # search='_search_available_qty',
         # compute_sudo=False, 
         # digits='Product Unit of Measure'
     )
     total_qty = fields.Integer(
         "Cantidad Total",
         compute='_compute_total_qty',
-        # search='_search_qty_available',
+        # search='_search_total_qty',
         # compute_sudo=False, 
         # digits='Product Unit of Measure'
     )
@@ -64,7 +64,6 @@ class TrProductTemplate(models.Model):
                     template.total_qty += variants.total_qty
             else:
                 template.total_qty = template.product_variant_id.total_qty
-
 
 
     def action_open_total_quants(self):

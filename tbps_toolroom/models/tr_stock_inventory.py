@@ -152,7 +152,6 @@ class TrStockInventory(models.Model):
                     'quantity': -1,
                     'product_uom_id': line.product_uom_id.id,
                     'in_date': self.date,
-                    'quantity': -1
                 })
                 
                 stock_quant.create({
@@ -168,7 +167,7 @@ class TrStockInventory(models.Model):
                     'quantity': line.product_qty,
                     'product_uom_id': line.product_uom_id.id,
                     'in_date': self.date,
-                    'quantity': -1
+                    # 'quantity': 1
                 })
 
 
@@ -184,6 +183,8 @@ class TrStockInventory(models.Model):
                     'location_id': 6,
                     'location_dest_id': line.location_id.id,
                     'product_uom_qty': line.product_qty,
+                    'product_qty': line.product_qty,
+                    'qty_done': line.product_qty,
                     'product_uom': line.product_uom_id.id,
                     'state': "done",
                     'move_line_ids': self.env['tr.stock.move.line'].create({
@@ -201,7 +202,6 @@ class TrStockInventory(models.Model):
                 })
                 
 
-
     def inventory_validate(self):
         if len(self.line_ids) > 0:
             self.state = "done"
@@ -214,7 +214,6 @@ class TrStockInventory(models.Model):
                 })
 
 
-
     def action_validate(self):
         if len(self.line_ids) > 0:
             try:
@@ -225,7 +224,6 @@ class TrStockInventory(models.Model):
                 raise UserError("Error inesperado contacte con el administrador")
         else:
             raise UserError("No se puede validar un invetario sin lineas de productos")
-
 
 
 

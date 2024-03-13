@@ -70,6 +70,7 @@ class TrStockProductionLot(models.Model):
             ('available', 'Disponible'),
             ('assigned', 'Asignado'),
             ('loan', 'Prestado'),
+            ('reserved', 'Reservado'),
             ('in_custody', 'En Custodia'),
             ('discarded', 'Desechado'),
         ],

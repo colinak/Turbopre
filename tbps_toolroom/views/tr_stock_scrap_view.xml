@@ -43,11 +43,19 @@
                 <field name="name" string="Descripción" style="width: 85%;"/>
               </h1>
             </div>
-            <group col="4">
-              <field name="type_operation" required="True" placeholder="Seleccione" />
-              <field name="date_done" />
-              <field name="document" required="True" widget="binary" filename="file_name" attrs="{'required': [('type_operation', '=', 'fault')]}" />
-              <field name="file_name" invisible="True" />
+            <group>
+              <group>
+                <field name="type_operation" required="True" placeholder="Seleccione" />
+                <field name="document" string="Adjuntar FO-SEF-100" widget="binary" filename="file_name" 
+                  attrs="{'required': [('type_operation', '=', 'loss')], 'invisible': [('type_operation', '!=', 'loss')]}" />
+
+                <field name="document" string="Adjuntar FO-CAL-143" required="True" widget="binary" filename="file_name" 
+                  attrs="{'required': [('type_operation', '=', 'fault')], 'invisible': [('type_operation', '!=', 'fault')]}" />
+                <field name="file_name" invisible="True" />
+              </group>
+              <group>
+                <field name="date_done" />
+              </group>
             </group>
             <notebook>
               <page string="Lineas de Herramientas">
@@ -92,9 +100,10 @@
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Toolroom Scrap">
+          <field name="type_operation" />
           <field name="name" string="Referencia" />
           <field name="date_done" />
-          <field name="document" string="Adjunto" widget="binary" filename="file_name" />
+          <field name="document" string="Documento Adjunto" widget="binary" filename="file_name" />
           <field name="file_name" invisible="True" />
           <field name="stage" string="Estatus" widget="badge" decoration-success="stage == 'done'" decoration-info="stage == 'draft'" decoration-danger="stage == 'cancel'" />
         </tree>

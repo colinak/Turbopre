@@ -28,14 +28,14 @@ class TrStockMove(models.Model):
         "product.product",
         string="Producto",
         domain="[('type', 'in', ['product', 'consu'])]", 
-        index=True, 
+        index=True,
         required=True,
         states={'done': [('readonly', True)]}
     )
     description_picking = fields.Text('Descripción del Picking')
     product_qty = fields.Integer(
         'Cantidad real', 
-        # compute='_compute_product_qty', 
+        # compute='_compute_product_qty',
         # inverse='_set_product_qty',
         # digits=0, 
         # store=True, 
@@ -44,9 +44,16 @@ class TrStockMove(models.Model):
     )
     qty_done = fields.Integer(
         string="Hecho",
-        default=1,
+        # default=1,
         # digits='Product Unit of Measure', 
         # copy=False
+    )
+    product_availability = fields.Integer(
+        "Cantidad disponible",
+        related="product_id.available_qty",
+        # compute='_compute_product_qty', 
+        # store=True, 
+        help='Cantidad disponible del producto'
     )
     availability = fields.Integer(
         string="Cantidad pronosticada"
@@ -111,10 +118,10 @@ class TrStockMove(models.Model):
         "res.partner",
         string="Transferir"
     )
-    # picking_type = fields.Selection(
-        # string="Tipo de picking",
-        # related="picking_id.picking_type_code"
-    # )
+    reserved_availability = fields.Integer(
+        string="Cantidad Reservada",
+        dafault=0
+    )
     product_tmpl_id = fields.Many2one(
         "product.template",
         string="Plantilla de producto"
@@ -125,12 +132,13 @@ class TrStockMove(models.Model):
     )
     product_uom_category_id = fields.Many2one(related='product_id.uom_id.category_id')
     product_uom_qty = fields.Integer(
-        string="Demanda"
+        string="Demanda",
+        default=0
     )
     product_uom = fields.Many2one(
         "uom.uom",
         string="Unidad de medida",
-        # domain="[('category_id', '=', product_uom_category_id)]"
+        domain="[('category_id', '=', product_uom_category_id)]"
     )
     reference = fields.Char(
         string="Referencia",
@@ -145,4 +153,15 @@ class TrStockMove(models.Model):
         ],
         string="Estado"
     )
+
+
+    # @api.depends('product_id', 'product_uom', 'product_uom_qty')
+    # def _compute_product_qty(self):
+        # rounding_method = 'HALF-UP'
+        # for move in self:
+            # move.product_qty = move.product_uom._compute_quantity(
+                # move.product_uom_qty,
+                # move.product_id.uom_id,
+                # rounding_method=rounding_method
+            # )
 
