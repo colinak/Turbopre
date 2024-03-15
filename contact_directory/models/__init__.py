@@ -9,5 +9,5 @@
 ###############################################################################
 
 from . import hr_department
-from . import tps_employee
 from . import res_partner
+from . import employee

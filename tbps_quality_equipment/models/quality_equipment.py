@@ -106,12 +106,12 @@ class QualityEquipment(models.Model):
     shelf_number = fields.Char(string="Shelf Number")
     shelf_position = fields.Char(string="Shelf Position")
     technician_user_id = fields.Many2one(
-        "tps.employee",
+        "hr.employee",
         string="Responsible",
         required=True
     )
     employee_assigned_id = fields.Many2one(
-        "tps.employee",
+        "hr.employee",
         string="Empleado Asignado",
     )
     # assigned_id = fields.Many2one(

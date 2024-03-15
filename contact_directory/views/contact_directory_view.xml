@@ -9,6 +9,10 @@
         <field name="department_id" position="after">
           <field name="work_phone" string="Extención Telefónica"/>
         </field>
+
+        <filter name="archived" position="before">
+          <filter string="Empleados" name="is_operations" domain="[('is_operations', '=', False)]" help="Filtrar los empleados administrativos"/>
+        </filter>
       </field>
     </record>
 
@@ -20,6 +24,10 @@
         <field name="job_id" position="after">
           <field name="work_phone" string="Extención Telefónica"/>
         </field>
+
+        <filter name="message_needaction" position="after">
+          <filter string="Empleados" name="is_operations" domain="[('is_operations', '=', False)]" help="Filtrar los empleados administrativos"/>
+        </filter>
       </field>
     </record>
 
@@ -29,6 +37,10 @@
       <field name="model">hr.employee</field>
       <field name="inherit_id" ref="hr.view_employee_form" />
       <field name="arch" type="xml">
+
+        <div name="button_box" position="before">
+          <field name="is_operations" invisible="True" default="True" />
+        </div>
 
         <field name="mobile_phone" position="attributes">
           <attribute name="widget"></attribute>
@@ -138,14 +150,17 @@
     <!--Inherit Action Employee Public-->
     <record model="ir.actions.act_window" id="hr.hr_employee_public_action">
       <field name="name">Contacts Directory</field>
+      <field name="context">{'chat_icon': True, 'default_is_operations': False, 'search_default_is_operations': 1}</field>
       <!--<field name="secuence">1</field>-->
     </record>
 
-    <!--Inherit Action Employee Public-->
+    <!--Inherit Action Employee -->
     <record model="ir.actions.act_window" id="hr.open_view_employee_list_my">
-      <field name="name">Contacts</field>
+      <field name="name">Contactos</field>
+      <field name="context">{'chat_icon': True, 'default_is_operations': False, 'search_default_is_operations': 1}</field>
     </record>
 
+<!--view_res_partner_filter-->
     <record id="inherit_res_users_view_form_profile" model="ir.ui.view">
       <field name="name">inherith.res.users.preferences.form.inherit</field>
       <field name="model">res.users</field>

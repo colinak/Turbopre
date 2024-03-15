@@ -51,7 +51,7 @@
         "views/quality_equipment_category_view.xml",
         "views/quality_location_view.xml",
         "views/quality_loans_returns_view.xml",
-        "views/quality_tps_employee_view.xml",
+        "views/tps_hr_employee_view.xml",
         "views/res_partner_view.xml",
     ],
     'demo': [],

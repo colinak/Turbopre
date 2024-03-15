@@ -59,7 +59,7 @@
         "views/tr_stock_inventory_view.xml",
         "views/tr_stock_inventory_line_view.xml",
         "views/tr_stock_scrap_view.xml",
-        "views/tr_tps_employee_view.xml",
+        # "views/tr_tps_employee_view.xml",
         # "wizards/check_availability_tools_wizard.xml",
     ],
     'demo': [],

@@ -37,7 +37,7 @@ class QualityLoansReturns(models.Model):
         'quality.equipment',
         string="Equipo",
         required=True,
-        compute="_compute_equipment_date",
+        # compute="_compute_equipment_date",
         domain="[('stage', '=', 'available')]",
         ondelete="RESTRICT"
     )
@@ -64,13 +64,13 @@ class QualityLoansReturns(models.Model):
         default='draft'
     )
     applicant_id = fields.Many2one(
-        "tps.employee",
+        "hr.employee",
         string="Solicitante",
         required=True,
         ondelete="RESTRICT"
     )
     delivery_id = fields.Many2one(
-        "tps.employee",
+        "hr.employee",
         string="Entrega",
         required=True,
         ondelete="RESTRICT"
@@ -100,7 +100,7 @@ class QualityLoansReturns(models.Model):
         string="PIN quien recibe"
     )
     receipt_id = fields.Many2one(
-        "tps.employee",
+        "hr.employee",
         string="Recibe",
         ondelete="RESTRICT"
     )
@@ -108,7 +108,7 @@ class QualityLoansReturns(models.Model):
         string="PIN quien devuelve"
     )
     delivery2_id = fields.Many2one(
-        "tps.employee",
+        "hr.employee",
         string="Devuelve",
         ondelete="RESTRICT"
     )
@@ -132,26 +132,27 @@ class QualityLoansReturns(models.Model):
     ]
 
 
-    def _compute_equipment_date(self):
-        for rec in self:
-            if rec.code:
-                equipment = self.env['quality.equipment'].search(
-                    [('code', '=', rec.code)],
-                    limit=1
-                )
-                if equipment:
-                    self.equipment_id = equipment.id
+    # def _compute_equipment_date(self):
+        # for rec in self:
+            # if rec.code:
+                # equipment = self.env['quality.equipment'].search(
+                    # [('code', '=', rec.code)],
+                    # limit=1
+                # )
+                # if equipment:
+                    # self.equipment_id = equipment.id
 
 
-    def _compute_delivery(self):
-        for rec in self:
-            if rec.signature_deliverer:
-                employee = self.env['tps.employee'].search(
-                    [('pin', '=', rec.signature_deliverer)],
-                    limit=1
-                )
-                if employee:
-                    self.applicant_id = employee.id
+    # def _compute_delivery(self):
+        # for rec in self:
+            # if rec.signature_deliverer:
+                # employee = self.env['hr.employee'].search(
+                    # [('pin', '=', rec.signature_deliverer)],
+                    # limit=1
+                # )
+                # if employee:
+                    # self.applicant_id = employee.id
+
 
     @api.onchange('code')
     def _onchange_code(self):
@@ -171,7 +172,7 @@ class QualityLoansReturns(models.Model):
     @api.onchange('signature_deliverer')
     def _onchange_deliverer_signature(self):
         if self.signature_deliverer:
-            employee = self.env['tps.employee'].search(
+            employee = self.env['hr.employee'].search(
                 [('pin', '=', self.signature_deliverer)],
                 limit=1
             )
@@ -186,7 +187,7 @@ class QualityLoansReturns(models.Model):
     @api.onchange('signature_applicant')
     def _onchange_signature_applicant(self):
         if self.signature_applicant:
-            employee = self.env['tps.employee'].search(
+            employee = self.env['hr.employee'].search(
                 [('pin', '=', self.signature_applicant)],
                 limit=1
             )
@@ -200,7 +201,7 @@ class QualityLoansReturns(models.Model):
     @api.onchange('signature_deliverer2')
     def _onchange_signature_deliverer2(self):
         if self.signature_deliverer2:
-            employee = self.env['tps.employee'].search(
+            employee = self.env['hr.employee'].search(
                 [('pin', '=', self.signature_deliverer2)],
                 limit=1
             )
@@ -214,7 +215,7 @@ class QualityLoansReturns(models.Model):
     @api.onchange('receipt_signature')
     def _onchange_signature_deliverer(self):
         if self.receipt_signature:
-            employee = self.env['tps.employee'].search(
+            employee = self.env['hr.employee'].search(
                 [('pin', '=', self.receipt_signature)],
                 limit=1
             )

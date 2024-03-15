@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 ###############################################################################
+#
 # Author: KEWITZ COLINA
 # Copyleft: 2020-Present.
 # License LGPL-3.0 or later (http: //www.gnu.org/licenses/lgpl.html).
-#
 #
 ###############################################################################
 
@@ -13,25 +13,33 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class TpsEmployee(models.Model):
-    _inherit = 'tps.employee'
+class HrEmployee(models.Model):
+    _inherit = 'hr.employee'
 
 
-    equipment_ids = fields.One2many(
+    quality_work_location_id = fields.Many2one(
+        "quality.location",
+        string="Ubicación de trabajo",
+        help="Ubicación de trabajo"
+    )
+    quality_equipment_ids = fields.One2many(
         "quality.equipment",
         "employee_assigned_id",
         string="Equipos Asignados",
         help="Listado de Equipos"
     )
-    equipment_count = fields.Integer(
+    quality_equipment_count = fields.Integer(
         string="Equipos Asignados",
-        compute="_compute_equipment_count"
+        compute="_compute_quality_equipment_count"
     )
 
 
-    @api.depends('equipment_ids')
-    def _compute_equipment_count(self):
+    @api.depends('quality_equipment_ids')
+    def _compute_quality_equipment_count(self):
         for location in self:
-            location.equipment_count = len(location.equipment_ids)
+            location.quality_equipment_count = len(location.quality_equipment_ids)
+
+
+
 
 

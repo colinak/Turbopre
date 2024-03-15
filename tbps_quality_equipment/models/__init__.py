@@ -17,4 +17,4 @@ from . import quality_activity_type
 from . import quality_location
 from . import quality_loans_returns
 from . import quality_equipment
-from . import tps_employee
+from . import tps_hr_employee

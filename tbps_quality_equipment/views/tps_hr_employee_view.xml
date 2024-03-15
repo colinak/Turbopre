@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+
+    <record id="tps_hr_employee_view_filter" model="ir.ui.view">
+      <field name="name">tps.hr.employee.search</field>
+      <field name="model">hr.employee</field>
+      <field name="arch" type="xml">
+        <search string="Empleados">
+          <field name="name" string="Empleado" filter_domain="['|', ('work_email', 'ilike', self), ('name', 'ilike', self)]"/>
+          <field name="job_id" string="Puesto"/>
+          <field name="quality_work_location_id" string="Ubicación"/>
+          <separator/>
+          <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+          <group expand="0" string="Group By">
+            <filter name="group_manager" string="Gerente" domain="[]" context="{'group_by': 'parent_id'}"/>
+            <filter name="group_coach" string="Supervisor" domain="[]" context="{'group_by': 'coach_id'}"/>
+            <filter name="group_department" string="Departamento" domain="[]" context="{'group_by': 'department_id'}"/>
+            <filter name="group_job" string="Puesto" domain="[]" context="{'group_by': 'job_id'}"/>
+            <filter name="group_location" string="Ubicación" domain="[]" context="{'group_by': 'quality_work_location_id'}"/>
+
+          </group>
+          <searchpanel>
+            <field name="department_id" icon="fa-users" enable_counters="1"/>
+          </searchpanel>
+        </search>
+      </field>
+    </record>
+
+    <record id="tps_hr_employee_view_form" model="ir.ui.view">
+      <field name="name">tps.hr.employee.form</field>
+      <field name="model">hr.employee</field>
+      <field name="arch" type="xml">
+        <form string="Empleados" js_class="hr_employee_form" class="o_employee_form">
+          <field name="active" invisible="1"/>
+          <field name="user_id" invisible="1"/>
+          <field name="user_partner_id" invisible="1"/>
+          <field name="hr_presence_state" invisible="1"/>
+          <header>
+          </header>
+          <sheet>
+            <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+            <!--<div class="oe_button_box" name="button_box">-->
+              <!--<button -->
+                  <!--name="%(tbps_quality_equipment.action_quality_equipment)d" -->
+                  <!--context="{'search_default_employee_assigned_id': id, 'default_employee_assigned_id': id}" -->
+                  <!--class="o_stat_button" -->
+                  <!--icon="fa-cubes" -->
+                  <!--type="action"-->
+                  <!--groups="base.group_system,group_quality_system,group_quality_manager,group_quality_user"-->
+                <!-->-->
+                <!--<field name="equipment_count" widget="statinfo"/>-->
+              <!--</button>-->
+            <!--</div>-->
+            <field name="image_1920" widget='image' class="oe_avatar" options='{"zoom": true, "preview_image":"image_128"}'/>
+            <div class="oe_title">
+              <h1 class="d-flex">
+                <field name="name" placeholder="Nombre del Empleado" required="True"/>
+                <a title="Chat" icon="fa-comments" href="#" class="ml8 o_employee_chat_btn" invisible="not context.get('chat_icon')" attrs="{'invisible': [('user_id','=', False)]}" role="button"><i class="fa fa-comments"/></a>
+              </h1>
+              <h2>
+                <field name="job_title" placeholder="Puesto de Trabajo" readonly="True" force_save="1" />
+              </h2>
+              <!--<field name="category_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Tags"  groups="hr.group_hr_manager"/>-->
+            </div>
+            <group>
+              <group>
+                <field name="mobile_phone" widget="phone"/>
+                <field name="work_phone" widget="phone" string="Extensión telefónica" default=""/>
+                <field name="work_email" widget="email"/>
+                <field name="company_id" invisible="True" groups="base.group_multi_company"/>
+              </group>
+              <group>
+                <field name="department_id" placeholder="Seleccione"/>
+                <field name="parent_id" placeholder="Seleccione"/>
+                <field name="coach_id" placeholder="Seleccione"/>
+              </group>
+            </group>
+            <notebook>
+              <page name="public" string="Información de Trabajo">
+                <div id="o_work_employee_container"> <!-- These two div are used to position org_chart -->
+                  <div id="o_work_employee_main">
+                    <group>
+                      <group string="Ubicación">
+                        <field name="job_id" placeholder="Seleccione"/>
+                        <field name="quality_work_location_id" placeholder="Seleccione"/>
+                      </group>
+                      <group string="Credenciales">
+                        <field name="pin" placeholder="N° tarjeta magnetica" />
+                        <field name="barcode" placeholder="N° carnet" />
+                      </group>
+                    </group>
+                  </div>
+                </div>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="tps_hr_employee_view_tree" model="ir.ui.view">
+      <field name="name">tps.hr.employee.tree</field>
+      <field name="model">hr.employee</field>
+      <field name="arch" type="xml">
+        <tree string="Empleados" multi_edit="1" sample="1">
+          <field name="name" readonly="1"/>
+          <field name="quality_work_location_id" optional="show"/>
+          <field name="job_id"/>
+          <field name="department_id" optional="show" />
+          <field name="parent_id" optional="show"/>
+          <field name="coach_id" />
+          <field name="pin" optional="hide" />
+          <field name="barcode" optional="hide" />
+          <field name="work_phone" class="o_force_ltr" string="Extensión telefónica" readonly="1" optional="hide"/>
+          <field name="work_email" optional="hide" />
+        </tree>
+      </field>
+    </record>
+
+    <record id="tps_open_view_employee" model="ir.actions.act_window">
+      <field name="name">Emplados</field>
+      <field name="res_model">hr.employee</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">[]</field>
+      <field name="context">{'default_is_operations': True, 'search_default_is_operations': True}</field>
+      <field name="view_id" ref="tps_hr_employee_view_tree"/>
+      <field name="search_view_id" ref="tps_hr_employee_view_filter"/>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Agregar nuevo empleado
+        </p>
+      </field>
+    </record>
+        
+    <!--<record id="tps_hr_employee_action_kanban_view" model="ir.actions.act_window.view">-->
+      <!--<field eval="1" name="sequence"/>-->
+      <!--<field name="view_mode">kanban</field>-->
+      <!--<field name="view_id" ref="inherit_product_template_kanban_view"/>-->
+      <!--<field name="act_window_id" ref="tps_open_view_employee"/>-->
+    <!--</record>-->
+
+    <record id="tps_hr_employee_action_tree_view" model="ir.actions.act_window.view">
+      <field eval="2" name="sequence"/>
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="tps_hr_employee_view_tree"/>
+      <field name="act_window_id" ref="tps_open_view_employee"/>
+    </record>
+
+    <record id="tps_hr_employee_action_form_view" model="ir.actions.act_window.view">
+      <field eval="3" name="sequence"/>
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="tps_hr_employee_view_form"/>
+      <field name="act_window_id" ref="tps_open_view_employee"/>
+    </record>
+
+    <menuitem
+      id="menu_tps_hr_employee"
+      name="Empleados"
+      parent="tbps_quality_equipment.menu_quality_equipment_setting"
+      action="tbps_quality_equipment.tps_open_view_employee"
+      groups="base.group_system,group_quality_user"
+      sequence="7"
+    />
+
+      <!--groups="base.group_system,group_quality_system,group_quality_manager,group_quality_user"-->
+
+  </data>
+</odoo>

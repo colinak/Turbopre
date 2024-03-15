@@ -1,7 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acs_quality_tps_employee_user,quality.tps.employee.user,contact_directory.model_tps_employee,group_quality_user,1,1,1,0
-acs_quality_tps_employee_manager,quality.tps.employee.manager,contact_directory.model_tps_employee,group_quality_manager,1,1,1,0
-acs_quality_tps_employee_admin,quality.tps.employee.admin,contact_directory.model_tps_employee,group_quality_system,1,1,1,1
-acs_quality_tps_employee_system,quality.tps.employee.system,contact_directory.model_tps_employee,base.group_system,1,1,1,1
-acs_quality_tps_hr_job_user,quality.tps.hr.job.user,hr.model_hr_job,group_quality_user,1,0,0,0
+acs_tps_hr_employee_user,tps.hr.employee.user,hr.model_hr_employee,group_quality_user,1,1,1,0
+acs_tps_hr_employee_manager,tps.hr.employee.manager,hr.model_hr_employee,group_quality_manager,1,1,1,0
+acs_tps_hr_employee_admin,.tps.hr.employee.admin,hr.model_hr_employee,group_quality_system,1,1,1,1
+acs_tps_hr_job_user,tps.hr.job.user,hr.model_hr_job,group_quality_user,1,0,0,0
 
