@@ -36,8 +36,8 @@ class HrEmployee(models.Model):
 
     @api.depends('quality_equipment_ids')
     def _compute_quality_equipment_count(self):
-        for location in self:
-            location.quality_equipment_count = len(location.quality_equipment_ids)
+        for res in self:
+            res.quality_equipment_count = len(res.quality_equipment_ids)
 
 
 
