@@ -4,3 +4,6 @@ acs_tps_hr_employee_manager,tps.hr.employee.manager,hr.model_hr_employee,group_q
 acs_tps_hr_employee_admin,.tps.hr.employee.admin,hr.model_hr_employee,group_quality_system,1,1,1,1
 acs_tps_hr_job_user,tps.hr.job.user,hr.model_hr_job,group_quality_user,1,0,0,0
 
+acs_tps_resource_user,tps.resource.user,resource.model_resource_resource,group_quality_user,1,1,1,0
+acs_tps_resource_manager,tps.resource.manager,resource.model_resource_resource,group_quality_manager,1,1,1,0
+acs_tps_resource_user_admin,tps.resource.admin,resource.model_resource_resource,group_quality_system,1,1,1,0
