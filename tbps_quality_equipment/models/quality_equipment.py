@@ -151,8 +151,10 @@ class QualityEquipment(models.Model):
 
     def _compute_cali_ver_string(self):
         for rec in self:
-            if rec.frequency_cal_ver != 0:
-                self.cali_ver_string = f"{rec.frequency_cal_ver} Meses"
+            if rec.frequency_cal_ver > 0:
+                rec.cali_ver_string = f"{rec.frequency_cal_ver} Meses"
+            else:
+                rec.cali_ver_string = "N/A"
 
 
     @api.onchange('status_id')

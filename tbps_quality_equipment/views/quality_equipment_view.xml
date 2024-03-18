@@ -257,7 +257,6 @@
       parent="tbps_quality_equipment.menu_quality_equipment"
       action="tbps_quality_equipment.action_quality_equipment"
       sequence="1"
-      groups="base.group_system,group_quality_system,group_quality_manager,group_quality_user"
     />
   
   </data>

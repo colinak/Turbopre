@@ -46,7 +46,7 @@
                   class="o_stat_button" 
                   icon="fa-cubes" 
                   type="action"
-                  groups="base.group_system,group_quality_system,group_quality_manager,group_quality_user"
+                  groups="base.group_system,tbps_quality_equipment.group_quality_system,tbps_quality_equipment.group_quality_manager,tbps_quality_equipment.group_quality_user"
                 >
                 <field name="quality_equipment_count" widget="statinfo"/>
               </button>
@@ -159,11 +159,8 @@
       name="Empleados"
       parent="tbps_quality_equipment.menu_quality_equipment_setting"
       action="tbps_quality_equipment.tps_open_view_employee"
-      groups="base.group_system,group_quality_user"
       sequence="7"
     />
-
-      <!--groups="base.group_system,group_quality_system,group_quality_manager,group_quality_user"-->
 
   </data>
 </odoo>
