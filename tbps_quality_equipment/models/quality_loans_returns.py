@@ -37,7 +37,6 @@ class QualityLoansReturns(models.Model):
         'quality.equipment',
         string="Equipo",
         required=True,
-        # compute="_compute_equipment_date",
         domain="[('stage', '=', 'available')]",
         ondelete="RESTRICT"
     )
@@ -90,6 +89,7 @@ class QualityLoansReturns(models.Model):
     )
     entry_date = fields.Datetime(
         string="Fecha de entrada",
+        compute="_compute_entry_date"
     )
     equipment_status_entry_id = fields.Many2one(
         "quality.status",
@@ -132,26 +132,9 @@ class QualityLoansReturns(models.Model):
     ]
 
 
-    # def _compute_equipment_date(self):
-        # for rec in self:
-            # if rec.code:
-                # equipment = self.env['quality.equipment'].search(
-                    # [('code', '=', rec.code)],
-                    # limit=1
-                # )
-                # if equipment:
-                    # self.equipment_id = equipment.id
-
-
-    # def _compute_delivery(self):
-        # for rec in self:
-            # if rec.signature_deliverer:
-                # employee = self.env['hr.employee'].search(
-                    # [('pin', '=', rec.signature_deliverer)],
-                    # limit=1
-                # )
-                # if employee:
-                    # self.applicant_id = employee.id
+    def _compute_entry_date(self):
+        for rec in self:
+            rec.entry_date = rec.write_date
 
 
     @api.onchange('code')
@@ -162,11 +145,18 @@ class QualityLoansReturns(models.Model):
                 limit=1
             )
             if equipment:
-                self.equipment_id = equipment.id
+                if equipment.stage == "available":
+                    self.equipment_id = equipment.id
+                else:
+                    self.equipment_id = ""
+                    self.rango = ""
+                    self.equipment_status_id = ""
+                    raise UserError("Este Equipo no Esta Disponible por el Momento, Verifíque y Vuelva a Intentar")
             else:
                 self.equipment_id = ""
                 self.rango = ""
                 self.equipment_status_id = ""
+                raise UserError("No se encontro un equipo con el código que introdujo, verifique y vuelva a intentar")
 
 
     @api.onchange('signature_deliverer')
@@ -193,6 +183,7 @@ class QualityLoansReturns(models.Model):
             )
             if employee:
                 self.applicant_id = employee.id
+                self.location_id = employee.quality_work_location_id.id
             else:
                 self.applicant_id = ""
                 raise UserError("Error, No se encontro ningún empleado Con ese código PIN, por favor verifíque e intente de nuevo.")
@@ -228,65 +219,33 @@ class QualityLoansReturns(models.Model):
 
     @api.model
     def create(self, vals):
-        today = fields.Date.today()
-        if vals.get('deadline'):
-            date = fields.Date.from_string(today)
-
-            deadline = fields.Datetime.to_string(
-                fields.Datetime.context_timestamp(
-                    self, fields.Datetime.from_string(vals.get('deadline'))))[:10]
-            deadline = fields.Date.from_string(deadline)
-            if deadline > date:
-                raise UserError("La Fecha de Entrega no Puede ser Posterior a la Fecha de hoy.")
-        if vals.get('code'):
-            equipment = self.env['quality.equipment'].search([
-                ('code', '=', vals.get('code'))
-            ],limit=1)
-            if equipment.stage == 'available':
-                vals['stage'] = 'loan'
-                equipment.write({
-                    'stage': 'loan', 
-                    'location_id': vals.get('location_id'),
-                    'employee_assigned_id': vals.get('applicant_id')
-                })
-            if vals.get('name', _('New')) == _('New'):
-                vals['name'] = self.env['ir.sequence'].next_by_code('quality.loans.returns') or _('New')
-            else:
-                raise UserError("El Equipo que Intenta Prestar no Esta Disponible, Verifíque y Vuelva a Intentar")
+        equipment = self.env['quality.equipment'].search([
+            ('code', '=', vals.get('code'))
+        ],limit=1)
+        if equipment.stage == 'available':
+            equipment.write({
+                'stage': 'loan',
+                'location_id': vals.get('location_id'),
+                'employee_assigned_id': vals.get('applicant_id')
+            })
+            vals['stage'] = 'loan'
+            vals['name'] = self.env['ir.sequence'].next_by_code('quality.loans.returns') or _('New')
+        else:
+            raise UserError("Error inesperado, contacte al administrador del sistema")
         res = super(QualityLoansReturns, self).create(vals)
         return res
 
 
     def write(self, vals):
-        today = fields.Date.today()
-        if vals.get('entry_date'):
-            date = fields.Date.from_string(today)
-
-            deadline = fields.Datetime.to_string(
-                fields.Datetime.context_timestamp(
-                    self, fields.Datetime.from_string(self.deadline)))[:10]
-            deadline = fields.Date.from_string(deadline)
-
-            entry_date = fields.Datetime.to_string(
-                fields.Datetime.context_timestamp(
-                    self, fields.Datetime.from_string(
-                        vals.get('entry_date'))))[:10]
-            entry_date = fields.Date.from_string(entry_date)
-
-            if entry_date > today:
-                raise UserError("La Fecha de Retorno no Puede ser Posterior a la Fecha de hoy.")
-            elif entry_date < deadline:
-                raise UserError("La Fecha de Retorno no Puede ser Anterior a la Fecha de Entrega.")
-            else:
-                equipment = self.env['quality.equipment'].search([
-                    ('code', '=', self.code)
-                ],limit=1)
-                equipment.write({
-                    'stage': 'available',
-                    'location_id': vals.get('location_return_id'),
-                    'employee_assigned_id': False
-                })
-                vals['stage'] = 'done'
+        equipment = self.env['quality.equipment'].search([
+            ('code', '=', self.code)
+        ],limit=1)
+        equipment.write({
+            'stage': 'available',
+            'location_id': vals.get('location_return_id'),
+            'employee_assigned_id': False
+        })
+        vals['stage'] = 'done'
         res = super(QualityLoansReturns, self).write(vals)
         return res
 

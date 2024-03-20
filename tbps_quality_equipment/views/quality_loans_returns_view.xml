@@ -56,26 +56,25 @@
               <group>
                 <field name="signature_applicant" attrs="{'readonly': [('id', '!=', False)]}" />
                 <field name="signature_deliverer" attrs="{'readonly': [('id', '!=', False)]}" />
-                <field name="deadline" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)]}" />
+                <field name="deadline" placeholder="Seleccione" readonly="True" attrs="{'invisible': [('stage', 'in', ['draft', 'cancel'])]}" />
+                <!--<field name="stage"/>-->
               </group>
               <group>
-                <field name="applicant_id" placeholder="Seleccione" readonly="True" force_save="True" />
-                <field name="delivery_id" placeholder="Seleccione" readonly="True" force_save="True" />
+                <field name="applicant_id" placeholder="Seleccione" readonly="True" force_save="True" widget="selection"/>
+                <field name="delivery_id" placeholder="Seleccione" readonly="True" force_save="True" widget="selection"/>
                 <field name="location_id" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)], 'required': [('id', '=', False)]}" />
               </group>
             </group>
-            <group string="Datos de Retorno" attrs="{'invisible': [('id', '=', False)]}">
+            <group string="Datos de Ingreso" attrs="{'invisible': [('id', '=', False)]}">
               <group>
                 <field name="signature_deliverer2" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
                 <field name="receipt_signature" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}"/>
-                <field name="entry_date" placeholder="Seleccione" string="Fecha de Retorno" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
                 <field name="location_return_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
+                <field name="entry_date" placeholder="Seleccione" string="Fecha de Retorno" readonly="True" attrs="{'invisible': [('stage', '!=', 'done')]}" />
               </group>
               <group>
-                <!--<field name="delivery2_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />-->
-                <field name="delivery2_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True" force_save="True" />
-                <!--<field name="receipt_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />-->
-                <field name="receipt_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True" force_save="True" />
+                <field name="delivery2_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True" force_save="True" widget="selection" />
+                <field name="receipt_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True" force_save="True" widget="selection"/>
                 <field name="equipment_status_entry_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
               </group>
             </group>
