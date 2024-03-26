@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 ###############################################################################
+#
 # Author: KEWITZ COLINA
 # Copyleft: 2020-Present.
 # License LGPL-3.0 or later (http: //www.gnu.org/licenses/lgpl.html).
-#
 #
 ###############################################################################
 
@@ -13,20 +13,24 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-
-class TpsEmployee(models.Model):
-    _inherit = 'tps.employee'
+class HrEmployee(models.Model):
+    _inherit = 'hr.employee'
 
 
     tools_ids = fields.One2many(
         "tr.stock.production.lot",
         "employee_id",
-        string="Equipos/Herramientas",
-        # domain="[(stage, '=', 'assigned')]"
+        string="Equipos Asignados",
+        help="Listado de Equipos"
     )
     tools_count = fields.Integer(
         string="Herramientas Asignadas",
         compute="_compute_tools_count"
+    )
+    tools_work_location_id = fields.Many2one(
+        "hr.department",
+        string="Ubicación de trabajo",
+        help="Ubicación de trabajo"
     )
     assignment = fields.Char(
         string="Assignment",
@@ -40,5 +44,13 @@ class TpsEmployee(models.Model):
 
     @api.depends('tools_ids')
     def _compute_tools_count(self):
-        for location in self:
-            location.tools_count = len(location.tools_ids)
+        for res in self:
+            res.tools_count = len(res.tools_ids)
+
+
+    @api.onchange('job_id')
+    def _onchange_work_location(self):
+        if self.job_id:
+            self.tools_work_location_id = self.job_id.department_id
+
+

@@ -14,6 +14,7 @@ _logger = logging.getLogger(__name__)
 
 class TrStockProductionLot(models.Model):
     _name = 'tr.stock.production.lot'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Toolroom N° de Serie'
     _order = 'name, id'
     _rec_name = 'name'
@@ -31,7 +32,7 @@ class TrStockProductionLot(models.Model):
         string="Ubicación",
     )
     employee_id = fields.Many2one(
-        "tps.employee",
+        "hr.employee",
         string="Empleado Asignado"
     )
     product_id = fields.Many2one(
@@ -87,7 +88,7 @@ class TrStockProductionLot(models.Model):
 
 
     _sql_constraints = [('unique_serial_lot',
-            'UNIQUE(name)', 
+            'UNIQUE(name)',
             'El número de serie que intenta registrar ya exitste.'
         )
     ]

@@ -71,9 +71,9 @@
                 <field name="company_id" invisible="True" groups="base.group_multi_company"/>
               </group>
               <group>
-                <field name="department_id" placeholder="Seleccione"/>
-                <field name="parent_id" placeholder="Seleccione"/>
-                <field name="coach_id" placeholder="Seleccione"/>
+                <field name="department_id" placeholder="Seleccione" widget="selection" options="{'no_create': True, 'no_create_edit': True}"/>
+                <field name="parent_id" placeholder="Seleccione" widget="selection" options="{'no_create': True, 'no_create_edit': True}"/>
+                <field name="coach_id" placeholder="Seleccione" widget="selection" options="{'no_create': True, 'no_create_edit': True}"/>
               </group>
             </group>
             <notebook>
@@ -82,8 +82,8 @@
                   <div id="o_work_employee_main">
                     <group>
                       <group string="Ubicación">
-                        <field name="job_id" placeholder="Seleccione"/>
-                        <field name="quality_work_location_id" placeholder="Seleccione"/>
+                        <field name="job_id" placeholder="Seleccione" widget="selection" options="{'no_create': True, 'no_create_edit': True}"/>
+                        <field name="quality_work_location_id" placeholder="Seleccione" widget="selection" options="{'no_create': True, 'no_create_edit': True}"/>
                       </group>
                       <group string="Credenciales">
                         <field name="pin" placeholder="N° tarjeta magnetica" required="True" />

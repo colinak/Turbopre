@@ -17,6 +17,7 @@ _logger = logging.getLogger(__name__)
 
 class QualityEquipment(models.Model):
     _name = 'quality.equipment'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Quiality Equipment'
     _order = 'name'
     _rec_name = 'equipment_id'

@@ -1,5 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_tps_hr_employee_user,acs.tps.hr.employee.user,hr.model_hr_employee,group_tools_user,1,1,1,0
-access_tps_hr_employee_manager,acs.tps.hr.employee.manager,hr.model_hr_employee,group_tools_manager,1,1,1,0
-access_tps_hr_employee_admin,acs.tps.hr.employee.admin,hr.model_hr_employee,group_tools_system,1,1,1,1
-access_tps_hr_job_user,acs.tps.hr.job.user,hr.model_hr_job,group_tools_user,1,0,0,0
+access_tps_employee_user,acs.tps.employee.user,hr.model_hr_employee,group_tools_user,1,1,1,0
+access_tps_employee_manager,acs.tps.employee.manager,hr.model_hr_employee,group_tools_manager,1,1,1,0
+access_tps_employee_admin,acs.tps.employee.admin,hr.model_hr_employee,group_tools_system,1,1,1,1
+access_tps_job_user,acs.tps.job.user,hr.model_hr_job,group_tools_user,1,0,0,0
+
+access_tps_resource_user,acs.tps.resource.user,resource.model_resource_resource,group_tools_user,1,1,1,0
+access_tps_resource_manager,acs.tps.resource.manager,resource.model_resource_resource,group_tools_manager,1,1,1,0
+access_tps_resource_admin,acs.tps.resource.admin,resource.model_resource_resource,group_tools_manager,1,1,1,0
