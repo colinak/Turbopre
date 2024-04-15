@@ -28,8 +28,9 @@ class HrEmployee(models.Model):
         compute="_compute_tools_count"
     )
     tools_work_location_id = fields.Many2one(
-        "hr.department",
+        "tr.stock.location",
         string="Ubicación de trabajo",
+        domain="[('usage', '=', 'internal')]",
         help="Ubicación de trabajo"
     )
     assignment = fields.Char(

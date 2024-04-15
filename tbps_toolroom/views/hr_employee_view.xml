@@ -100,7 +100,7 @@
     </record>
 
     <record id="tps_employee_view_tree" model="ir.ui.view">
-      <field name="name">tps..employee.tree</field>
+      <field name="name">tps.employee.tree</field>
       <field name="model">hr.employee</field>
       <field name="arch" type="xml">
         <tree string="Empleados" multi_edit="1" sample="1">
@@ -119,7 +119,7 @@
     </record>
 
     <record id="tps_action_view_employee" model="ir.actions.act_window">
-      <field name="name">Empleados</field>
+      <field name="name">Informe de Empleados</field>
       <field name="res_model">hr.employee</field>
       <field name="view_mode">tree,form</field>
       <field name="domain">[]</field>
@@ -156,7 +156,7 @@
 
     <menuitem
       id="menu_tps_employee"
-      name="Empleados"
+      name="Informe de Empleados"
       parent="tbps_toolroom.menu_toolroom_informed"
       action="tbps_toolroom.tps_action_view_employee"
       sequence="2"

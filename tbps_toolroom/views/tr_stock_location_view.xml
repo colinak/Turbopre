@@ -37,7 +37,7 @@
                 icon="fa-cubes" 
                 type="action"
                 context="{'search_default_location_id': id, 'default_location_id': id}" 
-                groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
+                groups="base.group_system,tbps_toolroom.group_tools_system,tbps_toolroom.group_tools_manager,tbps_toolroom.group_tools_user"
             />
             </div>
             <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
@@ -122,7 +122,7 @@
       parent="tbps_toolroom.menu_toolroom_warehouse_location"
       action="tbps_toolroom.action_toolroom_location"
       sequence="2"
-      groups="base.group_system,group_tools_system,group_tools_manager"
+      groups="base.group_system,tbps_toolroom.group_tools_system,tbps_toolroom.group_tools_manager,tbps_toolroom.group_tools_user"
     />
   
   </data>

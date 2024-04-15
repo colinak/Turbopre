@@ -3,3 +3,11 @@ acs_tr_stock_inventory_system,tr.stock.inventory.system,model_tr_stock_inventory
 acs_tr_stock_inventory_user,tr.stock.inventory.user,model_tr_stock_inventory,base.group_user,1,0,0,0
 acs_tr_stock_inventory_line_system,tr.stock.inventory.line.system,model_tr_stock_inventory_line,base.group_system,1,1,1,1
 acs_tr_stock_inventory_line_user,tr.stock.inventory.line.user,model_tr_stock_inventory_line,base.group_user,1,0,0,0
+
+access_tr_stock_inventory_user,acs.tr.stock.inventory.user,model_tr_stock_inventory,group_tools_user,1,0,0,0
+access_tr_stock_inventory_manager,acs.tr.stock.inventory.manager,model_tr_stock_inventory,group_tools_manager,1,1,1,0
+access_tr_stock_inventory_admin,acs.tr.stock.inventory.admin,model_tr_stock_inventory,group_tools_system,1,1,1,1
+
+access_tr_stock_inventory_line_user,acs.tr.stock.inventory.line.user,model_tr_stock_inventory_line,group_tools_user,1,0,0,0
+access_tr_stock_inventory_line_manager,acs.tr.stock.inventory.line.manager,model_tr_stock_inventory_line,group_tools_manager,1,1,1,0
+access_tr_stock_inventory_line_admin,acs.tr.stock.inventory.line.admin,model_tr_stock_inventory_line,group_tools_system,1,1,1,1

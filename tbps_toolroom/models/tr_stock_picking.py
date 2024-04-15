@@ -90,7 +90,7 @@ class TrStockPicking(models.Model):
         string="PIN Solicitante"
     )
     applicant_id = fields.Many2one(
-        "tps.employee",
+        "hr.employee",
         string="Solicitante",
         ondelete="RESTRICT"
     )
@@ -98,13 +98,14 @@ class TrStockPicking(models.Model):
         string="PIN quien Entrega"
     )
     delivery_id = fields.Many2one(
-        "tps.employee",
+        "hr.employee",
         string="Entrega",
         ondelete="RESTRICT"
     )
     state = fields.Selection(
         selection=[
             ('draft', 'Borrador'),
+            ('prepared', 'Preparado'),
             ('done', 'Validado'),
             ('cancel', 'Cancelado'),
         ],
@@ -115,6 +116,11 @@ class TrStockPicking(models.Model):
         string="Lineas de Herramientas",
         compute="_compute_count_line"
     )
+    count_move_lines = fields.Integer(
+        string="Lineas de Herramientas",
+        # compute="_compute_count_line"
+    )
+    availability = fields.Boolean("Availability", default=False)
     # active = fields.Boolenam("Activo")
 
 
@@ -122,11 +128,19 @@ class TrStockPicking(models.Model):
         for line in self:
             line.count_line = len(line.move_line_ids)
 
+    
+    @api.onchange('move_lines')
+    def _onchange_count_move_lines(self):
+        if self.move_lines:
+            self.count_move_lines = len(self.move_lines)
+        # elif self.move_lines < 1:
+            # pass
+
 
     @api.onchange('signature_applicant')
     def _onchange_signature_applicant(self):
         if self.signature_applicant:
-            applicant = self.env['tps.employee'].search(
+            applicant = self.env['hr.employee'].search(
                 [('pin', '=', self.signature_applicant)],
                 limit=1
             )
@@ -142,7 +156,7 @@ class TrStockPicking(models.Model):
     @api.onchange('signature_deliverer')
     def _onchange_deliverer_signature(self):
         if self.signature_deliverer:
-            deliverer = self.env['tps.employee'].search(
+            deliverer = self.env['hr.employee'].search(
                 [('pin', '=', self.signature_deliverer)],
                 limit=1
             )
@@ -229,6 +243,21 @@ class TrStockPicking(models.Model):
     def transfer_confirm(self):
         pass
 
+
+    def action_assign(self):
+        for move in self.move_lines:
+            if move.product_uom_qty > move.product_availability:
+                raise UserError(f"La cantidad demandada para {move.product_id.name} es mayor a la disponible")
+            else:
+                self.write({'availability': True})
+
+
+    def action_reserve(self):
+        for move in self.move_line_ids:
+            move.lot_id.write({
+                'stage': "reserved"
+            })
+        self.write({'state': "prepared"})
 
 
     def action_validate(self):

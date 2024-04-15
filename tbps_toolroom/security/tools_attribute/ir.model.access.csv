@@ -1,3 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acs_toolroom_attribute_system,toolroom.attribute.system,model_toolroom_attribute,base.group_system,1,1,1,1
+acs_tr_product_attribute_user,tr.product.attribute.user,product.model_product_attribute,group_tools_user,1,0,0,0
+acs_tr_product_attribute_manager,tr.product.attribute.manager,product.model_product_attribute,group_tools_manager,1,1,1,0
+acs_tr_product_attribute_admin,tr.product.attribute.admin,product.model_product_attribute,group_tools_system,1,1,1,1
 

@@ -2,4 +2,8 @@ id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 acs_tr_stock_location_system,tr.stock.location.system,model_tr_stock_location,base.group_system,1,1,1,1
 acs_tr_stock_location_user,tr.stock.location.user,model_tr_stock_location,base.group_user,1,0,0,0
 
+acs_tr_stock_location_user,tr.stock.location.user,model_tr_stock_location,group_tools_user,1,0,0,0
+acs_tr_stock_location_manager,tr.stock.location.manager,model_tr_stock_location,group_tools_manager,1,1,1,0
+acs_tr_stock_location_admin,tr.stock.location.admin,model_tr_stock_location,group_tools_system,1,1,1,1
+
 

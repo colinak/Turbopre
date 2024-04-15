@@ -29,7 +29,7 @@
     <!--name="Equipos y Herramientas"-->
     <menuitem 
       id="menu_toolroom_equipment"
-      name="Equipamientos"
+      name="Equipos y Herramientas"
       parent="tbps_toolroom.menu_toolroom_equipment_root"
       sequence="3"
     />
@@ -54,7 +54,7 @@
 
     <menuitem 
       id="menu_tools_equipment_setting"
-      name="Equipos y Herramientas"
+      name="Herramientas"
       parent="tbps_toolroom.menu_toolroom_equipment_setting"
       groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
       sequence="3"

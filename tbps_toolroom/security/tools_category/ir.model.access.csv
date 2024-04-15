@@ -1,3 +1,12 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acs_tr_product_category_system,tr_product_category_system,model_tr_product_category,base.group_system,1,1,1,1
-acs_tr_product_category_user,tr_product_category_user,model_tr_product_category,base.group_user,1,0,0,0
+acs_tr_product_category_user,tr.product.category.user,product.model_product_category,group_tools_user,1,0,0,0
+acs_tr_product_category_manager,tr.product.category.manager,product.model_product_category,group_tools_manager,1,1,1,0
+acs_tr_product_category_admin,tr.product.category.admin,product.model_product_category,group_tools_system,1,1,1,1
+
+acs_tr_uom_category_user,tr.uom.category.user,uom.model_uom_category,group_tools_user,1,0,0,0
+acs_tr_uom_category_manager,tr.uom.category.manager,uom.model_uom_category,group_tools_manager,1,1,1,0
+acs_tr_uom_category_admin,tr.uom.category.admin,uom.model_uom_category,group_tools_system,1,1,1,1
+
+acs_tr_uom_uom_user,tr.uom.uom.user,uom.model_uom_uom,group_tools_user,1,0,0,0
+acs_tr_uom_uom_manager,tr.uom.uom.manager,uom.model_uom_uom,group_tools_manager,1,1,1,0
+acs_tr_uom_uom_admin,tr.uom.uom.admin,uom.model_uom_uom,group_tools_system,1,1,1,1

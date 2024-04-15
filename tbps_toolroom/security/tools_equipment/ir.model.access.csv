@@ -1,2 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acs_toolroom_equipment,toolroom_equipment_system,model_tr_product_template,base.group_system,1,1,1,1
+acs_tr_product_product_user,tr.product.product.user,product.model_product_template,group_tools_user,1,1,1,0
+acs_tr_product_product_manager,tr.product.product.manager,product.model_product_template,group_tools_manager,1,1,1,0
+acs_tr_product_product_admin,tr.product.product.admin,product.model_product_template,group_tools_system,1,1,1,1
+
+acs_tr_product_template_user,tr.product.template.user,product.model_product_product,group_tools_user,1,1,1,0
+acs_tr_product_template_manager,tr.product.template.manager,product.model_product_product,group_tools_manager,1,1,1,0
+acs_tr_product_template_admin,tr.product.template.admin,product.model_product_product,group_tools_system,1,1,1,1
+
+acs_toolroom_equipment,toolroom_equipment_system,model_product_template,base.group_system,1,1,1,1

@@ -60,8 +60,8 @@
                 <!--<field name="stage"/>-->
               </group>
               <group>
-                <field name="applicant_id" placeholder="Seleccione" readonly="True" force_save="True" widget="selection"/>
-                <field name="delivery_id" placeholder="Seleccione" readonly="True" force_save="True" widget="selection"/>
+                <field name="applicant_id" placeholder="Seleccione" readonly="True" force_save="True" />
+                <field name="delivery_id" placeholder="Seleccione" readonly="True" force_save="True" />
                 <field name="location_id" placeholder="Seleccione" attrs="{'readonly': [('id', '!=', False)], 'required': [('id', '=', False)]}" />
               </group>
             </group>
@@ -73,8 +73,8 @@
                 <field name="entry_date" placeholder="Seleccione" string="Fecha de Retorno" readonly="True" attrs="{'invisible': [('stage', '!=', 'done')]}" />
               </group>
               <group>
-                <field name="delivery2_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True" force_save="True" widget="selection" />
-                <field name="receipt_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True" force_save="True" widget="selection"/>
+                <field name="delivery2_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True" force_save="True"/>
+                <field name="receipt_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)]}" readonly="True" force_save="True" />
                 <field name="equipment_status_entry_id" placeholder="Seleccione" attrs="{'required': [('id', '!=', False)], 'readonly': [('stage', 'in', ('done', 'cancel'))]}" />
               </group>
             </group>
@@ -90,7 +90,7 @@
       <field name="arch" type="xml">
         <tree string="Quality loans y returns" default_order="name desc, id desc, deadline desc" >
           <field name="code"/>
-          <field name="equipment_id" placeholder="Seleccione" />
+          <field name="equipment_id" />
           <field name="rango" optional="hide"/>
           <field name="equipment_status_id" optional="hide"/>
           <field name="applicant_id" />
