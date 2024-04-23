@@ -73,7 +73,7 @@ class TrStockScrap(models.Model):
         "tr_stock_production_lot_tr_stock_scrap_rel",
         "tr_stock_scrap_id",
         "tr_stock_production_lot_id",
-        domain="[('stage', '=', 'available'), ('state', '=', 'done'), ('active', '=', True)]",
+        # domain="[('stage', '=', 'available'), ('state', '=', 'done'), ('active', '=', True)]",
         string="Linea de Herramientas",
     )
 
@@ -92,7 +92,13 @@ class TrStockScrap(models.Model):
 
 
     def action_validate(self):
-        pass
+        for line in self.tools_lot_line_ids:
+            if line.stage != 'available':
+                raise UserError ("No puede archivar una herramienta que no este disponible")
+            else:
+                line.write({'state': "cancel", 'active': False})
+        self.write({'stage': "done"})
+
 
 
 
