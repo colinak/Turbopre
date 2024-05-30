@@ -1,5 +1,16 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 acs_tr_product_attribute_user,tr.product.attribute.user,product.model_product_attribute,group_tools_user,1,0,0,0
-acs_tr_product_attribute_manager,tr.product.attribute.manager,product.model_product_attribute,group_tools_manager,1,1,1,0
+acs_tr_product_attribute_manager,tr.product.attribute.manager,product.model_product_attribute,group_tools_manager,1,1,1,1
 acs_tr_product_attribute_admin,tr.product.attribute.admin,product.model_product_attribute,group_tools_system,1,1,1,1
 
+acs_tr_product_attribute_value_user,acs.tr.product.attribute.value.user,product.model_product_attribute_value,group_tools_user,1,0,0,0
+acs_tr_product_attribute_value_manager,acs.tr.product.attribute.value.manager,product.model_product_attribute_value,group_tools_manager,1,1,1,0
+acs_tr_product_attribute_value_admin,acs.tr.product.attribute.value.admin,product.model_product_attribute_value,group_tools_system,1,1,1,1
+
+acs_tr_product_template_attribute_line_user,acs.tr.product.template.attribute.line.user,product.model_product_template_attribute_line,group_tools_user,1,0,0,0
+acs_tr_product_template_attribute_line_manager,acs.tr.product.template.attribute.line.manager,product.model_product_template_attribute_line,group_tools_manager,1,1,1,0
+acs_tr_product_template_attribute_line_admin,acs.tr.product.template.attribute.line.admin,product.model_product_template_attribute_line,group_tools_system,1,1,1,1
+
+acs_tr_product_template_attribute_value_user,acs.tr.product.template.attribute.value.user,product.model_product_template_attribute_value,group_tools_user,1,0,0,0
+acs_tr_product_template_attribute_value_manager,acs.tr.product.template.attribute.value.manager,product.model_product_template_attribute_value,group_tools_manager,1,1,1,0
+acs_tr_product_template_attribute_value_admin,acs.tr.product.template.attribute.value.admin,product.model_product_template_attribute_value,group_tools_system,1,1,1,1
