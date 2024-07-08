@@ -270,19 +270,19 @@ class TrStockPicking(models.Model):
                 if self.name == 'Nuevo':
                     if self.picking_type_code == "assignment":
                         self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.assignment') or _('Nuevo')
-                        self.assigned_confirm()
+                        self.sudo().assigned_confirm()
                         self.state = "done"
                     elif self.picking_type_code == "loans":
                         self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.loans') or _('Nuevo')
-                        self.loan_confirm()
+                        self.sudo().loan_confirm()
                         self.state = "done"
                     elif self.picking_type_code == "reception":
                         self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.returns') or _('Nuevo')
-                        self.return_confirm()
+                        self.sudo().return_confirm()
                         self.state = "done"
                     elif self.picking_type_code == "Transfers":
                         self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.transfers') or _('Nuevo')
-                        self.transfer_confirm()
+                        self.sudo().transfer_confirm()
                         self.state = "done"
             except:
                 raise UserError("¡Error!")
