@@ -18,8 +18,8 @@ class TrProductTemplate(models.Model):
 
     type = fields.Selection(selection_add=[
             ('product', 'Almacenable')
-        ], 
-        tracking=True, 
+        ],
+        tracking=True,
         default="product",
         ondelete={'product': 'set default'}
     )
@@ -45,6 +45,11 @@ class TrProductTemplate(models.Model):
     product_serial_count = fields.Integer(
         string="Herramientas",
         compute="_compute_tools_count"
+    )
+    brand_id = fields.Many2one(
+        "tr.stock.manufacturers",
+        string="Fabricante",
+        help="Seleccione un fabricante."
     )
 
 

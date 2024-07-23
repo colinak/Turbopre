@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-acs_toolroom_manufacturers,toolroom_manufacturers_system,model_toolroom_manufacturers,base.group_system,1,1,1,1
-
+acs_tr_manufacturers_user,tr.manufacturers.user,model_tr_stock_manufacturers,base.group_user,1,0,0,0
+acs_tr_manufacturers_system,tr.manufacturers.system,model_tr_stock_manufacturers,base.group_system,1,1,1,1
+acs_tr_manufacturers_tools_user,tr.manufacturers.tools_user,model_tr_stock_manufacturers,group_tools_user,1,0,0,0
+acs_tr_manufacturers_tools_manager,tr.manufacturers.tools_manager,model_tr_stock_manufacturers,group_tools_manager,1,1,10
+acs_tr_manufacturers_tools_system,tr.manufacturers.tools_system,model_tr_stock_manufacturers,group_tools_system,1,1,1,1

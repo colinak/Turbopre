@@ -2,9 +2,9 @@
 <odoo>
   <data>
 
-    <record id="view_toolroom_category_search" model="ir.ui.view">
-      <field name="name">toolroom.manufacturers.search</field>
-      <field name="model">toolroom.manufacturers</field>
+    <record id="view_tr_stock_manufacturers_search" model="ir.ui.view">
+      <field name="name">tr.stock.manufacturers.search</field>
+      <field name="model">tr.stock.manufacturers</field>
       <field name="type">search</field>
       <field name="arch" type="xml">
         <search string="Toolroom Manufacturers">
@@ -14,9 +14,9 @@
     </record>
 
     <!--view kanban of Manufacturers-->
-    <record id="view_toolroom_manufacturers_kanban" model="ir.ui.view">
-      <field name="name">toolroom.manufacturers.kanban</field>
-      <field name="model">toolroom.manufacturers</field>
+    <record id="view_tr_stock_manufacturers_kanban" model="ir.ui.view">
+      <field name="name">tr.stock.manufacturers.kanban</field>
+      <field name="model">tr.stock.manufacturers</field>
       <field name="type">kanban</field>
       <field name="arch" type="xml">
         <kanban class="o_res_partner_kanban">
@@ -42,62 +42,62 @@
       </field>
     </record>
 
-    <record id="view_toolroom_manufacturers_from" model="ir.ui.view">
-      <field name="name">toolroom.manufacturers.form</field>
-      <field name="model">toolroom.manufacturers</field>
+    <record id="view_tr_stock_manufacturers_form" model="ir.ui.view">
+      <field name="name">tr.stock.manufacturers.form</field>
+      <field name="model">tr.stock.manufacturers</field>
       <field name="type">form</field>
       <field name="arch" type="xml">
         <form string="Quality Equipment Manufacturers">
+          <header></header>
           <sheet>
             <div class="oe_title">
               <field name="image" widget="image" class="oe_avatar" />
               <label for="name" class="oe_edit_only" />
               <h1>
-                <field name="name" string="Name" placeholder="Manufacturers Name" style="width: 75%;"/>
+                <field name="name" string="Name" placeholder="Nombre del Fabricante" style="width: 75%;"/>
               </h1>
             </div>
             <group>
-              <field name="note" />
+              <field name="note" placeholder="Notas internas..." />
             </group>
           </sheet>
         </form>
       </field>
     </record>
 
-    <record id="view_toolroom_manufacturers_tree" model="ir.ui.view">
-      <field name="name">toolroom.manufacturers.tree</field>
-      <field name="model">toolroom.manufacturers</field>
+    <record id="view_tr_stock_manufacturers_tree" model="ir.ui.view">
+      <field name="name">tr.stock.manufacturers.tree</field>
+      <field name="model">tr.stock.manufacturers</field>
       <field name="type">tree</field>
       <field name="arch" type="xml">
         <tree string="Quality Equipment Manufacturers">
+          <field name="sequence" widget="handle" />
           <field name="name" string="Name" />
         </tree>
       </field>
     </record>
 
-
-    <record id="action_toolroom_manufacturers" model="ir.actions.act_window">
+    <record id="action_tr_stock_manufacturers" model="ir.actions.act_window">
       <field name="name">Manufacturers</field>
       <field name="type">ir.actions.act_window</field>
-      <field name="res_model">toolroom.manufacturers</field>
+      <field name="res_model">tr.stock.manufacturers</field>
       <field name="view_mode">kanban,tree,form</field>
-      <field name="view_id" ref="view_toolroom_manufacturers_tree" />
+      <field name="view_id" ref="view_tr_stock_manufacturers_tree" />
       <field name="help" type="html">
         <p class="o_view_nocontent_smiling_face">
-          Create New Manufacturers
+          Crear Nuevo Fabricante
         </p>
       </field>
     </record>
   
     <menuitem 
-      id="menu_toolroom_manufacturers"
-      name="Manufacturers"
+      id="menu_tr_stock_manufacturers"
+      name="Fabricantes"
       parent="tbps_toolroom.menu_toolroom_equipment_setting"
-      action="tbps_toolroom.action_toolroom_manufacturers"
+      action="tbps_toolroom.action_tr_stock_manufacturers"
       sequence="2"
       groups="base.group_system,group_tools_system,group_tools_manager"
     />
-  
   
   </data>
 </odoo>

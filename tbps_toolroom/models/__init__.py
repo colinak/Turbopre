@@ -17,6 +17,7 @@ from . import tr_stock_picking
 from . import tr_equipment
 from . import tr_tools
 from . import tr_stock_production_lot
+from . import tr_stock_manufacturers
 from . import hr_employee
 from . import tr_stock_inventory
 from . import tr_stock_move

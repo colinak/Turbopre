@@ -152,6 +152,7 @@
                     <field name="categ_id" string="Categoría de Producto"/>
                     <field name="default_code" string="Código del Fabricante" />
                     <field name="barcode" invisible="1"/>
+                    <field name="brand_id" placeholder="Seleccione" />
                   </group>
                   <group name="group_standard_price">
                     <field name="standard_price" invisible="0" />
@@ -221,6 +222,7 @@
           <field name="sequence" widget="handle" readonly="1"/>
           <field name="name" string="Nombre" readonly="1"/>
           <field name="default_code" optional="show" readonly="1" string="Código del Fabricante"/>
+          <field name="brand_id" optional="show" />
           <field name="barcode" invisible="1"/>
           <field name="company_id" groups="base.group_multi_company" optional="hide" readonly="1"/>
           <field name="type" optional="show" readonly="1"/>

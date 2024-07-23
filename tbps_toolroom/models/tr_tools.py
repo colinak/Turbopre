@@ -48,6 +48,11 @@ class ToolRoomTools(models.Model):
         "Disponible?",
         default=lambda self: True if self.available_qty > 0 else False
     )
+    brand_id = fields.Many2one(
+        "tr.stock.manufacturers",
+        string="Fabricante",
+        help="Seleccione un fabricante."
+    )
 
 
     def _compute_available_qty(self):
