@@ -51,6 +51,8 @@ class ToolRoomTools(models.Model):
     brand_id = fields.Many2one(
         "tr.stock.manufacturers",
         string="Fabricante",
+        related="product_tmpl_id.brand_id",
+        store=True,
         help="Seleccione un fabricante."
     )
 

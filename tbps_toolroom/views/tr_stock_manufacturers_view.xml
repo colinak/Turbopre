@@ -78,7 +78,7 @@
     </record>
 
     <record id="action_tr_stock_manufacturers" model="ir.actions.act_window">
-      <field name="name">Manufacturers</field>
+      <field name="name">Fabricantes</field>
       <field name="type">ir.actions.act_window</field>
       <field name="res_model">tr.stock.manufacturers</field>
       <field name="view_mode">kanban,tree,form</field>
