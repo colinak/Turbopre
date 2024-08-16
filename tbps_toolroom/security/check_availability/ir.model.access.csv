@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_tr_check_availability_user,acs.tr.check.availability.user,tbps_toolroom.model_check_availability_tool_wizard,base.group_user,1,1,1,0
+acs_tr_check_availability_system,acs.tr.check.availability.system,tbps_toolroom.model_check_availability_tool_wizard,base.group_system,1,1,1,1
+acs_tr_check_availability_tools_user,acs.tr.check.availability.tools.user,tbps_toolroom.model_check_availability_tool_wizard,tbps_toolroom.group_tools_user,1,1,1,0
+acs_tr_check_availability_tools_manager,acs.tr.check.availability.tools.manager,tbps_toolroom.model_check_availability_tool_wizard,tbps_toolroom.group_tools_manager,1,1,1,1
+acs_tr_check_availability_tools_system,acs.tr.check.availability.tools.system,tbps_toolroom.model_check_availability_tool_wizard,tbps_toolroom.group_tools_system,1,1,1,1
+

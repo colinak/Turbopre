@@ -11,8 +11,6 @@
         <search string="Toolroom Prestramos">
           <field name="name" string="Referencia"/>
           <field name="picking_type_code" />
-          <!--<field name="location_id" />-->
-          <!--<field name="location_dest_id" />-->
           <field name="applicant_id" />
           <field name="delivery_id" />
           <field name="date" />
@@ -25,11 +23,6 @@
             <separator/>
             <filter name="filter_in_date" date="date"/>
           </group>
-          <!--<group expand='0' string='Group by...'>-->
-            <!--<filter string='Product' name="productgroup" context="{'group_by': 'product_id'}"/>-->
-            <!--<filter string='Location' name="locationgroup" domain="[]" context="{'group_by': 'location_id'}"/>-->
-            <!--<filter string='Lot/Serial Number' name="Lot_Serial_number" context="{'group_by': 'lot_id'}" groups="stock.group_production_lot"/>-->
-          <!--</group>-->
         </search>
       </field>
     </record>
@@ -52,24 +45,24 @@
           <!--<widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>-->
           <header>
             <button name="action_validate" string="Validar" type="object" class="oe_highlight" 
-              attrs="{'invisible': ['|', ('count_line', '&lt;', 1), ('state', '!=', 'prepared')]}" /> 
-            <button name="action_assign" string="Comprobar disponibilidad" type="object" class="oe_highlight" 
-              attrs="{'invisible': ['|', ('count_move_lines', '&lt;', 1), ('availability', '!=', False)]}" />
-            <button name="action_reserve" string="Marcar como reservado" type="object" class="oe_highlight" 
-              attrs="{'invisible': ['|', ('availability', '!=', True), ('state', '!=', 'draft')]}" />
+              attrs="{'invisible': [('state', '!=', 'draft')]}" /> 
+            <!--<button name="action_assign" string="Comprobar disponibilidad" type="object" class="oe_highlight" -->
+              <!--attrs="{'invisible': [('availability', '!=', False)]}" />-->
+            <!--<button name="action_reserve" string="Marcar como reservado" type="object" class="oe_highlight" -->
+              <!--attrs="{'invisible': [('state', '!=', 'draft')]}" />-->
             <button name="action_cancel_draft" states="done" string="Cancelar" type="object" groups="tbps_toolroom.group_tools_manager,tbps_toolroom.group_tools_system"
               confirm="Si cancela esta operación, se perderán todas sus líneas de ajuste de prestamos, asignaciones, transferencias o devoluciones. ¿Estás seguro de que quieres descartarlo?"
             />
             <field name="state" widget="statusbar" statusbar_visible="draft,prepared,done,cancel"/>
           </header>
           <sheet>
-            <div class="oe_title" attrs="{'invisible': [('count_move_lines', '&lt;', 1)]}">
+            <div class="oe_title" >
               <label for="name" string="Referencia" class="oe_edit_only"/>
               <h1>
                 <field name="name" string="Descripción" style="width: 85%;"/>
               </h1>
             </div>
-            <group col="4" attrs="{'invisible': [('count_move_lines', '&lt;', 1)]}">
+            <group col="4" >
               <field name="picking_type_code" placeholder="Seleccione" attrs="{'readonly': [('state', '=', 'done')]}" />
               <field name="date" placeholder="Seleccione" attrs="{'readonly': [('state', '=', 'done')]}" />
               <field name="signature_applicant" placeholder="Código del Carnet" required="1" attrs="{'readonly': [('state', '=', 'done')]}" />
@@ -82,57 +75,46 @@
                 attrs="{'required': [('picking_type_code', '!=', 'transfers')], 'invisible': [('picking_type_code', '=', 'transfers')]}" />
             </group>
             <notebook>
-              <page string="Reservar Herramientas">
-                <field name="move_lines" mode="tree,form" options="{'no_create': False, 'no_create_edit': False}"
-                  context="{'default_name': name, 'default_product_uom_qty': 1}" attrs="{'readonly': [('availability', '=', True)]}">
-                  <tree>
-                    <field name="name" invisible="True" />
-                    <field name="state" invisible="True" />
-                    <field name="product_uom_category_id" invisible="True" />
-                    <!--[>[><field name="lot_name" required="1" /><]<]-->
-                    <field name="product_id" placeholder="Seleccione" required="True" />
-                    <!--<field name="location_id" placeholder="Seleccione" optional="show"/>-->
-                    <!--<field name="location_dest_id" placeholder="Seleccione" optional="show" />-->
-                    <field name="product_availability" string="Disponible"/>
-                    <field name="product_uom_qty" string="Demanda"/>
-                    <!--<field name="product_uom_qty" string="Reservado"/>-->
-                    <field name="reserved_availability" string="Reservado"/>
-                    <field name="qty_done" />
-                    <field name="date" string="Fecha Programada" readonly="True" />
-                    <field name="lot_ids" string="Códigos TPS" invisible="1" force_save="1"/>
-                  </tree>
-                  <form>
-                    <field name="name" invisible="True" />
-                    <field name="product_uom_category_id" invisible="True" />
-                    <header>
-                      <field name="state" widget="statusbar"/>
-                    </header>
-                    <group>
-                      <group>
-                        <field name="product_id" string="Herramienta" placeholder="Seleccione" required="1"
-                          domain="[('available_qty', '&gt;', 0)]" />
-                        <field name="product_availability" />
-                        <!--<field name="product_available_id" string="Herramienta" placeholder="Seleccione" required="1" -->
-                          <!--domain="[('available_qty', '&gt;', 0)]"-->
-                          <!--/>-->
-                        <!--<field name="location_id" placeholder="Seleccione"/>-->
-                      </group>
-                      <group>
-                        <field name="product_uom_qty" string="Reservar" required="1"/>
-                        <!--<field name="product_uom" />-->
-                        <!--<field name="location_dest_id" placeholder="Seleccione" />-->
-                      </group>
-                      <!--<field name="date" string="Fecha Programada" />-->
-                      <!--<field name="qty_done" />-->
-                      <!--<field name="lot_ids" widget="many2many_tags" />-->
-                    </group>
-                  </form>
 
-                </field>
-              </page>
-              <page string="Lineas de Herramientas" attrs="{'invisible': [('availability', '!=', True)]}">
+              <!--<page string="Reservar Herramientas">-->
+                <!--<field name="move_lines" mode="tree,form" options="{'no_create': False, 'no_create_edit': False}"-->
+                  <!--context="{'default_name': name, 'default_product_uom_qty': 1}" attrs="{'readonly': [('availability', '=', True)]}">-->
+                  <!--<tree>-->
+                    <!--<field name="name" invisible="True" />-->
+                    <!--<field name="state" invisible="True" />-->
+                    <!--<field name="product_uom_category_id" invisible="True" />-->
+                    <!--<field name="product_id" placeholder="Seleccione" required="True" />-->
+                    <!--<field name="product_availability" string="Disponible"/>-->
+                    <!--<field name="product_uom_qty" string="Demanda"/>-->
+                    <!--<field name="reserved_availability" string="Reservado"/>-->
+                    <!--<field name="qty_done" />-->
+                    <!--<field name="date" string="Fecha Programada" readonly="True" />-->
+                    <!--<field name="lot_ids" string="Códigos TPS" invisible="1" force_save="1"/>-->
+                  <!--</tree>-->
+                  <!--<form>-->
+                    <!--<field name="name" invisible="True" />-->
+                    <!--<field name="product_uom_category_id" invisible="True" />-->
+                    <!--<header>-->
+                      <!--<field name="state" widget="statusbar"/>-->
+                    <!--</header>-->
+                    <!--<group>-->
+                      <!--<group>-->
+                        <!--<field name="product_id" string="Herramienta" placeholder="Seleccione" required="1"-->
+                          <!--domain="[('available_qty', '&gt;', 0)]" />-->
+                        <!--<field name="product_availability" />-->
+                      <!--</group>-->
+                      <!--<group>-->
+                        <!--<field name="product_uom_qty" string="Reservar" required="1"/>-->
+                      <!--</group>-->
+                    <!--</group>-->
+                  <!--</form>-->
+
+                <!--</field>-->
+              <!--</page>-->
+
+              <page string="Lineas de Herramientas" >
                 <field name="move_line_ids" mode="tree,form" widget="section_and_note_one2many" options="{'no_create': False, 'no_create_edit': False}" 
-                  context="{'default_product_uom_qty': 1, 'default_qty_done': 1}"
+                  context="{'default_product_uom_qty': 1, 'default_qty_done': 1}" attrs="{'readonly': [('state', '!=', 'draft')]}"
                   >
                     <tree editable="bottom">
                       <field name="lot_name" required="1" />
@@ -171,7 +153,7 @@
                 </field>
               </page>
             </notebook>
-            <group attrs="{'invisible': [('count_move_lines', '&lt;', 1)]}">
+            <group>
               <field name="note" placeholder="Añadir una note interna..."/>
             </group>
           </sheet>
@@ -190,14 +172,11 @@
           <field name="picking_type_code" />
           <field name="delivery_id" string="Entrega" />
           <field name="applicant_id" string="Recibe" />
-          <!--<field name="location_id" string="Desde" />-->
-          <!--<field name="location_dest_id" string="Hasta" />-->
           <field name="date" />
           <field name="state" string="Estado" widget="badge" decoration-success="state == 'done'" decoration-info="state == 'draft'" decoration-danger="state == 'cancel'" />
         </tree>
       </field>
     </record>
-
 
     <!--view action of operations-->
     <record id="action_tr_stock_picking" model="ir.actions.act_window">
@@ -218,8 +197,9 @@
       name="Prestamos y Devoluciones"
       parent="tbps_toolroom.menu_operations"
       action="tbps_toolroom.action_tr_stock_picking"
-      sequence="2"
+      sequence="1"
       groups="base.group_system,group_tools_system,group_tools_manager,group_tools_user"
     />
+
   </data>
 </odoo>

@@ -142,7 +142,7 @@ class TrStockMoveLine(models.Model):
                 self.location_id = ""
                 self.product_uom_id = ""
                 raise UserError("¡Error! \nNo se encontro ninguna herramienta con este número de serie.")
-            elif serial_lot.stage != 'available':
+            elif (serial_lot.stage != 'available' and self.picking_id.picking_type_code != 'reception'):
                 self.lot_name = ""
                 self.lot_id = ""
                 self.product_id = ""

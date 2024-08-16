@@ -18,7 +18,6 @@
             <filter name="group_department" string="Departamento" domain="[]" context="{'group_by': 'department_id'}"/>
             <filter name="group_job" string="Puesto" domain="[]" context="{'group_by': 'job_id'}"/>
             <filter name="group_location" string="Ubicación" domain="[]" context="{'group_by': 'tools_work_location_id'}"/>
-
           </group>
           <searchpanel>
             <field name="department_id" icon="fa-users" enable_counters="1"/>
@@ -42,7 +41,7 @@
             <div class="oe_button_box" name="button_box">
               <button 
                   name="%(tbps_toolroom.action_tr_stock_production_lot)d" 
-                  context="{'search_default_employee_assigned_id': id, 'default_employee_assigned_id': id}" 
+                  context="{'search_default_employee_id': id, 'default_employee_id': id}" 
                   class="o_stat_button" 
                   icon="fa-cubes" 
                   type="action"

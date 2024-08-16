@@ -8,5 +8,4 @@
 #
 ###############################################################################
 
-from . import models
-from . import wizard
+from . import tr_check_availability_tools

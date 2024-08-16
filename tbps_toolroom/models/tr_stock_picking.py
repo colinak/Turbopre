@@ -105,7 +105,7 @@ class TrStockPicking(models.Model):
     state = fields.Selection(
         selection=[
             ('draft', 'Borrador'),
-            ('prepared', 'Preparado'),
+            ('prepared', 'Reservado'),
             ('done', 'Validado'),
             ('cancel', 'Cancelado'),
         ],
@@ -133,8 +133,6 @@ class TrStockPicking(models.Model):
     def _onchange_count_move_lines(self):
         if self.move_lines:
             self.count_move_lines = len(self.move_lines)
-        # elif self.move_lines < 1:
-            # pass
 
 
     @api.onchange('signature_applicant')
