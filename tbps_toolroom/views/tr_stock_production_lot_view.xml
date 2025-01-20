@@ -14,11 +14,20 @@
           <field name="ref"/>
           <field name="employee_id"/>
           <field name="location_id"/>
+          <field name="assigned_date"/>
+          <separator/>
+          <filter string="Disponible" name="available" domain="[('stage', '=', 'available')]"/>
+          <filter string="Asignado" name="assigned" domain="[('stage', '=', 'assigned')]"/>
+          <filter string="Prestado" name="loan" domain="[('stage', '=', 'loan')]"/>
+          <filter string="Reservado" name="reserved" domain="[('stage', '=', 'reserved')]"/>
+          <filter string="En Custodia" name="in_custody" domain="[('stage', '=', 'in_custody')]"/>
+          <filter string="Desechado" name="discarded" domain="[('stage', '=', 'discarded')]"/>
           <group expand="0" string="Group By">
             <filter name="group_by_product" string="Producto" domain="[]" context="{'group_by': 'product_id'}"/>
             <filter name="group_by_employee" string="Empleado" domain="[]" context="{'group_by': 'employee_id'}"/>
             <filter name="group_by_location" string="Ubicación" domain="[]" context="{'group_by': 'location_id'}"/>
             <filter name="group_by_stage" string="Disponibilidad" domain="[]" context="{'group_by': 'stage'}"/>
+            <filter name="group_by_state" string="Estatus" domain="[]" context="{'group_by': 'state'}"/>
           </group>
         </search>
       </field>
@@ -33,6 +42,7 @@
         <form string="Toolroom N° Serie">
           <header>
             <field name="active" invisible="1" />
+            <field name="assigned_date" invisible="1" />
             <field name="company_id" invisible="1" />
             <field name="stage" invisible="1" />
             <field name="state" widget="statusbar" statusbar_visible="draft,done,cancel"/>

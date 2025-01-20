@@ -24,7 +24,7 @@ class QualityLoansReturns(models.Model):
     name = fields.Char(
         string="Referencia", 
         required=True,
-        copy=False, 
+        copy=False,
         readonly=True, 
         index=True, 
         default=lambda self: _('New')

@@ -34,20 +34,18 @@ class TrStockPicking(models.Model):
     )
     date = fields.Datetime(
         string="Fecha",
-        default=fields.Datetime.now, 
-        index=True, 
+        default=fields.Datetime.now,
+        index=True,
         required=True,
         help="Fecha programada hasta que se realiza el movimiento, luego fecha de procesamiento del movimiento real"
     )
     location_id = fields.Many2one(
         "tr.stock.location",
         string="Ubicación origen",
-        # required=True
     )
     location_dest_id = fields.Many2one(
         "tr.stock.location",
         string="Ubicación destino",
-        # required=True
     )
     move_lines = fields.One2many(
         "tr.stock.move",
@@ -176,16 +174,16 @@ class TrStockPicking(models.Model):
                 line.reference = self.name
                 line.state = "done"
                 line.lot_id.write({
-                    'location_id': line.location_dest_id.id,
+                    'location_id': self.location_dest_id.id,
                     'stage': "assigned",
                     'employee_id': self.applicant_id.id,
-                    # 'move_id': 
+                    'assigned_date': self.date
                 })
                 quants = self.env['tr.stock.quant'].search([
                     ('lot_id', '=', line.lot_id.id)
                 ])
                 quants.write({
-                    'location_id': line.location_dest_id.id,
+                    'location_id': self.location_dest_id.id,
                     'inventory_quantity': 1
                 })
             except:
@@ -199,16 +197,16 @@ class TrStockPicking(models.Model):
                 line.reference = self.name
                 line.state = "done"
                 line.lot_id.write({
-                    'location_id': line.location_dest_id.id,
+                    'location_id': self.location_dest_id.id,
                     'stage': "loan",
                     'employee_id': self.applicant_id.id,
-                    # 'move_id': 
+                    'assigned_date': self.date
                 })
                 quants = self.env['tr.stock.quant'].search([
                     ('lot_id', '=', line.lot_id.id)
                 ])
                 quants.write({
-                    'location_id': line.location_dest_id.id,
+                    'location_id': self.location_dest_id.id,
                     'inventory_quantity': 1
                 })
             except:
@@ -221,16 +219,16 @@ class TrStockPicking(models.Model):
                 line.reference = self.name
                 line.state = "done"
                 line.lot_id.write({
-                    'location_id': line.location_dest_id.id,
+                    'location_id': self.location_dest_id.id,
                     'stage': "available",
-                    'employee_id': False
-                    # 'move_id': 
+                    'employee_id': False,
+                    'assigned_date': self.date
                 })
                 quants = self.env['tr.stock.quant'].search([
                     ('lot_id', '=', line.lot_id.id)
                 ])
                 quants.write({
-                    'location_id': line.location_dest_id.id,
+                    'location_id': self.location_dest_id.id,
                     'inventory_quantity': 1
                 })
             except:

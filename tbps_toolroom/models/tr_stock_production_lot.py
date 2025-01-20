@@ -81,6 +81,10 @@ class TrStockProductionLot(models.Model):
     note = fields.Text(
         string="Descripción"
     )
+    assigned_date = fields.Datetime(
+        string="Fecha Asignación",
+        help="Fecha de Asignación de al herramienta"
+    )
     active = fields.Boolean(
         string="Activo?",
         default=True
