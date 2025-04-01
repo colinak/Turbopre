@@ -87,7 +87,7 @@ class TrStockMoveLine(models.Model):
     )
     lot_id = fields.Many2one(
         "tr.stock.production.lot", 
-        string="Númeor de serie",
+        string="Número de serie",
         domain="[('product_id', '=', product_id), ('company_id', '=', company_id)]", 
         check_company=True
     )

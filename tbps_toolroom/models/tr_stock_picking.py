@@ -256,12 +256,24 @@ class TrStockPicking(models.Model):
         self.write({'state': "prepared"})
 
 
+    @api.model
+    def check_duplicate_records(self):
+        viewed = set()
+        for line in self.move_line_ids:
+            key = line.lot_name
+            if line.lot_name in viewed:
+                raise UserError(f"¡Error!\nSe consiguieron registros duplicados {line.lot_name}")
+            else:
+                viewed.add(line.lot_name)
+        return True
+
+
     def action_validate(self):
         if self.applicant_id == self.delivery_id:
             raise UserError("¡Error!\n No es posible solicitar y entregar una herramienta al mismo tiempo.")
         elif len(self.move_line_ids) < 1:
             raise UserError(f"¡Error!\n No es posible validar un {self.picking_type_code} sin lineas de herramientas.")
-        else:
+        elif self.check_duplicate_records():
             try:
                 if self.name == 'Nuevo':
                     if self.picking_type_code == "assignment":
