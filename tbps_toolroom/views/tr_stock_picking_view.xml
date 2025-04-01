@@ -73,7 +73,8 @@
                 attrs="{'readonly': [('state', '=', 'done')], 'required': [('picking_type_code', '!=', 'transfers')], 'invisible': [('picking_type_code', '=', 'transfers')]}" />
               <field name="delivery_id" placeholder="Seleccione" readonly="1" force_save="1" 
                 attrs="{'required': [('picking_type_code', '!=', 'transfers')], 'invisible': [('picking_type_code', '=', 'transfers')]}" />
-              <field name="location_dest_id" placeholder="Seleccione" domain="[('usage', '=', 'internal')]"/>
+              <field name="location_dest_id" placeholder="Seleccione" domain="[('usage', '=', 'internal')]" required="True"
+                attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}"/>
             </group>
             <notebook>
 
@@ -115,13 +116,14 @@
 
               <page string="Lineas de Herramientas" >
                 <field name="move_line_ids" mode="tree,form" widget="section_and_note_one2many" options="{'no_create': False, 'no_create_edit': False}" 
-                  context="{'default_product_uom_qty': 1, 'default_qty_done': 1, 'default_location_dest_id': location_dest_id}" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                  context="{'default_product_uom_qty': 1, 'default_qty_done': 1, 'default_location_dest_id': location_dest_id}" 
+                  attrs="{'readonly': [('state', '!=', 'draft')]}"
                   >
                     <tree editable="bottom">
                       <field name="lot_name" required="1" />
                       <field name="product_id" string="Herramienta" placeholder="Seleccione" required="1" readonly="1" force_save="1"/>
                       <field name="location_id" placeholder="Seleccione" readonly="1" force_save="1"/>
-                      <field name="location_dest_id" placeholder="Seleccione" invisible="True" />
+                      <field name="location_dest_id" placeholder="Seleccione" invisible="True" force_save="1" />
                       <field name="product_uom_qty" invisible="1" />
                       <field name="qty_done" string="Cantidad" optional="hide" readonly="1" force_save="1" />
                       <field name="product_uom_id" optional="hide" />

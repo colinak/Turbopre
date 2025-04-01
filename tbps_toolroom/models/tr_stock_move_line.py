@@ -149,6 +149,13 @@ class TrStockMoveLine(models.Model):
                 self.location_id = ""
                 self.product_uom_id = ""
                 raise UserError("¡Error! \nEsta herramienta ya se encuentra prestada")
+            elif (serial_lot.stage == 'available' and self.picking_id.picking_type_code == 'reception'):
+                self.lot_name = ""
+                self.lot_id = ""
+                self.product_id = ""
+                self.location_id = ""
+                self.product_uom_id = ""
+                raise UserError("¡Error! \nEsta herramienta no se encuentra prestada")
             else:
                 self.lot_id = serial_lot.id
                 self.product_id = serial_lot.product_id.id
