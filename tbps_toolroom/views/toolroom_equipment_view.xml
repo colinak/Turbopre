@@ -9,7 +9,7 @@
       <!--<field name="arch" type="xml">-->
         <!--<xpath expr="//field[@name='pricelist_id']" position="after">-->
           <!--<separator/>-->
-          <!--<filter name="stock_available" string="Disponibles" domain="[('available_qty','&gt;',1)]"/>-->
+          <!--<filter name="stock_available" string="Disponibles" domain="[('available_qty', '&gt;', 1)]"/>-->
         <!--</xpath>-->
       <!--</field>-->
     <!--</record>-->

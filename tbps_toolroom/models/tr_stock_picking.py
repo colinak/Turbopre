@@ -260,8 +260,11 @@ class TrStockPicking(models.Model):
     def check_duplicate_records(self):
         viewed = set()
         for line in self.move_line_ids:
-            key = line.lot_name
-            if line.lot_name in viewed:
+            if self.picking_type_code == 'assignment' or self.picking_type_code == 'loans' and line.lot_id.stage != 'available':
+                raise UserError(f"¡Error! \nEsta herramienta {line.lot_name} ya se encuentra prestada")
+            elif self.picking_type_code == 'reception' and line.lot_id.stage == 'available':
+                raise UserError(f"¡Error! \nEsta herramienta {line.lot_name} no se encuentra prestada")
+            elif line.lot_name in viewed:
                 raise UserError(f"¡Error!\nSe consiguieron registros duplicados {line.lot_name}")
             else:
                 viewed.add(line.lot_name)
