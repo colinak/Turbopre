@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_tr_stock_warehouse_orderpoint_user,tr.stock.warehouse.orderpoint.user,model_tr_stock_warehouse_orderpoint,base.group_user,1,0,0,0
+acs_tr_stock_warehouse_orderpoint_tools_user,tr.stock.warehouse.orderpoint.tools.user,model_tr_stock_warehouse_orderpoint,group_tools_user,1,0,0,0
+acs_tr_stock_warehouse_orderpoint_manager,tr.stock.warehouse.orderpoint.manager,model_tr_stock_warehouse_orderpoint,group_tools_manager,1,1,1,0
+acs_tr_stock_warehouse_orderpoint_admin,tr.stock.warehouse.orderpoint.admin,model_tr_stock_warehouse_orderpoint,group_tools_system,1,1,1,0
+acs_tr_stock_warehouse_orderpoint_system,tr.stock.warehouse.orderpoint.system,model_tr_stock_warehouse_orderpoint,base.group_system,1,1,1,1
+

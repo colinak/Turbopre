@@ -9,6 +9,7 @@
 ###############################################################################
 
 from odoo import models, fields, api, _
+from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -64,20 +65,14 @@ class TrStockScrap(models.Model):
         compute="_compute_count_line"
     )
     notes = fields.Html(string="Notas")
-    # lot_move_tools_ids = fields.Many2many(
-        # "tr.stock.production.lot",
-        # string="Linea de Herramientas",
-    # )
     tools_lot_line_ids = fields.Many2many(
         "tr.stock.production.lot",
         "tr_stock_production_lot_tr_stock_scrap_rel",
         "tr_stock_scrap_id",
         "tr_stock_production_lot_id",
-        # domain="[('stage', '=', 'available'), ('state', '=', 'done'), ('active', '=', True)]",
+        domain="[('stage', '=', 'available'), ('state', '=', 'done')]",
         string="Linea de Herramientas",
     )
-
-
 
 
 
@@ -92,12 +87,24 @@ class TrStockScrap(models.Model):
 
 
     def action_validate(self):
-        for line in self.tools_lot_line_ids:
-            if line.stage != 'available':
-                raise UserError ("No puede archivar una herramienta que no este disponible")
-            else:
-                line.write({'state': "cancel", 'active': False})
-        self.write({'stage': "done"})
+        try:
+            for line in self.tools_lot_line_ids:
+                if line.stage != 'available' and line.state != 'done':
+                    raise UserError ("No puede desechar una herramienta que no este disponible")
+
+                else:
+                    location = self.env['tr.stock.location'].search([
+                        ('scrap_location', '=', True)
+                    ],limit=1)
+                    line.write({
+                        'state': "cancel",
+                        'stage': "discarded",
+                        'location_id': location.id,
+                    })
+                self.write({'stage': "done"})
+                self.name = self.env['ir.sequence'].next_by_code('tr.stock.scrap') or _('Nuevo')
+        except:
+            raise UserError("No se pudo desechar las herramientas.")
 
 
 

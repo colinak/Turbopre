@@ -23,9 +23,9 @@ class TrStockPicking(models.Model):
     name = fields.Char(
         string="Referencia",
         required=True,
-        copy=False, 
-        readonly=True, 
-        index=True, 
+        copy=False,
+        readonly=True,
+        index=True,
         default=lambda self: _('Nuevo')
     )
     company_id = fields.Many2one(

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_tr_stock_warehouse_orderpoint_search" model="ir.ui.view">
+      <field name="name">tr.stock.warehouse.orderpoint.search</field>
+      <field name="model">tr.stock.warehouse.orderpoint</field>
+      <field name="arch" type="xml">
+        <search string="Search Reabastecimiento">
+          <field name="name" string="Referencia"/>
+          <field name="date"/>
+          <!--<group string="Group By">-->
+            <!--<filter string="Tipo de Operació" name="type_operation" domain="" context="{'group_by': 'type_operation'}"/>-->
+          <!--</group>-->
+        </search>
+      </field>
+    </record>
+
+  <record id="view_tr_stock_warehouse_orderpoint_form" model="ir.ui.view">
+    <field name="name">tr.stock.warehouse.orderpoint.form</field>
+    <field name="model">tr.stock.warehouse.orderpoint</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <form string="Reabastecimiento">
+        <field name="id" invisible="1"/>
+        <field name="name" invisible="1"/>
+        <field name="count_line" invisible="1"/>
+        <header>
+            <button name="action_confirme" string="Validar" type="object" class="oe_highlight" 
+              confirm="¿Está seguro que desea validar esta orden de reabastecimiento?"
+              attrs="{'invisible': ['|', ('count_line', '=', 0), ('stage', '!=', 'draft')]}" 
+            />
+            <field name="stage" widget="statusbar" statusbar_visible="draft,done,cancel"/>
+        </header>
+        <sheet>
+          <widget name="web_ribbon" title="VALIDADO" bg_color="bg-success" attrs="{'invisible': [('stage', '!=', 'done')]}"/>
+          <widget name="web_ribbon" title="CANCELADO" bg_color="bg-danger" attrs="{'invisible': [('stage', '!=', 'cancel')]}"/>
+          <div class="oe_title">
+            <label for="name" string="Referencia" class="oe_edit_only"/>
+            <h1>
+              <field name="name" string="Descripción" style="width: 85%;"/>
+            </h1>
+          </div>
+          <group>
+            <group>
+              <field name="location_id" placeholder="Seleccione" attrs="{'readony': [('stage', '!=', 'draft')]}"/>
+              <field name="document" required="True" widget="binary" filename="file_name" attrs="{'readonly': [('stage', '!=', 'draft')]}" />
+              <field name="file_name" invisible="True" />
+            </group>
+            <group>
+              <field name="date" />
+            </group>
+          </group>
+          <notebook>
+            <page string="Lineas de Herramientas">
+              <group>
+                <field name="lot_ids" string="Códigos TPS" placeholder="Seleccione"
+                  widget="many2many_tags" 
+                  attrs="{'readonly': [('stage', '!=', 'draft')]}"/>
+              </group>
+            </page>
+          </notebook>
+          <group>
+            <field name="notes" placeholder="Añadir una note interna..." attrs="{'readonly': [('stage', '!=', 'draft')]}"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_tr_stock_warehouse_orderpoint_tree" model="ir.ui.view">
+      <field name="name">tr.stock.warehouse.orderpoint.tree</field>
+      <field name="model">tr.stock.warehouse.orderpoint</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Toolroom Reposition">
+          <field name="name" string="Referencia" />
+          <field name="location_id" />
+          <field name="date" />
+          <field name="document" string="Documento Adjunto" widget="binary" filename="file_name" />
+          <field name="file_name" invisible="True" />
+          <field name="stage" string="Estatus" widget="badge" decoration-success="stage == 'done'" decoration-info="stage == 'draft'" decoration-danger="stage == 'cancel'" />
+        </tree>
+      </field>
+    </record>
+
+    <!--view action of operations-->
+    <record id="action_tr_stock_warehouse_orderpoint" model="ir.actions.act_window">
+      <field name="name">Reposición</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">tr.stock.warehouse.orderpoint</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" ref="view_tr_stock_warehouse_orderpoint_tree" />
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Crear Nueva Orden de Reposición
+        </p>
+        <!--<p>-->
+          <!--Desechar una herramienta la eliminará de tu stock. Las herramientas-->
+          <!--terminan en una ubicación de desecho que se puede utilizar para fines de informes.-->
+        <!--</p>-->
+      </field>
+    </record>
+
+    <menuitem 
+      id="menu_tr_stock_warehouse_orderpoint"
+      name="Reposición"
+      parent="tbps_toolroom.menu_operations"
+      action="tbps_toolroom.action_tr_stock_warehouse_orderpoint"
+      sequence="4"
+      groups="base.group_system,group_tools_system,group_tools_manager"
+    />
+
+</odoo>

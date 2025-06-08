@@ -23,3 +23,4 @@ from . import tr_stock_inventory
 from . import tr_stock_move
 from . import tr_stock_move_line
 from . import tr_stock_scrap
+from . import tr_stock_warehouse_orderpoint

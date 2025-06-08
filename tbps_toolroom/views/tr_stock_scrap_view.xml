@@ -27,8 +27,8 @@
           <field name="count_line" invisible="1"/>
           <header>
             <button name="action_validate" string="Validar" type="object" class="oe_highlight" 
-              attrs="{'invisible': ['|', ('count_line', '=', 0), ('stage', '!=', 'draft')]}" 
               confirm="¿Está seguro que desea validar esta orden de desecho?"
+              attrs="{'invisible': ['|', ('count_line', '=', 0), ('stage', '!=', 'draft')]}" 
             />
             <button name="action_cancel_draft" attrs="{'invisible': [('stage', '!=', 'done')]}" string="Cancelar" type="object" 
               groups="tbps_toolroom.group_tools_manager,tbps_toolroom.group_tools_system"
@@ -49,11 +49,21 @@
               <group>
                 <field name="type_operation" required="True" placeholder="Seleccione" />
                 <field name="document" string="Adjuntar FO-SEF-100" widget="binary" filename="file_name" 
-                  attrs="{'required': [('type_operation', '=', 'loss')], 'invisible': [('type_operation', '!=', 'loss')]}" />
+                  attrs="{
+                    'required': [('type_operation', '=', 'loss')], 
+                    'invisible': [('type_operation', '!=', 'loss')], 
+                    'readonly': [('stage', '!=', 'draft')]
+                  }" />
 
                 <field name="document" string="Adjuntar FO-CAL-143" required="True" widget="binary" filename="file_name" 
-                  attrs="{'required': [('type_operation', '=', 'fault')], 'invisible': [('type_operation', '!=', 'fault')]}" />
+                  attrs="{
+                    'required': [('type_operation', '=', 'fault')], 
+                    'invisible': [('type_operation', '!=', 'fault')], 
+                    'readonly': [('stage', '!=', 'draft')]
+                  }" />
+
                 <field name="file_name" invisible="True" />
+
               </group>
               <group>
                 <field name="date_done" />
@@ -62,12 +72,16 @@
             <notebook>
               <page string="Lineas de Herramientas">
                 <group>
-                  <field name="tools_lot_line_ids" string="Código TPS" widget="many2many_tags" />
+                  <field name="tools_lot_line_ids" string="Código TPS 1" placeholder="Seleccione"
+                    widget="many2many_tags" 
+                    context="{'active_test': False}"
+                    attrs="{'readonly': [('stage', '!=', 'draft')]}"/>
+                    <!--attrs="{'invisible': [('stage', '!=', 'draft')], 'readonly': [('stage', '!=', 'draft')]}"/>-->
                 </group>
               </page>
             </notebook>
             <group>
-              <field name="notes" placeholder="Añadir una note interna..."/>
+              <field name="notes" placeholder="Añadir una note interna..." attrs="{'readonly': [('stage', '!=', 'draft')]}"/>
             </group>
           </sheet>
         </form>
@@ -115,7 +129,7 @@
       name="Desechar"
       parent="tbps_toolroom.menu_operations"
       action="tbps_toolroom.action_tr_stock_scrap"
-      sequence="4"
+      sequence="5"
       groups="base.group_system,group_tools_system,group_tools_manager"
     />
 

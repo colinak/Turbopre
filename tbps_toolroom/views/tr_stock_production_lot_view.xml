@@ -16,6 +16,7 @@
           <field name="location_id"/>
           <field name="assigned_date"/>
           <separator/>
+          <filter string="Inventario" name="stock" domain="[('stage', '!=', 'discarded')]"/>
           <filter string="Disponible" name="available" domain="[('stage', '=', 'available')]"/>
           <filter string="Asignado" name="assigned" domain="[('stage', '=', 'assigned')]"/>
           <filter string="Prestado" name="loan" domain="[('stage', '=', 'loan')]"/>
@@ -23,7 +24,7 @@
           <filter string="En Custodia" name="in_custody" domain="[('stage', '=', 'in_custody')]"/>
           <filter string="Desechado" name="discarded" domain="[('stage', '=', 'discarded')]"/>
           <group expand="0" string="Group By">
-            <filter name="group_by_product" string="Producto" domain="[]" context="{'group_by': 'product_id'}"/>
+            <filter name="group_by_product" string="Producto" domain="[('stage', '!=', 'discarded')]" context="{'group_by': 'product_id'}"/>
             <filter name="group_by_employee" string="Empleado" domain="[]" context="{'group_by': 'employee_id'}"/>
             <filter name="group_by_location" string="Ubicación" domain="[]" context="{'group_by': 'location_id'}"/>
             <filter name="group_by_stage" string="Disponibilidad" domain="[]" context="{'group_by': 'stage'}"/>
@@ -114,7 +115,7 @@
       <field name="view_mode">tree,form</field>
       <field name="view_id" ref="view_tr_stock_production_lot_tree" />
       <field name="search_view_id" ref="view_tr_stock_production_lot_search"/>
-      <field name="context">{'search_default_group_by_product': 1, 'default_company_id': allowed_company_ids[0]}</field>
+      <field name="context">{'search_default_group_by_product': 1, 'search_default_stock': 1, 'default_company_id': allowed_company_ids[0]}</field>
       <field name="help" type="html">
         <p class="o_view_nocontent_smiling_face">
           Crear Nuevo Número de Serie

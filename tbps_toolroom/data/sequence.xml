@@ -34,5 +34,21 @@
       <field name="company_id" eval="False"/>
     </record>
 
+    <record id="sequence_toolroom_orderpoint" model="ir.sequence">
+      <field name="name">Toolroom Reposición</field>
+      <field name="code">tr.stock.warehouse.orderpoint</field>
+      <field name="prefix">RE-ENTRY/</field>
+      <field name="padding">5</field>
+      <field name="company_id" eval="False"/>
+    </record>
+
+    <record id="sequence_toolroom_scrap" model="ir.sequence">
+      <field name="name">Toolroom Perdida y Avería</field>
+      <field name="code">tr.stock.scrap</field>
+      <field name="prefix">SCRAP/</field>
+      <field name="padding">5</field>
+      <field name="company_id" eval="False"/>
+    </record>
+
   </data>
 </odoo>
