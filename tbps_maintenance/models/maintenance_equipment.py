@@ -13,10 +13,10 @@ from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
+
 class MaintenanceEquipment(models.Model):
     _inherit = 'maintenance.equipment'
     _description = 'Equipment'
-    _order = 'name'
 
 
     def default_current_user_id(self):
@@ -41,6 +41,7 @@ class MaintenanceEquipment(models.Model):
     project_id = fields.Many2one(
         "maintenance.location",
         string="Proyecto",
+        tracking=True,
         domain="[('type_location', '=', 'external')]"
     )
     stage = fields.Selection(
@@ -51,6 +52,7 @@ class MaintenanceEquipment(models.Model):
             ('discarded', 'Out of service'),
         ],
         string="Stage",
+        tracking=True,
         default="available",
         help="Stage"
     )

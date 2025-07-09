@@ -25,6 +25,7 @@ class HrEmployee(models.Model):
     barcode = fields.Char(groups="hr.group_hr_user,base.group_user")
     pin = fields.Char(groups="hr.group_hr_user,base.group_user")
 
+
 class HrEmployeePublic(models.Model):
     _inherit = 'hr.employee.public'
 

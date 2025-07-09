@@ -49,9 +49,9 @@ class HrEmployee(models.Model):
             res.tools_count = len(res.tools_ids)
 
 
-    @api.onchange('job_id')
-    def _onchange_work_location(self):
-        if self.job_id:
-            self.tools_work_location_id = self.job_id.department_id
+    # @api.onchange('job_id')
+    # def _onchange_work_location(self):
+        # if self.job_id:
+            # self.tools_work_location_id = self.job_id.department_id
 
 

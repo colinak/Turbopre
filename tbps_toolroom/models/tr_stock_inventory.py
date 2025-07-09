@@ -304,7 +304,7 @@ class TrStockInventoryLine(models.Model):
 
 
     _sql_constraints = [('unique_serial_lot',
-            'UNIQUE(prod_lot_id)', 
+            'UNIQUE(prod_lot_id)',
             'Ya existe un número de serie registrado para este producto.'
         )
     ]

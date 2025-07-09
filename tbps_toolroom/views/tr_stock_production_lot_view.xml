@@ -77,9 +77,9 @@
               <field name="note" string="Información adicional" placeholder="Nota Externa..." />
             </group>
             <div class="oe_chatter">
-              <field name="message_follower_ids" string="Enviar mensaje" />
+              <field name="message_follower_ids" string="Enviar mensaje" widget="mail_followers"/>
               <field name="activity_ids" string="Registrar un nota" />
-              <field name="message_ids" string="Planificar una actividad" />
+              <field name="message_ids" string="Planificar una actividad" widget="mail_thread"/>
             </div>
           </sheet>
         </form>

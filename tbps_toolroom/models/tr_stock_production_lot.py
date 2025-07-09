@@ -21,7 +21,9 @@ class TrStockProductionLot(models.Model):
     
     name = fields.Char(
         string="Nº de serie",
-        required=True
+        required=True,
+        tracking=True,
+        help="Número de serie de la herramienta."
     )
     company_id = fields.Many2one(
         "res.company",
@@ -30,15 +32,18 @@ class TrStockProductionLot(models.Model):
     location_id = fields.Many2one(
         "tr.stock.location",
         string="Ubicación",
+        tracking=True,
     )
     employee_id = fields.Many2one(
         "hr.employee",
-        string="Empleado Asignado"
+        string="Empleado Asignado",
+        tracking=True,
     )
     product_id = fields.Many2one(
         "product.product",
         string="Producto",
-        required=True
+        required=True,
+        tracking=True,
     )
     product_uom_id = fields.Many2one(
         "uom.uom",
@@ -64,6 +69,7 @@ class TrStockProductionLot(models.Model):
             ('cancel', 'Cancelada'),
         ],
         string="Estado",
+        tracking=True,
         default="draft"
     )
     stage = fields.Selection(
@@ -76,6 +82,7 @@ class TrStockProductionLot(models.Model):
             ('discarded', 'Desechado'),
         ],
         string="Stage",
+        tracking=True,
         default='available'
     )
     note = fields.Text(
@@ -83,6 +90,7 @@ class TrStockProductionLot(models.Model):
     )
     assigned_date = fields.Datetime(
         string="Fecha Asignación",
+        tracking=True,
         help="Fecha de Asignación de al herramienta"
     )
     active = fields.Boolean(
