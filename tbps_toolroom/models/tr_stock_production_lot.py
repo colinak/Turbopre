@@ -10,6 +10,7 @@
 
 from odoo import models, fields, api, _
 import logging
+from dateutil.relativedelta import relativedelta
 _logger = logging.getLogger(__name__)
 
 class TrStockProductionLot(models.Model):
@@ -93,6 +94,27 @@ class TrStockProductionLot(models.Model):
         tracking=True,
         help="Fecha de Asignación de al herramienta"
     )
+    required_certification = fields.Boolean(
+        string="Requiere certificación?",
+        default=False
+    )
+    execute_date = fields.Date(
+        string="Fecha de certificación"
+    )
+    expiration_date = fields.Date(
+        string="Fecha de expiración"
+    )
+    certification_frequency = fields.Integer(
+        string="Frecuencia de certificación"
+    )
+    final_condition = fields.Selection(
+        selection=[
+            ('current', 'Vigente'),
+            ('expired', 'Vencido')
+        ],
+        string="Condición final",
+        required=True,
+    )
     active = fields.Boolean(
         string="Activo?",
         default=True
@@ -104,3 +126,13 @@ class TrStockProductionLot(models.Model):
             'El número de serie que intenta registrar ya exitste.'
         )
     ]
+
+
+    @api.onchange('certification_frequency', 'execute_date')
+    def _onchange_calculate_certification_next(self):
+        if self.execute_date:
+            expiration = int(self.certification_frequency)
+            self.expiration_date = fields.Datetime.from_string(
+                self.execute_date
+            ) + relativedelta(months=expiration)
+

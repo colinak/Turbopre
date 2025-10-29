@@ -69,6 +69,15 @@
                   <field name="product_qty" readonly="1"/>
                   <field name="product_uom_id" readonly="1" groups="uom.group_uom"/>
                 </div>
+                <field name="required_certification" />
+                <label for="certification_frequency" class="oe_edit_only" attrs="{'invisible': [('required_certification', '=', False)]}" />
+                <div class="o_row" attrs="{'invisible': [('required_certification', '=', False)]}">
+                  <field name="certification_frequency" attrs="{'invisible': [('required_certification', '=', False)], 'required': [('required_certification', '=', True)]}" />
+                  <span>Meses</span>
+                </div>
+                <field name="execute_date" placeholder="Seleccione" attrs="{'invisible': [('required_certification', '=', False)], 'required': [('required_certification', '=', True)]}"/>
+                <field name="expiration_date" placeholder="Seleccione" attrs="{'invisible': [('required_certification', '=', False)], 'required': [('required_certification', '=', True)]}"/>
+                <field name="final_condition" string="Estado" placeholder="Seleccione" attrs="{'invisible': [('required_certification', '=', False)], 'required': [('required_certification', '=', True)]}"/>
                 <field name="ref"/>
                 <field name="company_id" invisible="True"/>
               </group>
@@ -102,7 +111,10 @@
           <field name="company_id" invisible="1"/>
           <field name="stage" string="Disponibilidad" widget="badge" decoration-success="stage == 'available'" decoration-info="stage in ('assigned', 'loan', 'in_custody')" decoration-danger="stage == 'discarded'"/>
           <field name="state" string="Estatus" widget="badge" decoration-success="state == 'done'" decoration-info="state in ('draft', 'confirm')" />
-          <field name="product_qty" />
+          <field name="certification_frequency" optional="hide" />
+          <field name="execute_date" optional="hide" />
+          <field name="expiration_date" optional="hide" />
+          <field name="final_condition" string="Estado" optional="hide" widget="badge" decoration-success="final_condition == 'current'" decoration-danger="final_condition == 'expired'"/>
         </tree>
       </field>
     </record>
