@@ -32,6 +32,7 @@
         "data/sequence.xml",
         "data/product.category.csv",
         "data/tr.stock.location.csv",
+        "reports/tools_assignment_report.xml",
         "security/tools_security.xml",
         "security/tr_warehouse/ir.model.access.csv",
         "security/tr_location/ir.model.access.csv",

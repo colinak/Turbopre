@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <data>
+    <template id="doc_assignment_tools_resport">
+      <div class="row" style="text-align: center;">
+        <table width="100%" cellspacing="0" cellpadding="0" 
+          style="border: 1px solid #000; border-collapse: collapse; margin: 0 auto; font-family: Arial,sans-serif,Helvetica,Monaco,Georgia,Futura,Verdana;">
+          <thead>
+            <tr style="height: 75px;">
+              <th colspan="2" style="width: 35%; padding: 7px; border: 1px solid #000;">
+                <div name="logo_company" align="center">
+                  <img t-att-src="image_data_uri(o.company_id.logo)" style="padding-top: 2px; height: auto; width: 250px; align: center;"/>
+                </div>
+              </th>
+              <th colspan="3" style="width: 65%; padding-top: 7px; border: 1px solid #000;">
+                <center><strong>CONTROL DE ASIGNACIÓN DE HERRAMIENTAS Y EQUIPOS</strong></center>
+              </th>
+            </tr>
+            <tr style="height: 15px;">
+              <th scope="row" colspan="5" style="text-align: left; font-size: 80%; padding: 5px; border: 1px solid #000;">
+                <span>GERENCIA DE METERIALES</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="height: 20px;">
+              <td scope="col" style="text-align: center; width: 5%; font-size: 80%; padding: 8px; border: 1px solid #000;">
+                <strong>ITEMS</strong>
+              </td>
+              <td scope="col" style="text-align: center; width: 10%; font-size: 80%; padding: 8px; border: 1px solid #000;">
+                <strong>CÓDIGO TPS</strong>
+              </td>
+              <td scope="col" style="text-align: center; width: 60%; font-size: 80%; padding: 8px; border: 1px solid #000;">
+                <strong>DESCRIPCIÓN DE LA HERRAMIENTA</strong>
+              </td>
+              <td scope="col" style="text-align: center; width: 15px; font-size: 80%; padding: 8px; border: 1px solid #000;">
+                <strong>MODELO</strong>
+              </td>
+              <td scope="col" style="text-align: center; width: 10px; font-size: 80%; padding: 8px; border: 1px solid #000;">
+                <strong>CANTIDAD</strong>
+              </td>
+            </tr>
+            <t t-foreach="enumerate(o.tools_ids)" t-as="item">
+              <t t-if="item[1].stage == 'assigned'">
+                <tr style="height: 10px;">
+                  <td scope="col" style="text-align: center; width: 5%; font-size: 80%; padding: 5px; border: 1px solid #000;">
+                    <span><t t-esc="item[0] + 1"/></span>
+                  </td>
+                  <td scope="col" style="text-align: center; width: 10%; font-size: 80%; padding: 5px; border: 1px solid #000;">
+                    <span><t t-esc="item[1].name"/></span>
+                  </td>
+                  <td scope="col" style="text-align: center; width: 60%; font-size: 80%; padding: 5px; border: 1px solid #000;">
+                    <span><t t-esc="item[1].product_id.name"/></span>
+                  </td>
+                  <td scope="col" style="text-align: center; width: 15px; font-size: 80%; padding: 5px; border: 1px solid #000;">
+                    <span><t t-esc="item[1].product_id.default_code or 'N/A'"/></span>
+                  </td>
+                  <td scope="col" style="text-align: center; width: 10px; font-size: 80%; padding: 5px; border: 1px solid #000;">
+                    <span><t t-esc="item[1].product_qty"/></span>
+                  </td>
+                </tr>
+              </t>
+            </t>
+          </tbody>
+        </table>
+      </div>
+      <div class="page" >
+          <div class="row justify-content-between" style="margin-top: 50px;">
+              <div class="col-4" style="width: 280px; padding: 10px; margin-left: 115px; display: inline-block;">
+                <table cellspacing="0" cellpadding="0" style="width: 100%;">
+                  <tr style="height: 5px;">
+                    <td style="padding: 5px; border: 1px solid #000;">RECIBIDO POR: </td>
+                  </tr>
+                  <tr style="height: 5px;">
+                    <td style="padding: 5px; border: 1px solid #000;">NOMBRE Y APELLIDO</td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="padding: 5px; border: 1px solid #000;"></td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="padding: 5px; border: 1px solid #000;">CARGO: </td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="100%; padding: 5px; border: 1px solid #000;">FECHA: </td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="100%; padding: 5px; border: 1px solid #000;">FIRMA: </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div class="col-4" style="width: 280px; padding: 10px; margin-left: 50px; display: inline-block;">
+                <table cellspacing="0" cellpadding="0" style="width: 100%;">
+                  <tr style="height: 5px;">
+                    <td style="padding: 5px; border: 1px solid #000;">AUTORIZADO POR: </td>
+                  </tr>
+                  <tr style="height: 5px;">
+                    <td style="padding: 5px; border: 1px solid #000;">NOMBRE Y APELLIDO</td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="padding: 5px; border: 1px solid #000;"></td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="padding: 5px; border: 1px solid #000;">CARGO: </td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="100%; padding: 5px; border: 1px solid #000;">FECHA: </td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="100%; padding: 5px; border: 1px solid #000;">FIRMA: </td>
+                  </tr>
+                </table>
+              </div>
+          </div>
+          <div class="row justify-content-between" style="margin-top: 50px;">
+              <div class="col-4" style="width: 280px; padding: 10px; margin-left: 275px; display: inline-block;">
+                <table cellspacing="0" cellpadding="0" style="width: 100%;">
+                  <tr style="height: 5px;">
+                    <td style="padding: 5px; border: 1px solid #000;">DESPACHADO ALMACÉN: </td>
+                  </tr>
+                  <tr style="height: 5px;">
+                    <td style="padding: 5px; border: 1px solid #000;">NOMBRE Y APELLIDO</td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="padding: 5px; border: 1px solid #000;"></td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="padding: 5px; border: 1px solid #000;">CARGO: </td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="100%; padding: 5px; border: 1px solid #000;">FECHA: </td>
+                  </tr>
+                  <tr style="height: 40px;">
+                    <td style="100%; padding: 5px; border: 1px solid #000;">FIRMA: </td>
+                  </tr>
+                </table>
+              </div>
+          </div>
+      </div>
+    </template>
+
+    <template id="report_assignment_tools">
+      <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+          <!--<t t-set="lang" t-value="o.partner_id.lang"/>-->
+          <t t-call="tbps_toolroom.doc_assignment_tools_resport" t-lang="lang"/>
+        </t>
+      </t>
+    </template>
+
+    <record id="paperformat_latter_tools" model="report.paperformat">
+        <field name="name">Carta</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">279</field>
+        <field name="page_width">215</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+        id="action_tools_assignment_report"
+        model="hr.employee"
+        string="Asignación de Herramientas"
+        name="tbps_toolroom.report_assignment_tools"
+        file="tbps_toolroom.report_assignment_tools"
+        report_type="qweb-pdf"
+        print_report_name="'Asignación de Herramientas - %s' % (object.name).replace('/','-')"
+        paperformat="tbps_toolroom.paperformat_latter_tools"
+    />
+
+  </data>
+
+</odoo>
+
