@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-
   <data>
     <template id="doc_assignment_tools_resport">
       <div class="row" style="text-align: center;">
@@ -139,7 +138,6 @@
     <template id="report_assignment_tools">
       <t t-call="web.html_container">
         <t t-foreach="docs" t-as="o">
-          <!--<t t-set="lang" t-value="o.partner_id.lang"/>-->
           <t t-call="tbps_toolroom.doc_assignment_tools_resport" t-lang="lang"/>
         </t>
       </t>
@@ -153,7 +151,7 @@
         <field name="page_width">215</field>
         <field name="orientation">Portrait</field>
         <field name="margin_top">10</field>
-        <field name="margin_bottom">10</field>
+        <field name="margin_bottom">15</field>
         <field name="margin_left">5</field>
         <field name="margin_right">5</field>
         <field name="header_line" eval="False"/>
@@ -173,78 +171,4 @@
     />
 
   </data>
-
 </odoo>
-
-
-          <!--<div class="row justify-content-between" style="margin-top: 50px;">-->
-              <!--<div class="col-4" style="width: 280px; padding: 10px; margin-left: 115px; display: inline-block;">-->
-                <!--<table cellspacing="0" cellpadding="0" style="width: 100%;">-->
-                  <!--<tr style="height: 5px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;">RECIBIDO POR: </td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 5px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;">NOMBRE Y APELLIDO</td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;"></td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;">CARGO: </td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="100%; padding: 5px; border: 1px solid #000;">FECHA: </td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="100%; padding: 5px; border: 1px solid #000;">FIRMA: </td>-->
-                  <!--</tr>-->
-                <!--</table>-->
-              <!--</div>-->
-
-              <!--<div class="col-4" style="width: 280px; padding: 10px; margin-left: 50px; display: inline-block;">-->
-                <!--<table cellspacing="0" cellpadding="0" style="width: 100%;">-->
-                  <!--<tr style="height: 5px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;">AUTORIZADO POR: </td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 5px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;">NOMBRE Y APELLIDO</td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;"></td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;">CARGO: </td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="100%; padding: 5px; border: 1px solid #000;">FECHA: </td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="100%; padding: 5px; border: 1px solid #000;">FIRMA: </td>-->
-                  <!--</tr>-->
-                <!--</table>-->
-              <!--</div>-->
-          <!--</div>-->
-          <!--<div class="row justify-content-between" style="margin-top: 50px;">-->
-              <!--<div class="col-4" style="width: 280px; padding: 10px; margin-left: 275px; display: inline-block;">-->
-                <!--<table cellspacing="0" cellpadding="0" style="width: 100%;">-->
-                  <!--<tr style="height: 5px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;">DESPACHADO ALMACÉN: </td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 5px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;">NOMBRE Y APELLIDO</td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;"></td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="padding: 5px; border: 1px solid #000;">CARGO: </td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="100%; padding: 5px; border: 1px solid #000;">FECHA: </td>-->
-                  <!--</tr>-->
-                  <!--<tr style="height: 40px;">-->
-                    <!--<td style="100%; padding: 5px; border: 1px solid #000;">FIRMA: </td>-->
-                  <!--</tr>-->
-                <!--</table>-->
-              <!--</div>-->
-          <!--</div>-->

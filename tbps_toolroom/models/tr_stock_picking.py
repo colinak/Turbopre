@@ -116,10 +116,8 @@ class TrStockPicking(models.Model):
     )
     count_move_lines = fields.Integer(
         string="Lineas de Herramientas",
-        # compute="_compute_count_line"
     )
     availability = fields.Boolean("Availability", default=False)
-    # active = fields.Boolenam("Activo")
 
 
     def _compute_count_line(self):
@@ -232,8 +230,7 @@ class TrStockPicking(models.Model):
                     'inventory_quantity': 1
                 })
             except:
-                raise UserError("¡Error!")
-
+                raise UserError("¡Error al intentar devolver herramienta!")
 
 
     def transfer_confirm(self):

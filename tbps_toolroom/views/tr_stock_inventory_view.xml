@@ -31,13 +31,11 @@
           <header>
             <button name="action_start" states="draft" string="Iniciar Inventario" type="object" class="oe_highlight" />
             <button name="action_open_inventory_lines" states="confirm" string="Continuar Inventario" type="object" class="oe_highlight" />
-            <!--<button name="action_validate" string="Validar Inventario" type="object" attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('line_ids', '!=', [])]}" groups="tbps_toolroom.group_tools_manager" />-->
             <button name="action_validate" string="Validar Inventario" type="object" class="oe_highlight"
               attrs="{'invisible': ['|', ('state', '!=', 'confirm'), ('line_ids', '=', [])]}" 
               groups="tbps_toolroom.group_tools_manager,tbps_toolroom.group_tools_system,base.group_system"
               confirm="¿Está seguro que desea validar este inventario? una vez que valide, no podrá agregar más lineas de inventario, ni ejecutar otra acción correspondiente."
             />
-            <!--[><button name="action_print" string="Print Count Sheet" type="object" attrs="{'invisible': [('state', '=', 'draft')]}" groups="stock.group_stock_user"/><]-->
             <button name="action_cancel_draft" states="cancel" string="Establecer a borrador" type="object"/>
             <button name="action_cancel_draft" states="confirm" string="Cancelar Inventario" type="object" 
                 confirm="Si cancela este ajuste de inventario, se perderán todas sus líneas de ajuste de inventario. ¿Estás seguro de que quieres descartarlo?"/>

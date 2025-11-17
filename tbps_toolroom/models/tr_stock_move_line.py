@@ -33,7 +33,6 @@ class TrStockMoveLine(models.Model):
         "res.company", 
         string='Compañia', 
         readonly=True, 
-        # required=True, 
         index=True
     )
     move_id = fields.Many2one(
@@ -66,24 +65,15 @@ class TrStockMoveLine(models.Model):
     )
     product_qty = fields.Integer(
         "Cantidad real reservada",
-        # digits=0, 
         copy=False,
-        # compute='_compute_product_qty', 
-        # inverse='_set_product_qty', 
-        # store=True
     )
     product_uom_qty = fields.Integer(
         string="Reservado",
-        default=1, 
-        # digits='Product Unit of Measure', 
-        # required=True, 
-        # copy=False
+        default=1,
     )
     qty_done = fields.Integer(
         string="Hecho",
         default=1,
-        # digits='Product Unit of Measure', 
-        # copy=False
     )
     lot_id = fields.Many2one(
         "tr.stock.production.lot", 
@@ -156,6 +146,8 @@ class TrStockMoveLine(models.Model):
                 self.location_id = ""
                 self.product_uom_id = ""
                 raise UserError("¡Error! \nEsta herramienta no se encuentra prestada")
+            elif (serial_lot.stage == 'assigned' and self.picking_id.picking_type_code == 'reception'):
+                raise UserError("¡WARNING! \nEsta herramienta no se encuentra asignada")
             else:
                 self.lot_id = serial_lot.id
                 self.product_id = serial_lot.product_id.id
