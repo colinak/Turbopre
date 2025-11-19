@@ -2,18 +2,6 @@
 <odoo>
   <data>
 
-    <!--<record id="stock_product_template_search_form_view" model="ir.ui.view">-->
-      <!--<field name="name">product.template.search.stock</field>-->
-      <!--<field name="model">product.template</field>-->
-      <!--<field name="inherit_id" ref="product.product_template_search_view"/>-->
-      <!--<field name="arch" type="xml">-->
-        <!--<xpath expr="//field[@name='pricelist_id']" position="after">-->
-          <!--<separator/>-->
-          <!--<filter name="stock_available" string="Disponibles" domain="[('available_qty', '&gt;', 1)]"/>-->
-        <!--</xpath>-->
-      <!--</field>-->
-    <!--</record>-->
-
     <record id="inherit_product_attribute_value_action" model="ir.actions.act_window">
       <field name="name">Product Variant Values</field>
       <field name="res_model">product.template.attribute.value</field>
@@ -38,10 +26,7 @@
           <field name="product_variant_count"/>
           <field name="currency_id"/>
           <field name="activity_state"/>
-          <!--<field name="product_uom_id" />-->
           <field name="type" />
-          <!--<field name="qty_available" />-->
-          <!--<field name="uom_id" />-->
           <progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
           <templates>
             <t t-name="kanban-box">
@@ -73,7 +58,7 @@
               </div>
             </t>
           </templates>
-      </kanban>
+        </kanban>
       </field>
     </record>
 
@@ -84,14 +69,6 @@
       <field name="arch" type="xml">
         <form string="Product">
           <header>
-            <!--<button string="Configure Variantes" type="action"-->
-              <!--name="%(inherit_product_attribute_value_action)d"-->
-              <!--attrs="{'invisible': ['|', ('attribute_line_ids', '&lt;=', 0), ('is_product_variant', '=', True)]}"-->
-              <!--groups="product.group_product_variant"-->
-            <!--/>-->
-                <!--type="object" -->
-                <!--name="action_update_quantity_on_hand" -->
-            <!--<button string="Actualizar la cantidad" attrs="{'invisible': [('type', '!=', 'product')]}"/>-->
           </header>
           <sheet>
             <field name='active' invisible='1'/>
@@ -205,6 +182,11 @@
               <!--</page>-->
             </notebook>
           </sheet>
+          <div class="oe_chatter">
+              <field name="message_follower_ids" />
+              <field name="activity_ids"/>
+              <field name="message_ids"/>
+          </div>
         </form>
       </field>
     </record>

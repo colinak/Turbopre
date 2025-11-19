@@ -2,18 +2,6 @@
 <odoo>
   <data>
 
-    <!--<record id="stock_product_search_form_view" model="ir.ui.view">-->
-      <!--<field name="name">product.product.search.stock</field>-->
-      <!--<field name="model">product.product</field>-->
-      <!--<field name="inherit_id" ref="product.product_search_form_view"/>-->
-      <!--<field name="arch" type="xml">-->
-        <!--<xpath expr="//filter[@name='inactive']" position="after">-->
-          <!--<separator/>-->
-          <!--<filter name="stock_available" string="Disponibles" domain="[('available_qty', '&gt;', 0)]"/>-->
-        <!--</xpath>-->
-      <!--</field>-->
-    <!--</record>-->
-
     <record id="inherit_product_product_form_view" model="ir.ui.view">
       <field name="name">inherit.product.product.form</field>
       <field name="model">product.product</field>
@@ -81,6 +69,11 @@
               </page>
             </notebook>
           </sheet>
+          <div class="oe_chatter">
+              <field name="message_follower_ids" />
+              <field name="activity_ids"/>
+              <field name="message_ids"/>
+          </div>
         </form>
       </field>
     </record>
