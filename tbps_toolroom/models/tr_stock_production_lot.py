@@ -76,11 +76,13 @@ class TrStockProductionLot(models.Model):
     stage = fields.Selection(
         [
             ('available', 'Disponible'),
-            ('assigned', 'Asignado'),
-            ('loan', 'Prestado'),
-            ('reserved', 'Reservado'),
+            ('assigned', 'Asignada'),
+            ('loan', 'Prestada'),
+            ('reserved', 'Reservada'),
             ('in_custody', 'En Custodia'),
-            ('discarded', 'Desechado'),
+            ('loss', 'Perdida'),
+            ('fault', 'Averiada'),
+            ('discarded', 'Desechada'),
         ],
         string="Stage",
         tracking=True,

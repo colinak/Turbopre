@@ -22,6 +22,8 @@
           <filter string="Prestado" name="loan" domain="[('stage', '=', 'loan')]"/>
           <filter string="Reservado" name="reserved" domain="[('stage', '=', 'reserved')]"/>
           <filter string="En Custodia" name="in_custody" domain="[('stage', '=', 'in_custody')]"/>
+          <filter string="Perdida" name="loss" domain="[('stage', '=', 'loss')]"/>
+          <filter string="Averiado" name="fault" domain="[('stage', '=', 'fault')]"/>
           <filter string="Desechado" name="discarded" domain="[('stage', '=', 'discarded')]"/>
           <group expand="0" string="Group By">
             <filter name="group_by_product" string="Producto" domain="[('stage', '!=', 'discarded')]" context="{'group_by': 'product_id'}"/>
@@ -54,6 +56,9 @@
             <widget name="web_ribbon" title="PRESTADA" bg_color="bg-info" attrs="{'invisible': [('stage', '!=', 'loan')]}"/>
             <widget name="web_ribbon" title="RESERVADA" bg_color="bg-warning" attrs="{'invisible': [('stage', '!=', 'reserved')]}"/>
             <widget name="web_ribbon" title="CUSTODIADA" bg_color="bg-warning" attrs="{'invisible': [('stage', '!=', 'in_custody')]}"/>
+            <!--<widget name="web_ribbon" title="PERDIDA" bg_color="bg-muted" attrs="{'invisible': [('stage', '!=', 'loss')]}"/>-->
+            <widget name="web_ribbon" title="PERDIDA" bg_color="bg-warning" attrs="{'invisible': [('stage', '!=', 'loss')]}"/>
+            <widget name="web_ribbon" title="AVERIADA" bg_color="bg-info" attrs="{'invisible': [('stage', '!=', 'fault')]}"/>
             <widget name="web_ribbon" title="DESECHADA" bg_color="bg-danger" attrs="{'invisible': [('stage', '!=', 'discarded')]}"/>
             <div class="oe_title">
               <label for="name" string="N° Serial TPS" class="oe_edit_only"/>
@@ -109,7 +114,7 @@
           <field name="ref" optional="hide" />
           <field name="create_date" optional="show" string="Creado en"/>
           <field name="company_id" invisible="1"/>
-          <field name="stage" string="Disponibilidad" widget="badge" decoration-success="stage == 'available'" decoration-info="stage in ('assigned', 'loan', 'in_custody')" decoration-danger="stage == 'discarded'"/>
+          <field name="stage" string="Disponibilidad" widget="badge" decoration-success="stage == 'available'" decoration-info="stage in ('assigned', 'loan', 'in_custody', 'fault')" decoration-warning="stage == 'loss'" decoration-danger="stage == 'discarded'"/>
           <field name="state" string="Estatus" widget="badge" decoration-success="state == 'done'" decoration-info="state in ('draft', 'confirm')" />
           <field name="certification_frequency" optional="hide" />
           <field name="execute_date" optional="hide" />

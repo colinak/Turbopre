@@ -39,7 +39,7 @@ class TrStockScrap(models.Model):
         selection=[
             ('loss', 'Perdida'),
             ('fault', 'Avería'),
-            ('scrap', 'Desechar'),
+            ('discarded', 'Desechar'),
         ],
         string="Tipo de Operación",
         help="Seleccione el tipo de operación"
@@ -99,16 +99,13 @@ class TrStockScrap(models.Model):
                     ],limit=1)
                     line.write({
                         'state': "cancel",
-                        'stage': "discarded",
+                        'stage': self.type_operation,
                         'location_id': location.id,
                     })
                 self.write({'stage': "done"})
                 self.name = self.env['ir.sequence'].next_by_code('tr.stock.scrap') or _('Nuevo')
         except:
             raise UserError("No se pudo desechar las herramientas.")
-
-
-
 
 
 
