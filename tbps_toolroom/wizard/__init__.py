@@ -9,3 +9,4 @@
 ###############################################################################
 
 from . import tr_check_availability_tools
+from . import tr_stock_picking_warning

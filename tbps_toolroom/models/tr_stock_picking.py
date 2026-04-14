@@ -210,6 +210,30 @@ class TrStockPicking(models.Model):
             except:
                 raise UserError("¡Error!")
 
+    def action_check_stage(self):
+
+        # Verificar si ya aceptamos el riesgo anteriormente
+        if self.env.context.get('skip_check'):
+            return self.sudo().return_confirm()
+
+        # Buscamos si hay alguna línea con herramienta asignada
+        assigned_lines = self.move_line_ids.filtered(lambda l: l.lot_id.stage == 'assigned')
+
+        if assigned_lines:
+            _logger.info("Se encontraron líneas asignadas, lanzando Wizard")
+            names = ", ".join(assigned_lines.mapped('lot_name'))
+            return {
+                'name': 'Advertencia: Herramienta Asignada',
+                'type': 'ir.actions.act_window',
+                'res_model': 'tr.stock.picking.warning.wizard',
+                'view_mode': 'form',
+                'target': 'new',
+                'context': {
+                    'default_picking_id': self.id,
+                    'default_message': f'La herramienta {names} está asignada. ¿Deseas continuar de todas formas?',
+                }
+            }
+        return self.sudo().return_confirm()
 
     def return_confirm(self):
         for line in self.move_line_ids:
@@ -231,6 +255,7 @@ class TrStockPicking(models.Model):
                 })
             except:
                 raise UserError("¡Error al intentar devolver herramienta!")
+            self.state = "done"
 
 
     def transfer_confirm(self):
@@ -288,8 +313,8 @@ class TrStockPicking(models.Model):
                         self.state = "done"
                     elif self.picking_type_code == "reception":
                         self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.returns') or _('Nuevo')
-                        self.sudo().return_confirm()
-                        self.state = "done"
+                        return self.action_check_stage()
+                        # self.sudo().return_confirm()
                     elif self.picking_type_code == "Transfers":
                         self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.transfers') or _('Nuevo')
                         self.sudo().transfer_confirm()

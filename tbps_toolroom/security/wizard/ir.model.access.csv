@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acs_tr_stock_picking_warning_wizard_user,acs.tr.stock.picking.warning.wizard.user,model_tr_stock_picking_warning_wizard,base.group_user,1,1,1,0
+acs_tr_stock_picking_warning_wizard_system,acs.tr.stock.picking.warning.wizard.system,model_tr_stock_picking_warning_wizard,base.group_system,1,1,1,1
+

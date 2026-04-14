@@ -49,6 +49,7 @@
         "security/tr_orderpoint/ir.model.access.csv",
         "security/tools_manufacturers/ir.model.access.csv",
         "security/check_availability/ir.model.access.csv",
+        "security/wizard/ir.model.access.csv",
         "views/menu_setting_view.xml",
         "views/tr_warehouse_view.xml",
         "views/tr_stock_production_lot_view.xml",
@@ -68,6 +69,7 @@
         "views/tr_stock_manufacturers_view.xml",
         "views/tr_stock_warehouse_orderpoint_view.xml",
         "wizard/tr_check_availability_tools_wizard.xml",
+        "wizard/tr_stock_picking_warning_wizard.xml"
     ],
     'demo': [],
     'qweb': [],

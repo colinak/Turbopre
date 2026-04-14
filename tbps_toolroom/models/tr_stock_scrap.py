@@ -39,6 +39,7 @@ class TrStockScrap(models.Model):
         selection=[
             ('loss', 'Perdida'),
             ('fault', 'Avería'),
+            ('scrap', 'Desechar'),
         ],
         string="Tipo de Operación",
         help="Seleccione el tipo de operación"

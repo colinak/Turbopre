@@ -50,15 +50,19 @@
                 <field name="type_operation" required="True" placeholder="Seleccione" />
                 <field name="document" string="Adjuntar FO-SEF-100" widget="binary" filename="file_name" 
                   attrs="{
-                    'required': [('type_operation', '=', 'loss')], 
                     'invisible': [('type_operation', '!=', 'loss')], 
                     'readonly': [('stage', '!=', 'draft')]
                   }" />
 
-                <field name="document" string="Adjuntar FO-CAL-143" required="True" widget="binary" filename="file_name" 
+                <field name="document" string="Adjuntar FO-ING-105" widget="binary" filename="file_name" 
                   attrs="{
-                    'required': [('type_operation', '=', 'fault')], 
                     'invisible': [('type_operation', '!=', 'fault')], 
+                    'readonly': [('stage', '!=', 'draft')]
+                  }" />
+                  
+                <field name="document" string="Adjuntar FO-ING-105"  widget="binary" filename="file_name" 
+                  attrs="{
+                    'invisible': [('type_operation', '!=', 'scrap')], 
                     'readonly': [('stage', '!=', 'draft')]
                   }" />
 

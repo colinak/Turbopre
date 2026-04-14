@@ -63,7 +63,6 @@ class TrStockWarehouseOrderpoint(models.Model):
     )
     document = fields.Binary(
         string="Adjuntar documento",
-        required=True
     )
     file_name = fields.Char(string="File name")
     count_line = fields.Integer(
