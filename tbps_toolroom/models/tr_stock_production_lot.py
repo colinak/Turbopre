@@ -138,3 +138,11 @@ class TrStockProductionLot(models.Model):
                 self.execute_date
             ) + relativedelta(months=expiration)
 
+
+    @api.onchange('required_certification')
+    def _onchange_required_certification(self):
+        if not self.required_certification:
+            self.certification_frequency = False
+            self.execute_date = False
+            self.expiration_date = False
+            self.final_condition = False
