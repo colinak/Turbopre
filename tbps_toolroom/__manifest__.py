@@ -29,6 +29,7 @@
         'contact_directory',
     ],
     'data': [
+        "data/ir.cron.xml",
         "data/sequence.xml",
         "data/product.category.csv",
         "data/tr.stock.location.csv",

@@ -146,3 +146,20 @@ class TrStockProductionLot(models.Model):
             self.execute_date = False
             self.expiration_date = False
             self.final_condition = False
+
+    @api.model
+    def _cron_check_expiration(self):
+        """ Método para el ir.cron: marca como 'expired' si la fecha actual >= expiration_date """
+        today = fields.Date.today()
+        # Buscamos registros vigentes que ya deberían estar expirados
+        records_to_update = self.search([
+            ('final_condition', '=', 'current'),
+            ('expiration_date', '<=', today)
+        ])
+        
+        if records_to_update:
+            records_to_update.write({'final_condition': 'expired'})
+            _logger.info(f"Se actualizaron {len(records_to_update)} registros")
+
+
+
