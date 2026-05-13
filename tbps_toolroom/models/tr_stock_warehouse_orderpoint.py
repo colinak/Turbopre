@@ -57,7 +57,7 @@ class TrStockWarehouseOrderpoint(models.Model):
         "tr_stock_warehouse_orderpoint_id",
         "tr_stock_production_lot_id",
         string="Números de Serie",
-        domain="[('stage', '=', 'discarded'), ('state', '=', 'cancel')]",
+        domain="[('stage', '=', ['discarded', 'fault', 'loss']), ('state', '=', 'cancel')]",
         required=True,
         help="Números de serie del equipo o herramienta"
     )

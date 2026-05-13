@@ -139,6 +139,24 @@ class TrStockProductionLot(models.Model):
             ) + relativedelta(months=expiration)
 
 
+    @api.onchange('expiration_date')
+    def _onchange_certification_status(self):
+        today = fields.Date.context_today(self)
+        for rec in self:
+            # 1. Validación de seguridad: Si no hay fecha de expiración
+            if not rec.expiration_date:
+                rec.final_condition = 'expired'
+                continue
+            if today < rec.expiration_date:
+                new_status = 'current'
+            else:
+                new_status = 'expired'
+
+            # Solo escribimos en el campo si el valor ha cambiado
+            if rec.final_condition != new_status:
+                rec.final_condition = new_status
+
+
     @api.onchange('required_certification')
     def _onchange_required_certification(self):
         if not self.required_certification:

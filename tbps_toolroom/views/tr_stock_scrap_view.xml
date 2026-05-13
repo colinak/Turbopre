@@ -62,7 +62,7 @@
                   
                 <field name="document" string="Adjuntar FO-ING-105"  widget="binary" filename="file_name" 
                   attrs="{
-                    'invisible': [('type_operation', '!=', 'scrap')], 
+                    'invisible': [('type_operation', '!=', 'discarded')], 
                     'readonly': [('stage', '!=', 'draft')]
                   }" />
 
