@@ -29,6 +29,7 @@
             <filter name="group_by_product" string="Producto" domain="[('stage', '!=', 'discarded')]" context="{'group_by': 'product_id'}"/>
             <filter name="group_by_employee" string="Empleado" domain="[]" context="{'group_by': 'employee_id'}"/>
             <filter name="group_by_location" string="Ubicación" domain="[]" context="{'group_by': 'location_id'}"/>
+            <filter name="group_by_home_location" string="Ubicación de Origen" domain="[]" context="{'group_by': 'home_location_id'}"/>
             <filter name="group_by_stage" string="Disponibilidad" domain="[]" context="{'group_by': 'stage'}"/>
             <filter name="group_by_state" string="Estatus" domain="[]" context="{'group_by': 'state'}"/>
           </group>
@@ -56,7 +57,6 @@
             <widget name="web_ribbon" title="PRESTADA" bg_color="bg-info" attrs="{'invisible': [('stage', '!=', 'loan')]}"/>
             <widget name="web_ribbon" title="RESERVADA" bg_color="bg-warning" attrs="{'invisible': [('stage', '!=', 'reserved')]}"/>
             <widget name="web_ribbon" title="CUSTODIADA" bg_color="bg-warning" attrs="{'invisible': [('stage', '!=', 'in_custody')]}"/>
-            <!--<widget name="web_ribbon" title="PERDIDA" bg_color="bg-muted" attrs="{'invisible': [('stage', '!=', 'loss')]}"/>-->
             <widget name="web_ribbon" title="PERDIDA" bg_color="bg-warning" attrs="{'invisible': [('stage', '!=', 'loss')]}"/>
             <widget name="web_ribbon" title="AVERIADA" bg_color="bg-info" attrs="{'invisible': [('stage', '!=', 'fault')]}"/>
             <widget name="web_ribbon" title="DESECHADA" bg_color="bg-danger" attrs="{'invisible': [('stage', '!=', 'discarded')]}"/>
@@ -69,6 +69,8 @@
             <group name="main_group">
               <group>
                 <field name="product_id" string="Herramienta" placeholder="Seleccione" context="{'default_type': 'product'}" help="Producto que contiene este número de serie. Ya no puedes cambiarlo si ya se ha movido."/>
+                <field name="home_location_id" placeholder="Seleccione" />
+                <field name="location_id" placeholder="Seleccione" invisible="True" />
                 <label for="product_qty" />
                 <div class="o_row" >
                   <field name="product_qty" readonly="1"/>
@@ -111,6 +113,7 @@
           <field name="product_id" string="Herramienta" readonly="1" />
           <field name="employee_id" string="Empleado Asignado" optional="hide"/>
           <field name="location_id" string="Ubicación" optional="hide"/>
+          <field name="home_location_id" optional="hide"/>
           <field name="ref" optional="hide" />
           <field name="create_date" optional="show" string="Creado en"/>
           <field name="company_id" invisible="1"/>
@@ -119,6 +122,7 @@
           <field name="certification_frequency" optional="hide" />
           <field name="execute_date" optional="hide" />
           <field name="expiration_date" optional="hide" />
+          <field name="scrap_date" optional="hide" />
           <field name="final_condition" string="Estado" optional="hide" widget="badge" decoration-success="final_condition == 'current'" decoration-danger="final_condition == 'expired'"/>
         </tree>
       </field>

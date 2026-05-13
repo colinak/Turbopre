@@ -76,7 +76,6 @@ class TrStockScrap(models.Model):
     )
 
 
-
     def _compute_count_line(self):
         for line in self:
             line.count_line = len(line.tools_lot_line_ids)
@@ -84,7 +83,6 @@ class TrStockScrap(models.Model):
 
     def action_cancel_draft(self):
         pass
-
 
 
     def action_validate(self):
@@ -101,6 +99,7 @@ class TrStockScrap(models.Model):
                         'state': "cancel",
                         'stage': self.type_operation,
                         'location_id': location.id,
+                        'scrap_date': self.date_done
                     })
                 self.write({'stage': "done"})
                 self.name = self.env['ir.sequence'].next_by_code('tr.stock.scrap') or _('Nuevo')

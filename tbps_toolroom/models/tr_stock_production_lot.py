@@ -30,6 +30,13 @@ class TrStockProductionLot(models.Model):
         "res.company",
         string="Compañia"
     )
+    home_location_id = fields.Many2one(
+        "tr.stock.location",
+        string="Ubicación de Origen",
+        tracking=True,
+        domain="[('usage', '=', 'internal')]",
+        help="Ubicación fija donde debe guardarse este equipo cuando no está asignado."
+    )
     location_id = fields.Many2one(
         "tr.stock.location",
         string="Ubicación",
@@ -93,6 +100,11 @@ class TrStockProductionLot(models.Model):
     )
     assigned_date = fields.Datetime(
         string="Fecha Asignación",
+        tracking=True,
+        help="Fecha de Asignación de al herramienta"
+    )
+    scrap_date = fields.Datetime(
+        string="Fecha Baja de Inventario",
         tracking=True,
         help="Fecha de Asignación de al herramienta"
     )
