@@ -35,24 +35,14 @@ class TrStockMove(models.Model):
     description_picking = fields.Text('Descripción del Picking')
     product_qty = fields.Integer(
         'Cantidad real', 
-        # compute='_compute_product_qty',
-        # inverse='_set_product_qty',
-        # digits=0, 
-        # store=True, 
-        # compute_sudo=True,
         help='Cantidad en la UM por defecto del producto'
     )
     qty_done = fields.Integer(
         string="Hecho",
-        # default=1,
-        # digits='Product Unit of Measure', 
-        # copy=False
     )
     product_availability = fields.Integer(
         "Cantidad disponible",
         related="product_id.available_qty",
-        # compute='_compute_product_qty', 
-        # store=True, 
         help='Cantidad disponible del producto'
     )
     availability = fields.Integer(
@@ -142,7 +132,6 @@ class TrStockMove(models.Model):
     )
     reference = fields.Char(
         string="Referencia",
-        # compute='_compute_reference', 
         store=True
     )
     state = fields.Selection(
@@ -154,14 +143,4 @@ class TrStockMove(models.Model):
         string="Estado"
     )
 
-
-    # @api.depends('product_id', 'product_uom', 'product_uom_qty')
-    # def _compute_product_qty(self):
-        # rounding_method = 'HALF-UP'
-        # for move in self:
-            # move.product_qty = move.product_uom._compute_quantity(
-                # move.product_uom_qty,
-                # move.product_id.uom_id,
-                # rounding_method=rounding_method
-            # )
 

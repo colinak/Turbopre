@@ -30,16 +30,16 @@ class TrStockProductionLot(models.Model):
         "res.company",
         string="Compañia"
     )
-    home_location_id = fields.Many2one(
+    default_location_id = fields.Many2one(
         "tr.stock.location",
-        string="Ubicación de Origen",
+        string="Ubicación predeterminada",
         tracking=True,
         domain="[('usage', '=', 'internal')]",
         help="Ubicación fija donde debe guardarse este equipo cuando no está asignado."
     )
     location_id = fields.Many2one(
         "tr.stock.location",
-        string="Ubicación",
+        string="Ubicación actual",
         tracking=True,
     )
     employee_id = fields.Many2one(

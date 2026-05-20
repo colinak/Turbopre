@@ -98,13 +98,12 @@ class TrStockMoveLine(models.Model):
         "tr.stock.location",
         string="Desde", 
         check_company=True,
-        required=True
+        # required=True
     )
     location_dest_id = fields.Many2one(
         "tr.stock.location",
         string="Hasta", 
         check_company=True,
-        required=True
     )
     picking_code = fields.Selection(
         string="Code",
@@ -122,36 +121,42 @@ class TrStockMoveLine(models.Model):
 
     @api.onchange('lot_name')
     def _onchange_lot_name(self):
-        if self.lot_name:
-            serial_lot = self.env['tr.stock.production.lot'].search([(
-                'name', '=', self.lot_name
-            )],limit=1)
-            if len(serial_lot) < 1:
-                self.lot_name = ""
-                self.lot_id = ""
-                self.product_id = ""
-                self.location_id = ""
-                self.product_uom_id = ""
-                raise UserError("¡Error! \nNo se encontro ninguna herramienta con este número de serie.")
-            elif (serial_lot.stage != 'available' and self.picking_id.picking_type_code != 'reception'):
-                self.lot_name = ""
-                self.lot_id = ""
-                self.product_id = ""
-                self.location_id = ""
-                self.product_uom_id = ""
-                raise UserError("¡Error! \nEsta herramienta ya se encuentra prestada")
-            elif (serial_lot.stage == 'available' and self.picking_id.picking_type_code == 'reception'):
-                self.lot_name = ""
-                self.lot_id = ""
-                self.product_id = ""
-                self.location_id = ""
-                self.product_uom_id = ""
-                raise UserError("¡Error! \nEsta herramienta no se encuentra prestada")
-            else:
-                self.lot_id = serial_lot.id
-                self.product_id = serial_lot.product_id.id
-                self.location_id = serial_lot.location_id.id
-                self.product_uom_id = serial_lot.product_uom_id.id
+        """Busca el lot_name por texto y auto-completa los datos asociados."""
+        if not self.lot_name:
+            return
 
+        # 1. Búsqueda óptima del lote
+        serial = self.env['tr.stock.production.lot'].search([
+            ('name', '=', self.lot_name.strip())
+        ], limit=1)
+
+        # 2. Validación de existencia
+        if not serial:
+            raise UserError(_("¡Error!\nNo se encontró ninguna herramienta con este número de serie."))
+
+        # Variables de control para mejorar la lectura
+        picking_type = self.picking_id.picking_type_code
+        stage = serial.stage
+        
+        _logger.info("Procesando serial: %s | Tipo: %s | Estado: %s", self.lot_name, picking_type, stage)
+
+        # 3. Validaciones de Estado de la Herramienta
+        if stage != 'available' and picking_type != 'reception':
+            raise UserError(_("¡Error!\nEsta herramienta ya se encuentra prestada o no está disponible."))
+        if stage == 'available' and picking_type == 'reception':
+            raise UserError(_("¡Error!\nEsta herramienta ya está en almacén (no se encuentra prestada)."))
+
+        # 4. Asignación limpia de datos (se ejecuta solo si pasa todas las validaciones)
+        self.update({
+            'lot_id': serial.id,
+            'product_id': serial.product_id.id,
+            'location_id': serial.location_id.id,
+            'product_uom_id': serial.product_uom_id.id,
+            'location_dest_id': (
+                serial.default_location_id.id
+                if picking_type == 'reception'
+                else self.picking_id.location_dest_id.id
+            )
+        })
 
 

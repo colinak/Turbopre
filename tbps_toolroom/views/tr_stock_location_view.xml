@@ -48,7 +48,7 @@
               </h1>
               <label for="location_id" string="Ubicación padre" class="oe_edit_only" />
               <h2>
-                <field name="location_id" style="width: 30%;"/>
+                <field name="location_id" style="width: 30%;" placeholder="Seleccione" />
                 <field name="company_id" invisible="1"/>
               </h2>
             </div>
