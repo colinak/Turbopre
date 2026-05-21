@@ -241,7 +241,7 @@ class TrStockPicking(models.Model):
                 line.reference = self.name
                 line.state = "done"
                 line.lot_id.write({
-                    'location_id': self.location_dest_id.id,
+                    'location_id': line.location_dest_id.id,
                     'stage': "available",
                     'employee_id': False,
                     'assigned_date': self.date
@@ -250,7 +250,7 @@ class TrStockPicking(models.Model):
                     ('lot_id', '=', line.lot_id.id)
                 ])
                 quants.write({
-                    'location_id': self.location_dest_id.id,
+                    'location_id': line.location_dest_id.id,
                     'inventory_quantity': 1
                 })
             except:
