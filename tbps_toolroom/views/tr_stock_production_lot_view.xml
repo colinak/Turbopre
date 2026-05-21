@@ -28,7 +28,7 @@
           <group expand="0" string="Group By">
             <filter name="group_by_product" string="Producto" domain="[('stage', '!=', 'discarded')]" context="{'group_by': 'product_id'}"/>
             <filter name="group_by_employee" string="Empleado" domain="[]" context="{'group_by': 'employee_id'}"/>
-            <filter name="group_by_location" string="Ubicación" domain="[]" context="{'group_by': 'location_id'}"/>
+            <filter name="group_by_location" domain="[]" context="{'group_by': 'location_id'}"/>
             <filter name="group_by_default_location" string="Ubicación de Origen" domain="[]" context="{'group_by': 'default_location_id'}"/>
             <filter name="group_by_stage" string="Disponibilidad" domain="[]" context="{'group_by': 'stage'}"/>
             <filter name="group_by_state" string="Estatus" domain="[]" context="{'group_by': 'state'}"/>
@@ -118,7 +118,7 @@
           <field name="name" string="N° Serial TPS" decoration-bf="1"/>
           <field name="product_id" string="Herramienta" readonly="1" />
           <field name="employee_id" string="Empleado Asignado" optional="hide"/>
-          <field name="location_id" string="Ubicación" optional="hide"/>
+          <field name="location_id" optional="hide"/>
           <field name="default_location_id" optional="hide"/>
           <field name="ref" optional="hide" />
           <field name="create_date" optional="show" string="Creado en"/>

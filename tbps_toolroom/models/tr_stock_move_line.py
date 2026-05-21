@@ -97,13 +97,11 @@ class TrStockMoveLine(models.Model):
     location_id = fields.Many2one(
         "tr.stock.location",
         string="Desde", 
-        check_company=True,
         # required=True
     )
     location_dest_id = fields.Many2one(
         "tr.stock.location",
-        string="Hasta", 
-        check_company=True,
+        string="Hasta",
     )
     picking_code = fields.Selection(
         string="Code",

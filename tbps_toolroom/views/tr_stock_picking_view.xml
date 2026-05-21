@@ -42,7 +42,6 @@
           <field name="count_line" invisible="1" />
           <field name="count_move_lines" invisible="1" />
           <field name="availability" invisible="1" />
-          <!--<widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>-->
           <header>
             <button name="action_validate" string="Validar" type="object" class="oe_highlight" 
               attrs="{'invisible': [('state', '!=', 'draft')]}" /> 
@@ -83,7 +82,7 @@
                       <field name="lot_name" required="1" />
                       <field name="product_id" string="Herramienta" placeholder="Seleccione" required="1" readonly="1" force_save="1"/>
                       <field name="location_id" readonly="1" force_save="1"/>
-                      <field name="location_dest_id" force_save="1" optional="hide" />
+                      <field name="location_dest_id" force_save="1" optional="hide" domain="[('usage', 'in', ['internal', 'external'])]" />
                       <field name="product_uom_qty" invisible="1" />
                       <field name="qty_done" string="Cantidad" optional="hide" readonly="1" force_save="1" />
                       <field name="product_uom_id" optional="hide" />
