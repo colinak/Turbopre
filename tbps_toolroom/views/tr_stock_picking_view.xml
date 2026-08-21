@@ -60,12 +60,25 @@
             <group col="4" >
               <field name="picking_type_code" placeholder="Seleccione" attrs="{'readonly': [('state', '=', 'done')]}" />
               <field name="date" placeholder="Seleccione" attrs="{'readonly': [('state', '=', 'done')]}" />
-              <field name="signature_applicant" placeholder="Código del Carnet" required="1" attrs="{'readonly': [('state', '=', 'done')]}" />
-              <field name="applicant_id" placeholder="Seleccione" required="1" readonly="1" force_save="1"  />
+
+              <field name="signature_applicant" placeholder="Código del Carnet" 
+                attrs="{'readonly': [('state', '=', 'done')], 'invisible': [('picking_type_code', '=', 'transfers')], 'required': [('picking_type_code', '!=', 'transfers')]}" />
+
+              <field name="applicant_id" placeholder="Seleccione" readonly="1" force_save="1" 
+                attrs="{'invisible': [('picking_type_code', '=', 'transfers')], 'required': [('picking_type_code', '!=', 'transfers')]}"  />
+
               <field name="signature_deliverer" placeholder="Código del Carnet"
                 attrs="{'readonly': [('state', '=', 'done')], 'required': [('picking_type_code', '!=', 'transfers')], 'invisible': [('picking_type_code', '=', 'transfers')]}" />
-              <field name="delivery_id" placeholder="Seleccione" readonly="1" force_save="1" 
-                attrs="{'required': [('picking_type_code', '!=', 'transfers')], 'invisible': [('picking_type_code', '=', 'transfers')]}" />
+              <field name="delivery_id" placeholder="Seleccione" force_save="1" readonly="1" attrs="{'required': [('picking_type_code', '!=', 'transfers')], 'invisible': [('picking_type_code', '=', 'transfers')]}" />
+
+
+              <field name="signature_deliverer" placeholder="Código del Carnet"
+                attrs="{'readonly': [('state', '=', 'done')], 'required': [('picking_type_code', '=', 'transfers')], 'invisible': [('picking_type_code', '!=', 'transfers')]}" />
+              <field name="delivery_id" placeholder="Seleccione" force_save="1" readonly="1" attrs="{'required': [('picking_type_code', '=', 'transfers')], 'invisible': [('picking_type_code', '!=', 'transfers')]}" />
+
+              <field name="signature_applicant" string="PIN quien Recibe" placeholder="Código del Carnet" attrs="{'readonly': [('state', '=', 'done')], 'invisible': [('picking_type_code', '!=', 'transfers')]}" />
+              <field name="applicant_id" string="Recibe" placeholder="Seleccione" readonly="1" force_save="1" attrs="{'invisible': [('picking_type_code', '!=', 'transfers')]}" />
+
               <field name="location_dest_id" placeholder="Seleccione" domain="[('usage', '=', 'internal')]" 
                 attrs="{
                 'readonly': [('state', 'in', ('done', 'cancel'))], 

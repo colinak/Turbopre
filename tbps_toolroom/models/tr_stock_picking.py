@@ -185,7 +185,7 @@ class TrStockPicking(models.Model):
                     'inventory_quantity': 1
                 })
             except:
-                raise UserError("¡Error!")
+                raise UserError("¡Error al intentar asignación!")
 
 
     
@@ -208,7 +208,7 @@ class TrStockPicking(models.Model):
                     'inventory_quantity': 1
                 })
             except:
-                raise UserError("¡Error!")
+                raise UserError("¡Error al intentar devolución!")
 
     def action_check_stage(self):
 
@@ -259,7 +259,50 @@ class TrStockPicking(models.Model):
 
 
     def transfer_confirm(self):
-        pass
+        """
+        Confirma la transferencia de herramientas, valida disponibilidad y genera los movimientos.
+        """
+        try:
+            if not self.move_line_ids:
+                raise UserError("No hay herramientas registradas para transferir.")
+
+            # 1 Lógica de movimiento de inventario (Creación de Stock Moves nativos si aplica)
+            # Para que Odoo mueva el inventario de location_id a location_dest_id, 
+            # lo correcto es generar un registro en 'stock.move' o 'stock.move.line' nativo de Odoo.
+            
+            stock_move_line_obj = self.env['tr.stock.move.line']
+
+            for line in self.move_line_ids:
+                # Registramos el movimiento físico en el inventario real de Odoo
+                line.name = self.name
+                line.lot_id.write({
+                    'location_id': self.location_dest_id.id or line.location_dest_id.id,
+                    'employee_id': self.delivery_id.id or False,
+                    'assigned_date': self.date
+                }),
+                quants = self.env['tr.stock.quant'].search([
+                    ('lot_id', '=', line.lot_id.id)
+                ])
+                quants.write({
+                    'location_id': self.location_dest_id.id,
+                    'inventory_quantity': 1
+                })
+
+                stock_move_line_obj.create({
+                    'lot_id': line.lot_id.id,
+                    'product_id': line.product_id.id,
+                    'product_uom_id': line.product_id.uom_id.id,
+                    'location_id': line.location_id.id,
+                    'location_dest_id': line.location_dest_id.id,
+                    'qty_done': 1.0,  # Tratándose de herramientas con número de serie específico
+                })
+                line.state = "done"
+
+        except:
+            raise UserError("¡Error al intentar transferencia de herramientas!")
+
+        self.state = "done"
+        # return True
 
 
     def action_assign(self):
@@ -315,11 +358,11 @@ class TrStockPicking(models.Model):
                         self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.returns') or _('Nuevo')
                         return self.action_check_stage()
                         # self.sudo().return_confirm()
-                    elif self.picking_type_code == "Transfers":
+                    elif self.picking_type_code == "transfers":
                         self.name = self.env['ir.sequence'].next_by_code('tr.stock.picking.transfers') or _('Nuevo')
                         self.sudo().transfer_confirm()
                         self.state = "done"
             except:
-                raise UserError("¡Error!")
+                raise UserError("¡Error al intentar validar!")
 
 

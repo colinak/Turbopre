@@ -104,10 +104,16 @@ class TrStockProductionLot(models.Model):
         help="Fecha de Asignación de al herramienta"
     )
     scrap_date = fields.Datetime(
-        string="Fecha Baja de Inventario",
+        string="Fecha de Desecho",
         tracking=True,
-        help="Fecha de Asignación de al herramienta"
+        help="Fecha de Desecho de al herramienta"
     )
+    reentry_date = fields.Datetime(
+        string="Fecha de Reingreso",
+        tracking=True,
+        help="Fecha de Reingreso de al herramienta"
+    )
+
     required_certification = fields.Boolean(
         string="Requiere certificación?",
         default=False

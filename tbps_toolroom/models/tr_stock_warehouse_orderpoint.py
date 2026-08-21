@@ -81,6 +81,7 @@ class TrStockWarehouseOrderpoint(models.Model):
 
 
     def action_confirme(self):
+        today = fields.Date.context_today(self)
         try:
             for lot in self.lot_ids:
                 if lot.stage != 'discarded' and lot.state != 'cancel':
@@ -93,6 +94,7 @@ class TrStockWarehouseOrderpoint(models.Model):
                         'state': "done",
                         'stage': "available",
                         'location_id': location.id,
+                        'reentry_date': today
                     })
                 self.write({'stage': "done"})
                 self.name = self.env['ir.sequence'].next_by_code('tr.stock.warehouse.orderpoint') or _('Nuevo')
